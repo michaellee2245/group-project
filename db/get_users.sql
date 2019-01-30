@@ -2,8 +2,7 @@
 
 SELECT person.id, person.name, email, profile_pic, '' AS manager FROM person 
 JOIN team_member ON person.id = team_member.user_id
-JOIN team ON team_member.team_id = team.id
-WHERE team.id = $1
+WHERE team_member.team_id = $1
 
 UNION
 
