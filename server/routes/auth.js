@@ -72,8 +72,6 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/session', (req, res) => {
   if (req.user) {
-    console.log('hey I\'m tryna get session!');
-    console.log(req.user);
     res.json({
       id: req.user[0].id,
       username: req.user[0].name
