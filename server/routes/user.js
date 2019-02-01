@@ -6,6 +6,7 @@ router.use((req, res, next) => {
   next();
 })
 
+// don't forget the id parameter.
 router.get('/from-team/:id', (req,res,next) => {
   req.db.user.get_users_by_team([req.params.id])
     .then(users =>{
