@@ -1,6 +1,7 @@
 /* Get all users assigned to a specific task */
 
-SELECT 
+SELECT
+  assignment.id,
   assigner.name AS assigner,
   u.name AS "user",
   task.name AS task
