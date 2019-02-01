@@ -1,7 +1,7 @@
 /* Get all tasks assigned to members of a specific team */
 
 SELECT
-  task.id AS task_id,
+  task.id,
   task.name AS task,
   "user".name AS "user",
   assigner.name AS assigner
