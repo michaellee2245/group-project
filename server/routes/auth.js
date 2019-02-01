@@ -9,17 +9,16 @@ router.use((req, res, next) => {
   next();
 })
 
+
+// requires username, password, and email
 router.post('/register', (req, res, next) => {
   req.db.user.get_user_by_name([req.body.username])
     .then(([user]) => {
       if (Number(user.count)) {
-        console.log('found a nonzero user count?');
         res.status(409).send('User already exists')
       } else {
-        console.log('made it to the else block');
         hashPassword(req.body.password)
           .then(hash => {
-            console.log('password was hashed i think');
             return req.db.user.post_user([
               req.body.username,
               req.body.email,
@@ -33,6 +32,7 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+// requires username and password
 router.post('/login', (req, res, next) => {
   req.db.user.get_user_password([req.body.username])
     .then(([pw]) => {
@@ -72,9 +72,11 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/session', (req, res) => {
   if (req.user) {
+    console.log('hey I\'m tryna get session!');
+    console.log(req.user);
     res.json({
       id: req.user[0].id,
-      username: req.user[0].username
+      username: req.user[0].name
     })
   } else {
     console.log('no session found')
