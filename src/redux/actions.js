@@ -30,7 +30,7 @@ export const logout = () => {
 
 export const getSession = () => {
   return dispatch => {
-    axios.get('/api/auth/session')
+    axios.get('/api/auth/session ')
     .then( (user) => {
       dispatch ({
         type: "USER",
@@ -41,6 +41,18 @@ export const getSession = () => {
       } else {
         dispatch (push('dashboard page'))
       }
+    })
+  }
+}
+
+export const register = () => {
+  return dispatch => {
+    axios.get('/api/auth/register')
+    .then ((user) => {
+      dispatch ({
+        type: "USER",
+        payload: user
+      })
     })
   }
 }
