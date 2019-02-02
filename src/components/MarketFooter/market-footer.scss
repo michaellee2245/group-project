@@ -1,0 +1,18 @@
+$footer-color: rgba(219, 219, 219, 0.5);
+
+.footer-container{
+    height:200px;
+    width:100vw;
+    background-color:$footer-color;
+    position: absolute;
+    bottom:0;
+    
+}
+
+.footer-logo{
+    width:50px;
+    height:50px;
+    background-image: url(../../assets/mondaylogomark.png);
+    background-size:contain;
+    background-repeat:no-repeat;
+}
