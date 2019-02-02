@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import MarketingLanding from './MarketingLanding';
 
 class Marketing extends Component {
 
@@ -7,7 +7,7 @@ class Marketing extends Component {
         return(
             <div>
                 Marketing Page
-                
+                <MarketingLanding />
             </div>
         )
     }
