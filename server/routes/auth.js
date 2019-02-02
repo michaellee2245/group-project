@@ -9,12 +9,12 @@ router.use((req, res, next) => {
   next();
 })
 
-
+// POST /api/auth/register
 // requires username, password, and email
 router.post('/register', (req, res, next) => {
   req.db.user.get_user_by_name([req.body.username])
     .then(([user]) => {
-      if (Number(user.count)) {
+      if (user) {
         res.status(409).send('User already exists')
       } else {
         hashPassword(req.body.password)
@@ -26,7 +26,20 @@ router.post('/register', (req, res, next) => {
               0
             ]);
           })
-          .then(() => res.status(200).send('user created'))
+          .then(() => {
+            return req.db.user.get_user_by_name([req.body.username])
+          })
+          .then(user => {
+            req.login(user, err => {
+              if (err) return next(err);
+              res.json({
+                id: user[0].id,
+                username: user[0].name,
+                pic: user[0].profile_pic,
+                email: user[0].email
+              })
+            });
+          })
           .catch(next);
       }
     });
@@ -52,10 +65,10 @@ router.post('/login', (req, res, next) => {
             req.login(user, err => {
               if (err) return next(err);
               res.json({
-                id: user.id,
-                username: user.name,
-                pic: user.profile_pic,
-                email: user.email
+                id: user[0].id,
+                username: user[0].name,
+                pic: user[0].profile_pic,
+                email: user[0].email
               })
             });
           })
