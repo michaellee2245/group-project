@@ -3,7 +3,6 @@ const router = express.Router()
 
 const comparePassword = require('./helpers/compare')
 const hashPassword = require('./helpers/hash')
-const login = require('./helpers/login');
 const serverError = require('./helpers/server-error');
 
 router.use((req, res, next) => {
