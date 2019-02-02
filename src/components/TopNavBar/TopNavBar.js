@@ -42,7 +42,15 @@ render(){
                     </span>
                 </a>
             </div>
-            <button>User Profile</button>
+            
+            <div className="navbar-tab">
+                <a href="https://youtu.be/ZZ5LpwO-An4">
+                    <span>
+                        <img src={peopleIcon} alt="UserProfile" className="nav-img"></img>
+                        UserProfile
+                    </span>
+                    </a>
+            </div>
 
         </div>
     )
