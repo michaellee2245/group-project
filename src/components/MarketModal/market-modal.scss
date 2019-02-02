@@ -1,0 +1,58 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn ease-in 1s;
+    animation-fill-mode: forwards;
+    animation-duration: .3s;
+}
+
+.modal-container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.inner-modal-container {
+    height: 60vh;
+    width: 60vw;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 2px 1px 10px rgb(32, 32, 32);
+    transition: all 1s ease 1s;
+
+    
+}
+
+.exit-modal {
+    float: right;
+    padding: 10px;
+    color: rgb(238, 104, 104);
+    cursor: pointer;
+}
+
+.inputs-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs-container {
+    input {
+        border-bottom: 1px solid black;
+    }
+}

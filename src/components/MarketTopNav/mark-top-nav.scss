@@ -1,5 +1,7 @@
-$nav-color: rgb(206, 205, 205);
+$nav-color: white;
 $button-color: #a358df;
+$product-color: #ff0476;
+$why-color: #00a9ff;
 $nav-font-weight: 700;
 $font-family: 'Nunito Sans', sans-serif;
 
@@ -17,6 +19,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 10000000;
+    padding: 10px;
 }
 
 .nav-right {
@@ -32,14 +35,20 @@ body {
         cursor: pointer;
     }
     #nav-product:hover {
-        color: #ff0476;
+        color: $product-color;
+    }
+    #nav-product:focus {
+        color: $product-color;
     }
     #nav-why:hover {
-        color: #00a9ff;
+        color: $why-color;
+    }
+    #nav-why:focus {
+        color: $why-color;
     }
     button {
         margin: 0 20px;
-        padding: 8px 25px;
+        padding: 5px 25px;
         border-radius: 20px;
         background: transparent;
         border: 1px solid black;
@@ -49,6 +58,11 @@ body {
     }
     button:hover {
         color: $button-color;
+        border-color: $button-color;
+        transition: .1s;
+    }
+    button:focus {
+        outline: none;
         border-color: $button-color;
     }
 }
