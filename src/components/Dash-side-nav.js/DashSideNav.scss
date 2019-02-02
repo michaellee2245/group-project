@@ -10,15 +10,15 @@
 
 .leftpane-component {
   height: 65px;
-  border-bottom:solid 2px #999999;
+  border-bottom:solid 1px #999999;
 }
 
 .leftpane-inbox-component {
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 25px;
   height: 55px;
-  border-bottom:solid 2px #999999;
+  border-bottom:solid 1px #999999;
   a{
     text-decoration: none;
     display: flex;
@@ -49,27 +49,66 @@ align-items: center;
 .inboxCounter {
   color:white;
   padding: 3px 15px;
-  border-radius: 12px;
-  margin-left: 20px;
+  border-radius: 15px;
+  margin-left: 125px;
   background-color: #009aff;
 }
 
 .leftpane-week-component {
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 25px;
   height: 55px;
-  border-bottom:solid 2px #999999;
+  border-bottom:solid 1px #999999;
+  &:hover{
+    background-color: #009aff;
+    color:white;
+    cursor: pointer;
+    .title{
+      color:white !important; 
+    }
+  }
+  a{
+    text-decoration: none;
+  }
 }
 
 .leftpane-boards-public-list-component {
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
   height: 55px;
-  border-bottom:solid 2px #999999;
+  border-bottom:solid 1px #999999;
+  &:hover{
+    background-color: #009aff;
+    color:white;
+    cursor: pointer;
+    .title{
+      color:white !important; 
+    }
+  }
+  a{
+    text-decoration: none;
+  }
 }
 
 .leftpane-boards-private-list-component {
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
   height: 55px;
-  border-bottom:solid 2px #999999;
+  border-bottom:solid 1px #999999;
+  &:hover{
+    background-color: #009aff;
+    color:white;
+    cursor: pointer;
+    .title{
+      color:white !important; 
+    }
+  }
+  a{
+    text-decoration: none;
+  }
 }
 
 

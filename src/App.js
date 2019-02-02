@@ -14,9 +14,9 @@ class App extends Component {
         
       </div>
 
-        
+        <DashSideNav />
 
-          <Marketing />
+          {/* <Marketing /> */}
 
 
 
