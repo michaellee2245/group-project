@@ -1,26 +1,46 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import img from '../../assets/bellRinging.png'
+import bellRinging from '../../assets/bellRinging.png'
+import peopleIcon from '../../assets/TwoPeople.png'
 import './TopNavBar.scss'
+import magGlass from '../../assets/magnifying-glass.png'
+import addButton from '../../assets/add_blue.png'
 
 class TopNavBar extends Component {
     state={}
 
 render(){
     return(
-        <div>
-            <div className="notification-bell">
-            <a href="https://youtu.be/dQw4w9WgXcQ">
-            <span>
-            <img src={img} alt="Notifications"></img>
-            
-            </span>
-            </a>
+        <div className="navbar-wrapper">
+            <div className="navbar-tab">
+                <a href="https://youtu.be/dQw4w9WgXcQ">
+                    <span>
+                        <img src={bellRinging} alt="Notifications" className="nav-img"></img>
+                    </span>
+                </a>
+            </div>
+            <div className="navbar-tab">
+                <a href="https://youtu.be/ZZ5LpwO-An4">
+                    <span>
+                        <img src={peopleIcon} alt="Members" className="nav-img"></img>
+                    </span>
+                    </a>
+            </div>
+            <div class="search">
+                <span class="search-icon">
+                <img src={magGlass} alt="magGlass" className="search-img"></img>
+                
+                </span> 
+             <input type="searchbar"placeholder="Search Everything ..." className="search-bar">
+             </input>
             </div>
 
-            <button>Members</button>
-            <input placeholder="Search Anything"></input>
-            <button>Invite</button>
+            <div className="navbar-tab">
+                <a href="https://youtu.be/dQw4w9WgXcQ">
+                    <span>
+                        <img src={addButton} alt="add Members" className="nav-img"></img>
+                    </span>
+                </a>
+            </div>
             <button>User Profile</button>
 
         </div>

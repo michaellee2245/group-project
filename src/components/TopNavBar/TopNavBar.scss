@@ -1,6 +1,30 @@
-.notification-bell {
+.navbar-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #f7f7f7;
+    height: 6vh;
+    align-items: baseline;
+    
+}
+
+.nav-img {
+    height: 4vh;
+}
+.search-img {
+    height:2vh
+}
+
+.navbar-tab {
+    height: 20px;
+    margin: 8px;
     :hover {
-        
-        background-color: blue
-    }
+        background-color: #009aff;
+      };
+}
+.search-bar {
+    border-radius: 15px;
+    // border: 2px solid #73AD21;
+    padding: 10px; 
+   
 }
