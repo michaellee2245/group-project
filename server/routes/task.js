@@ -19,7 +19,6 @@ router.get('/by-user/:userid', (req, res, next) => {
     })
 })
 
-
 // board_id, owner_id, name, position, group_name
 router.post('/', (req, res, next) => {
   if (req.user) {
