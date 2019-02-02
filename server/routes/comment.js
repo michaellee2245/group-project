@@ -18,7 +18,7 @@ router.post('/', (req,res,next) => {
 // get the comments you've authored
 router.get('/by-me', (req,res,next) => {
   if (req.user){
-    req.db.get_comments_by_user([req.user[0].id])
+    req.db.task.get_comments_by_user([req.user[0].id])
     .then(comments => {
       res.status(200).send(JSON.stringify(comments));
     })
@@ -27,6 +27,24 @@ router.get('/by-me', (req,res,next) => {
     res.status(401).send('not logged in')
   }
 
+})
+
+router.get('/on-task/:id', (req,res,next) => {
+  console.log('trying to get comments on task by id');
+  if (req.user){
+    console.log(req.user);
+    req.db.task.get_tasks_by_user_access([req.user[0].id])
+      .then(tasks => {
+        console.log(tasks);
+      })
+    req.db.task.get_comments_on_task([req.params.id])
+    .then(comments => {
+      res.status(200).send(JSON.stringify(comments));
+    })
+    .catch(err => serverError(err,res))
+  } else {
+    res.status(401).send('not logged in');
+  }
 })
 
 module.exports = router;
