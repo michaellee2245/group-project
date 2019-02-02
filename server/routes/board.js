@@ -6,11 +6,11 @@ router.use((req, res, next) => {
   next();
 })
 
-// don't forget the id parameter.
-router.get('/from-team/:id', (req,res,next) => {
-  req.db.user.get_users_by_team([req.params.id])
-    .then(users =>{
-      res.json(users);
+// requires name for new board
+router.post('/', (req,res,next) => {
+  req.db.post_board([req.body.name])
+    .then(() =>{
+      res.status(200).send('ok');
     })
     .catch(err => {
       console.error(err);
