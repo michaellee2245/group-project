@@ -9,20 +9,29 @@ router.use((req,res,next) => {
   next();
 });
 
-// req.body requires user id for sender,
-//     user id for recipient, and message content
+// req.body requires user id for recipient, and message content
+// only works when logged in
 router.post('/', (req,res,next) => {
-  req.db.post_message([
-    req.body.senderID,
-    req.body.recipientID,
-    req.body.content])
-    .then(() => res.status(200).send('ok'))
-    .catch(err => serverError(err,res))
+  if (req.user){
+    req.db.post_message([
+      req.user[0].id,
+      req.body.recipientID,
+      req.body.content])
+      .then(() => res.status(200).send('ok'))
+      .catch(err => serverError(err,res))
+    }
 })
 
 // gets all messages addressed to user (whoever is logged in on the cookie)
 router.get('/', (req,res,next) => {
-  console.log(req.user);
+  if (req.user) {
+    console.log(req.user);
+    req.db.get_messages_by_recipient([req.user[0].id])
+    .then(messages => {
+      res.status(200).send(JSON.stringify(messages));
+    })
+  }
+  else res.status(401).send('not logged in');
 })
 
-router.post('',isAuthenticated)
+module.exports = router;

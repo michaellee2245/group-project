@@ -2,13 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const isAuthenticated = require('./helpers/authorize');
-
-const err = (err,res) => {
-  return err => {
-    res.status(500).send('messed up');
-    console.error(err);
-  }
-}
+const serverError = require('./helpers/server-error');
 
 router.use((req,res,next) => {
   req.db = req.app.get('db');
@@ -19,13 +13,18 @@ router.use((req,res,next) => {
 router.post('/team', (req,res,next) => {
   req.db.post_team([req.body.name, req.body.manager])
     .then(() => res.status(200).send('ok'))
-    .catch(err => err(err,res))
+    .catch(err => serverError(err,res))
 })
 
 // req.body requires user id and team id
 router.post('/team-member', (req,res,next) => {
   req.db.post_team_member([req.body.user, req.body.team])
     .then(() => res.status(200).send('ok'))
+    .catch(err => serverError(err,res))
 })
 
-router.post('',isAuthenticated)
+router.post('/message', (req,res,next) => {
+
+})
+
+module.exports = router;
