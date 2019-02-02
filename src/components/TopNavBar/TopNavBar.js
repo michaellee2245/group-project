@@ -34,10 +34,11 @@ render(){
              </input>
             </div>
 
-            <div className="navbar-tab">
-                <a href="https://youtu.be/dQw4w9WgXcQ">
-                    <span>
+            <div className="navbar-tab-add">
+                <a href="https://youtu.be/dQw4w9WgXcQ" className="add-text">
+                    <span className="add-member-span">
                         <img src={addButton} alt="add Members" className="nav-img"></img>
+                       <p> Invite Team Members </p>
                     </span>
                 </a>
             </div>
