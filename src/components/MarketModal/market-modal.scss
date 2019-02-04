@@ -1,3 +1,5 @@
+$button-color: #a358df;
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -8,7 +10,7 @@
 }
 
 .fade-in {
-    animation: fadeIn ease-in 1s;
+    animation: fadeIn ease-in;
     animation-fill-mode: forwards;
     animation-duration: .3s;
 }
@@ -23,36 +25,72 @@
     position: fixed;
     top: 0;
     left: 0;
+    overflow: scroll;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .inner-modal-container {
-    height: 60vh;
+    height: 600px;
     width: 60vw;
-    background-color: rgb(255, 255, 255);
+    background-color: $button-color;
     border-radius: 5px;
     box-shadow: 2px 1px 10px rgb(32, 32, 32);
-    transition: all 1s ease 1s;
-
+    transition: all .3s ease;
+    span {
+        padding: 5px;
+        color: white;
+    }
     
 }
 
 .exit-modal {
     float: right;
     padding: 10px;
-    color: rgb(238, 104, 104);
+    color: white;
     cursor: pointer;
 }
 
+
 .inputs-container {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: transparent;
+    color: white;
+    input {
+        border: none;
+        border-bottom: 1px solid white;
+        margin: 30px;
+        width: 25%;
+        text-align: left;
+        padding: 5px 30px;
+        font-size: 19px;
+        background: transparent;
+        color: white;
+    }
+    input::placeholder {
+        text-align: center;
+        color: white;
+    }
+    input:focus::placeholder {
+        opacity: 0;
+    }
+    input:focus {
+        outline: none;
+    }
+
 }
 
-.inputs-container {
-    input {
-        border-bottom: 1px solid black;
-    }
+.register-button {
+    color: rgb(41, 41, 255)!important;
+    cursor: pointer;
 }

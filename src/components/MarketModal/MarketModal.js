@@ -12,8 +12,13 @@ class MarketModal extends Component {
                 <div className="inner-modal-container fade-in">
                     <div className="exit-modal" onClick={changeToggle}> close </div>
                     <div className="inputs-container">
-                        <input />
-                        <input />
+                        <h1>Sign in.</h1>
+                        <input placeholder="username or email" />
+                        <input placeholder="password" type="password" />
+                    </div>
+                    <div>
+                        <span>Not a member?</span>
+                        <span className="register-button">Register now.</span>
                     </div>
                 </div>
             </div>
