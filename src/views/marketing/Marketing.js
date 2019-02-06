@@ -6,7 +6,6 @@ class Marketing extends Component {
     render(){
         return(
             <div>
-                Marketing Page
                 <MarketingLanding />
             </div>
         )

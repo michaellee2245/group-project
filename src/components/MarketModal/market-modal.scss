@@ -1,0 +1,96 @@
+$button-color: #a358df;
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn ease-in;
+    animation-fill-mode: forwards;
+    animation-duration: .3s;
+}
+
+.modal-container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: scroll;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.inner-modal-container {
+    height: 600px;
+    width: 60vw;
+    background-color: $button-color;
+    border-radius: 5px;
+    box-shadow: 2px 1px 10px rgb(32, 32, 32);
+    transition: all .3s ease;
+    span {
+        padding: 5px;
+        color: white;
+    }
+    
+}
+
+.exit-modal {
+    float: right;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.inputs-container, .register-inputs-container {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: white;
+    input {
+        border: none;
+        border-bottom: 1px solid white;
+        margin: 30px;
+        width: 25%;
+        text-align: left;
+        padding: 5px 30px;
+        font-size: 19px;
+        background: transparent;
+        color: white;
+        &::placeholder {
+            text-align: center;
+            color: white;
+        }
+        &:focus::placeholder{
+            opacity: 0;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
+}
+
+.register-button, .sign-in-button {
+    color: rgb(41, 41, 255)!important;
+    cursor: pointer;
+}
+
+.register-container {
+    display: none;
+}
