@@ -52,6 +52,7 @@ router.post('/register', (req, res, next) => {
     // requires username and password
     router.post('/login', (req, res, next) => {
       const loginResponse = {};
+      console.log(req.body.username);
       req.db.user.get_user_password([req.body.username])
         .then(([pw]) => {
           if (!pw) {
@@ -121,6 +122,7 @@ router.post('/register', (req, res, next) => {
       if (req.user) {
         req.db.user.delete_user([req.user[0].id])
           .then(() => {
+            req.logout();
             res.status(200).send('deleted');
           })
           .catch(err => serverError(err, res))

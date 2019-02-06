@@ -1,6 +1,6 @@
 /* Get all boards that pertain to a specific user's team(s) */
 
-SELECT board.id, board.name, board.description FROM board
+SELECT DISTINCT board.id, board.name, board.description FROM board
 JOIN task ON task.board_id = board.id
 JOIN person AS owner ON task.owner_id = owner.id
 JOIN assignment ON assignment.task_id = task.id
