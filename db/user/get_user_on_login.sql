@@ -2,7 +2,7 @@
 
 SELECT
   person.id,
-  person.name AS recipient,
+  person.name AS username,
   person.email,
   person.profile_pic,
   (SELECT COUNT(message.read)
