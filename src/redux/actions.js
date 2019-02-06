@@ -5,6 +5,7 @@ export const login = (user) => {
   return dispatch => {
     axios.post('/api/auth/login' ,user)
     .then( (user) => {
+      console.log('redux', user)
       dispatch ({
         type: "USER",
         payload: user
@@ -32,6 +33,7 @@ export const getSession = () => {
   return dispatch => {
     axios.get('/api/auth/session ')
     .then( (user) => {
+      console.log('redux session',user.data)
       dispatch ({
         type: "USER",
         payload: user
@@ -45,10 +47,12 @@ export const getSession = () => {
   }
 }
 
-export const register = () => {
+// user must have name, email and password
+export const register = (user) => {
   return dispatch => {
-    axios.get('/api/auth/register')
+    axios.post('/api/auth/register',user)
     .then ((user) => {
+      console.log('register', user)
       dispatch ({
         type: "USER",
         payload: user
