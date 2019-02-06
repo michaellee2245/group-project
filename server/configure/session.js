@@ -13,18 +13,17 @@ module.exports = (app , db) => {
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 5 * 24 * 60 * 60 * 1000 // 5 days 
+      expires: 5 * 24 * 60 * 60 * 1000 // 5 days
     }
   }))
   app.use(passport.initialize())
   app.use(passport.session())
 
   passport.serializeUser((user,done) => {
-    
-    done(null, user.id)
+    done(null, user[0].id)
   })
   passport.deserializeUser((id,done)=> {
-    db.users.find({id})
+    db.user.get_user([id])
       .then(user => {
         done(null, user);
       })
