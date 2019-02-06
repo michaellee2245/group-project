@@ -19,6 +19,8 @@ class MarketTopNav extends Component {
             displayModal: !this.state.displayModal
         })
 
+        $(".modal-container").fadeOut();
+
     }
 
     handleRegisterClick = () => {
@@ -29,16 +31,13 @@ class MarketTopNav extends Component {
           
     }
 
-    handleChange = (key, value) => {
+    handleChange = ({target: {value, name}}) => {
         this.setState({
-            [key]: value
+            [name]: value
         })
     }
 
     render() {
-
-        console.log(this.state.registerEmail)
-        console.log(this.state.registerPassword)
 
         return (
             <div className="nav-container">
