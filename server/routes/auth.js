@@ -20,7 +20,6 @@ router.post('/register', (req, res, next) => {
             } else {
               hashPassword(req.body.password)
                 .then(hash => {
-                  console.log('hashed something');
                   return req.db.user.post_user([
                     req.body.username,
                     req.body.email,
@@ -29,11 +28,9 @@ router.post('/register', (req, res, next) => {
                   ]);
                 })
                 .then(() => {
-                  console.log('get login stuff');
                   return req.db.user.get_user_on_login([req.body.username])
                 })
                 .then(user => {
-                    console.log(user);
                     req.login(user, err => {
                       if (err) return next(err);
                       req.db.get_boards_by_user_teams([user[0].id])
@@ -54,6 +51,7 @@ router.post('/register', (req, res, next) => {
 
     // requires username and password
     router.post('/login', (req, res, next) => {
+      const loginResponse = {};
       req.db.user.get_user_password([req.body.username])
         .then(([pw]) => {
           if (!pw) {
@@ -62,28 +60,33 @@ router.post('/register', (req, res, next) => {
             comparePassword(req.body.password, pw.password)
               .then(correct => {
                 if (!correct) {
-                  res.status(401).send('Password Incorrect')
+                  const responseText = 'Password Incorrect';
+                  console.log(responseText);
+                  res.status(401).send(responseText);
                 } else {
                   return req.db.user.get_user_on_login([req.body.username]);
                 }
               })
               .then(user => {
-                console.log(user);
+                if (!user) return;
                 req.login(user, err => {
                   if (err) return next(err);
                   req.db.get_boards_by_user_teams([user[0].id])
                     .then(boards => {
-                      res.json({
-                        user: user[0],
-                        boards: boards
-                      })
+                      loginResponse.user = user[0];
+                      loginResponse.boards = boards;
+                      return req.db.get_teams_by_user([user[0].id])
+                    })
+                    .then(teams => {
+                      loginResponse.teams = teams;
+                      res.json(loginResponse)
                     })
                     .catch(err => serverError(err, res))
                 });
               })
               .catch(error => console.log(error))
           }
-        })
+         })
         .catch(next)
     })
 
@@ -97,21 +100,30 @@ router.post('/register', (req, res, next) => {
     router.get('/session', (req, res) => {
       const sessionResponse = {};
       if (req.user) {
-        console.log(req.user);
         req.db.user.get_user_on_login([req.user[0].name])
           .then(user => {
-            console.log(user);
-            sessionResponse.user = user;
+            sessionResponse.user = user[0];
             return req.db.get_boards_by_user_teams([user[0].id])
           })
           .then(boards => {
             sessionResponse.boards = boards;
             res.json(sessionResponse)
           })
+          .catch(err => serverError(err, res))
       } else {
         console.log('no session found')
         res.status(401).send('session not found')
       }
     })
 
+    // delete my account...
+    router.delete('/me', (req,res) => {
+      if (req.user) {
+        req.db.user.delete_user([req.user[0].id])
+          .then(() => {
+            res.status(200).send('deleted');
+          })
+          .catch(err => serverError(err, res))
+      }
+    })
     module.exports = router;
