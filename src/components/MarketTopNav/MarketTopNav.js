@@ -6,7 +6,10 @@ import $ from 'jquery';
 class MarketTopNav extends Component {
 
     state = {
-        displayModal: false
+        displayModal: false,
+        username: '',
+        password: ''
+
     }
 
     handleModalClick = () => {
@@ -26,7 +29,17 @@ class MarketTopNav extends Component {
 
     }
 
+    handleChange = (key, value) => {
+        this.setState({
+            [key]: value
+        })
+    }
+
     render() {
+
+        console.log(this.state.username)
+        console.log(this.state.password)
+
         return (
             <div className="nav-container">
                 <div className="nav-logo"></div>
@@ -38,6 +51,8 @@ class MarketTopNav extends Component {
                 {this.state.displayModal ? (
                     <MarketModal
                         changeToggle={this.handleModalClick}
+                        changeState={this.handleChange}
+
 
                     />
                 ) : null}
