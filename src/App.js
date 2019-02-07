@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DashSideNav from '../src/components/Dash-side-nav.js/DashSideNav'
 
 import './App.css';
 import Marketing from './views/marketing/Marketing';
@@ -9,7 +10,14 @@ class App extends Component {
     return (
       <div className="App">
 
-          <Marketing />
+      <div>
+        
+      </div>
+
+        <DashSideNav />
+
+          {/* <Marketing /> */}
+
 
 
       </div>
