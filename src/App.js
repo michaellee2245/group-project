@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import history from './history'
+import DashSideNav from '../src/components/Dash-side-nav.js/DashSideNav'
+
 import './App.css';
 import DashboardLanding from './views/dashboard/DashboardLanding';
 import { ConnectedRouter } from 'connected-react-router';
@@ -12,11 +14,12 @@ class App extends Component {
         <ConnectedRouter history = {history}>
           <Switch>
             <Route component = {DashboardLanding} />
-
           </Switch>
         </ConnectedRouter>
-
-
+      <div>
+      </div>
+        <DashSideNav />
+          {/* <Marketing /> */}
       </div>
     );
   }
