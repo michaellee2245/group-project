@@ -9,6 +9,22 @@ $button-color: #a358df;
     }
 }
 
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut ease-in;
+    animation-fill-mode: forwards;
+    animation-duration: .3s;
+    animation-direction: reverse;
+}
+
 .fade-in {
     animation: fadeIn ease-in;
     animation-fill-mode: forwards;
@@ -21,6 +37,7 @@ $button-color: #a358df;
     background-color: rgba(0, 0, 0, 0.87);
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     position: fixed;
     top: 0;
@@ -31,8 +48,10 @@ $button-color: #a358df;
 }
 
 .inner-modal-container {
+    display: flex;
+    justify-content: center;
     height: 600px;
-    width: 60vw;
+    width: 50vw;
     background-color: $button-color;
     border-radius: 5px;
     box-shadow: 2px 1px 10px rgb(32, 32, 32);
@@ -68,7 +87,7 @@ $button-color: #a358df;
         margin: 30px;
         width: 100%;
         text-align: left;
-        padding: 5px;
+        padding: 5px 30px;
         font-size: 19px;
         background: transparent;
         color: white;
@@ -83,21 +102,25 @@ $button-color: #a358df;
             outline: none;
         }
     }
+    h1 {
+        font-size: 50px;
+    }
 
 }
 
 .register-button, .sign-in-button {
-    color: rgb(41, 41, 255)!important;
+    color: rgb(26, 0, 59)!important;
     cursor: pointer;
 }
 
 .motion-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: row;
     height: 100%;
-    //background: rgba(0, 0, 0, 0.87)
+    width: 700px;
+     //background: rgba(0, 0, 0, 0.47);
 
 }
 

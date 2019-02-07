@@ -6,7 +6,8 @@ import { Motion, spring, presets } from 'react-motion';
 class MarketModal extends Component {
 
     state = {
-        register: false
+        register: false,
+        closeModal: false,
     }
 
     handleMouseDown = () => {
@@ -14,6 +15,7 @@ class MarketModal extends Component {
             register: !this.state.register
         })
     }
+
     render() {
 
 
@@ -22,7 +24,6 @@ class MarketModal extends Component {
             props: {
                 changeState,
                 changeToggle,
-                registerToggle
             },
             state: {
                 register
@@ -37,21 +38,22 @@ class MarketModal extends Component {
             >
                 {({ opacity }) => (
 
-                    <div className="modal-container fade-in">
+                    <div
+                        className="modal-container fade-in fade-out"
+                        style={{
+                            opacity
+                        }}
+                    >
                         <div
                             className="inner-modal-container fade-in"
                         >
                             <div
-                                className="exit-modal"
-                                onClick={changeToggle}> close
-                            </div>
-                            <div
                                 className="motion-container"
                                 style={{
                                     transform: `translateX(${(50 - opacity * 100) / 2}%)`,
-    
+
                                 }}
-                                >
+                            >
                                 <div
                                     className="sign-in-container"
                                     style={{
@@ -82,12 +84,12 @@ class MarketModal extends Component {
                                     </span>
                                     </div>
                                 </div>
-                                <div 
+                                <div
                                     className="register-container fadeIn"
                                     style={{
                                         opacity
                                     }}
-                                    >
+                                >
                                     <div className="register-inputs-container">
                                         <h1>Register now.</h1>
                                         <input
@@ -111,6 +113,10 @@ class MarketModal extends Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div
+                            className="exit-modal"
+                            onClick={changeToggle}> close
                         </div>
                     </div>
                 )}
