@@ -14,13 +14,11 @@ class App extends Component {
         <ConnectedRouter history = {history}>
           <Switch>
             <Route component = {DashboardLanding} />
+           
           </Switch>
         </ConnectedRouter>
-      <div>
       </div>
-        <DashSideNav />
-          {/* <Marketing /> */}
-      </div>
+      
     );
   }
 }
