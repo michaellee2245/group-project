@@ -13,6 +13,18 @@ router.use((req, res, next) => {
 // POST /api/auth/register
 // requires username, password, and email
 router.post('/register', (req, res, next) => {
+      if (!req.body.username || req.body.username.length < 1){
+        res.status(400).send('username required');
+        return;
+      }
+      if (!req.body.password || req.body.password.length < 1){
+        res.status(400).send('password required');
+        return;
+      }
+      if (!req.body.email || req.body.email.length < 1){
+        res.status(400).send('email required');
+        return;
+      }
       req.db.user.get_user_by_name([req.body.username])
         .then(([user]) => {
             if (user) {
