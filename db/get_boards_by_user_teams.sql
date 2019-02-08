@@ -1,5 +1,18 @@
 /* Get all boards that pertain to a specific user's team(s) */
 
+SELECT board.id, board.name, board.description FROM board
+WHERE board.team IN (
+  SELECT team.id FROM team
+  JOIN team_member ON team_member.team_id = team.id
+  WHERE team_member.user_id = $1
+) OR board.team IN (
+  SELECT team.id FROM team
+  WHERE team.manager_id = $1
+);
+
+/* That was a much more complex query that I'm keeping for the time being
+   in case I need it again:
+
 SELECT DISTINCT board.id, board.name, board.description FROM board
 JOIN task ON task.board_id = board.id
 JOIN person AS owner ON task.owner_id = owner.id
@@ -41,3 +54,5 @@ WHERE owner.id IN (
     WHERE manager_id = $1
   )
 );
+
+*/
