@@ -15,30 +15,23 @@ class MarketTopNav extends Component {
     }
 
     handleModalClick = () => {
+
+        $(".modal-container").fadeOut(1000);
+
         this.setState({
             displayModal: !this.state.displayModal
         })
 
+
     }
 
-    handleRegisterClick = () => {
-        
-        
-            $(".sign-in-container").toggle();
-            $(".register-container").toggle();
-          
-    }
-
-    handleChange = (key, value) => {
+    handleChange = ({target: {value, name}}) => {
         this.setState({
-            [key]: value
+            [name]: value
         })
     }
 
     render() {
-
-        console.log(this.state.registerEmail)
-        console.log(this.state.registerPassword)
 
         return (
             <div className="nav-container">
@@ -52,7 +45,6 @@ class MarketTopNav extends Component {
                     <MarketModal
                         changeToggle={this.handleModalClick}
                         changeState={this.handleChange}
-                        registerToggle={this.handleRegisterClick}
 
                     />
                 ) : null}
