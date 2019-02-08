@@ -6,6 +6,7 @@
     height: 6vh;
     align-content: center; 
     text-decoration: none;
+    align-items: center;
 }
 
 .nav-img {
@@ -16,27 +17,29 @@
 
 .material-icons {
     color: grey;
+    
 }
 .search-img {
     height:2vh;
-    // position: absolute;
-    // left: 150px;
-    // padding: 5px;
-    // margin: 10px;
+    justify-content: center;
+   
 }
 
 .navbar-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     height: 20px;
     margin: 8px;
-    :hover {
-        color: #009aff;
-      };
      text-decoration: none;
 }
 .search-bar {
+    display:flex;
+    align-items: center;
     border-radius: 15px;
-    // border: 2px solid #73AD21;
-    padding: 10px; 
+    padding: 8px; 
     margin: 1vh;
    
 }
@@ -47,41 +50,35 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-   // text-decoration: none;
-    &:hover {
-        color: #009aff;
-    }
+    text-decoration: none;
 }
-.add-text {
+.text {
     text-decoration: none;
     color: #333333;
+    :hover {
+        color: #009aff;
+      };
 }
 
 .dropdown-content{
     width:auto;
     max-width: 250px;
     height:30px;
-    background-color: black;
-    opacity: 50%;
+    background-color:rgb(128, 128, 128);
+    opacity: 20%;
     z-index: 10;
     display: none;
     color: white;
-    padding: 0 10px;
+    padding: 0 20px;
     text-decoration: none;
-    transition: 5s;
-
-
-   
+    position: absolute;
 }
 
 .dropdown-notifs:hover .dropdown-content {
     display: block;
-    text-decoration: none;
-    transition: 5s;
 }
 
 .dropdown-people:hover .dropdown-content{
     display: block;
-    text-decoration: none;
 }
 
