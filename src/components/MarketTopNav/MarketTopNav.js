@@ -10,13 +10,12 @@ class MarketTopNav extends Component {
         email: '',
         password: '',
         registerEmail: '',
-        registerPassword: ''
+        registerPassword: '',
+        registerUsername: ''
 
     }
 
     handleModalClick = () => {
-
-        $(".modal-container").fadeOut(1000);
 
         this.setState({
             displayModal: !this.state.displayModal

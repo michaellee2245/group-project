@@ -40,6 +40,7 @@ class MarketModal extends Component {
 
                     <div
                         className="modal-container fade-in fade-out"
+                        id="modal_id"
                         style={{
                             opacity
                         }}
@@ -74,6 +75,9 @@ class MarketModal extends Component {
                                             name="password"
                                             onChange={changeState}
                                         />
+                                        <button>
+                                            Submit
+                                        </button>
                                     </div>
                                     <div>
                                         <span>Not a member?</span>
@@ -93,7 +97,12 @@ class MarketModal extends Component {
                                     <div className="register-inputs-container">
                                         <h1>Register now.</h1>
                                         <input
-                                            placeholder="Register email address"
+                                            placeholder="Username"
+                                            name="registerUsername"
+                                            onChange={changeState}
+                                        />
+                                        <input
+                                            placeholder="Email address"
                                             name="registerEmail"
                                             onChange={changeState}
                                         />
@@ -101,7 +110,12 @@ class MarketModal extends Component {
                                             placeholder="Create password"
                                             type="password"
                                             name="registerPassword"
-                                            onChange={changeState} />
+                                            onChange={changeState}
+                                        />
+                                        <button>
+                                            Submit
+                                        </button>
+
                                         <div>
                                             <span>Already a member?</span>
                                             <span

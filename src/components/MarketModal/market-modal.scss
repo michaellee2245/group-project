@@ -18,9 +18,9 @@ $button-color: #a358df;
     }
 }
 
+
 .fade-out {
     animation: fadeOut ease-in;
-    animation-fill-mode: forwards;
     animation-duration: .3s;
     animation-direction: reverse;
 }
@@ -81,19 +81,36 @@ $button-color: #a358df;
     align-items: center;
     background: transparent;
     color: white;
+    button {
+        background: white;
+        border: 1px solid white;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        margin-bottom: 20px;
+        color: $button-color;
+        border-radius: 15px;
+        transition: .3s;
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.678);
+            color: $button-color;
+            cursor: pointer;
+        }
+    }
     input {
         border: none;
         border-bottom: 1px solid white;
         margin: 30px;
-        width: 100%;
+        width: 70%;
         text-align: left;
-        padding: 5px 30px;
+        padding: 5px 70px;
         font-size: 19px;
         background: transparent;
         color: white;
+        cursor: pointer;
         &::placeholder {
             text-align: center;
-            color: white;
+            color: rgba(255, 255, 255, 0.822);
         }
         &:focus::placeholder{
             opacity: 0;
