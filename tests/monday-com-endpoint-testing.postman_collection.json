@@ -1212,6 +1212,32 @@
 					"response": []
 				},
 				{
+					"name": "approve team member",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/approval/4/20",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"approval",
+								"4",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create new team",
 					"event": [
 						{
@@ -1523,6 +1549,21 @@
 								"api",
 								"task"
 							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a task",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []

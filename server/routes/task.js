@@ -9,12 +9,12 @@ router.use((req, res, next) => {
 })
 
 // get all my tasks
-router.get('/', isAuthenticated, (req,res,next) => {
+router.get('/', isAuthenticated, (req, res, next) => {
   req.db.task.get_tasks_by_user([req.user[0].id])
     .then(tasks => {
       res.json(tasks);
     })
-    .catch(err => serverError(err,res))
+    .catch(err => serverError(err, res))
 })
 
 // get all tasks for user
@@ -29,17 +29,20 @@ router.get('/by-user/:userid', (req, res, next) => {
     })
 })
 
+// create task
 // board_id, owner_id, name, position, group_name
-router.post('/', (req, res, next) => {
-  if (req.user) {
-    req.db.task.post_task([req.body.id, req.user[0].id, req.body.name, 0, ''])
-      .then(() => {
-        res.status(200).send('ok');
-      })
-      .catch(err => serverError(err, res))
-  } else {
-    res.status(401).send('not logged in')
-  }
+router.post('/', isAuthenticated, (req, res, next) => {
+  req.db.task.post_task([
+      req.body.boardID,
+      req.user[0].id,
+      req.body.name,
+      0,
+      ''
+    ])
+    .then(() => {
+      res.status(200).send('ok');
+    })
+    .catch(err => serverError(err, res))
 })
 
 module.exports = router;
