@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import history from './history'
-import DashSideNav from '../src/components/Dash-side-nav.js/DashSideNav'
-
 import './App.css';
 import DashboardLanding from './views/dashboard/DashboardLanding';
 import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
+import Marketing from './views/marketing/Marketing';
 
 class App extends Component {
   render() {
@@ -13,8 +12,9 @@ class App extends Component {
       <div className="App">
         <ConnectedRouter history = {history}>
           <Switch>
-            <Route component = {DashboardLanding} />
-           
+            <Route path="/dashboard" component = {DashboardLanding} />
+            
+            <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
       </div>
