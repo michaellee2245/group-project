@@ -32,6 +32,9 @@ router.get('/by-user/:userid', (req, res, next) => {
 // create task
 // board_id, owner_id, name, position, group_name
 router.post('/', isAuthenticated, (req, res, next) => {
+  console.log('creating task');
+  console.log(req.body);
+  console.log(req.user);
   req.db.task.post_task([
       req.body.boardID,
       req.user[0].id,

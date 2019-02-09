@@ -21,7 +21,7 @@ router.post('/approval/:teamID/:userID', isAuthorized, (req, res, next) => {
       } else return 'not manager';
     })
     .then(r => {
-      if (r === 'not manager'){
+      if (r === 'not manager') {
         res.status(409).send(r);
       } else {
         res.status(200).send('approved');
@@ -47,16 +47,27 @@ router.post('/', (req, res, next) => {
 
 // POST /api/team/join
 // requires team id
-router.post('/join/:teamid', (req, res, next) => {
-  if (req.user) {
-    req.db.team.post_team_member([req.user[0].id, req.params.teamid])
-      .then(() => {
+router.post('/join/:teamid', isAuthorized, (req, res, next) => {
+  console.log('joining team');
+  console.log(req.user[0]);
+  console.log(req.params.teamid);
+  req.db.team.check_team_member([req.user[0].id, req.params.teamid])
+    .then(r => {
+      if (r.length > 0) {
+        return 'already a member';
+      } else {
+        return req.db.team.post_team_member([req.user[0].id, req.params.teamid])
+      }
+    })
+    .then(r => {
+      if (r === 'already a member') {
+        res.status(400).send(r)
+      } else {
         res.status(200).send('ok');
-      })
-      .catch(err => serverError(err, res));
-  } else {
-    res.status(401).send('not logged in');
-  }
+      }
+
+    })
+    .catch(err => serverError(err, res));
 })
 
 router.post('/join/by-name/:name', (req, res, next) => {

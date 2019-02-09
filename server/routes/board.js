@@ -12,9 +12,9 @@ router.use((req, res, next) => {
 // requires name for new board and id for team it will belong to.
 // user must be manager or approved team member or request will fail.
 router.post('/', isAuthenticated, (req, res, next) => {
-  req.db.other.person_is_approved([req.user[0].id, req.body.team])
+  req.db.approval.person_is_approved([req.user[0].id, req.body.teamID])
     .then(approval => {
-      if (approval) return req.db.other.post_board([req.body.name, req.body.team])
+      if (approval) return req.db.other.post_board([req.body.name, req.body.teamID])
       else return 'unapproved';
     })
     .then(r => {

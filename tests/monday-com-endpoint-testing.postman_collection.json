@@ -1000,7 +1000,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"{{boardname}}\",\n\t\"id\": 4\n}"
+							"raw": "{\n\t\"name\": \"{{boardname}}\",\n\t\"teamID\": 4\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/board",
@@ -1079,7 +1079,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Milk Chocolate Deliciousness\",\n\t\"team\": 4\n}"
+							"raw": "{\n\t\"name\": \"Milk Chocolate Deliciousness\",\n\t\"teamID\": 4\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/board",
@@ -1135,7 +1135,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Public Candy Board\",\n\t\"team\": 5\n}"
+							"raw": "{\n\t\"name\": \"Public Candy Board\",\n\t\"teamID\": 5\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/board",
@@ -1556,14 +1556,29 @@
 				{
 					"name": "create a task",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": 22,\n\t\"name\": \"do important thing\"\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
 						}
 					},
 					"response": []
