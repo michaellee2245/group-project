@@ -2,21 +2,23 @@ import React, { Component } from 'react';
 import './mark-top-nav.scss';
 import MarketModal from '../MarketModal/MarketModal';
 import $ from 'jquery';
+import axios from 'axios';
+import { connect } from 'react-redux'
+import { login, register } from '../../redux/actions'
 
 class MarketTopNav extends Component {
 
     state = {
         displayModal: false,
-        email: '',
+        username: '',
         password: '',
         registerEmail: '',
-        registerPassword: ''
+        registerPassword: '',
+        registerUsername: ''
 
     }
 
     handleModalClick = () => {
-
-        $(".modal-container").fadeOut(1000);
 
         this.setState({
             displayModal: !this.state.displayModal
@@ -25,11 +27,35 @@ class MarketTopNav extends Component {
 
     }
 
-    handleChange = ({target: {value, name}}) => {
+    handleChange = ({ target: { value, name } }) => {
         this.setState({
             [name]: value
         })
     }
+
+    handleClickLogin = () => {
+
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
+        this.props.login(user)
+
+    }
+
+    handleClickRegister = () => {
+
+        const user = {
+            username: this.state.registerUsername,
+            password: this.state.registerPassword,
+            email: this.state.registerEmail
+        }
+
+        this.props.register(user)
+
+    }
+
 
     render() {
 
@@ -41,16 +67,20 @@ class MarketTopNav extends Component {
                     <div id="nav-why">Why Us</div>
                     <button onClick={this.handleModalClick}>Log in</button>
                 </div>
-                {this.state.displayModal ? (
-                    <MarketModal
-                        changeToggle={this.handleModalClick}
-                        changeState={this.handleChange}
 
-                    />
-                ) : null}
+                <MarketModal
+                    changeToggle={this.handleModalClick}
+                    changeState={this.handleChange}
+                    handleLogin={this.handleClickLogin}
+                    handleRegister={this.handleClickRegister}
+                    display={this.state.displayModal}
+
+                />
+
             </div>
         )
     }
 }
 
-export default MarketTopNav;
+
+export default connect(null, { login, register })(MarketTopNav);

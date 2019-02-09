@@ -18,12 +18,13 @@ class MarketModal extends Component {
 
     render() {
 
-
-
         const {
             props: {
                 changeState,
                 changeToggle,
+                handleLogin,
+                handleRegister,
+                display
             },
             state: {
                 register
@@ -33,82 +34,114 @@ class MarketModal extends Component {
 
         return (
             <Motion
-                style={{ opacity: spring(register ? 1 : 0, presets.gentle) }}
+                style={{
+                    position: spring(register ? 1 : 0, presets.gentle),
+                    modalOpacity: spring(display ? 1 : 0, presets.noWobble)
+
+                }}
 
             >
-                {({ opacity }) => (
+                {({ position, modalOpacity }) => (
 
                     <div
-                        className="modal-container fade-in fade-out"
+                        className="modal-container"
                         style={{
-                            opacity
+                            opacity: modalOpacity,
+                            display: modalOpacity === 0 ? 'none' : undefined
                         }}
                     >
                         <div
-                            className="inner-modal-container fade-in"
+                            className="inner-modal-container"
                         >
                             <div
                                 className="motion-container"
                                 style={{
-                                    transform: `translateX(${(50 - opacity * 100) / 2}%)`,
+                                    transform: position !== 1 && position !== 0 ? `translateX(${(50 - position * 100) / 2}%)` : undefined
 
                                 }}
                             >
                                 <div
                                     className="sign-in-container"
                                     style={{
-                                        opacity: 1 - opacity
+                                        opacity: 1 - position,
+                                        display: position === 1 ? 'none' : undefined 
 
                                     }}
                                 >
-                                    <div className="inputs-container">
+                                    <div className="register-inputs-container">
                                         <h1>Sign in.</h1>
-                                        <input
-                                            placeholder="Enter email address"
-                                            name="email"
-                                            onChange={changeState}
-                                        />
-                                        <input
-                                            placeholder="Enter password"
-                                            type="password"
-                                            name="password"
-                                            onChange={changeState}
-                                        />
-                                    </div>
-                                    <div>
-                                        <span>Not a member?</span>
-                                        <span
-                                            className="register-button"
-                                            onClick={handleMouseDown} >
-                                            Register now.
-                                    </span>
+                                        <div className="inputs">
+                                            <input
+                                                placeholder="Enter username"
+                                                name="username"
+                                                onChange={changeState}
+                                            />
+                                            <input
+                                                placeholder="Enter password"
+                                                type="password"
+                                                name="password"
+                                                onChange={changeState}
+                                            />
+                                        </div>
+                                        <div>
+                                            <button
+                                                onClick={handleLogin}
+                                            >
+                                                Submit
+                                            </button>
+                                            <div>
+                                                <span>Not a member?</span>
+                                                <span
+                                                    className="register-button"
+                                                    onClick={handleMouseDown} >
+                                                    Register now.
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div
-                                    className="register-container fadeIn"
+                                    className="register-container"
                                     style={{
-                                        opacity
+                                        opacity: position,
+                                        display: position === 0 ? 'none' : undefined
                                     }}
                                 >
                                     <div className="register-inputs-container">
                                         <h1>Register now.</h1>
-                                        <input
-                                            placeholder="Register email address"
-                                            name="registerEmail"
-                                            onChange={changeState}
-                                        />
-                                        <input
-                                            placeholder="Create password"
-                                            type="password"
-                                            name="registerPassword"
-                                            onChange={changeState} />
                                         <div>
-                                            <span>Already a member?</span>
-                                            <span
-                                                className="sign-in-button"
-                                                onClick={handleMouseDown} >
-                                                Sign in.
-                                        </span>
+                                            <input
+                                                placeholder="Username"
+                                                name="registerUsername"
+                                                onChange={changeState}
+                                            />
+                                            <input
+                                                placeholder="Email address"
+                                                name="registerEmail"
+                                                onChange={changeState}
+                                            />
+                                            <input
+                                                placeholder="Create password"
+                                                type="password"
+                                                name="registerPassword"
+                                                onChange={changeState}
+                                            />
+                                        </div>
+                                        <div>
+                                            <button
+                                                onClick={handleRegister}
+                                            >
+                                                Submit
+                                        </button>
+
+                                            <div>
+                                                <span>Already a member?</span>
+                                                <span
+                                                    className="sign-in-button"
+                                                    onClick={handleMouseDown} >
+                                                    Sign in.
+                                            </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -121,6 +154,7 @@ class MarketModal extends Component {
                     </div>
                 )}
             </Motion>
+
         )
     }
 }
