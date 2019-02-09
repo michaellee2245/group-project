@@ -3,12 +3,14 @@ import './DashSideNav.scss';
 import {getMessages} from '../../api/api'
 
 
+
 class DashSideNav extends Component {
   state = {
     count: [1, 2, 3, 4, 5],
     publicCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     privateCount: [1, 2, 3],
-    messages: []
+    messages: [],
+    showMenu:false,
   }
   changeView = (n) => {
     const name = n
@@ -38,6 +40,24 @@ class DashSideNav extends Component {
     return this.state.privateCount.length
   }
 
+  showMenu = (event) => {
+    event.preventDefault();
+    
+    this.setState({ showMenu: true }, () => {
+      document.addEventListener('click', this.closeMenu);
+    })
+    
+  }
+  closeMenu = (event) => {
+    if (!this.dropdownMenu.contains(event.target)) {
+      
+      this.setState({ showMenu: false }, () => {
+        document.removeEventListener('click', this.closeMenu);
+      });  
+      
+    }
+  }
+
   render() {
     return (
       <div className="leftpane-container" id="leftpane-container">
@@ -63,21 +83,45 @@ class DashSideNav extends Component {
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
-            <div className="leftpane-boards-public-list-component" id="leftpane-boards-list-component">
-              <a href="/my boards-public" className="link-wrapper router">
+            <div 
+            className="leftpane-boards-public-list-component" 
+            id="leftpane-boards-list-component"
+            onClick = {this.showMenu}
+            >
+              {/* <a href="/my boards-public" className="link-wrapper router"> */}
                 <i class="material-icons">menu</i><span className="title">Boards public</span>
                 <span className="title"> ({this.publicBoardCount()})</span>
-              </a>
+              {/* </a> */}
+              {
+                this.state.showMenu
+                ?(
+                  <div className = 'public-menu' ref = { (element) => {this.dropdownMenu = element}} >
+                    <button>test1</button>
+                    <button>test2</button>
+                  </div>
+                )
+                :(null)
+              }
             </div>
           </div>
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
             <div className="leftpane-boards-private-list-component" id="leftpane-boards-list-component">
-              <a href="/my boards-private" className="link-wrapper router">
+              {/* <a href="/my boards-private" className="link-wrapper router"> */}
                 <i class="material-icons">menu</i><span className="title">Boards private</span>
                 <span className="title"> ({this.privateBoardCount()})</span>
-              </a>
+              {/* </a> */}
+              {
+                this.state.showMenu
+                ?(
+                  <div className = 'public-menu' ref = { (element) => {this.dropdownMenu = element}} >
+                    <button>test1</button>
+                    <button>test2</button>
+                  </div>
+                )
+                :(null)
+              }
             </div>
           </div>
         </div>

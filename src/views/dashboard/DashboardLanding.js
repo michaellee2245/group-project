@@ -3,11 +3,12 @@ import {connect} from 'react-redux'
 import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/MyWeek'
+import DropDown from '../../components/DropDown/DropDown'
 
 class DashboardLanding extends Component {
 
   state = {
-    shownComponent: <Inbox />,
+    shownComponent: <DropDown />,
     
   }
 
