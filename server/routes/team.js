@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 // The logged in user becomes the team manager
 router.post('/',(req,res,next) => {
   if (req.user) {
-    req.db.post_team([req.body.name, req.user[0].id])
+    req.db.team.post_team([req.body.name, req.user[0].id])
     .then(() => {
       res.status(200).send('ok');
     })
@@ -26,7 +26,7 @@ router.post('/',(req,res,next) => {
 // requires team id
 router.post('/join/:teamid',(req,res,next) => {
   if (req.user) {
-    req.db.post_team_member([req.user[0].id, req.params.teamid])
+    req.db.team.post_team_member([req.user[0].id, req.params.teamid])
     .then(() => {
       res.status(200).send('ok');
     })
@@ -38,10 +38,10 @@ router.post('/join/:teamid',(req,res,next) => {
 
 router.post('/join/by-name/:name',(req,res,next) => {
   if (req.user) {
-    req.db.get_team_by_name([req.params.name])
+    req.db.team.get_team_by_name([req.params.name])
     .then(team => {
       if (team.length > 0) {
-        req.db.post_team_member([req.user[0].id, team[0].id])
+        req.db.team.post_team_member([req.user[0].id, team[0].id])
         .then(() => {
           res.status(200).send('ok');
         })
@@ -59,7 +59,7 @@ router.post('/join/by-name/:name',(req,res,next) => {
 // GET /api/team
 router.get('/',(req,res,next) => {
   if (req.user) {
-    req.db.get_teams_by_user([req.user[0].id])
+    req.db.team.get_teams_by_user([req.user[0].id])
     .then(teams => {
       res.status(200).send(JSON.stringify(teams));
     })

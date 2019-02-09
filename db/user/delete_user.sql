@@ -1,6 +1,18 @@
 /* delete the user from the database */
+/* please note that the amount of user data deleted might be a lot */
+/* It will likely affect everyone on the user's teams. */
 
-/* First, delete the tasks that reference this person: */
+/* Before we can delete tasks, we must delete comments on those tasks */
+DELETE FROM comment WHERE task_id IN (
+  SELECT id FROM task WHERE owner_id = $1
+);
+
+/* In addition, we must delete any assignments that reference that task */
+DELETE FROM assignment WHERE task_id IN (
+  SELECT id FROM task WHERE owner_id = $1
+);
+
+/* Now, delete the tasks that reference this person: */
 DELETE FROM task WHERE owner_id = $1;
 
 /* Next, delete the comments this person authored: */
@@ -18,6 +30,11 @@ DELETE FROM task WHERE board_id IN (
 
 /* Fifth, delete any boards that belong to teams this person managed: */
 DELETE FROM board WHERE team IN (
+  SELECT id FROM team WHERE manager_id = $1
+);
+
+/* We must delete any team members before deleting the team itself */
+DELETE FROM team_member WHERE team_id IN (
   SELECT id FROM team WHERE manager_id = $1
 );
 

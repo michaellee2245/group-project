@@ -1,10 +1,20 @@
 const express = require('express');
 const router = express.Router()
 const serverError = require('./helpers/server-error');
+const isAuthenticated = require('./helpers/authorize');
 
 router.use((req, res, next) => {
   req.db = req.app.get('db')
   next();
+})
+
+// get all my tasks
+router.get('/', isAuthenticated, (req,res,next) => {
+  req.db.task.get_tasks_by_user([req.user[0].id])
+    .then(tasks => {
+      res.json(tasks);
+    })
+    .catch(err => serverError(err,res))
 })
 
 // get all tasks for user

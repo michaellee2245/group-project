@@ -13,7 +13,7 @@ router.use((req,res,next) => {
 // only works when logged in
 router.post('/', (req,res,next) => {
   if (req.user){
-    req.db.post_message([
+    req.db.other.post_message([
       req.user[0].id,
       req.body.recipientID,
       req.body.content])
@@ -26,7 +26,7 @@ router.post('/', (req,res,next) => {
 router.get('/', (req,res,next) => {
   if (req.user) {
     console.log(req.user);
-    req.db.get_messages_by_recipient([req.user[0].id])
+    req.db.other.get_messages_by_recipient([req.user[0].id])
     .then(messages => {
       res.status(200).send(JSON.stringify(messages));
     })
