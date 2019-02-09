@@ -18,7 +18,7 @@ export default function MarketFactCard(props) {
                 </div>
                 <div className="quote-wrapper">
                     <p id="quote">
-                        {quote}
+                        "{quote}"
                     </p>
                     <div id="quote-name">
                         {name}

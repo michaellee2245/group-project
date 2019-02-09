@@ -1,7 +1,7 @@
 @import "../../views/marketing/variables.scss";
 
 .fact-card-container {
-  width: 1000px;
+  width: 1030px;
   height: 400px;
   margin: 0 auto;
   display: flex;
@@ -10,7 +10,7 @@
 
 .fact-details-wrapper,
 .fact-quote-wrapper {
-  width: 670px;
+  width: 630px;
   height: 200px;
   border-radius: 5px;
   box-shadow: 0px 2px 16px 0px rgba(195, 195, 195, 0.5);
@@ -28,7 +28,7 @@
   background: white;
   align-self: flex-end;
   transform: translateY(-40px);
-  padding: 15px;
+  padding: 20px 10px;
   display: flex;
   justify-content: space-evenly;
 }
@@ -54,6 +54,7 @@
   text-align: left;
   margin: 10px;
   line-height: 34px;
+  text-align: center;
 }
 
 #logo {
@@ -89,14 +90,20 @@
 @media only screen and (max-width: 780px) {
   .fact-card-container {
     align-items: center;
+    height: 650px;
     .fact-details-wrapper,
     .fact-quote-wrapper {
       align-self: auto;
       width: 95%;
+      height: 400px;
+      flex-direction: column;
     }
     .fact-quote-wrapper {
       width: 80%;
     }
+  }
+  #percentage, #logo {
+      padding: 10px;
   }
 }
 
@@ -111,7 +118,6 @@
   #fact-text {
     color: white;
     font-size: 19px;
-    text-align: left;
     margin: 10px;
     line-height: 30px;
   }

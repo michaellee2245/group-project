@@ -24,23 +24,23 @@ class WhyUs extends Component {
                     percent={'91'}
                     logo={'Discovery'}
                     quote={'It’s a great tool that allows us to organize our work visually in a way that is easy to use and understand.'}
-                    name={'Katherine Simano |Associate art director'}
+                    name={'Katherine Simano | Associate art director'}
                     color={'green-card'}
                 />
                 <MarketFactCard
-                    text={'of our customers say monday.com helps them stay on top of all their work'}
-                    percent={'91'}
-                    logo={'Discovery'}
-                    quote={'It’s a great tool that allows us to organize our work visually in a way that is easy to use and understand.'}
-                    name={'Katherine Simano |Associate art director'}
+                    text={'of our customers say monday.com helps them collaborate better with their team'}
+                    percent={'87'}
+                    logo={'Wix'}
+                    quote={'We wanted to create a culture of togetherness. Now I can approach any employee and talk with them about their work. It blows their minds.'}
+                    name={'Avishai Abrahami | CEO & co-founder'}
                     color={'purple-card'}
                 />
                 <MarketFactCard
-                    text={'of our customers say monday.com helps them stay on top of all their work'}
-                    percent={'91'}
-                    logo={'Discovery'}
-                    quote={'It’s a great tool that allows us to organize our work visually in a way that is easy to use and understand.'}
-                    name={'Katherine Simano |Associate art director'}
+                    text={'of our customers say monday.com increased their productivity'}
+                    percent={'78'}
+                    logo={'wework'}
+                    quote={'monday.com eliminates so many human errors from the process of planning and significantly speeds up our throughput as a department.'}
+                    name={'Roee Adler | Head of digital'}
                     color={'blue-card'}
                 />
             </div>
