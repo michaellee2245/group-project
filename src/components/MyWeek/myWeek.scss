@@ -1,0 +1,121 @@
+.personal-assistant-content-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100vw;
+}
+
+.personal-assistant-weeks-navigator-component{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 37px;
+  width: 750px;
+}
+
+.prev-week-button, .next-week-button{
+  color:#808080;
+  &:hover{
+    color:#009aff;
+    cursor: pointer;
+}
+}
+
+.personal-assistant-content-component{
+  height: 900px;
+  width: 100vw;
+}
+
+.personal-assistant-header-component{
+  display: flex;
+  justify-items: flex-start;
+  margin-left: 50px;
+}
+
+.image-title{
+  height: 125px;
+  width: 125px;
+}
+
+.personal-assistant-filter-component{
+  position: relative;
+  display: flex;
+  justify-items: flex-start;
+  margin-left: 200px;
+}
+
+.input.person-filter-input{
+  width: 200px;
+  border-radius: 15px;
+}
+
+.person-filter-input{
+  height: 20px;
+  width: 300px;
+  border:none;
+  padding:none;
+  margin: none;
+  outline: none;
+}
+
+.pure-input{
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  height: 22px;
+  width: 230px;
+  border-radius: 15px;
+  border:solid black 1px;              
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#person{
+  color:#808080;
+  &:hover{
+    color:#009aff;
+    cursor: pointer;
+}
+}
+
+.section-type-container{
+  display: flex;
+  justify-content: flex-start;
+  height: 75px;
+  width: 100vw;
+  border: solid black 2px;
+}
