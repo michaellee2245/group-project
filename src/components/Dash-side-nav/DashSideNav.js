@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
 import './DashSideNav.scss';
+import {getMessages} from '../../api/api'
 
 
-export default class DashSideNav extends Component {
+class DashSideNav extends Component {
   state = {
     count: [1, 2, 3, 4, 5],
     publicCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    privateCount: [1, 2, 3]
+    privateCount: [1, 2, 3],
+    messages: []
+  }
+  changeView = (n) => {
+    const name = n
+  }
+
+  getInbox = (e) => {
+    // const user = 'Starburst'
+    // getMessages(user)
+    this.props.changeViews(e)
+    
+  }
+  getWeek = (e) => {
+    console.log(e.target)
+
+    this.props.changeViews(e)
   }
 
   inboxCount = () => {
@@ -30,18 +47,18 @@ export default class DashSideNav extends Component {
           </a>
         </div>
         <div className="leftpane-inbox-component">
-          <div className="inbox-wrapper">
-            <a href="/" className="link-wrapper router">
-              <span className="title">Inbox</span>
+          <div  className="inbox-wrapper" title = 'Inbox' onClick = {this.getInbox}>
+            {/* <a href="#" name = 'Inbox' className="link-wrapper router"> */}
+              <span title='Inbox' className="title">Inbox</span>
               <span className="inboxCounter"> {this.inboxCount()}</span>
-            </a>
+            {/* </a> */}
           </div>
         </div>
         <div>
-          <div className="leftpane-week-component">
-            <a href="/my week" className="link-wrapper router">
-              <span className="title">My Week</span>
-            </a>
+          <div className="leftpane-week-component" title = 'MyWeek'  onClick = {this.getWeek}>
+            {/* <a href="#" name = 'MyWeek' className="link-wrapper router"> */}
+              <span title = 'MyWeek' className="title">My Week</span>
+            {/* </a> */}
           </div>
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
@@ -69,3 +86,4 @@ export default class DashSideNav extends Component {
     )
   }
 }
+export default DashSideNav;

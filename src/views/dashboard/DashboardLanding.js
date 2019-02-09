@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {login} from '../../redux/actions';
-import {getSession} from '../../redux/actions'
-import {logout} from  '../../redux/actions'
-
+import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
+import Inbox from '../../components/Inbox/Inbox'
+import MyWeek from '../../components/MyWeek/MyWeek'
 
 class DashboardLanding extends Component {
+
+  state = {
+    shownComponent: <Inbox />,
+    
+  }
+
+  
 
   test = () => {
     const user = {
@@ -15,9 +21,21 @@ class DashboardLanding extends Component {
     }
     this.props.login(user)
   }
-  test2 = () => {
-    this.props.getSession()
+  changeViews = (e) => {
+    const name = e.target.title
+
+    switch (name){
+      case 'Inbox': {
+        return this.setState({ shownComponent: <Inbox /> })
+      }
+      case 'MyWeek': {
+        return this.setState({ shownComponent: <MyWeek /> })
+      }
+      default: 
+    }
+    
   }
+
   test3 = () => {
     console.log(this.props.user)
     
@@ -26,13 +44,16 @@ class DashboardLanding extends Component {
     this.props.logout()
   }
 
+  
+  
   render() {
     return (
+      
       <div>
-        <button  onClick = {this.test}>Test</button>
-        <button  onClick = {this.test2}>Test2</button>
-        <button onClick = {this.test3}>Props</button>
-        <button onClick = {this.test4}>Test4 </button>
+        <DashSideNav changeViews = {this.changeViews} />
+        {this.state.shownComponent}
+      
+        
       </div>
     )
   }
@@ -43,4 +64,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps,{login,getSession,logout})(DashboardLanding)
+export default connect(mapStateToProps,{})(DashboardLanding)
