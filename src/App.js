@@ -12,9 +12,11 @@ class App extends Component {
       <div className="App">
         <ConnectedRouter history={ history }>
           <Switch>
+
             <Route path="/dashboard" component={ DashboardLanding } />
 
             <Route component={ Marketing } />
+
           </Switch>
         </ConnectedRouter>
       </div>
