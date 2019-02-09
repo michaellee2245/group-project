@@ -1,0 +1,30 @@
+$nav-color: white;
+$red-main: #fb275d;
+$blue-main: #00a9ff;
+$purple-main: #a358df;
+$green-main: #00cc6f;
+$sign-in-background: #4f2b6d;
+$nav-font-weight: 700;
+$font-family: 'Nunito Sans', sans-serif;
+
+h1 {
+    font-family: $font-family;
+    font-weight: 800;
+    font-size: 40px;
+}
+
+p {
+    font-family: $font-family;
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 970px) {
+
+    h1 {
+        font-size: 32px
+    }
+
+}
+
+
+    
