@@ -1,4 +1,4 @@
-$button-color: #a358df;
+$purple-main: #a358df;
 $sign-in-background: #4f2b6d;
 
 
@@ -24,7 +24,7 @@ $sign-in-background: #4f2b6d;
     height: 575px;
     width: 40vw;
     background-color: $sign-in-background;
-    border: 20px solid $button-color;
+    border: 20px solid $purple-main;
     border-radius: 5px;
     box-shadow: 2px 1px 10px rgb(32, 32, 32);
     transition: all .3s ease;
@@ -61,12 +61,12 @@ $sign-in-background: #4f2b6d;
         margin: 10px;
         width: 200px;
         margin-bottom: 20px;
-        color: $button-color;
+        color: $purple-main;
         border-radius: 15px;
         transition: .3s;
         &:hover {
             background-color: rgba(255, 255, 255, 0.678);
-            color: $button-color;
+            color: $purple-main;
             cursor: pointer;
         }
     }
@@ -117,7 +117,7 @@ $sign-in-background: #4f2b6d;
 
     .inner-modal-container{
         width: 85vw;
-        margin-left: -20px;
+        border: none;
     }
     .register-inputs-container {
         input {
