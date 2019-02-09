@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MarketTopNav from '../../components/MarketTopNav/MarketTopNav';
+import MarketFooter from '../../components/MarketFooter/MarketFooter';
 
 
 class MarketingLanding extends Component {
@@ -7,6 +8,7 @@ class MarketingLanding extends Component {
         return(
             <div>
                 <MarketTopNav />
+                <MarketFooter />
             </div>
         )
     }
