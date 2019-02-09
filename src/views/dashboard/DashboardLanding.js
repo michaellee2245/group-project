@@ -8,7 +8,7 @@ import DropDown from '../../components/DropDown/DropDown'
 class DashboardLanding extends Component {
 
   state = {
-    shownComponent: <DropDown />,
+    shownComponent: <Inbox />,
     
   }
 
