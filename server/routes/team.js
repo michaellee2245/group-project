@@ -22,7 +22,7 @@ router.post('/approval/:teamID/:userID', isAuthorized, (req, res, next) => {
     })
     .then(r => {
       if (r === 'not manager'){
-        res.status(409).send('not manager');
+        res.status(409).send(r);
       } else {
         res.status(200).send('approved');
       }
