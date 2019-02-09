@@ -1,7 +1,7 @@
 /* Post a new board */
 
 INSERT INTO board (
-  name
+  name,team
 ) VALUES (
-  $1
+  $1,$2
 );

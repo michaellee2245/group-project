@@ -11,7 +11,7 @@ export const login = (user) => {
         payload: user
       })
       if (user){
-        dispatch(push('dashboard page'))
+        dispatch(push('/dashboard'))
       }
     })
   }
