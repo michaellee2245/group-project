@@ -1,0 +1,36 @@
+.inbox-wrapper {
+    display: flex;
+    height: fit-content;
+    width: 100vw;
+}
+
+.inbox-title-wrapper {
+    height: 4vh;
+    width: 70vw;
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    background-color: orange;
+    margin-right: 70px;
+    margin-top: 20px;
+    max-width: 750px;
+
+}
+
+.inbox-title {
+    vertical-align: top;
+    font-size: 30px;
+    font-weight: 500;
+    margin-right: auto;
+    overflow: hidden;
+    max-width: 330px;
+}
+
+.inbox-title-actions {
+    height: 4vh;
+    width: 30vw;
+    //flex-shrink: 0;
+    justify-content: left;
+    background-color: chartreuse;
+
+}

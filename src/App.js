@@ -6,6 +6,7 @@ import './App.css';
 import DashboardLanding from './views/dashboard/DashboardLanding';
 import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
+import Inbox from '../src/components/Inbox/Inbox'
 
 class App extends Component {
   render() {
@@ -14,9 +15,12 @@ class App extends Component {
         <ConnectedRouter history = {history}>
           <Switch>
             <Route component = {DashboardLanding} />
+            
            
           </Switch>
         </ConnectedRouter>
+
+        <Inbox></Inbox>
       </div>
       
     );
