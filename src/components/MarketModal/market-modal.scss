@@ -1,4 +1,5 @@
 $button-color: #a358df;
+$sign-in-background: #4f2b6d;
 
 
 .modal-container {
@@ -20,9 +21,10 @@ $button-color: #a358df;
     padding: 20px;
     display: flex;
     justify-content: center;
-    height: 600px;
-    width: 50vw;
-    background-color: $button-color;
+    height: 575px;
+    width: 40vw;
+    background-color: $sign-in-background;
+    border: 20px solid $button-color;
     border-radius: 5px;
     box-shadow: 2px 1px 10px rgb(32, 32, 32);
     transition: all .3s ease;
@@ -97,7 +99,7 @@ $button-color: #a358df;
 }
 
 .register-button, .sign-in-button {
-    color: rgb(26, 0, 59)!important;
+    color: rgb(169, 140, 207)!important;
     cursor: pointer;
 }
 

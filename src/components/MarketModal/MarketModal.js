@@ -56,14 +56,15 @@ class MarketModal extends Component {
                             <div
                                 className="motion-container"
                                 style={{
-                                    transform: `translateX(${(50 - position * 100) / 2}%)`,
+                                    transform: position !== 1 && position !== 0 ? `translateX(${(50 - position * 100) / 2}%)` : undefined
 
                                 }}
                             >
                                 <div
                                     className="sign-in-container"
                                     style={{
-                                        opacity: 1 - position
+                                        opacity: 1 - position,
+                                        display: position === 1 ? 'none' : undefined 
 
                                     }}
                                 >
@@ -100,9 +101,10 @@ class MarketModal extends Component {
                                     </div>
                                 </div>
                                 <div
-                                    className="register-container fadeIn"
+                                    className="register-container"
                                     style={{
-                                        opacity: position
+                                        opacity: position,
+                                        display: position === 0 ? 'none' : undefined
                                     }}
                                 >
                                     <div className="register-inputs-container">
