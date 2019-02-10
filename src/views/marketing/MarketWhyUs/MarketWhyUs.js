@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './market-why-us.scss';
 import GetStartedBtn from '../../../components/GetStartedBtn/GetStartedBtn';
 import MarketFactCard from '../../../components/MarketFactCard/MarketFactCard';
+import SupportCard from '../../../components/MarketSupportCard/MarketSupportCard';
 
 class WhyUs extends Component {
     render() {
@@ -43,6 +44,26 @@ class WhyUs extends Component {
                     name={'Roee Adler | Head of digital'}
                     color={'blue-card'}
                 />
+                <div className="customer-section">
+                    <h1>
+                        You're in <span className="yellow-text">good</span> company
+                    </h1>
+                    <GetStartedBtn />
+
+                </div>
+                <div className="support-section">
+                    <h1>
+                        We're here for you <span className="blue-text">24/7</span>
+                    </h1>
+                    <p>
+                        Our response time is under 7 minutes. Get an answer from a real-life, happy-to-help human or discover more online in whatever form suits you best.
+                    </p>
+                    <div className="support-card-container">
+                        <SupportCard />
+                        <SupportCard />
+                        <SupportCard />
+                    </div>
+                </div>
             </div>
         )
     }

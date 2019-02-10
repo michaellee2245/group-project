@@ -1,0 +1,13 @@
+@import '..//../views/marketing/variables.scss';
+
+.support-pic {
+    width: 200px;
+    height: 200px; 
+    border-radius: 50%;
+    background: $green-main;
+    margin: 0 auto;
+}
+
+.card-container {
+    padding: 25px;
+}
