@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MarketingLanding from './MarketingLanding';
-import GetStartedBtn from '../../components/GetStartedBtn/GetStartedBtn';
+import MarketingLanding from './MarketingLanding/MarketingLanding';
+
 
 class Marketing extends Component {
 
@@ -8,7 +8,7 @@ class Marketing extends Component {
         return(
             <div>
                 <MarketingLanding />
-                <GetStartedBtn/>
+                
             </div>
         )
     }

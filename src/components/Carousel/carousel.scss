@@ -1,0 +1,58 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.test-div {
+  // background:yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //   border: 1px solid black;
+  background: rgba(0, 0, 0, 0.1);
+  height: 50vh;
+  opacity: 0.25;
+}
+.upper-text-container{
+    width:1000px;
+    height:auto;
+    border:1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#div1{
+    border-color:blue;
+}
+#div2{
+    border-color: red;
+}
+.slick-slide {
+  padding: 50px;
+  width: 50vw !important;
+}
+
+.slick-center {
+  .test-div {
+    transform: scale(1.05);
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid;
+    opacity: 1;
+  }
+}
+.slick-next {
+  position: absolute;
+  bottom: 0;
+  margin-top: 305px;
+  right: 25.5%;
+  background-color: green;
+  height: 50px;
+  width: 50px;
+}
+.slick-prev {
+  position: absolute;
+  bottom: 0;
+  margin-top: 305px;
+  left: 67.5%;
+  background-color: green;
+  height: 50px;
+  width: 50px;
+}

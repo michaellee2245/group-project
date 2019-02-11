@@ -1,43 +1,46 @@
 $footer-color: rgba(219, 219, 219, 0.5);
 
-.footer-container{
-    height:125px;
-    width:100vw;
-    background-color:$footer-color;
-    position: absolute;
-    bottom:0 !important;
-    display:flex;
-    justify-content: space-evenly;
-    align-items: center;
-    
+.footer-container {
+  height: 125px;
+  width: 100vw;
+  background-color: $footer-color;
+  bottom: 0; 
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.footer-logo{
-    width:70px;
-    height:43px;
-    background-image: url(../../assets/mondaylogomark.png);
-    background-size:contain;
-    background-repeat:no-repeat;
-    // border: 1px solid black;
+.footer-logo {
+  width: 70px;
+  height: 43px;
+  background-image: url(../../assets/mondaylogomark.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  // border: 1px solid black;
 }
-.footer-info{
-    // border: 1px solid black;
-    width:450px;
-    display: flex;
-    // flex-direction: column;
-    justify-content:space-between;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight:700;
+.footer-info {
+  // border: 1px solid black;
+  width: 450px;
+  display: flex;
+  // flex-direction: column;
+  justify-content: space-between;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
 }
-.social-icons{
-    width:300px;
-    height:90%;
-    // background: green;
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
+.social-icons {
+  width: 300px;
+  height: 90%;
+  // background: green;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.fa-pinterest-p, .fa-twitter, .fa-linkedin-in, .fa-facebook-f, .fa-youtube, .fa-instagram{
-    color:black;
-    font-size:1.5em;
+.fa-pinterest-p,
+.fa-twitter,
+.fa-linkedin-in,
+.fa-facebook-f,
+.fa-youtube,
+.fa-instagram {
+  color: black;
+  font-size: 1.5em;
 }
