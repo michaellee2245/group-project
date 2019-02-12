@@ -18,7 +18,7 @@ class MarketingLanding extends Component {
         return (
             <div>
                 <MarketTopNav />
-                <div>
+                <div className="market-top-container">
                     <UpperText currentIndex={this.state.currentIndex} />
                     <GetStartedBtn />
                 </div>

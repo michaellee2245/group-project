@@ -10,20 +10,34 @@
   background: rgba(0, 0, 0, 0.1);
   height: 50vh;
   opacity: 0.25;
+  position: relative;
+
+  h1 {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
-.upper-text-container{
-    width:1000px;
-    height:auto;
-    border:1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.market-top-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-#div1{
-    border-color:blue;
+.upper-text-container {
+  width: 1000px;
+  height: auto;
+  // border:1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#div2{
-    border-color: red;
+#div1 {
+  border-color: blue;
+}
+#div2 {
+  border-color: red;
 }
 .slick-slide {
   padding: 50px;
@@ -34,25 +48,42 @@
   .test-div {
     transform: scale(1.05);
     background: rgba(0, 0, 0, 0.1);
-    border: 1px solid;
+    border: 2px solid;
     opacity: 1;
   }
 }
+.slick-prev,
 .slick-next {
+  font-size: 30px !important;
+  transition: 0.3s;
   position: absolute;
   bottom: 0;
-  margin-top: 305px;
-  right: 25.5%;
-  background-color: green;
-  height: 50px;
-  width: 50px;
+  margin-top: 250px;
+  height: 30px;
+  width: 30px;
+  z-index: 20;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.slick-next {
+  right: 24%;
 }
 .slick-prev {
-  position: absolute;
-  bottom: 0;
-  margin-top: 305px;
-  left: 67.5%;
-  background-color: green;
-  height: 50px;
-  width: 50px;
+  left: 71%;
+}
+.slick-prev:before,
+.slick-next:before {
+  content: "" !important;
+}
+.carousel-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+.lower-quote-container{
+    border:1px solid black;
+    margin:50px 0px;
 }
