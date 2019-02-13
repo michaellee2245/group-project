@@ -1,18 +1,29 @@
 import React from 'react';
 import './market-support-card.scss';
+import { fileURLToPath } from 'url';
 
-export default function SupportCard() {
+export default function SupportCard(props) {
+
+    const {picture, title, description, className} = props;
+
     return(
         <div className="card-container">
-            <div className="support-pic">
-
+            <div 
+                className={`support-pic ${className}`}
+                style={{
+                    backgroundImage: `url(${picture})`,
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                
+                }}
+            >
             </div>
             <h3>
-                Webinars
+                {title}
             </h3>
-            <p>
-                On-demand or live, get in-depth knowledge ona variety of topics
-            </p>
+            {/* <p>
+                {description}
+            </p> */}
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './mark-top-nav.scss';
 import MarketModal from '../MarketModal/MarketModal';
 import $ from 'jquery';
-import axios from 'axios';
 import { connect } from 'react-redux'
 import { login, register } from '../../redux/actions'
 
@@ -55,6 +54,22 @@ class MarketTopNav extends Component {
         this.props.register(user)
 
     }
+
+    componentDidMount = () => {
+        $(function() {
+            var nav = $(".nav-container");
+            $(window).scroll(function() {    
+                var scroll = $(window).scrollTop();
+            
+                if (scroll >= 10) {
+                    nav.removeClass('nav-container').addClass("fixed-nav");
+                } else {
+                    nav.removeClass("fixed-nav").addClass('nav-container');
+                }
+            });
+        });
+    }
+
 
 
     render() {

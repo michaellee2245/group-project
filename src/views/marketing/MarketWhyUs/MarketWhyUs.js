@@ -3,6 +3,20 @@ import './market-why-us.scss';
 import GetStartedBtn from '../../../components/GetStartedBtn/GetStartedBtn';
 import MarketFactCard from '../../../components/MarketFactCard/MarketFactCard';
 import SupportCard from '../../../components/MarketSupportCard/MarketSupportCard';
+import arrow from '../../../assets/arrow.png';
+import mckay from '../../../assets/mckay.png';
+import jared from '../../../assets/jared.png';
+import josh from '../../../assets/josh.png';
+import michael from '../../../assets/michael.png';
+import shawn from '../../../assets/shawn.png';
+import wework from '../../../assets/wework.png';
+import discovery from '../../../assets/discovery.png';
+import carlsberg from '../../../assets/carlsberg.png';
+import fiverr from '../../../assets/fiverr.png';
+import frost from '../../../assets/frost.png';
+import philips from '../../../assets/philips.png';
+import dhl from '../../../assets/dhl.png';
+import wix from '../../../assets/wix.png'; 
 
 class WhyUs extends Component {
     render() {
@@ -13,6 +27,12 @@ class WhyUs extends Component {
                         <span className="red-text"> 350,000 </span> people, from <span className="blue-text"> 76 </span> countries, in <span className="green-text"> 50,000 </span> teams manage their work with monday.com
                     </h1>
                     <GetStartedBtn />
+                    <img src={arrow} alt='arrow' style={{
+                        height: 'auto',
+                        width: '150px',
+                        margin: '20px auto'
+                    }} />
+
                     <h1>
                         And <span className="red-text">here's</span> why
                     </h1>
@@ -48,7 +68,18 @@ class WhyUs extends Component {
                     <h1>
                         You're in <span className="yellow-text">good</span> company
                     </h1>
+                    <div className="logos-container">
+                        <img src={wework} alt='wework logo' className="logos" />
+                        <img src={discovery} alt='wework logo' className="logos" />
+                        <img src={carlsberg} alt='wework logo' className="logos" />
+                        <img src={wix} alt='wework logo' className="logos" />
+                        <img src={philips} alt='wework logo' className="logos" />
+                        <img src={dhl} alt='wework logo' className="logos" />
+                        <img src={fiverr} alt='wework logo' className="logos" />
+                        <img src={frost} alt='wework logo' className="logos" />
+                    </div>
                     <GetStartedBtn />
+
 
                 </div>
                 <div className="support-section">
@@ -59,9 +90,43 @@ class WhyUs extends Component {
                         Our response time is under 7 minutes. Get an answer from a real-life, happy-to-help human or discover more online in whatever form suits you best.
                     </p>
                     <div className="support-card-container">
-                        <SupportCard />
-                        <SupportCard />
-                        <SupportCard />
+                        <SupportCard
+                            title={'McKay'}
+                            description={'On-demand or live, get in-depth knowledge on a variety of topics'}
+                            picture={mckay}
+                            className={'blue-card'}
+                        />
+                        <SupportCard
+                            title={'Shawn'}
+                            description={'If words are more your thing, read up on all you need to know'}
+                            picture={shawn}
+                            className={'purple-card'}
+                        />
+                        <SupportCard
+                            title={'Jared'}
+                            description={'Our tutorials will take you through every process step-by-step'}
+                            picture={jared}
+                            className={'green-card'}
+                        />
+                        <SupportCard
+                            title={'Michael'}
+                            description={'On-demand or live, get in-depth knowledge on a variety of topics'}
+                            picture={michael}
+                            className={'green-card'}
+                        />
+                        <SupportCard
+                            title={'Josh'}
+                            description={'If words are more your thing, read up on all you need to know'}
+                            picture={josh}
+                            className={'yellow-card'}
+                        />
+                        <SupportCard
+                            title={'Curtis'}
+                            description={'Our tutorials will take you through every process step-by-step'}
+                            className={'blue-card'}
+                            
+                        />
+
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@
   width: 100%;
   height: 100vh;
   margin: 0 auto;
+  margin-top: 100px;
 }
 .header-wrapper {
   display: flex;
@@ -37,6 +38,21 @@
   }
 }
 
+.logos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 1000px;
+  margin: 50px auto;
+}
+
+.logos {
+  height: auto;
+  width: 100px;
+  margin: 30px 50px;
+}
+
 .customer-section,
 .support-section {
   width: 100%;
@@ -47,11 +63,12 @@
 
 .customer-section {
   background: $gray-section;
+  margin-top: 100px;
 }
 
-.support-section {
+.support-section, .customer-section {
   p {
-    width: 60%;
+    width: 750px;
     margin: 0 auto;
   }
 }
@@ -60,8 +77,9 @@
   width: 1020px;
   padding: 50px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: 0 auto;
+  flex-flow: row wrap;
 }
 
 @media only screen and (max-width: 1140px) {
@@ -73,9 +91,11 @@
     width: 95%;
   }
   .support-card-container {
-    flex-direction: column;
     width: 100%;
-    padding: 50px 0;
+    padding: 20px 0;
+  }
+  .logos-container {
+    width: 95%;
   }
 }
 
@@ -95,5 +115,11 @@
         width: 90%;
       }
     }
+  }
+  .support-section, .customer-section {
+      height: auto;
+      p {
+          width: 90%;
+      }
   }
 }

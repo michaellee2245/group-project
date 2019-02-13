@@ -11,11 +11,27 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 10000000;
     padding: 10px;
-    border-bottom: 1px solid black;
+    transition: all .3s ease;
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+}
+
+.fixed-nav {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.164);
+    width: 100%;
+    height: 40px;
+    background-color: $nav-color;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 10000000;
+    padding: 10px;
+    transition: all .3s ease;
 }
 
 .nav-right {
@@ -65,8 +81,8 @@ body {
 
 .nav-logo {
     background-image: url(../../assets/monday-logo-final.png);
-    height: 100%;
-    width: 200px;
+    height: 90%;
+    width: 175px;
     background-size: contain;
     background-repeat: no-repeat;
     margin-top: 15px;
