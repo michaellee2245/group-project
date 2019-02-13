@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ConnectedRouter history = {history}>
+        <ConnectedRouter history={ history }>
           <Switch>
             <Route path = '/marketing' component = {Marketing} />
             <Route path="/dashboard" component = {DashboardLanding} />        
@@ -18,7 +18,7 @@ class App extends Component {
           </Switch>
         </ConnectedRouter>
       </div>
-      
+
     );
   }
 }
