@@ -869,7 +869,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"{{boardname}}\",\n\t\"team\": 1\n}"
+							"raw": "{\n\t\"name\": \"{{boardname}}\",\n\t\"teamID\": 1\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/board",
@@ -941,6 +941,122 @@
 					"response": []
 				},
 				{
+					"name": "try to post a board that already exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "289c845c-b1e6-46b8-afd4-162d647e4551",
+								"exec": [
+									"pm.environment.set('boardid1', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Milk Chocolate Deliciousness\",\n\t\"teamID\": 4\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post a board to be made public",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea5fe7d5-d08f-4261-bc56-6752fecd0af5",
+								"exec": [
+									"pm.environment.set('boardid2', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Public Candy Board\",\n\t\"teamID\": 5\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "post a new board (random name)",
 					"event": [
 						{
@@ -948,7 +1064,7 @@
 							"script": {
 								"id": "4841ea75-d7c4-45bb-a025-6e558dbaa7e3",
 								"exec": [
-									"pm.environment.set('boardid', pm.response.json().id)",
+									"pm.environment.set('boardid0', pm.response.json().id)",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -1017,7 +1133,348 @@
 					"response": []
 				},
 				{
+					"name": "get board id by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16efc442-668b-41ad-a3d1-e4f904389553",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes board id 28\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.id === 28)).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/id/:name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								"id",
+								":name"
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "tlla"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all boards Snickers has access to",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6190fa2-650c-434e-8757-acfc4d833a23",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes board id 28\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.id === 28)).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3d531c2-dd4a-4f5a-b3b4-28e2238ba65b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(17);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a private board for skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cffa6cc1-f41a-4c12-bd46-ee8492ea020a",
+								"exec": [
+									"pm.environment.set('boardid3', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"skittles board\",\n\t\"teamID\": 5\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all the boards skittles has access to",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6cc57c30-948f-4721-ac4f-48008a6d9503",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes skittles private board\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === 'skittles board')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login again as Snickers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96d6fae8-9e2e-4eb2-879f-d7632f367e11",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"Snickers\",\n\t\"password\": \"C\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete the random board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2a7c92d5-1b5b-4f40-ab85-0701662cf80b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('deleted');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -1026,41 +1483,46 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/auth",
+							"raw": "localhost:8080/api/board/:id",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"auth"
+								"board",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{boardid0}}"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "try to post a board that already exists",
+					"name": "delete the first board",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "289c845c-b1e6-46b8-afd4-162d647e4551",
+								"id": "b5b8e8df-e9e6-4083-abb4-300c048b1470",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response body is json\", function () {",
+									"pm.test(\"Response body is string\", function () {",
 									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
+									"    pm.response.to.be.string;",
 									"});",
 									"",
-									"pm.test(\"Response includes id number\", function () {",
-									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('deleted');",
 									"});",
-									"",
-									"",
 									""
 								],
 								"type": "text/javascript"
@@ -1068,55 +1530,53 @@
 						}
 					],
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "DELETE",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Milk Chocolate Deliciousness\",\n\t\"teamID\": 4\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:id",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{boardid1}}"
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "post a board to be made public",
+					"name": "delete the second board",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "ea5fe7d5-d08f-4261-bc56-6752fecd0af5",
+								"id": "f72dbe1a-e655-404c-a16a-00fe039864f5",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response body is json\", function () {",
+									"pm.test(\"Response body is string\", function () {",
 									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
+									"    pm.response.to.be.string;",
 									"});",
 									"",
-									"pm.test(\"Response includes id number\", function () {",
-									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('deleted');",
 									"});",
-									"",
-									"",
 									""
 								],
 								"type": "text/javascript"
@@ -1124,28 +1584,82 @@
 						}
 					],
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "DELETE",
+						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Public Candy Board\",\n\t\"teamID\": 5\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:id",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{boardid2}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete skittles' board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16332975-6229-49f3-941d-4a45ca9118b3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('deleted');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{boardid3}}"
+								}
 							]
 						}
 					},
@@ -2225,6 +2739,56 @@
 									"value": "{{msgid}}"
 								}
 							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment endpoints",
+			"item": [
+				{
+					"name": "login as skittles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see what boards i have access to",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see the tasks on the first board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []

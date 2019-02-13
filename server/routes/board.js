@@ -41,7 +41,7 @@ router.post('/', isAuthenticated, (req, res, next) => {
 
 // see the boards you have access to.
 router.get('/', isAuthenticated, (req,res,next) => {
-  req.db.board.get_my_boards([user[0].id])
+  req.db.board.get_my_boards([req.user[0].id])
     .then(boards => {
       res.status(200).json(boards);
     })
@@ -73,6 +73,10 @@ router.delete('/:id', isAuthenticated, (req, res, next) => {
         res.status(200).send('deleted')
       }
     })
+})
+
+router.put('/description', isAuthenticated, (req,res,next) => {
+  req.db.approval.person_manage
 })
 
 module.exports = router;
