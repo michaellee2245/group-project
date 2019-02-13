@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import MarketingLanding from './MarketingLanding';
-import GetStartedBtn from '../../components/GetStartedBtn/GetStartedBtn';
+import MarketingLanding from './MarketingLanding/MarketingLanding';
 import MarketTopNav from '../../components/MarketTopNav/MarketTopNav';
 import MarketFooter from '../../components/MarketFooter/MarketFooter';
-import MarketWhyUs from '../../views/marketing/MarketWhyUs/MarketWhyUs';
 
 class Marketing extends Component {
 
@@ -11,9 +9,8 @@ class Marketing extends Component {
         return(
             <div>
                 <MarketTopNav />
-                <MarketWhyUs />
-                {/* <MarketingLanding />
-                <GetStartedBtn/> */}
+                <MarketingLanding />
+                <MarketFooter />
 
             </div>
         )
