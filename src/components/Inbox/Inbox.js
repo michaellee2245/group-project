@@ -9,9 +9,10 @@ class Inbox extends Component {
     render() {
         return (
             <div className="inbox-wrapper">
+
                 <div className="inbox-title-wrapper">
                     <span className="inbox-title">Inbox</span>
-                </div>
+                
                 <div className="inbox-title-actions">
                     <span className="inbox-toggle-mode">
                         <a href="" className="active"> Open (0)</a>
@@ -20,10 +21,17 @@ class Inbox extends Component {
 
                     </span>
                 </div>
+                </div>
                 
-
+                
+                
                 <div className="middle-space-wrapper">
                     <div className="middle-space-wall">
+                    <div className="inbox-middle-default">
+                    <br></br>
+                        <i className="material-icons">beach_access</i>
+
+                    </div>
                         <div className="posts-list">
                         {/* <PostComponent></PostComponent> */}
                         </div>

@@ -1,36 +1,73 @@
 .inbox-wrapper {
     display: flex;
-    height: fit-content;
+    height: 100vh;
     width: 100vw;
+    flex-direction: column;
+  
+
+    // flex-wrap: nowrap;
+
 }
 
 .inbox-title-wrapper {
-    height: 4vh;
-    width: 70vw;
+    height: 10vh;
+    width: 100vw;
     display:flex;
     justify-content: left;
     align-items: center;
-    background-color: orange;
-    margin-right: 70px;
-    margin-top: 20px;
-    max-width: 750px;
+     background-color: blue;
+     align-items: center;
+     margin-right: 70px;
+     margin-top: 20px;
+    //max-width: 450px;
+    
 
 }
 
 .inbox-title {
-    vertical-align: top;
+    display: flex;
+    justify-content: left;
+   vertical-align: top;
     font-size: 30px;
     font-weight: 500;
-    margin-right: auto;
+    width: 70vw;
     overflow: hidden;
-    max-width: 330px;
+    
+  
 }
 
 .inbox-title-actions {
+    display: flex;
     height: 4vh;
     width: 30vw;
-    //flex-shrink: 0;
-    justify-content: left;
+    
+    align-items: center;
+    justify-content: flex-end;
     background-color: chartreuse;
+    text-decoration: none;
+    :hover {
+        color: #009aff;
+      };
 
+}
+
+.active{
+    text-decoration: none;
+    color: #333333;
+    font-weight: 700;
+}
+.inbox-all-updates{
+    text-decoration: none;
+    color: #333333;
+    
+}
+.middle-space-wrapper{
+    height: 10 vh;
+    width: 100vw;
+    background-color: orange;
+    flex-direction: column; 
+}
+
+.middle-space-wall{
+    margin-right: 70px;
 }
