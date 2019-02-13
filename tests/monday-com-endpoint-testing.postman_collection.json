@@ -1777,17 +1777,19 @@
 							"script": {
 								"id": "804ae2cd-02b2-4a7e-b969-4b5fc50d1887",
 								"exec": [
+									"pm.environment.set('new_team_id', parseInt(pm.response.json().id));",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Response body is a string\", function () {",
+									"pm.test(\"Response body is json\", function () {",
 									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.string;",
+									"    pm.response.to.be.json;",
 									"});",
 									"",
-									"pm.test(\"Response states ok\", function () {",
-									"    pm.expect(pm.response.text()).to.equal('ok');",
+									"pm.test(\"Response contains id\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
 									"});",
 									""
 								],
@@ -1818,6 +1820,37 @@
 							"path": [
 								"api",
 								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "specify the organization the new team belongs to",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": \"{{new_team_id}}\",\n\t\"organization\": \"the great candy factory in the sky\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/organization",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"organization"
 							]
 						}
 					},
