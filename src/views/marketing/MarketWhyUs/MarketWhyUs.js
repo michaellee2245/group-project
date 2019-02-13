@@ -16,7 +16,7 @@ import fiverr from '../../../assets/fiverr.png';
 import frost from '../../../assets/frost.png';
 import philips from '../../../assets/philips.png';
 import dhl from '../../../assets/dhl.png';
-import wix from '../../../assets/wix.png'; 
+import wix from '../../../assets/wix.png';
 
 class WhyUs extends Component {
     render() {
@@ -92,39 +92,33 @@ class WhyUs extends Component {
                     <div className="support-card-container">
                         <SupportCard
                             title={'McKay'}
-                            description={'On-demand or live, get in-depth knowledge on a variety of topics'}
                             picture={mckay}
                             className={'blue-card'}
                         />
                         <SupportCard
                             title={'Shawn'}
-                            description={'If words are more your thing, read up on all you need to know'}
                             picture={shawn}
                             className={'purple-card'}
                         />
                         <SupportCard
                             title={'Jared'}
-                            description={'Our tutorials will take you through every process step-by-step'}
                             picture={jared}
                             className={'green-card'}
                         />
                         <SupportCard
                             title={'Michael'}
-                            description={'On-demand or live, get in-depth knowledge on a variety of topics'}
                             picture={michael}
                             className={'green-card'}
                         />
                         <SupportCard
                             title={'Josh'}
-                            description={'If words are more your thing, read up on all you need to know'}
                             picture={josh}
                             className={'yellow-card'}
                         />
                         <SupportCard
                             title={'Curtis'}
-                            description={'Our tutorials will take you through every process step-by-step'}
                             className={'blue-card'}
-                            
+
                         />
 
                     </div>

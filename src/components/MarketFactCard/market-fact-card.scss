@@ -60,7 +60,6 @@
 
 #logo {
   padding: 50px;
-  
 }
 
 #quote {
@@ -104,8 +103,9 @@
       width: 80%;
     }
   }
-  #percentage, #logo {
-      padding: 10px;
+  #percentage,
+  #logo {
+    padding: 10px;
   }
 }
 
@@ -114,7 +114,7 @@
     height: 600px;
     .fact-details-wrapper,
     .fact-quote-wrapper {
-        height: 250px
+      height: 250px;
     }
   }
   #fact-text {
@@ -123,5 +123,4 @@
     margin: 10px;
     line-height: 30px;
   }
-
 }

@@ -56,11 +56,11 @@ class MarketTopNav extends Component {
     }
 
     componentDidMount = () => {
-        $(function() {
+        $(function () {
             var nav = $(".nav-container");
-            $(window).scroll(function() {    
+            $(window).scroll(function () {
                 var scroll = $(window).scrollTop();
-            
+
                 if (scroll >= 10) {
                     nav.removeClass('nav-container').addClass("fixed-nav");
                 } else {
