@@ -18,7 +18,7 @@ class App extends Component {
 
             <Route path="/dashboard" component = {DashboardLanding} />
             
-            <Route component={Marketing} />
+            <Route component={ Marketing } />
 
           </Switch>
         </ConnectedRouter> */}
