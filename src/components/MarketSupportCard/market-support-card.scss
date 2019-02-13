@@ -1,0 +1,43 @@
+@import "..//../views/marketing/variables.scss";
+
+.support-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.card-container {
+  padding: 20px 40px;
+  margin: 0 auto;
+  p {
+    width: 200px;
+  }
+}
+
+.blue-card {
+  background: $blue-main;
+}
+
+.green-card {
+  background: $green-main;
+}
+
+.purple-card {
+  background: $purple-main;
+}
+
+.yellow-card {
+  background: $yellow-main;
+}
+
+@media only screen and (max-width: 600px) {
+  .support-pic {
+    width: 130px;
+    height: 130px;
+  }
+
+  .card-container {
+    padding: 10px 10px;
+  }
+}
