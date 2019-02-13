@@ -1,12 +1,14 @@
 .navbar-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    background-color: #f7f7f7;
+    justify-content: space-between;
+    background-color: #eeeeee;
     height: 6vh;
+    width: 80%;
     align-content: center; 
     text-decoration: none;
     align-items: center;
+    border-left:  solid 1px black
 }
 
 .nav-img {
@@ -20,6 +22,7 @@
     
 }
 .search-img {
+    position: absolute;
     height:2vh;
     justify-content: center;
    
@@ -28,12 +31,12 @@
 .navbar-tab {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-content: center;
+    // justify-content: center;
+    // align-content: center;
     align-items: center;
     height: 20px;
     margin: 8px;
-     text-decoration: none;
+    text-decoration: none;
 }
 .search-bar {
     display:flex;
@@ -41,6 +44,8 @@
     border-radius: 15px;
     padding: 8px; 
     margin: 1vh;
+    width: 200px;
+   outline:none;
    
 }
 
@@ -64,7 +69,7 @@
     width:auto;
     max-width: 250px;
     height:30px;
-    background-color:rgb(128, 128, 128);
+    background-color:black;
     opacity: 20%;
     z-index: 10;
     display: none;
@@ -72,7 +77,18 @@
     padding: 0 20px;
     text-decoration: none;
     position: absolute;
+    
 }
+.first-three{
+    display:flex;
+    justify-content: flex-start
+}
+.last-two {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%;
+}
+
 
 .dropdown-notifs:hover .dropdown-content {
     display: block;
