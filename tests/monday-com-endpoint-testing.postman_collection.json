@@ -1584,6 +1584,652 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "message endpoints",
+			"item": [
+				{
+					"name": "login as skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37eec264-2bb6-4158-bd59-3e4af92a0794",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(17);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send message to starburst",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "849adbbb-e12b-463e-9987-a2853c65b180",
+								"exec": [
+									"pm.environment.set('message_to_starburst', parseInt(pm.response.text()));",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states id number\", function () {",
+									"    pm.expect(parseInt(pm.response.text())).to.not.be.NaN;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"recipientID\": 20,\n\t\"content\": \"hey wat u doing lol\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/message",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send message to snickers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "743a617b-af5c-4f80-802a-c51b943b8e55",
+								"exec": [
+									"pm.environment.set('message_to_snickers', parseInt(pm.response.text()));",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states id number\", function () {",
+									"    pm.expect(parseInt(pm.response.text())).to.not.be.NaN;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"recipientID\": 21,\n\t\"content\": \"u r a q t !!!\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/message",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see messages i've sent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "81fecc1a-7797-4b77-a4a6-d684d343acb1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the message that was sent to snickers\", function () {",
+									"    pm.expect(pm.response.json().filter(e => e.content === 'u r a q t !!!')[0].recipient).to.equal('Snickers');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/message/sent",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								"sent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as starburst",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4ca2457-8d72-464b-8623-a8ce92a7703b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(20);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"Starburst\",\n\t\"password\": \"8\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see messages i've received",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d40e38b-1d61-42ff-ad40-b1e8f8083bf7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the message that was sent by skittles\", function () {",
+									"    pm.expect(pm.response.json().filter(e => e.sender === 'skittles')[0].content).to.equal('hey wat u doing lol');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/message",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mark message from skittles as read",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9d74982a-7a55-499d-9476-0cb42344ba3b",
+								"exec": [
+									"pm.environment.set('msgid',pm.environment.get('message_to_starburst'));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2a38cca-24ec-4e62-a256-7e74c532ceb1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states marked\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('marked');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/message/read/:msgid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								"read",
+								":msgid"
+							],
+							"variable": [
+								{
+									"key": "msgid",
+									"value": "{{msgid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attempt to see message that skittles sent to snickers",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5943e4a7-7a05-4681-b4b4-45fe2b598f7a",
+								"exec": [
+									"pm.environment.set('msgid',pm.environment.get('message_to_snickers'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "14301509-6e00-4d42-a508-cc967b7593fb",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states not your message\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('not your message');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/message/id/:msgid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								"id",
+								":msgid"
+							],
+							"variable": [
+								{
+									"key": "msgid",
+									"value": "{{msgid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f35f5f63-0054-4bfe-bccf-a5ac7859c4c2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(17);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit message to snickers",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "047616f2-935f-49bd-937c-4fbab397db44",
+								"exec": [
+									"pm.environment.set('msgid',pm.environment.get('message_to_snickers'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b751d98c-8f56-4186-a955-6a818d5dd0de",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states edited\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('edited');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"newContent\": \"I think you are the best ever\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/message/id/:msgid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								"id",
+								":msgid"
+							],
+							"variable": [
+								{
+									"key": "msgid",
+									"value": "{{msgid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete message to starburst",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "563f089e-bf20-4893-8233-380b45f5712a",
+								"exec": [
+									"pm.environment.set('msgid',pm.environment.get('message_to_starburst'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6d3b6b7-bbbf-4c69-89a0-12a7ae2be63c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('deleted');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/message/:msgid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"message",
+								":msgid"
+							],
+							"variable": [
+								{
+									"key": "msgid",
+									"value": "{{msgid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
