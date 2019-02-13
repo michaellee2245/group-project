@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 router.post('/', isAuthenticated, (req, res, next) => {
   req.db.approval.person_is_approved([req.user[0].id, req.body.teamID])
     .then(approval => {
-      if (approval) return req.db.other.post_board([req.body.name, req.body.teamID])
+      if (approval) return req.db.board.post_board([req.body.name, req.body.teamID])
       else return 'unapproved';
     })
     .then(r => {
@@ -22,7 +22,7 @@ router.post('/', isAuthenticated, (req, res, next) => {
         res.status(403).send(r);
         return null;
       } else {
-        return req.db.other.get_board_id_by_name([req.body.name])
+        return req.db.board.get_board_id_by_name([req.body.name])
       }
     })
     .then(id => {
@@ -39,20 +39,40 @@ router.post('/', isAuthenticated, (req, res, next) => {
     })
 })
 
+// see the boards you have access to.
+router.get('/', isAuthenticated, (req,res,next) => {
+  req.db.board.get_my_boards([user[0].id])
+    .then(boards => {
+      res.status(200).json(boards);
+    })
+    .catch(err => serverError(err,res));
+})
+
 // get board id by name
-// this route might not be necessary actually
-router.get('/id/:name', (req, res, next) => {
-  req.db.other.get_board_id_by_name([req.params.name])
+router.get('/id/:name', isAuthenticated, (req, res, next) => {
+  req.db.board.get_board_id_by_name([req.params.name])
     .then(id => {
-      res.status(200).json({
-        id: id
-      })
+      res.status(200).json(id);
     })
     .catch(err => serverError(err, res))
 })
 
-router.delete('/:id', (req, res, next) => {
-  req.db.other.person_manages_board([req.user.id[0], req.params.id])
+router.delete('/:id', isAuthenticated, (req, res, next) => {
+  req.db.approval.person_manages_board([req.params.id, req.user[0].id])
+    .then(r => {
+      if (r[0].approval){
+        return req.db.board.delete_board([req.params.id])
+      } else {
+        return 'not your board';
+      }
+    })
+    .then(r => {
+      if (r === 'not your board'){
+        res.status(403).send(r);
+      } else {
+        res.status(200).send('deleted')
+      }
+    })
 })
 
 module.exports = router;
