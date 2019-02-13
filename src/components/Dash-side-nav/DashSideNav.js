@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './DashSideNav.scss';
 import {getMessages} from '../../api/api'
+import DropDown from '../DropDown/DropDown';
+import DropMenu from '../DropDown/DropMenu'
 
 
 
@@ -10,7 +12,9 @@ class DashSideNav extends Component {
     publicCount: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     privateCount: [1, 2, 3],
     messages: [],
-    showMenu:false,
+    hidden:false,
+    showPrivate:false,
+    nav: [{board:"one",number:1},{board:"two",number:2},{board:"three",number:3}]
   }
   changeView = (n) => {
     const name = n
@@ -40,23 +44,16 @@ class DashSideNav extends Component {
     return this.state.privateCount.length
   }
 
-  showMenu = (event) => {
-    event.preventDefault();
-    
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
+  showMenu = () => {
+    this.setState({ hidden: !this.state.hidden})
     
   }
-  closeMenu = (event) => {
-    if (!this.dropdownMenu.contains(event.target)) {
-      
-      this.setState({ showMenu: false }, () => {
-        document.removeEventListener('click', this.closeMenu);
-      });  
-      
-    }
+  showPrivate = () => {
+    this.setState({ showPrivate: !this.state.showPrivate})
+    
   }
+
+
 
   render() {
     return (
@@ -85,39 +82,38 @@ class DashSideNav extends Component {
           <div>
             <div 
             className="leftpane-boards-public-list-component" 
-            id="leftpane-boards-list-component"
-            onClick = {this.showMenu}
+            // id="leftpane-boards-list-component"
+            
             >
-              {/* <a href="/my boards-public" className="link-wrapper router"> */}
+              <a href="#" className="link-wrapper router" onClick = {this.showMenu}>
                 <i class="material-icons">menu</i><span className="title">Boards public</span>
                 <span className="title"> ({this.publicBoardCount()})</span>
-              {/* </a> */}
+              </a>
+              <div className = 'drop-menu'>
               {
-                this.state.showMenu
+                this.state.hidden
                 ?(
-                  <div className = 'public-menu' ref = { (element) => {this.dropdownMenu = element}} >
-                    <button>test1</button>
-                    <button>test2</button>
-                  </div>
+                  <DropDown nav = {this.state.nav} />
                 )
                 :(null)
               }
+              
+              </div>
             </div>
           </div>
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
             <div className="leftpane-boards-private-list-component" id="leftpane-boards-list-component">
-              {/* <a href="/my boards-private" className="link-wrapper router"> */}
+              <a href="#" className="link-wrapper router" onClick = {this.showPrivate}>
                 <i class="material-icons">menu</i><span className="title">Boards private</span>
                 <span className="title"> ({this.privateBoardCount()})</span>
-              {/* </a> */}
+              </a>
               {
-                this.state.showMenu
+                this.state.showPrivate
                 ?(
-                  <div className = 'public-menu' ref = { (element) => {this.dropdownMenu = element}} >
-                    <button>test1</button>
-                    <button>test2</button>
+                  <div className = 'drop-menu'  >
+                    <DropDown nav = {this.state.nav} />
                   </div>
                 )
                 :(null)

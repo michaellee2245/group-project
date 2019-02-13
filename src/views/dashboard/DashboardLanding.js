@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import './DashboardLanding.scss'
 import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/MyWeek'
-import DropDown from '../../components/DropDown/DropDown'
+import TopNavBar from '../../components/TopNavBar/TopNavBar'
+import DropMenu from '../../components/DropDown/DropMenu'
 
 class DashboardLanding extends Component {
 
@@ -50,7 +52,10 @@ class DashboardLanding extends Component {
   render() {
     return (
       
-      <div>
+      <div className = 'dashboard-wrapper'>
+        <div className = 'topNavBar'>
+        <TopNavBar />
+        </div>
         <DashSideNav changeViews = {this.changeViews} />
         {this.state.shownComponent}
       

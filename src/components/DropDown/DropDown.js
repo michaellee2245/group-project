@@ -1,55 +1,38 @@
-import React from 'react';
-import {Treebeard} from 'react-treebeard';
+import React, {Component} from 'react';
+import './DropMenu.scss'
 
-const data = {
-    name: 'root',
-    toggled: true,
-    children: [
-        {
-            name: 'parent',
-            children: [
-                { name: 'child1' },
-                { name: 'child2' }
-            ]
-        },
-        {
-            name: 'loading parent',
-            loading: true,
-            children: []
-        },
-        {
-            name: 'parent',
-            children: [
-                {
-                    name: 'nested parent',
-                    children: [
-                        { name: 'nested child 1' },
-                        { name: 'nested child 2' }
-                    ]
-                }
-            ]
-        }
-    ]
-};
 
-class DropDown extends React.Component {
+
+class DropDown extends Component {
     
-        state = {};
+   
+    
+      handleClick = () => {
+        this.setState({ hidden: !this.state.hidden})
+      
+      }
+    
+    
+    
+      render() {
+        const subMenu = this.props.nav.map(i => {
+          
         
-    onToggle = (node, toggled) => {
-        if(this.state.cursor){this.state.cursor.active = false;}
-        node.active = true;
-        if(node.children){ node.toggled = toggled; }
-        this.setState({ cursor: node });
-    }
-    render(){
+          return (
+            <li className = 'drop-down-nav' ><a href='#' className = 'board-name'>{i.board}</a></li>
+          )
+        })
         return (
-            <Treebeard
-                data={data}
-                onToggle={this.onToggle}
-            />
-        );
-    }
+          <div className = 'drop-nav-wrapper'>
+            
+                <ul  className = 'submenu'>
+                  {subMenu}
+                </ul>
+    
+            
+          </div>
+        )
+      }
 }
 
 export default DropDown
