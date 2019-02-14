@@ -16,7 +16,7 @@ class MarketingLanding extends Component {
 
     render() {
         return (
-            <div>
+            <div className="market-land-container">
 
                 <div className="market-top-container">
                     <UpperText currentIndex={this.state.currentIndex} />
@@ -26,6 +26,13 @@ class MarketingLanding extends Component {
 
                 <LowerQuote currentIndex={this.state.currentIndex} />
 
+                <div className="workflow-container">
+                    <div className="workflow-text">
+                        <span><h1>Workflow made simple.</h1></span>
+                        <span style={{ color: "blue" }}><h1>Try it for free.</h1></span>
+                    </div>
+                    <GetStartedBtn />
+                </div>
             </div>
         )
     }

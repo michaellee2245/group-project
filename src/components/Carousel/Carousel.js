@@ -39,6 +39,8 @@ class Carousel extends Component {
             arrows: true,
             centerPadding: "10px",
             variableWidth: true,
+            focusOnSelect: true,
+            swipeToSlide: true,
             nextArrow: <CustomNextArrow />,
             prevArrow: <CustomPrevArrow />
 
