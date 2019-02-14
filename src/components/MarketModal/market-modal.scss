@@ -1,0 +1,146 @@
+$purple-main: #a358df;
+$sign-in-background: #4f2b6d;
+
+
+.modal-container {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: scroll;
+
+}
+
+.inner-modal-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    height: 575px;
+    width: 40vw;
+    background-color: $sign-in-background;
+    border: 20px solid $purple-main;
+    border-radius: 5px;
+    box-shadow: 2px 1px 10px rgb(32, 32, 32);
+    transition: all .3s ease;
+    cursor: default;
+    span {
+        padding: 5px;
+        color: white;
+    }
+    
+}
+
+.exit-modal {
+    float: right;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.register-inputs-container {
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    color: white;
+    button {
+        background: white;
+        border: none;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        margin-bottom: 20px;
+        color: $purple-main;
+        border-radius: 15px;
+        transition: .3s;
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.678);
+            color: $purple-main;
+            cursor: pointer;
+        }
+    }
+    input {
+        border: none;
+        border-bottom: 1px solid white;
+        margin: 30px;
+        width: 70%;
+        text-align: center;
+        padding: 10px 30px;
+        font-size: 19px;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        &::placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.822);
+        }
+        &:focus::placeholder{
+            opacity: 0;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+    h1 {
+        font-size: 50px;
+    }
+
+}
+
+.register-button, .sign-in-button {
+    color: rgb(169, 140, 207)!important;
+    cursor: pointer;
+}
+
+.motion-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 800px;
+    //background: rgba(0, 0, 0, 0.47);
+
+}
+
+@media only screen and (max-width: 670px) {
+
+    .inner-modal-container{
+        width: 85vw;
+        border: none;
+    }
+    .register-inputs-container {
+        input {
+            width: 50vw;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    .inner-modal-container {
+        input {
+            margin: 20px;
+        }
+        h1 {
+           font-size: 45px; 
+        }
+    }
+
+    .register-inputs-container {
+        justify-content: space-around;
+    }
+
+}
+

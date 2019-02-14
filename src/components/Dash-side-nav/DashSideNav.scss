@@ -1,0 +1,134 @@
+.leftpane-container {
+  width: 19.8%;
+  height: 100vh;
+  background-color: #eeeeee;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.leftpane-logo{
+  height: 20px;
+  width: 50px;
+}
+
+.title{
+  color:#333333;
+}
+
+.leftpane-component {
+  height: 65px;
+  border-bottom:solid 1px #999999;
+}
+
+.leftpane-inbox-component {
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+  height: 55px;
+  border-bottom:solid 1px #999999;
+  a{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  &:hover{
+    background-color: #009aff;
+    color:white;
+    cursor: pointer;
+    .title{
+      color:white !important; 
+    }
+    .inboxCounter{
+      background: white;
+      color:#333333;
+    }
+  }
+}
+
+.inbox-wrapper{
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+.inboxCounter {
+  display:flex;
+  color:white;
+  padding: 3px 15px;
+  border-radius: 15px;
+  margin-left: 125px;
+  background-color: #009aff;
+}
+
+.leftpane-week-component {
+  display: flex;
+  align-items: center;
+  padding-left: 25px;
+  height: 55px;
+  border-bottom:solid 1px #999999;
+  &:hover{
+    background-color: #009aff;
+    color:white;
+    cursor: pointer;
+    .title{
+      color:white !important; 
+    }
+  }
+  a{
+    text-decoration: none;
+  }
+}
+
+.leftpane-boards-public-list-component {
+  display: flex;
+  justify-content: flex-start;
+  padding-top:5%;
+  padding-left:8%;
+  flex-direction: column;
+  min-height: 40px;
+  border-bottom:solid 1px #999999;
+  &:hover{
+    color:#009aff;
+    cursor: pointer;
+    .title{
+    color:#009aff !important; 
+    }
+  }
+  a{
+    display:flex;
+    justify-content: flex-start;
+    align-content: center;
+    text-decoration: none;
+  }
+}
+.drop-menu {
+  display:flex;
+  flex-flow: column;
+
+}
+
+.leftpane-boards-private-list-component {
+
+  display: flex;
+  justify-content: flex-start;
+  padding-top:5%;
+  padding-left:8%;
+  flex-direction: column;
+  min-height: 40px;
+  border-bottom:solid 1px #999999;
+  &:hover{
+    color:#009aff;
+    cursor: pointer;
+    .title{
+    color:#009aff !important; 
+    }
+  }
+  a{
+    display:flex;
+    justify-content: flex-start;
+    align-content: center;
+    text-decoration: none;
+  }
+}

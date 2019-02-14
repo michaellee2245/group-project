@@ -1,0 +1,654 @@
+{
+	"info": {
+		"_postman_id": "df780d99-fbc7-4a5d-905b-14a21cd94da0",
+		"name": "monday-com-endpoint-testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register a user whose name is taken already",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49564bf7-4d72-41d7-8d7e-0705629b682f",
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"",
+							"pm.test(\"Response body is a string\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.string;",
+							"});",
+							"",
+							"pm.test(\"Response states User already exists\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"User already exists\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"Superman\",\n\t\"password\": \"Kryptonite\",\n\t\"email\": \"clark.loves.lois@dailyplanet.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register a random user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+						"exec": [
+							"function makeid() {",
+							"  var text = \"\";",
+							"  var possible = \"abcdefghijklmnopqrstuvwxyz\";",
+							"  for (let i = 0; i < 4; i++)",
+							"    text += possible.charAt(Math.floor(Math.random() * possible.length));",
+							"  return text;",
+							"}",
+							"pm.environment.set('username', makeid())",
+							"pm.environment.set('email', makeid())",
+							"pm.environment.set('password', makeid())"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is a JSON object\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response includes correct user information\", function () {",
+							"    pm.expect(pm.response.json().user.email).to.equal(pm.environment.get('email'));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\",\n\t\"email\": \"{{email}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout random user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a6a3f32-3b6a-4e45-bd4e-0071fd91dabe",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has no body\", function () {",
+							"    pm.response.to.not.be.withBody;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log random user back in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65761c40-7d54-4129-8c79-49d21d81a8e2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is a JSON object\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response includes correct user information\", function () {",
+							"    pm.expect(pm.response.json().user.username).to.equal(pm.environment.get('username'));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b7addd8-adb4-4c84-b23a-38e2bc2f300f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the random user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is a string\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.string;",
+							"});",
+							"",
+							"pm.test(\"Response states deleted\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/me",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "attempt to log back in after deleting",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8110ea1a-5f72-43d2-9439-43b60f3bbc94",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Response body is a string\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.string;",
+							"});",
+							"",
+							"pm.test(\"Response states User doesn't exist\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"User doesn't exist\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with bad username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8128081-19d2-44f1-b02d-7e6bf6a6ba04",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Response body is a string\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.string;",
+							"});",
+							"",
+							"pm.test(\"Response states User doesn't exist\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"User doesn't exist\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"doctorevil\",\n\t\"password\": \"muahahaha\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with bad password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af5d4072-15e5-45b9-9a0f-497e868a8aec",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Response body is a string\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.string;",
+							"});",
+							"",
+							"pm.test(\"Response states Password Incorrect\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"Password Incorrect\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"Snickers\",\n\t\"password\": \"idk\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with correct username and password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f770b1dc-077d-4148-9ade-4f287e227294",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is a JSON object\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response includes correct user information\", function () {",
+							"    pm.expect(pm.response.json().user.id).to.equal(21);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"Snickers\",\n\t\"password\": \"C\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get session while logged in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9bbd0aef-0023-4ded-82d7-c43855300b2d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response body is a JSON object\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response includes correct user id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.user.id).to.equal(21);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/session",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log back out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4f3f155c-5242-4728-bc21-fa74f0f6d44b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has no body\", function () {",
+							"    pm.response.to.not.be.withBody;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get session while not logged in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6bdc6e54-41e5-4d97-a76d-6a87abada01a",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"Response body is a string\", function () {",
+							"    pm.response.to.be.withBody;",
+							"    pm.response.to.be.string;",
+							"});",
+							"",
+							"pm.test(\"Response states session not found\", function () {",
+							"    pm.expect(pm.response.text()).to.equal(\"session not found\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080/api/auth/session",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"session"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
