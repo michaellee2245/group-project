@@ -1726,32 +1726,6 @@
 					"response": []
 				},
 				{
-					"name": "approve team member",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:8080/api/team/approval/4/20",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"team",
-								"approval",
-								"4",
-								"20"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "create new team",
 					"event": [
 						{
@@ -1827,6 +1801,30 @@
 				},
 				{
 					"name": "specify the organization the new team belongs to",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1aceeca1-3b5c-44f3-8efb-d54c67b5948c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states updated\", function () {",
+									"    pm.expect(pm.response.text()).equals('updated');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1858,6 +1856,30 @@
 				},
 				{
 					"name": "login as starburst",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6fed62ba-54d4-4315-84f0-b071dacd7488",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(20);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1889,6 +1911,30 @@
 				},
 				{
 					"name": "join the team as starburst",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46da9630-6355-4a01-9a16-bf17945630db",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -1897,7 +1943,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/join/5",
+							"raw": "localhost:8080/api/team/join/:id",
 							"host": [
 								"localhost"
 							],
@@ -1906,7 +1952,677 @@
 								"api",
 								"team",
 								"join",
-								"5"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{new_team_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attempt to rename the team that belongs to snickers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05d9cce7-0340-4a2c-8f8a-e39b3faf44f9",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states manager only\", function () {",
+									"    pm.expect(pm.response.text()).equals('manager only');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{new_team_id}},\n\t\"name\": \"starburst team\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f24066b8-aee5-4ba2-a2f5-7b2f4a375bdd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(17);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join team by name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce1af883-4a1a-4cc5-93c2-34f4bcd7980b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"{{teamname}}\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/join-name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"join-name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login as snickers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a94b0ca-3074-407a-a974-019fd7a6106b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"Snickers\",\n\t\"password\": \"C\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see all my teams",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42f2bbb9-8ac7-4528-a56f-4dc7e9e703e3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the new team\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === pm.environment.get('teamname'))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/team",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see all teams in the whole database",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "87ecde1e-9389-4a8f-89dc-18554ec1f2fc",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the new team\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === pm.environment.get('teamname'))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve team member",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da7b54a6-c900-46eb-a67a-323ecb4b77a6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states approved\", function () {",
+									"    pm.expect(pm.response.text()).equals('approved');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": \"{{new_team_id}}\",\n\t\"memberID\": 20\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/approval/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"approval",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see the teams starburst and snickers have in common",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d07ab960-a88f-48f0-86c7-e0bdece424ef",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the new team\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === pm.environment.get('teamname'))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"theirID\": 20\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/us",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"us"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get teams by organization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6e05ff6-65b0-4fdf-b41b-b3fad32b62fd",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the new team\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === pm.environment.get('teamname'))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"organization\": \"the great candy factory in the sky\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/organization",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"organization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get teams by name",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c6f05664-7348-4f4e-9cdd-ce3d3cb4b147",
+								"exec": [
+									"pm.environment.set('firstLetter', pm.environment.get('teamname')[0])"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b94660ab-235e-4528-95d5-345528b7e4ac",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes the new team\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === pm.environment.get('teamname'))).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"{{firstLetter}}\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/by-name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"by-name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rename the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2eee0763-d4bd-497f-aac3-2299474d6b19",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states renamed\", function () {",
+									"    pm.expect(pm.response.text()).equals('renamed');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{new_team_id}},\n\t\"name\": \"snickers team\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "920b5eae-5dec-41dc-9e14-a2e6d543343c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted/removed\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('deleted/removed');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": \"{{new_team_id}}\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team"
 							]
 						}
 					},

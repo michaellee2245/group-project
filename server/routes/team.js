@@ -56,8 +56,12 @@ router.post('/join/:teamid', isAuthorized, (req, res, next) => {
     .catch(err => serverError(err, res));
 })
 
-router.post('/join/by-name/:name', isAuthorized, (req, res, next) => {
-  req.db.team.get_by_name([req.params.name])
+// POST /api/team/join-name
+// join team by name
+router.post('/join-name', isAuthorized, (req, res, next) => {
+  console.log('tryna join by name');
+  console.log(req.body.name);
+  req.db.team.get_by_name([req.body.name])
     .then(team => {
       if (team.length > 0) {
         return req.db.team.post_team_member([req.user[0].id, team[0].id]);
@@ -106,18 +110,16 @@ router.get('/all', isAuthorized, (req, res, next) => {
 
 // GET /api/team/by-name
 // search teams by name
-router.get('/by-name/:name', isAuthorized, (req, res, next) => {
-  req.db.team.search_by_name([req.params.name + '%'])
-    .then(teams => {
-      res.status(200).json(teams);
-    })
+router.get('/by-name', isAuthorized, (req, res, next) => {
+  req.db.team.search_by_name([req.body.name + '%'])
+    .then(teams => res.status(200).json(teams))
     .catch(err => serverError(err, res));
 })
 
 // GET /api/team/organization
 // search teams by organization
-router.get('/organization/:organization', isAuthorized, (req, res, next) => {
-  req.db.team.search_by_organization([req.params.organization + '%'])
+router.get('/organization', isAuthorized, (req, res, next) => {
+  req.db.team.search_by_organization([req.body.organization + '%'])
     .then(teams => res.status(200).json(teams))
     .catch(err => serverError(err, res));
 })
@@ -157,8 +159,8 @@ router.put('/organization', isAuthorized, isManager, (req, res, next) => {
 // rename the team (manager only)
 router.put('/name', isAuthorized, isManager, (req, res, next) => {
   req.db.team.update_name([
-      req.body.teamID,
-      req.body.name
+      req.body.name,
+      req.body.teamID
     ])
     .then(() => {
       res.status(200).send('renamed');

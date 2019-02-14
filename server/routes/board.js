@@ -3,6 +3,7 @@ const router = express.Router();
 
 const serverError = require('./helpers/server-error');
 const isAuthenticated = require('./helpers/authorize');
+const onTeam = require('./helpers/on-team');
 
 router.use((req, res, next) => {
   req.db = req.app.get('db')
@@ -74,9 +75,9 @@ router.delete('/:id', isAuthenticated, (req, res, next) => {
       }
     })
 })
-
+/*
 router.put('/description', isAuthenticated, (req,res,next) => {
   req.db.approval.person_manage
 })
-
+*/
 module.exports = router;

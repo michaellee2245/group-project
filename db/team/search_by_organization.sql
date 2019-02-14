@@ -1,4 +1,4 @@
-/* Find teams with names that start with the given variable */
+/* Find teams from organizations that start with the given variable */
 /* Please note that the variable must end in '%' to get the desired effect */
 
 SELECT
@@ -9,4 +9,4 @@ SELECT
   manager.profile_pic AS manager_pic,
   team.organization AS organization
 FROM team JOIN person AS manager ON manager.id = team.manager_id
-WHERE team.name ILIKE $1;
+WHERE team.organization ILIKE $1;
