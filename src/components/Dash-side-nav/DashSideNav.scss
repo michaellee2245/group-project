@@ -1,7 +1,10 @@
 .leftpane-container {
-  width: 250px;
+  width: 19.8%;
   height: 100vh;
   background-color: #eeeeee;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .leftpane-logo{
@@ -51,6 +54,7 @@ align-items: center;
 
 }
 .inboxCounter {
+  display:flex;
   color:white;
   padding: 3px 15px;
   border-radius: 15px;
@@ -79,9 +83,11 @@ align-items: center;
 
 .leftpane-boards-public-list-component {
   display: flex;
-  align-items: center;
-  padding-left: 25px;
-  height: 55px;
+  justify-content: flex-start;
+  padding-top:5%;
+  padding-left:8%;
+  flex-direction: column;
+  min-height: 40px;
   border-bottom:solid 1px #999999;
   &:hover{
     color:#009aff;
@@ -91,27 +97,38 @@ align-items: center;
     }
   }
   a{
+    display:flex;
+    justify-content: flex-start;
+    align-content: center;
     text-decoration: none;
   }
+}
+.drop-menu {
+  display:flex;
+  flex-flow: column;
+
 }
 
 .leftpane-boards-private-list-component {
 
   display: flex;
-  align-items: center;
-  padding-left: 25px;
-  height: 55px;
+  justify-content: flex-start;
+  padding-top:5%;
+  padding-left:8%;
+  flex-direction: column;
+  min-height: 40px;
   border-bottom:solid 1px #999999;
   &:hover{
-    
     color:#009aff;
     cursor: pointer;
     .title{
-      color:#009aff !important; 
+    color:#009aff !important; 
     }
-    
   }
   a{
+    display:flex;
+    justify-content: flex-start;
+    align-content: center;
     text-decoration: none;
   }
 }
