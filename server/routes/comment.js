@@ -10,7 +10,7 @@ router.use((req, res, next) => {
 // POST api/comment
 // requires task id and content
 router.post('/', (req,res,next) => {
-  req.db.post_comment([req.body.id, req.user[0].id, req.body.content])
+  req.db.other.post_comment([req.body.taskID, req.user[0].id, req.body.content])
   .then(() => res.status(200).send('ok'))
   .catch(err => serverError(err,res))
 })
@@ -26,9 +26,9 @@ router.get('/by-me', (req,res,next) => {
   } else {
     res.status(401).send('not logged in')
   }
-
 })
 
+// get the comments on a task
 router.get('/on-task/:id', (req,res,next) => {
   console.log('trying to get comments on task by id');
   if (req.user){
