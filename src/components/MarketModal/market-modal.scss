@@ -1,35 +1,6 @@
-$button-color: #a358df;
+$purple-main: #a358df;
+$sign-in-background: #4f2b6d;
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-.fade-out {
-    animation: fadeOut ease-in;
-    animation-fill-mode: forwards;
-    animation-duration: .3s;
-    animation-direction: reverse;
-}
-
-.fade-in {
-    animation: fadeIn ease-in;
-    animation-fill-mode: forwards;
-    animation-duration: .3s;
-}
 
 .modal-container {
     width: 100%;
@@ -43,19 +14,21 @@ $button-color: #a358df;
     top: 0;
     left: 0;
     overflow: scroll;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
+
 }
 
 .inner-modal-container {
+    padding: 20px;
     display: flex;
     justify-content: center;
-    height: 600px;
-    width: 50vw;
-    background-color: $button-color;
+    height: 575px;
+    width: 40vw;
+    background-color: $sign-in-background;
+    border: 20px solid $purple-main;
     border-radius: 5px;
     box-shadow: 2px 1px 10px rgb(32, 32, 32);
     transition: all .3s ease;
+    cursor: default;
     span {
         padding: 5px;
         color: white;
@@ -71,29 +44,46 @@ $button-color: #a358df;
 }
 
 
-.inputs-container, .register-inputs-container {
+.register-inputs-container {
     display: flex;
     flex-direction: column;
-    height: 50%;
-    width: 100%;
+    height: 550px;
+    width: 400px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background: transparent;
     color: white;
+    button {
+        background: white;
+        border: none;
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        margin-bottom: 20px;
+        color: $purple-main;
+        border-radius: 15px;
+        transition: .3s;
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.678);
+            color: $purple-main;
+            cursor: pointer;
+        }
+    }
     input {
         border: none;
         border-bottom: 1px solid white;
         margin: 30px;
-        width: 100%;
-        text-align: left;
-        padding: 5px 30px;
+        width: 70%;
+        text-align: center;
+        padding: 10px 30px;
         font-size: 19px;
         background: transparent;
         color: white;
+        cursor: pointer;
         &::placeholder {
             text-align: center;
-            color: white;
+            color: rgba(255, 255, 255, 0.822);
         }
         &:focus::placeholder{
             opacity: 0;
@@ -109,18 +99,48 @@ $button-color: #a358df;
 }
 
 .register-button, .sign-in-button {
-    color: rgb(26, 0, 59)!important;
+    color: rgb(169, 140, 207)!important;
     cursor: pointer;
 }
 
 .motion-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    flex-direction: row;
     height: 100%;
-    width: 700px;
-     //background: rgba(0, 0, 0, 0.47);
+    width: 800px;
+    //background: rgba(0, 0, 0, 0.47);
+
+}
+
+@media only screen and (max-width: 670px) {
+
+    .inner-modal-container{
+        width: 85vw;
+        border: none;
+    }
+    .register-inputs-container {
+        input {
+            width: 50vw;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    .inner-modal-container {
+        input {
+            margin: 20px;
+        }
+        h1 {
+           font-size: 45px; 
+        }
+    }
+
+    .register-inputs-container {
+        justify-content: space-around;
+    }
 
 }
 
