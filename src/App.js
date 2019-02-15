@@ -24,6 +24,7 @@ class App extends Component {
         </ConnectedRouter> */}
 
         <Inbox></Inbox>
+       
         
       </div>
       
