@@ -5,6 +5,7 @@ SELECT
   message.ts,
   message.content,
   sender.name AS sender,
+  sender.profile_pic AS sender_pic,
   recipient.name AS recipient,
   message.read
 FROM message
