@@ -2897,6 +2897,336 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "set pic",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3f836eb-ef43-418c-9f86-fd80f2b03247",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states pic set\", function () {",
+									"    pm.expect(pm.response.text()).equals('pic set');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pic\": \"my pic\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/pic",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"pic"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1e1e4e9d-94b3-4c24-b2b3-5150bb70563c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states phone set\", function () {",
+									"    pm.expect(pm.response.text()).equals('phone set');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"phone\": \"my phone\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/phone",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"phone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set skype",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c234c6f-f218-4d02-9107-24aba968410c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states skype set\", function () {",
+									"    pm.expect(pm.response.text()).equals('skype set');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skype\": \"my skype\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/skype",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"skype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f1c7c0ee-84ae-41c1-8b0e-a1b277b9579a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states location set\", function () {",
+									"    pm.expect(pm.response.text()).equals('location set');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"location\": \"my location\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/location",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f4400ee5-d5a7-4cc6-9ce6-e9611a14d6d9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states title set\", function () {",
+									"    pm.expect(pm.response.text()).equals('title set');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"my title\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/title",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see my user details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e633ff9-c7d8-4318-a404-dc5dc9bb032a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes my details\", function () {",
+									"    pm.expect(pm.response.json().some(e => {",
+									"        return e.profile_pic === 'my pic' &&",
+									"        e.phone === 'my phone' &&",
+									"        e.skype === 'my skype' &&",
+									"        e.location === 'my location' &&",
+									"        e.title === 'my title';",
+									"    })).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/details/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"details",
+								"me"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
