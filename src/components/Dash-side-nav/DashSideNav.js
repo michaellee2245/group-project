@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './DashSideNav.scss';
-import {getMessages} from '../../api/api'
 import DropDown from '../DropDown/DropDown';
-import DropMenu from '../DropDown/DropMenu'
+
 
 
 
