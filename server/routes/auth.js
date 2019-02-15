@@ -45,7 +45,7 @@ router.post('/register', (req, res, next) => {
                 .then(user => {
                     req.login(user, err => {
                       if (err) return next(err);
-                      req.db.get_boards_by_user_teams([user[0].id])
+                      req.db.team.get_boards_by_user_teams([user[0].id])
                         .then(boards => {
                           res.json({
                             user: user[0],
@@ -84,11 +84,11 @@ router.post('/register', (req, res, next) => {
                 if (!user) return;
                 req.login(user, err => {
                   if (err) return next(err);
-                  req.db.get_boards_by_user_teams([user[0].id])
+                  req.db.team.get_boards_by_user_teams([user[0].id])
                     .then(boards => {
                       loginResponse.user = user[0];
                       loginResponse.boards = boards;
-                      return req.db.get_teams_by_user([user[0].id])
+                      return req.db.team.get_teams_by_user([user[0].id])
                     })
                     .then(teams => {
                       loginResponse.teams = teams;
@@ -116,7 +116,7 @@ router.post('/register', (req, res, next) => {
         req.db.user.get_user_on_login([req.user[0].name])
           .then(user => {
             sessionResponse.user = user[0];
-            return req.db.get_boards_by_user_teams([user[0].id])
+            return req.db.team.get_boards_by_user_teams([user[0].id])
           })
           .then(boards => {
             sessionResponse.boards = boards;

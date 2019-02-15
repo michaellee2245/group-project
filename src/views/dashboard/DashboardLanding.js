@@ -3,10 +3,11 @@ import {connect} from 'react-redux'
 import './DashboardLanding.scss'
 import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
-import MyWeek from '../../components/MyWeek/MyWeek'
+import MyWeek from '../../components/MyWeek/myWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
+
 
 class DashboardLanding extends Component {
 
