@@ -21,15 +21,31 @@ import MarketTopNav from '../../../components/MarketTopNav/MarketTopNav';
 import MarketFooter from '../../../components/MarketFooter/MarketFooter';
 
 class WhyUs extends Component {
+
+    state = {
+        displayModal: false
+    }
+
+    handleClick = () => {
+        this.setState({
+            displayModal: !this.state.displayModal
+        })
+    }
+
     render() {
         return (
             <div className="why-us-container">
-                <MarketTopNav />
+                <MarketTopNav 
+                    displayModal={this.state.displayModal}
+                    toggle={this.handleClick}
+                />
                 <div className="header-wrapper">
                     <h1 className="header-text">
                         <span className="red-text"> 350,000 </span> people, from <span className="blue-text"> 76 </span> countries, in <span className="green-text"> 50,000 </span> teams manage their work with monday.com
                     </h1>
-                    <GetStartedBtn />
+                    <GetStartedBtn 
+                        changeNav={this.handleClick}
+                    />
                     <img src={arrow} alt='arrow' style={{
                         height: 'auto',
                         width: '150px',
@@ -81,7 +97,9 @@ class WhyUs extends Component {
                         <img src={fiverr} alt='wework logo' className="logos" />
                         <img src={frost} alt='wework logo' className="logos" />
                     </div>
-                    <GetStartedBtn />
+                    <GetStartedBtn 
+                        changeNav={this.handleClick}
+                    />
 
 
                 </div>

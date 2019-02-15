@@ -3,10 +3,10 @@ import './get-started-btn.scss';
 
 
 
-function GetStartedBtn(){
+function GetStartedBtn(props){
     return(
         <div>
-            <button className="get-started">Get Started</button>
+            <button onClick={props.changeNav} className="get-started">Get Started</button>
         </div>
     )
 }
