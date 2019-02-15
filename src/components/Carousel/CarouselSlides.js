@@ -9,7 +9,7 @@ function CarouselSlides({
 }){
         return(
             <div className="test-div" style={{borderColor: color}}>
-                <h1 style={{color:color}}>{title}</h1>
+                <h3 style={{color:color}}>{title}</h3>
                 <div 
                 className="carousel-image" 
                 style={{backgroundImage: `url(${image})`}}> 
