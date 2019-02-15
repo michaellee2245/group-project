@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.drop-nav-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.drop-down-nav {
+  
+  list-style: none;
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border: solid 1px white;
+  width
+  & a {
+    display: block;
+    font-size: 14px;
+    padding: 22px 14px;
+    color:black;
+    
+  }
+}
+div ul li a {
+  // color: red;
+  
+
+}
+.submenu {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column;
+  width: 100px;
+  background-color:#eeeeee;
+  margin:2px;
+  list-style: none;
+  color:black;
+}
+
+
+.submenu a:hover{
+  background-color: grey;
+}
+.board-name {
+  color:#333333
+}
