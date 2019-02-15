@@ -27,9 +27,9 @@ class Inbox extends Component {
 
                     <div className="inbox-title-actions">
                         <span className="inbox-toggle-mode">
-                            <a href="" className="active"> Open (0)</a>
+                            <a href="" className="active"> Open (0) </a>
                             /
-                <a href="" className="inbox-all-updates">All Updates</a>
+                <a href="" className="inbox-all-updates"> All Updates</a>
 
                         </span>
                     </div>
