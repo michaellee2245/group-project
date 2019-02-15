@@ -97,4 +97,23 @@
 .dropdown-people:hover .dropdown-content{
     display: block;
 }
-
+.user-profile-menu {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
+    width: 100px;
+    background-color:#eeeeee;
+    margin:2px;
+    list-style: none;
+    color:black;
+    position: relative;
+   
+}
+.user-profile-menu-list {
+    position: absolute;
+    right:0;
+    margin-right:4%;
+    margin-top:2%;
+    list-style: none;
+    width: 50px;
+}

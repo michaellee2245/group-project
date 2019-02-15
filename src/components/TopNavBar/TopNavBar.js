@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import './TopNavBar.scss'
 
 class TopNavBar extends Component {
+    
+    state = {
+        profileHidden: false,
+    }
+
+    handleClick = () => {
+        this.setState ({profileHidden: !this.state.profileHidden})
+    }
+
     render() {
         return (
             <div className="navbar-wrapper">
@@ -53,9 +62,21 @@ class TopNavBar extends Component {
 
                 <div className="navbar-tab">
                     <a href="#" className="text">
-                        <div className="add-member-span">
+                        <div onClick = {this.handleClick}  className="add-member-span">
                             <i className="material-icons">face</i>
-                            <p> UserProfile</p>
+                            <p className = 'user-profile-menu' > UserProfile</p>
+                            {this.state.profileHidden? 
+                            (
+                            <div>
+                                <ul className = 'user-profile-menu-list'>
+                                    <li>Profile</li>
+                                    <li>Admin </li>
+                                    <li>Recycle Bin </li>
+                                    <li>Logout</li>
+                                </ul>
+                            </div>    
+                            ): (null)
+                            }
                         </div>
                     </a>
                 </div>

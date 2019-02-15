@@ -4,7 +4,8 @@
 }
 .drop-nav-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left:40px;
 }
 
 .drop-down-nav {
@@ -14,20 +15,19 @@
   text-decoration: none;
   padding-bottom: 2px;
   border: solid 1px white;
-  width
+  width: 150px;
+  height: 40px;
+
   & a {
     display: block;
     font-size: 14px;
-    padding: 22px 14px;
+    height: 25px;
+    padding: 10px;
     color:black;
     
   }
 }
-div ul li a {
-  // color: red;
-  
 
-}
 .submenu {
   display: flex;
   justify-content: flex-start;
@@ -42,6 +42,7 @@ div ul li a {
 
 .submenu a:hover{
   background-color: grey;
+  
 }
 .board-name {
   color:#333333
