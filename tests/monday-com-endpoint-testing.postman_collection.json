@@ -1477,27 +1477,27 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{boardid0}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/board/:id",
+							"raw": "localhost:8080/api/board",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{boardid0}}"
-								}
+								"board"
 							]
 						}
 					},
@@ -1531,27 +1531,27 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{boardid1}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/board/:id",
+							"raw": "localhost:8080/api/board",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{boardid1}}"
-								}
+								"board"
 							]
 						}
 					},
@@ -1585,27 +1585,27 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{boardid2}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/board/:id",
+							"raw": "localhost:8080/api/board",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{boardid2}}"
-								}
+								"board"
 							]
 						}
 					},
@@ -1639,27 +1639,27 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{boardid3}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/board/:id",
+							"raw": "localhost:8080/api/board",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{boardid3}}"
-								}
+								"board"
 							]
 						}
 					},
