@@ -115,7 +115,11 @@
 .section-type-container{
   display: flex;
   justify-content: flex-start;
-  height: 75px;
+  min-height: 55px;
   width: 100vw;
-  border: solid black 2px;
+  margin-left: 80px;
+  a{
+    text-decoration: none;
+    color: #333333;
+  }
 }

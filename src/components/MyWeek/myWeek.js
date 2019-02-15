@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import DropDownWeek from '../DropDownWeek/DropDownWeek'
 import './myWeek.scss'
 
 export default class MyWeek extends Component {
@@ -10,6 +11,17 @@ export default class MyWeek extends Component {
     username: 'Mr.user',
     upcomingAssignments: "You don't have any assignments this week",
     personFilter: '',
+    prevWeekHide: true,
+    earlierHide: true,
+    todayHide: true,
+    upcomingHide: true,
+    doneHide: true,
+    prevWeeksAssignments: [{ task: "one", number: 1 }, { task: "two", number: 2 }, { task: "three", number: 3 }, { task: "four", number: 4 }],
+    earlierThisWeek: [{ task: "one", number: 1 }, { task: "two", number: 2 }],
+    today: [{ task: "one", number: 1 }, { task: "two", number: 2 }, { task: "three", number: 3 }],
+    upcoming: [{ task: "one", number: 1 }, { task: "two", number: 2 }, { task: "three", number: 3 }],
+    done: [{ task: "one", number: 1 }],
+    assignmentCount: [1, 2,]
   }
 
   prevWeekCount = () => {
@@ -38,6 +50,29 @@ export default class MyWeek extends Component {
     this.setState({ [key]: value })
   }
 
+  assignmentCounter = () => {
+    return this.state.assignmentCount.length
+  }
+
+  prevWeekDrop = () => {
+    this.setState({ prevWeekHide: !this.state.prevWeekHide })
+  }
+
+  earlierDrop = () => {
+    this.setState({ earlierHide: !this.state.earlierHide })
+  }
+
+  todayDrop = () => {
+    this.setState({ todayHide: !this.state.todayHide })
+  }
+
+  upcomingDrop = () => {
+    this.setState({ upcomingHide: !this.state.upcomingHide })
+  }
+
+  doneDrop = () => {
+    this.setState({ doneHide: !this.state.doneHide })
+  }
 
 
   render() {
@@ -94,21 +129,65 @@ export default class MyWeek extends Component {
             <div className='deadlines-task-container'>
               <div className='deadline-tasks-section-component'>
                 <div className='section-type-container'>
-                  <span className='collapse-icon-wrapper'>
-                    <div className='collapse-group-toggle-component'>
-                      <i class="material-icons" id='arrowUp'>arrow_drop_up</i>
-                      <i class="material-icons" id='arrowDown'>arrow_drop_down</i>
-                    </div>
-                  </span>
-                  <div className='section-type-title-wrapper'>
-                  </div>
+                  <a href='#' onClick={this.prevWeekDrop}>Previous Weeks /</a>
+                  <span className='assignmentCounter'>{this.assignmentCounter()}</span>
+                  {
+                    this.state.prevWeekHide
+                      ? (
+                        <DropDownWeek nav={this.state.prevWeeksAssignments} />
+                      )
+                      : (null)
+                  }
+                </div>
+                <div className='section-type-container'>
+                  <a href='#' onClick={this.earlierDrop}>Earlier This Week /</a>
+                  <span className='assignmentCounter'>{this.assignmentCounter()}</span>
+                  {
+                    this.state.earlierHide
+                      ? (
+                        <DropDownWeek nav={this.state.earlierThisWeek} />
+                      )
+                      : (null)
+                  }
+                </div>
+                <div className='section-type-container'>
+                  <a href='#' onClick={this.todayDrop}>Today /</a>
+                  <span className='assignmentCounter'>{this.assignmentCounter()}</span>
+                  {
+                    this.state.todayHide
+                      ? (
+                        <DropDownWeek nav={this.state.today} />
+                      )
+                      : (null)
+                  }
+                </div>
+                <div className='section-type-container'>
+                  <a href='#' onClick={this.upcomingDrop}>Upcoming /</a>
+                  <span className='assignmentCounter'>{this.assignmentCounter()}</span>
+                  {
+                    this.state.upcomingHide
+                      ? (
+                        <DropDownWeek nav={this.state.upcoming} />
+                      )
+                      : (null)
+                  }
+                </div>
+                <div className='section-type-container'>
+                  <a href='#' onClick={this.doneDrop}>Done /</a>
+                  <span className='assignmentCounter'>{this.assignmentCounter()}</span>
+                  {
+                    this.state.doneHide
+                      ? (
+                        <DropDownWeek nav={this.state.done} />
+                      )
+                      : (null)
+                  }
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     )
   }
 }
