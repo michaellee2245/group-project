@@ -3,7 +3,8 @@ import './mark-top-nav.scss';
 import MarketModal from '../MarketModal/MarketModal';
 import $ from 'jquery';
 import { connect } from 'react-redux'
-import { login, register } from '../../redux/actions'
+import { login, register } from '../../redux/actions';
+import { Link } from 'react-router-dom';
 
 class MarketTopNav extends Component {
 
@@ -79,7 +80,7 @@ class MarketTopNav extends Component {
                 <div className="nav-logo"></div>
                 <div className="nav-right">
                     <div id="nav-product">Product</div>
-                    <div id="nav-why">Why Us</div>
+                    <Link to='/why-us'> <div id="nav-why">Why Us</div> </Link>
                     <button onClick={this.handleModalClick}>Log in</button>
                 </div>
 
