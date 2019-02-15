@@ -1,14 +1,14 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  console.log('tryna check manager status');
+  console.log('checking membership');
   console.log(req.user[0].id, req.body.teamID);
-  req.db.approval.is_manager([req.user[0].id, req.body.teamID])
+  req.db.team.check_team_member([req.user[0].id, req.body.teamID])
     .then(r => {
-      if (r[0].manager) {
-        next();
+      if (r.length > 0) {
+        res.status(400).send(r);
       } else {
-        res.status(403).send('manager only');
+        next();
       }
     })
     .catch(err => serverError(err,res));

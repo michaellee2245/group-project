@@ -1937,13 +1937,20 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"teamID\": {{new_team_id}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/join/:id",
+							"raw": "localhost:8080/api/team/join",
 							"host": [
 								"localhost"
 							],
@@ -1951,14 +1958,7 @@
 							"path": [
 								"api",
 								"team",
-								"join",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{new_team_id}}"
-								}
+								"join"
 							]
 						}
 					},
@@ -2124,6 +2124,61 @@
 								"api",
 								"team",
 								"join-name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "quit team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0646b63c-ef27-4027-bf78-a25c97289e89",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states quit\", function () {",
+									"    pm.expect(pm.response.text()).equals('quit');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/quit/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"quit",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{new_team_id}}"
+								}
 							]
 						}
 					},
@@ -2569,6 +2624,61 @@
 								"api",
 								"team",
 								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kick starburst off the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0397865b-57f3-4fce-b76f-2ceff80d9ee2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states booted\", function () {",
+									"    pm.expect(pm.response.text()).equals('booted');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{new_team_id}},\n\t\"memberID\": 20\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/boot",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"boot"
 							]
 						}
 					},
@@ -3499,15 +3609,55 @@
 			"item": [
 				{
 					"name": "login as skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae922675-3449-4cf9-a3e6-351378db8f87",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(17);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
 						}
 					},
 					"response": []

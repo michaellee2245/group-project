@@ -3,6 +3,8 @@ const router = express.Router();
 const serverError = require('./helpers/server-error');
 const isAuthorized = require('./helpers/authorize');
 const isManager = require('./helpers/manager');
+const alreadyMember = require('./helpers/already-member');
+const teamExists = require('./helpers/team-exists');
 
 router.use((req, res, next) => {
   req.db = req.app.get('db')
@@ -12,13 +14,8 @@ router.use((req, res, next) => {
 // POST /api/team/approval
 // Approve team member (manager only)
 router.post('/approval', isAuthorized, isManager, (req, res, next) => {
-  req.db.approval.approve_team_member([
-      req.body.memberID,
-      req.body.teamID
-    ])
-    .then(() => {
-      res.status(200).send('approved');
-    })
+  req.db.approval.approve_team_member([req.body.memberID,req.body.teamID])
+    .then(() => res.status(200).send('approved'))
     .catch(err => serverError(err, res));
 })
 
@@ -28,63 +25,34 @@ router.post('/approval', isAuthorized, isManager, (req, res, next) => {
 router.post('/', isAuthorized, (req, res, next) => {
   req.db.team.post_team([req.body.name, req.user[0].id])
     .then(() => req.db.team.get_by_name([req.body.name]))
-    .then(team => {
-      res.status(200).json(team[0]);
-    })
+    .then(team => res.status(200).json(team[0]))
     .catch(err => serverError(err, res));
 })
 
 // POST /api/team/join
-// requires team id
-router.post('/join/:teamid', isAuthorized, (req, res, next) => {
-  req.db.team.check_team_member([req.user[0].id, req.params.teamid])
-    .then(r => {
-      if (r.length > 0) {
-        return 'already a member';
-      } else {
-        return req.db.team.post_team_member([req.user[0].id, req.params.teamid])
-      }
-    })
-    .then(r => {
-      if (r === 'already a member') {
-        res.status(400).send(r)
-      } else {
-        res.status(200).send('ok');
-      }
-
-    })
+// body requires teamID
+router.post('/join', isAuthorized, alreadyMember, (req, res, next) => {
+  console.log('joining team now');
+  console.log(req.user[0].id);
+  console.log(req.body.teamID)
+  req.db.team.post_team_member([req.user[0].id, req.body.teamID])
+    .then(() => res.status(200).send('ok'))
     .catch(err => serverError(err, res));
 })
 
 // POST /api/team/join-name
 // join team by name
-router.post('/join-name', isAuthorized, (req, res, next) => {
-  console.log('tryna join by name');
-  console.log(req.body.name);
-  req.db.team.get_by_name([req.body.name])
-    .then(team => {
-      if (team.length > 0) {
-        return req.db.team.post_team_member([req.user[0].id, team[0].id]);
-      } else {
-        return 'team not found';
-      }
-    })
-    .then(r => {
-      if (r === 'team not found') {
-        res.status(404).send(r);
-      } else {
-        res.status(200).send('ok');
-      }
-    })
+router.post('/join-name', isAuthorized, teamExists, (req, res, next) => {
+  req.db.team.post_team_member([req.user[0].id, res.locals.teamID])
+    .then(() => res.status(200).send('ok'))
     .catch(err => serverError(err, res))
 })
 
 // GET /api/team
+// see all teams you're an approved member of
 router.get('/', isAuthorized, (req, res, next) => {
   req.db.team.get_teams_by_user([req.user[0].id])
-    .then(teams => {
-      res.status(200).send(JSON.stringify(teams));
-    })
+    .then(teams => res.status(200).send(JSON.stringify(teams)))
     .catch(err => serverError(err, res))
 })
 
@@ -92,9 +60,7 @@ router.get('/', isAuthorized, (req, res, next) => {
 // quit the team
 router.put('/quit/:teamID', isAuthorized, (req, res, next) => {
   req.db.team.quit([req.user[0].id, req.params.teamID])
-    .then(() => {
-      res.status(200).send('quit');
-    })
+    .then(() => res.status(200).send('quit'))
     .catch(err => serverError(err, res))
 })
 
@@ -102,9 +68,7 @@ router.put('/quit/:teamID', isAuthorized, (req, res, next) => {
 // comprehensive list of all teams in database
 router.get('/all', isAuthorized, (req, res, next) => {
   req.db.team.get_all()
-    .then(teams => {
-      res.status(200).json(teams);
-    })
+    .then(teams => res.status(200).json(teams))
     .catch(err => serverError(err, res));
 })
 
@@ -128,9 +92,7 @@ router.get('/organization', isAuthorized, (req, res, next) => {
 // get one team by its id
 router.get('/by-id/:id', isAuthorized, (req, res, next) => {
   req.db.team.by_id([req.params.id])
-    .then(team => {
-      res.status(200).json(team[0]);
-    })
+    .then(team => res.status(200).json(team[0]))
     .catch(err => serverError(err, res));
 })
 
@@ -145,39 +107,24 @@ router.get('/us', isAuthorized, (req, res, next) => {
 // PUT /api/team/organization
 // update the team's organization (manager only)
 router.put('/organization', isAuthorized, isManager, (req, res, next) => {
-  req.db.team.update_organization([
-      req.body.teamID,
-      req.body.organization
-    ])
-    .then(() => {
-      res.status(200).send('updated');
-    })
+  req.db.team.update_organization([req.body.teamID,req.body.organization])
+    .then(() => res.status(200).send('updated'))
     .catch(err => serverError(err, res));
 })
 
 // PUT /api/team/name
 // rename the team (manager only)
 router.put('/name', isAuthorized, isManager, (req, res, next) => {
-  req.db.team.update_name([
-      req.body.name,
-      req.body.teamID
-    ])
-    .then(() => {
-      res.status(200).send('renamed');
-    })
+  req.db.team.update_name([req.body.name,req.body.teamID])
+    .then(() => res.status(200).send('renamed'))
     .catch(err => serverError(err, res));
 })
 
 // PUT /api/team/boot
 // boot team member (manager only)
 router.put('/boot', isAuthorized, isManager, (req, res, next) => {
-  req.db.team.boot_member([
-      req.body.teamID,
-      req.body.memberID
-    ])
-    .then(() => {
-      res.status(200).send('booted');
-    })
+  req.db.team.boot_member([req.body.teamID,req.body.memberID])
+    .then(() => res.status(200).send('booted'))
     .catch(err => serverError(err, res));
 })
 
@@ -191,6 +138,5 @@ router.delete('/', isAuthorized, isManager, (req, res, next) => {
     .then(() => res.status(200).send('deleted/removed'))
     .catch(err => serverError(err, res));
 })
-
 
 module.exports = router;
