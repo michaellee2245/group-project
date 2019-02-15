@@ -22,6 +22,7 @@
     "passport": "^0.4.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-hamburger-menu": "^1.1.1",
     "react-motion": "^0.5.2",
     "react-redux": "^6.0.0",
     "react-reveal": "^1.2.2",
