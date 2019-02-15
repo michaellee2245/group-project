@@ -1,7 +1,17 @@
 .dashboard-wrapper{
   position: relative;
 }
-
+.dashboard-inner-wrapper{
+  margin-left:20%;
+  min-width:calc(100% - 20%);
+  height:auto;
+  background-color:blue;
+  position: relative;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  overflow: visible;
+}
 .topNavBar {
   display:flex;
   justify-content: flex-end;

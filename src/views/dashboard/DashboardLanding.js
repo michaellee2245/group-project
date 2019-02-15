@@ -6,11 +6,12 @@ import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import DropMenu from '../../components/DropDown/DropMenu'
+import Boards from '../../components/Boards/Boards';
 
 class DashboardLanding extends Component {
 
   state = {
-    shownComponent: <Inbox />,
+    shownComponent: <Boards />,
     
   }
 
@@ -57,7 +58,10 @@ class DashboardLanding extends Component {
         <TopNavBar />
         </div>
         <DashSideNav changeViews = {this.changeViews} />
+        <div className="dashboard-inner-wrapper">
+
         {this.state.shownComponent}
+        </div>
       
         
       </div>

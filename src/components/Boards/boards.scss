@@ -1,0 +1,41 @@
+.board-view-container{
+    width:1000px;
+    margin-top:300px;
+    display:flex;
+    border:1px solid black;
+    height:700px;
+    margin-bottom:50px;
+    flex-direction: column;
+}
+.board-header-container{
+    display:flex;
+    height:30px;
+    width:100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.task-wrapper{
+    display: block;
+    width:100%;
+}
+.task-inner-wrapper{
+    display: flex;
+    // min-width:calc(100% - 130px);
+    justify-content: space-between;
+    // margin-left:130px;
+    background-color:red;
+    height:20px;
+    
+}
+.cell-component {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+    height: 100%;
+    border-right: 1px solid #fff;
+    color: white;
+    position: relative;
+}
