@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './inbox.scss'
 import DefaultInbox from './DefaultInbox';
+import InboxPosts from '../InboxPosts/InboxPosts'
+
+
 class Inbox extends Component {
 
     state = {
@@ -41,6 +44,7 @@ class Inbox extends Component {
                     <div className="middle-space-wall">
                         <div className="posts-list">
                             <DefaultInbox></DefaultInbox>
+                            <InboxPosts></InboxPosts>
                             
                         
 
