@@ -1,0 +1,14 @@
+* {
+  margin:0;
+  padding:0;
+}
+.admin-nav{
+  display: flex;
+  flex-flow:row;
+  border: solid 1px black;
+  width:120px;
+  padding:5px;
+  &:hover {
+    background-color:blue;
+  }
+}

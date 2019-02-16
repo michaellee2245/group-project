@@ -74,7 +74,7 @@ export default class MyWeek extends Component {
     this.setState({ doneHide: !this.state.doneHide })
   }
 
-
+ 
   render() {
     return (
       <div>

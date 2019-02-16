@@ -5,15 +5,19 @@ import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/myWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
-
+import Admin from '../../components/Admin/Admin'
+import {dashboard} from '../../redux/actions'
 
 class DashboardLanding extends Component {
 
   state = {
-    shownComponent: <Inbox />,
+    shownComponent: <Admin />,
     
   }
 
+  componentDidMount = () => {
+    this.props.dashboard()
+  }
   
 
   test = () => {
@@ -56,8 +60,11 @@ class DashboardLanding extends Component {
         <div className = 'topNavBar'>
         <TopNavBar />
         </div>
-        <DashSideNav changeViews = {this.changeViews} />
-        {this.state.shownComponent}
+        <DashSideNav changeViews = {this.changeViews} dashboard = {this.props.dashboards}/>
+
+        <div className = 'dashboard-wrapper-inner'>
+          {this.state.shownComponent}
+        </div>
       
         
       </div>
@@ -66,8 +73,9 @@ class DashboardLanding extends Component {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    dashboards: state.user.dashboard
   }
 }
 
-export default connect(mapStateToProps,{})(DashboardLanding)
+export default connect(mapStateToProps,{dashboard})(DashboardLanding)

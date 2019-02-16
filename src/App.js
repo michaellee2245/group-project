@@ -5,8 +5,15 @@ import DashboardLanding from './views/dashboard/DashboardLanding';
 import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
 import Marketing from './views/marketing/Marketing'
+import {connect} from 'react-redux'
+import {getSession} from './redux/actions'
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.getSession()
+  }
+  
+
   render() {
     return (
       <div className="App">
@@ -23,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null,{getSession})(App);

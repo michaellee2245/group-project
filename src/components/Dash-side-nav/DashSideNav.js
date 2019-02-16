@@ -36,7 +36,7 @@ class DashSideNav extends Component {
   }
 
   publicBoardCount = () => {
-    return this.state.publicCount.length
+    return this.props.dashboard.length
   }
 
   privateBoardCount = () => {

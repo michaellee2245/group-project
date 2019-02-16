@@ -39,9 +39,9 @@ export const getSession = () => {
         payload: user
       })
       if (!user) {
-        dispatch (push('homepage'))
+        dispatch (push('/homepage'))
       } else {
-        dispatch (push('dashboard page'))
+        dispatch (push('/dashboard'))
       }
     })
   }
@@ -56,6 +56,19 @@ export const register = (user) => {
       dispatch ({
         type: "USER",
         payload: user
+      })
+    })
+  }
+}
+
+export const dashboard = (boardID) => {
+  return dispatch => {
+    axios.get('/api/board')
+    .then (board => {
+      console.log('reduxboard',board.data)
+      dispatch ({
+        type: "BOARDS",
+        payload: board.data
       })
     })
   }
