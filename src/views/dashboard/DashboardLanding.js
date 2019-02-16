@@ -6,8 +6,6 @@ import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import DropMenu from '../../components/DropDown/DropMenu'
-import DashColumnPicker from '../../components/DashColumnPicker/DashColumnPicker';
-import CommentSlideIn from '../../components/CommentSlideIn/CommentSlideIn.js';
 
 
 
@@ -62,10 +60,10 @@ class DashboardLanding extends Component {
         </div>
         <DashSideNav changeViews={this.changeViews} />
         <div className="dashboard-inner-wrapper">
-{/* 
-          {this.state.shownComponent} */}
+
+          {this.state.shownComponent}
+
         </div>
-        <CommentSlideIn />
 
 
       </div>
