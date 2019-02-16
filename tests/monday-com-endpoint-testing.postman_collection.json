@@ -2759,6 +2759,73 @@
 			"name": "user endpoints",
 			"item": [
 				{
+					"name": "register slim",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('bob_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('s@lim.com');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"slim\",\n\t\"password\": \"0\",\n\t\"email\": \"s@lim.com\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "search for usernames starting with star",
 					"event": [
 						{
@@ -2809,38 +2876,31 @@
 					"response": []
 				},
 				{
-					"name": "login as skittles",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/api/auth/login",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "follow jerky",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60596a28-be50-406d-88e7-76c2e916f5b7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states followed\", function () {",
+									"    pm.expect(pm.response.text()).equals('followed');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2866,6 +2926,30 @@
 				},
 				{
 					"name": "follow Kenny",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6fba9e6-842c-4650-b85d-a296d09cb26d",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states followed\", function () {",
+									"    pm.expect(pm.response.text()).equals('followed');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2891,6 +2975,31 @@
 				},
 				{
 					"name": "see who I am following",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a151820c-e515-416c-b367-81e0e11ea846",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes jerky and kenny\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === 'Jerky')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.name === 'Kenny')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -3189,6 +3298,104 @@
 					"response": []
 				},
 				{
+					"name": "unfollow jerky",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4db0d97-82b9-4cbc-9e0f-72a4e5f09622",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states unfollowed\", function () {",
+									"    pm.expect(pm.response.text()).equals('unfollowed');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/unfollow/26",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"unfollow",
+								"26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see who I am following again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a151820c-e515-416c-b367-81e0e11ea846",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes kenny but not jerky\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === 'Jerky')).to.be.false;",
+									"    pm.expect(pm.response.json().some(e => e.name === 'Kenny')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/user/follow",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"follow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "see my user details",
 					"event": [
 						{
@@ -3237,6 +3444,54 @@
 								"api",
 								"user",
 								"details",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
 								"me"
 							]
 						}

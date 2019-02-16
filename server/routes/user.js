@@ -10,6 +10,8 @@ router.use((req, res, next) => {
   next();
 })
 
+// GET /api/user/from-team
+// show all users that are approved members of the team.
 // don't forget the id parameter.
 router.get('/from-team/:id', (req, res, next) => {
   req.db.user.get_users_by_team([req.params.id])
@@ -22,6 +24,8 @@ router.get('/from-team/:id', (req, res, next) => {
     })
 })
 
+// GET /api/user/search
+// show users with names that begin with the provided name parameter
 router.get('/search/:name', isAuthenticated, (req, res, next) => {
   req.db.user.get_user_by_partial_name([req.params.name + '%'])
     .then(user => {
@@ -30,12 +34,23 @@ router.get('/search/:name', isAuthenticated, (req, res, next) => {
     .catch(err => serverError(err, res))
 })
 
+// POST /api/user/follow
+// follow the user with the id provided as a parameter
 router.post('/follow/:id', isAuthenticated, (req, res, next) => {
   req.db.user.follow_user([req.user[0].id, req.params.id])
-    .then(() => {
-      res.status(200).send('followed')
-    })
-    .catch(err => serverError(err, res))
+    .then(() => res.status(200).send('followed'))
+    .catch(err => serverError(err, res));
+})
+
+// PUT /api/user/unfollow
+// unfollow the user with the id provided as a parameter
+router.put('/unfollow/:id', isAuthenticated, (req,res,next) => {
+  console.log('tryna unfollow');
+  console.log(req.user[0].id);
+  console.log(req.params.id);
+  req.db.user.unfollow_user([req.user[0].id, Number(req.params.id)])
+  .then(() => res.status(200).send('unfollowed'))
+  .catch(err => serverError(err,res));
 })
 
 router.get('/follow', isAuthenticated, (req, res, next) => {

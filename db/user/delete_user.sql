@@ -2,6 +2,9 @@
 /* please note that the amount of user data deleted might be a lot */
 /* It will likely affect everyone on the user's teams. */
 
+/* Delete all references to the user in the follow table */
+DELETE FROM follow WHERE follower = $1 OR followee = $1;
+
 /* Before we can delete tasks, we must delete comments on those tasks */
 DELETE FROM comment WHERE task_id IN (
   SELECT id FROM task WHERE owner_id = $1
