@@ -7,12 +7,12 @@ import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
-
+import BoardsView from '../dashboard/BoardsView/BoardsView';
 
 class DashboardLanding extends Component {
 
   state = {
-    shownComponent: <Boards />,
+    shownComponent: <BoardsView />,
     
   }
 

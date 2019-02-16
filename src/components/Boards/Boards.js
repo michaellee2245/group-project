@@ -1,27 +1,17 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import './boards.scss';
 
 class Boards extends Component {
 
     state = {
+        boardID: this.props.board_id,
         selectedRow: -1,
-        items: [
-            {
-                id: 1,
-                task: "",
-                status: "Lowry",
-                owner: 24,
-                priority: 24,
-                startDate: 24,
-                endDate: 24,
-                timeEst: 24,
-                person: 24,
-            },
-        ],
+        items: [],
     };
 
-    currentId = 2;
+    currentId = 1;
 
     selectRow = id => {
         this.setState({
@@ -30,71 +20,101 @@ class Boards extends Component {
     }
 
     // add axios request to create row
-    addRowOnEnter = ({ key, target: { value } }) => console.log({ key, value }) || key === 'Enter' && this.setState({
-        items: this.state.items.concat({
-            task: value,
-            // name: value.replace(/(.*) +.* +.*/, '$1'),
-            // lastName: value.replace(/.* +(.*) +.*/, '$1'),
-            // age: +value.replace(/.* +.* +(.*)/, '$1'),
-        }),
-    });
+
+    componentDidMount() {
+        axios.get(`/api/task/bb/${this.props.board_id}`)
+
+            .then(({ data }) => {
+
+                this.setState({ items: data })
+            })
+    }
+
+    addRowOnEnter = ({ key, target, target: { value } }) => {
+        if (key === 'Enter') {
+            target.value = ""
+
+            axios.post("/api/task", { boardID: this.state.boardID, name: value });
+
+            this.setState({
+                items: this.state.items.concat({
+                    task: value,
+                    // name: value.replace(/(.*) +.* +.*/, '$1'),
+                    // lastName: value.replace(/.* +(.*) +.*/, '$1'),
+                    // age: +value.replace(/.* +.* +(.*)/, '$1'),
+                })
+
+            });
+        }
+    }
 
     render = () => {
         const {
             state: {
                 selectedRow,
                 items,
+
             },
             selectRow,
             addRowOnEnter,
         } = this;
 
+      const { board_id, board_name } = this.props
+
+        console.log(items)
         return (
+            <div className="board-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={{ width: "400px" }}><h4>{board_name}</h4></th>
+                            <th>Owner</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Person</th>
+                            <th>Time Est.</th>
+                        </tr>
+                    </thead>
+                    {items.map(({ id, name, owner, priority, status, start_date, end_date, person, time_est }) => (
+                        <tr
+                            className={id === selectedRow ?
+                                'selected'
+                                :
+                                ''}
+                            onClick={() => selectRow(id)}
+                        >
+                            <td
+                            // here add events for all task cells
+                            >{name}</td>
+                            <td
+                            // here add events for all owner cells
+                            >{owner}</td>
+                            <td>{priority}</td>
+                            <td>{status}</td>
+                            <td>{start_date}</td>
+                            <td>{end_date}</td>
+                            <td>{person}</td>
+                            <td>{time_est}</td>
+                        </tr>
+                    ))}
+                    {/* <tr>
+                        <td>
+                            <input
+                                onKeyDown={addRowOnEnter}
+                            />
+                        </td>
+                    </tr> */}
+                </table>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th><h4>This Week</h4></th>
-                        <th>Owner</th>
-                        <th>Priority</th>
-                        <th>Status</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Person</th>
-                        <th>Time Est.</th>
-                    </tr>
-                </thead>
-                {items.map(({ id, task, owner, priority, status, startDate, endDate, person, timeEst }) => (
-                    <tr
-                        className={id === selectedRow ?
-                            'selected'
-                            :
-                            ''}
-                        onClick={() => selectRow(id)}
-                    >
-                        <td
-                        // here add events for all task cells
-                        >{task}</td>
-                        <td
-                        // here add events for all owner cells
-                        >{owner}</td>
-                        <td>{priority}</td>
-                        <td>{status}</td>
-                        <td>{startDate}</td>
-                        <td>{endDate}</td>
-                        <td>{person}</td>
-                        <td>{timeEst}</td>
-                    </tr>
-                ))}
-                <tr>
-                    <td>
-                        <input
-                            onKeyDown={addRowOnEnter}
-                        />
-                    </td>
-                </tr>
-            </table>
+                <input
+                    className="add-row-input"
+                    onKeyDown={addRowOnEnter}
+                    placeholder="+ Add a task"
+                />
 
+            </div>
 
         );
     }
