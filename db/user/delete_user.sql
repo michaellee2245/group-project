@@ -21,6 +21,21 @@ DELETE FROM task WHERE owner_id = $1;
 /* Next, delete the comments this person authored: */
 DELETE FROM comment WHERE author_id = $1;
 
+/* Also delete comments on any boards this person owns: */
+DELETE FROM comment WHERE task_id IN (
+  SELECT id FROM task WHERE board_id IN (
+    SELECT id FROM board WHERE owner = $1
+  )
+);
+
+/* Delete any tasks from any boards this person owns: */
+DELETE FROM task WHERE board_id IN (
+  SELECT id FROM board WHERE owner = $1
+);
+
+/* Delete any boards this person owns: */
+DELETE FROM board WHERE owner = $1;
+
 /* Then, delete the messages this person has sent or received: */
 DELETE FROM message WHERE sendee_id = $1 OR author_id = $1;
 

@@ -1014,64 +1014,6 @@
 					"response": []
 				},
 				{
-					"name": "post a board to be made public",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ea5fe7d5-d08f-4261-bc56-6752fecd0af5",
-								"exec": [
-									"pm.environment.set('boardid2', pm.response.json().id)",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response body is json\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"pm.test(\"Response includes id number\", function () {",
-									"    pm.expect(pm.response.json().id).to.be.a('number');",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Public Candy Board\",\n\t\"teamID\": 5\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/api/board",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"board"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "post a new board (random name)",
 					"event": [
 						{
@@ -3695,64 +3637,6 @@
 					"response": []
 				},
 				{
-					"name": "create task \"brochure\"",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
-								"exec": [
-									"pm.environment.set('brochure_task_id', pm.response.json().id)",
-									"",
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response body is json\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"pm.test(\"Response includes id number\", function () {",
-									"    pm.expect(pm.response.json().id).to.be.a('number');",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{marketing_board_id}},\n\t\"name\": \"brochure\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/api/task",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"task"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "set priority",
 					"event": [
 						{
@@ -5533,12 +5417,755 @@
 			"name": "comment endpoints",
 			"item": [
 				{
-					"name": "login as skittles",
+					"name": "register salma_hayek",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('salma_hayek_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('none');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"salma_hayek\",\n\t\"password\": \"0\",\n\t\"email\": \"none\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new team",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b00507cd-3fd1-46bf-8070-7be7a8548fc8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "804ae2cd-02b2-4a7e-b969-4b5fc50d1887",
+								"exec": [
+									"pm.environment.set('team_satan_id', parseInt(pm.response.json().id));",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response contains id\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"team satan\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register quentin_tarantino",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('quentin_tarantino_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('none');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"quentin_tarantino\",\n\t\"password\": \"0\",\n\t\"email\": \"none\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join the team",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "ae922675-3449-4cf9-a3e6-351378db8f87",
+								"id": "46da9630-6355-4a01-9a16-bf17945630db",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/join",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register robert_rodriguez",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('robert_rodriguez_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('none');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"robert_rodriguez\",\n\t\"password\": \"0\",\n\t\"email\": \"none\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46da9630-6355-4a01-9a16-bf17945630db",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/join",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register juliette_lewis",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('juliette_lewis_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('none');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"juliette_lewis\",\n\t\"password\": \"0\",\n\t\"email\": \"none\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46da9630-6355-4a01-9a16-bf17945630db",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/join",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register george_clooney",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('george_clooney_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('none');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"george_clooney\",\n\t\"password\": \"0\",\n\t\"email\": \"none\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46da9630-6355-4a01-9a16-bf17945630db",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/join",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register kelly_preston",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3004ea92-d934-4f25-8c18-65c6a46856ee",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98d80e5c-ab47-4bbf-bbff-19b2df35ddd4",
+								"exec": [
+									"pm.environment.set('kelly_preston_id', pm.response.json().user.id);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.email).to.equal('none');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"kelly_preston\",\n\t\"password\": \"0\",\n\t\"email\": \"none\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "join the team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46da9630-6355-4a01-9a16-bf17945630db",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ok\", function () {",
+									"    pm.expect(pm.response.text()).equals('ok');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/join",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login salma",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -5550,7 +6177,118 @@
 									"});",
 									"",
 									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(17);",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('salma_hayek_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"salma_hayek\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve quentin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da7b54a6-c900-46eb-a67a-323ecb4b77a6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states approved\", function () {",
+									"    pm.expect(pm.response.text()).equals('approved');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": \"{{team_satan_id}}\",\n\t\"memberID\": {{quentin_tarantino_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/approval/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"approval",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve robert",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da7b54a6-c900-46eb-a67a-323ecb4b77a6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states approved\", function () {",
+									"    pm.expect(pm.response.text()).equals('approved');",
 									"});",
 									""
 								],
@@ -5570,7 +6308,230 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"username\": \"skittles\",\n\t\"password\": \"v\"\n}"
+							"raw": "{\n\t\"teamID\": {{team_satan_id}},\n\t\"memberID\": {{robert_rodriguez_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/approval/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"approval",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve juliette",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da7b54a6-c900-46eb-a67a-323ecb4b77a6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states approved\", function () {",
+									"    pm.expect(pm.response.text()).equals('approved');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}},\n\t\"memberID\": {{juliette_lewis_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/approval/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"approval",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve george",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da7b54a6-c900-46eb-a67a-323ecb4b77a6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states approved\", function () {",
+									"    pm.expect(pm.response.text()).equals('approved');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}},\n\t\"memberID\": {{george_clooney_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/approval/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"approval",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "boot kelly",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0397865b-57f3-4fce-b76f-2ceff80d9ee2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states booted\", function () {",
+									"    pm.expect(pm.response.text()).equals('booted');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"teamID\": {{team_satan_id}},\n\t\"memberID\": {{kelly_preston_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/team/boot",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"team",
+								"boot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login george",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('george_clooney_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"george_clooney\",\n\t\"password\": \"0\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/auth/login",
@@ -5588,22 +6549,1224 @@
 					"response": []
 				},
 				{
-					"name": "see what boards i have access to",
+					"name": "create board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ea5fe7d5-d08f-4261-bc56-6752fecd0af5",
+								"exec": [
+									"pm.environment.set('board_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"name\": \"stiff as a board\",\n\t\"teamID\": {{team_satan_id}}\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "see the tasks on the first board",
+					"name": "login robert",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('robert_rodriguez_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"robert_rodriguez\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create task \"brochure\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"boardID\": {{board_id}},\n\t\"name\": \"robert rodriguez simple task\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login quentin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('quentin_tarantino_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"quentin_tarantino\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c1_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 1\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c2_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 2\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c3_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 3\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c4_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 4\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c5_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 5\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c6_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 6\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c7_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 7\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c8_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 8\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c9_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 9\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c10_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 10\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c11_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 11\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment 12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c12_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}},\n\t\"content\": \"comment 12\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fb277e0-b909-47b3-abb5-1cd26b796b61",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states updated comment\", function () {",
+									"    pm.expect(pm.response.text()).equals('updated comment');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c3_id}},\n\t\"content\": \"3 edit quentin\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eea8af00-e0dc-4da5-80cc-66bc04858941",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted comment\", function () {",
+									"    pm.expect(pm.response.text()).equals('deleted comment');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c4_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login kelly",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('kelly_preston_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"kelly_preston\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit 11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fb277e0-b909-47b3-abb5-1cd26b796b61",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states not your comment\", function () {",
+									"    pm.expect(pm.response.text()).equals('not your comment');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c11_id}},\n\t\"content\": \"11 edit kelly\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete 12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eea8af00-e0dc-4da5-80cc-66bc04858941",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states not your comment\", function () {",
+									"    pm.expect(pm.response.text()).equals('not your comment');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c12_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all the comments kelly has access to",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "101d3baa-d83b-40a4-8817-9c26aae39938",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response is empty\", function () {",
+									"    pm.expect(pm.response.json().length).to.equal(0);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -5612,7 +7775,980 @@
 							"raw": ""
 						},
 						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login salma",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('salma_hayek_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"salma_hayek\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fb277e0-b909-47b3-abb5-1cd26b796b61",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states updated comment\", function () {",
+									"    pm.expect(pm.response.text()).equals('updated comment');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c1_id}},\n\t\"content\": \"1 edit salma\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eea8af00-e0dc-4da5-80cc-66bc04858941",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted comment\", function () {",
+									"    pm.expect(pm.response.text()).equals('deleted comment');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c2_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login juliette",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('juliette_lewis_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"juliette_lewis\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all the comments juliette has access to",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "101d3baa-d83b-40a4-8817-9c26aae39938",
+								"exec": [
+									"pm.environment.set('all_comments', pm.response.json());",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes 10 comments\", function () {",
+									"    pm.expect(pm.response.json().length).to.equal(10);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all comments on task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "101d3baa-d83b-40a4-8817-9c26aae39938",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes content\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.content === '1 edit salma')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === '3 edit quentin')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 5')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 6')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 7')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 8')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 9')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 10')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 11')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 12')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{task_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment/on-task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"on-task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "101d3baa-d83b-40a4-8817-9c26aae39938",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes comment edited by salma\", function () {",
+									"    pm.expect(pm.response.json().length).to.equal(1);",
+									"    pm.expect(pm.response.json().some(e => e.content === '1 edit salma')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"commentID\": {{c1_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment/by-id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"by-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login quentin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('quentin_tarantino_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"quentin_tarantino\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all comments by quentin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "101d3baa-d83b-40a4-8817-9c26aae39938",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes content\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.content === '1 edit salma')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === '3 edit quentin')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 5')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 6')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 7')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 8')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 9')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 10')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 11')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.content === 'comment 12')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment/by-me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment",
+								"by-me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login robert",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('robert_rodriguez_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"robert_rodriguez\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login george",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('george_clooney_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"george_clooney\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login salma",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('salma_hayek_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"salma_hayek\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a75725c2-e5cb-4daf-9e3e-3a0d18727d4f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states deleted\", function () {",
+									"    pm.expect(pm.response.text()).to.equal(\"deleted\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/me",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
 						}
 					},
 					"response": []
@@ -5884,61 +9020,6 @@
 							"path": [
 								"api",
 								"team"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login bob",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response body is a JSON object\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"});",
-									"",
-									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(21);",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"bob\",\n\t\"password\": \"0\"\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/api/auth/login",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"login"
 							]
 						}
 					},

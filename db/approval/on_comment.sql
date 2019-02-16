@@ -1,4 +1,4 @@
-/* return true if the person is an approved member of the task team */
+/* return true if the person is an approved member of the comment team */
 
 SELECT manager_id = $1 OR (
   SELECT approved FROM team_member
@@ -6,13 +6,19 @@ SELECT manager_id = $1 OR (
     SELECT team FROM board
     WHERE id = (
       SELECT board_id FROM task
-      WHERE id = $2
+      WHERE id = (
+        SELECT task_id FROM comment
+        WHERE id = $2
+      )
     )
   )
 ) AS approved FROM team WHERE id = (
   SELECT team FROM board
   WHERE id = (
     SELECT board_id FROM task
-    WHERE id = $2
+    WHERE id = (
+      SELECT task_id FROM comment
+      WHERE id = $2
+    )
   )
 );
