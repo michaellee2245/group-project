@@ -1,18 +1,23 @@
 .inbox-wrapper {
     display: flex;
     height: 100vh;
-    width: 100vw;
+    max-width: calc(100% - 19.89vw);
     flex-direction: column;
+    float: right;
+    background-color: orange;
+    align-content: flex-start;
 
 }
 
 .inbox-title-wrapper {
     height: 10vh;
+    //width: 80.11vw;
+    width: calc(100% - .01vw);
     display:flex;
     justify-content: left;
     align-items: center;
-   // background-color: blue;
-    align-items: center;
+    background-color:chartreuse;
+    
 }
 
 .inbox-title {
@@ -21,7 +26,7 @@
    vertical-align: top;
     font-size: 30px;
     font-weight: 500;
-    width: 70vw;
+  //  width: 70vw;
     overflow: hidden;
     
   
@@ -30,8 +35,7 @@
 .inbox-title-actions {
     display: flex;
     height: 4vh;
-    width: 30vw;
-    
+    width: calc(100% - 9.9vw);
     align-items: center;
     justify-content: flex-end;
    // background-color: chartreuse;
@@ -39,6 +43,7 @@
     :hover {
         color: #009aff;
       };
+    background-color: red;
 
 }
 
@@ -53,12 +58,22 @@
     
 }
 .middle-space-wrapper{
-    height: 100vh;
-    width: 100vw;
+    display: flex;
+    height: auto;
+   // width: 80vw;
    // background-color: orange;
     flex-direction: column; 
+    float:right;
 }
 
 .middle-space-wall{
     margin-right: 70px;
+}
+
+.posts-list{
+    float:right;
+    background-color: blue;
+   // max-width: 80vw;
+    width: calc(100% - 5vw);
+
 }
