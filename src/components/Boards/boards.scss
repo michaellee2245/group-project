@@ -1,0 +1,88 @@
+// .board-view-container{
+//     width:1000px;
+//     margin-top:300px;
+//     display:flex;
+//     border:1px solid black;
+//     height:700px;
+//     margin-bottom:50px;
+//     flex-direction: column;
+// }
+// .board-header-container{
+//     display:flex;
+//     height:30px;
+//     width:100%;
+//     align-items: center;
+//     justify-content: space-between;
+// }
+// .task-wrapper{
+//     display: block;
+//     width:100%;
+// }
+// .task-inner-wrapper{
+//     display: flex;
+//     // min-width:calc(100% - 130px);
+//     justify-content: space-between;
+//     // margin-left:130px;
+//     background-color:red;
+//     height:20px;
+
+// }
+// .cell-component {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     text-align: center;
+//     font-size: 13px;
+//     font-weight: 400;
+//     height: 100%;
+//     border-right: 1px solid #fff;
+//     color: white;
+//     position: relative;
+// }
+.board-wrapper {
+  width: 95%;
+//   margin-top: 300px;
+//   //   display: flex;
+//   padding-left: 30px;
+//   padding-right: 30px;
+  margin-bottom: 50px;
+  //   flex-direction: column;
+}
+table {
+  width: fill;
+  border-spacing: 1px;
+  thead {
+    tr {
+      th {
+      }
+    }
+  }
+  tr {
+    th,
+    td {
+      text-align: left;
+      // border: 1px solid black;
+      padding: 16px;
+      background-color: lightgray;
+    }
+    &.selected {
+      th,
+      td {
+        background-color: white !important;
+      }
+    }
+  }
+}
+.input-row{
+    width:100%;
+    text-align: left;
+      // border: 1px solid black;
+      padding: 16px;
+      background-color: gray;
+}
+.add-row-input{
+    width:fill;
+    padding:16px;
+    background-color:lightgray;
+    // border:1px solid black;
+}
