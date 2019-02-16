@@ -19,6 +19,14 @@ router.get('/', isAuthenticated, (req, res, next) => {
     .catch(err => serverError(err, res))
 })
 
+// GET /api/task/bb/:bid
+// get all tasks on the board
+router.get('/bb/:bid', isAuthenticated, onBoard, (req,res,next) => {
+  req.db.task.by_board([req.params.bid])
+    .then(tasks => res.status(200).json(tasks))
+    .catch(err => serverError(err,res));
+})
+
 // get all tasks for user
 router.get('/by-user/:userid', isAuthenticated, teamMates, (req, res, next) => {
   req.db.task.get_tasks_by_user([req.params.userid])
