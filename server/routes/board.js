@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 // requires name for new board and id for team it will belong to.
 // user must be manager or approved team member or request will fail.
 router.post('/', isAuthenticated, onTeam, (req, res, next) => {
-  req.db.board.post_board([req.body.name, req.body.teamID])
+  req.db.board.post_board([req.body.name, req.body.teamID, req.user[0].id])
     .then(() => req.db.board.get_board_id_by_name([req.body.name]))
     .then(id => res.status(200).json({name: req.body.name,id: id[0].id}))
     .catch(err => serverError(err, res))

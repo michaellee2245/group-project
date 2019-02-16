@@ -32,9 +32,6 @@ router.post('/', isAuthorized, (req, res, next) => {
 // POST /api/team/join
 // body requires teamID
 router.post('/join', isAuthorized, alreadyMember, (req, res, next) => {
-  console.log('joining team now');
-  console.log(req.user[0].id);
-  console.log(req.body.teamID)
   req.db.team.post_team_member([req.user[0].id, req.body.teamID])
     .then(() => res.status(200).send('ok'))
     .catch(err => serverError(err, res));
