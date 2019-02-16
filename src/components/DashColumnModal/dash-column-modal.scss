@@ -53,18 +53,18 @@ $green-background: #00c875;
   }
 }
 
-#high-priority,
-#in-progress-status {
+.high-priority,
+.in-progress-status {
   background: $red-background;
 }
-#medium-priority,
-#on-hold-status {
+.medium-priority,
+.on-hold-status {
   background: $purple-background;
 }
-#low-priority {
+.low-priority {
   background: $blue-background;
 }
 
-#done-status {
+.done-status {
   background: $green-background;
 }
