@@ -6,15 +6,6 @@ import 'react-day-picker/lib/style.css';
 
 class DashColumnPicker extends Component {
 
-    state = {
-        priority: false,
-        status: true,
-        date: false,
-        person: false,
-        selectedDay: null,
-
-    }
-
     handleDayClick = (day, { selected }) => {
         this.setState({
             selectedDay: selected ? undefined : day,
