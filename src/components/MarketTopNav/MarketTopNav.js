@@ -3,7 +3,9 @@ import './mark-top-nav.scss';
 import MarketModal from '../MarketModal/MarketModal';
 import $ from 'jquery';
 import { connect } from 'react-redux'
-import { login, register } from '../../redux/actions'
+import { login, register } from '../../redux/actions';
+import { Link } from 'react-router-dom';
+import HamburgerMenu from 'react-hamburger-menu';
 
 class MarketTopNav extends Component {
 
@@ -13,7 +15,8 @@ class MarketTopNav extends Component {
         password: '',
         registerEmail: '',
         registerPassword: '',
-        registerUsername: ''
+        registerUsername: '',
+        open: false,
 
     }
 
@@ -55,6 +58,12 @@ class MarketTopNav extends Component {
 
     }
 
+    handleClick = () => {
+        this.setState({
+            open: !this.state.open
+        });
+    }
+
     componentDidMount = () => {
         $(function () {
             var nav = $(".nav-container");
@@ -76,11 +85,60 @@ class MarketTopNav extends Component {
 
         return (
             <div className="nav-container">
-                <div className="nav-logo"></div>
+                <Link className="nav-logo" to="/" />
                 <div className="nav-right">
-                    <div id="nav-product">Product</div>
-                    <div id="nav-why">Why Us</div>
-                    <button onClick={this.handleModalClick}>Log in</button>
+                    <div
+                        id="nav-product"
+                        className="menu"
+                    >
+                        Product
+                    </div>
+                    <Link
+                        to="why-us"
+                        id="nav-why"
+                        className="menu"
+                    >
+                        Why Us
+                    </Link>
+                    <button
+                        onClick={this.handleModalClick}
+                        className="menu"
+                    >
+                        Log in
+                    </button>
+                    <div className="mobile-menu">
+                        <HamburgerMenu
+                            isOpen={this.state.open}
+                            menuClicked={this.handleClick}
+                        />
+                    </div>
+                    {this.state.open ? (
+                        <div className="mobile-dropdown">
+                            <div className="inner-dropdown">
+                                <div
+                                    id="nav-product"
+                                    className="mobile-items"
+                                >
+                                    Product
+                                </div>
+                                <Link
+                                    to="why-us"
+                                    id="nav-why"
+                                    className="mobile-items"
+                                >
+                                    Why Us
+                                </Link>
+                                <button
+                                    onClick={this.handleModalClick}
+                                    className="mobile-items"
+                                    id="nav-login"
+                                >
+                                    Log in
+                                </button>
+                            </div>
+                        </div>
+                    ) : null}
+
                 </div>
 
                 <MarketModal
