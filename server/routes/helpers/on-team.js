@@ -1,3 +1,4 @@
+/* See if a user is an approved member of the team */
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
