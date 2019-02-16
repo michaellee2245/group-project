@@ -7,6 +7,7 @@ import {Switch,Route} from 'react-router-dom';
 import Marketing from './views/marketing/Marketing'
 import {connect} from 'react-redux'
 import {getSession} from './redux/actions'
+import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
 
 class App extends Component {
   componentDidMount = () => {
@@ -17,10 +18,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ConnectedRouter history={ history }>
+        <ConnectedRouter history={history}>
           <Switch>
             <Route path = '/marketing' component = {Marketing} />
-            <Route path="/dashboard" component = {DashboardLanding} />        
+            <Route path="/dashboard" component = {DashboardLanding} />    
+            <Route path="/why-us" component = {WhyUs} />    
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
@@ -31,3 +33,4 @@ class App extends Component {
 }
 
 export default connect(null,{getSession})(App);
+ 
