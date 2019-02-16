@@ -5,7 +5,7 @@ import DashboardLanding from './views/dashboard/DashboardLanding';
 import MyWeek from './components/MyWeek/myWeek';
 import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
-import Marketing from './views/marketing/Marketing'
+import Marketing from './views/marketing/Marketing';
 
 class App extends Component {
   render() {
