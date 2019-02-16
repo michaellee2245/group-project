@@ -13,8 +13,7 @@ router.use((req, res, next) => {
 // GET /api/dashboard
 // Get all of the team members, boards, tasks, assignments, and comments
 //     that pertain to a particular team...
-
-router.get('/', isAuthenticated, onTeam, (req,res,next) => {
+router.get('/', isAuthenticated, onTeam, (req, res, next) => {
   res.locals.dash = {};
   req.db.dashboard.get_roster([req.body.teamID])
     .then(roster => {
@@ -37,7 +36,7 @@ router.get('/', isAuthenticated, onTeam, (req,res,next) => {
       res.locals.dash.comments = comments;
       res.status(200).json(res.locals.dash);
     })
-    .catch(err => serverError(err,res));
+    .catch(err => serverError(err, res));
 })
 
 module.exports = router;
