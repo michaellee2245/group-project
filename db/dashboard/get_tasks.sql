@@ -18,4 +18,4 @@ SELECT
 FROM task
 JOIN board ON task.board_id = board.id
 JOIN person AS owner ON owner.id = task.owner_id
-WHERE board.team = 4;
+WHERE board.team = $1;

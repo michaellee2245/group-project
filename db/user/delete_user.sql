@@ -21,6 +21,13 @@ DELETE FROM task WHERE owner_id = $1;
 /* Next, delete the comments this person authored: */
 DELETE FROM comment WHERE author_id = $1;
 
+/* delete assignments on tasks that belong to boards owned by this person */
+DELETE FROM assignment WHERE task_id IN (
+  SELECT id FROM task WHERE board_id IN (
+    SELECT id FROM board WHERE owner = $1
+  )
+);
+
 /* Also delete comments on any boards this person owns: */
 DELETE FROM comment WHERE task_id IN (
   SELECT id FROM task WHERE board_id IN (

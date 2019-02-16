@@ -45,9 +45,6 @@ router.post('/follow/:id', isAuthenticated, (req, res, next) => {
 // PUT /api/user/unfollow
 // unfollow the user with the id provided as a parameter
 router.put('/unfollow/:id', isAuthenticated, (req,res,next) => {
-  console.log('tryna unfollow');
-  console.log(req.user[0].id);
-  console.log(req.params.id);
   req.db.user.unfollow_user([req.user[0].id, Number(req.params.id)])
   .then(() => res.status(200).send('unfollowed'))
   .catch(err => serverError(err,res));

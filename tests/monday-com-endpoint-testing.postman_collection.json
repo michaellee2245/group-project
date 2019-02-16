@@ -3979,60 +3979,6 @@
 					"response": []
 				},
 				{
-					"name": "delete the second board",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "f72dbe1a-e655-404c-a16a-00fe039864f5",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"",
-									"pm.test(\"Response body is string\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.string;",
-									"});",
-									"",
-									"pm.test(\"Response states deleted\", function () {",
-									"    pm.expect(pm.response.text()).to.equal('deleted');",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid2}}\n}"
-						},
-						"url": {
-							"raw": "localhost:8080/api/board",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"board"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "delete skittles' board",
 					"event": [
 						{
@@ -6868,8 +6814,8 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
+								"type": "text",
+								"value": "application/json"
 							}
 						],
 						"body": {
@@ -9370,7 +9316,7 @@
 									"",
 									"pm.test(\"Response body is json\", function () {",
 									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.string;",
+									"    pm.response.to.be.json;",
 									"});",
 									"",
 									"pm.test(\"Response includes assignment\", function () {",
@@ -10119,6 +10065,61 @@
 					"response": []
 				},
 				{
+					"name": "login bob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('bob_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"bob\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "join \"chargers\" by id",
 					"event": [
 						{
@@ -10191,7 +10192,7 @@
 									"});",
 									"",
 									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('chuck_id'));",
 									"});",
 									""
 								],
@@ -10301,7 +10302,7 @@
 									"});",
 									"",
 									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('alice_id'));",
 									"});",
 									""
 								],
@@ -10526,7 +10527,7 @@
 									"});",
 									"",
 									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('chuck_id'));",
 									"});",
 									""
 								],
@@ -10623,60 +10624,1347 @@
 				},
 				{
 					"name": "create \"product\" task \"design\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('design_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{product_board_id}},\n\t\"name\": \"design\"\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
 						}
 					},
 					"response": []
 				},
 				{
 					"name": "create \"product\" task \"choose materials\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('choose_materials_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{product_board_id}},\n\t\"name\": \"choose materials\"\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
 						}
 					},
 					"response": []
 				},
 				{
 					"name": "create \"marketing\" task \"brochure\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('brochure_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
-						"header": [],
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"boardID\": {{marketing_board_id}},\n\t\"name\": \"brochure\"\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create board \"villainy\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f81d193c-f74f-4fba-a66e-df9cbdbfbf1c",
+								"exec": [
+									"pm.environment.set('villainy_board_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"villainy\",\n\t\"teamID\": {{chargers_team_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create board \"post modernism\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f81d193c-f74f-4fba-a66e-df9cbdbfbf1c",
+								"exec": [
+									"pm.environment.set('post_modernism_board_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"post modernism\",\n\t\"teamID\": {{chargers_team_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create board \"teetotalers only\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f81d193c-f74f-4fba-a66e-df9cbdbfbf1c",
+								"exec": [
+									"pm.environment.set('teetotalers_only_board_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"teetotalers only\",\n\t\"teamID\": {{chargers_team_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create board \"pine and fir\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f81d193c-f74f-4fba-a66e-df9cbdbfbf1c",
+								"exec": [
+									"pm.environment.set('pine_and_fir_board_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"pine and fir\",\n\t\"teamID\": {{chargers_team_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login bob",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('bob_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"bob\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\"murder\" task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('murder_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"boardID\": {{villainy_board_id}},\n\t\"name\": \"murder\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\"theft\" task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('theft_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"boardID\": {{villainy_board_id}},\n\t\"name\": \"theft\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\"sabotage\" task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('sabotage_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"boardID\": {{villainy_board_id}},\n\t\"name\": \"sabotage\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "\"conspiracy\" task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65185655-b9e4-4fca-8d91-fb9998573c44",
+								"exec": [
+									"pm.environment.set('conspiracy_task_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"boardID\": {{villainy_board_id}},\n\t\"name\": \"conspiracy\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/task",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login alice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('alice_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"alice\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign chuck to \"theft\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eeba6ff-0660-4e89-b0d7-dc00e51f10ae",
+								"exec": [
+									"pm.environment.set('ct_assignment_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{theft_task_id}},\n\t\"userID\": {{chuck_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/assignment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign bob to \"murder\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eeba6ff-0660-4e89-b0d7-dc00e51f10ae",
+								"exec": [
+									"pm.environment.set('bm_assignment_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{murder_task_id}},\n\t\"userID\": {{bob_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/assignment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign alice to \"brochure\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eeba6ff-0660-4e89-b0d7-dc00e51f10ae",
+								"exec": [
+									"pm.environment.set('ab_assignment_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"userID\": {{alice_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/assignment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign chuck to \"design\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6eeba6ff-0660-4e89-b0d7-dc00e51f10ae",
+								"exec": [
+									"pm.environment.set('cd_assignment_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{design_task_id}},\n\t\"userID\": {{chuck_id}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/assignment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login chuck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dae8b48-72d5-4b3f-a56b-be47a90c1bdf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is a JSON object\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct user information\", function () {",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('chuck_id'));",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"chuck\",\n\t\"password\": \"0\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment \"I stole a car.\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c1_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{theft_task_id}},\n\t\"content\": \"I stole a car.\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment \"I stole a nuke.\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c2_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{theft_task_id}},\n\t\"content\": \"I stole a nuke.\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment \"I stole a baby's candy.\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c3_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{theft_task_id}},\n\t\"content\": \"I stole a baby's candy.\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comment \"I stole a train.\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d22ca657-bbed-4968-9194-10ec8667c685",
+								"exec": [
+									"pm.environment.set('c4_id', pm.response.json().id)",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes id number\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.a('number');",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"taskID\": {{theft_task_id}},\n\t\"content\": \"I stole a train.\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/comment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"comment"
+							]
 						}
 					},
 					"response": []
 				},
 				{
 					"name": "get dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "100cec0e-96f9-4f0f-9c3f-9960240e6248",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes all relevant information\", function () {",
+									"    pm.expect(pm.response.json().roster.some(e => e.name === 'alice')).to.be.true;",
+									"    pm.expect(pm.response.json().roster.some(e => e.name === 'bob')).to.be.true;",
+									"    pm.expect(pm.response.json().roster.some(e => e.name === 'chuck')).to.be.true;",
+									"    pm.expect(pm.response.json().boards.some(e => e.name === 'teetotalers only')).to.be.true;",
+									"    pm.expect(pm.response.json().boards.some(e => e.name === 'post modernism')).to.be.true;",
+									"    pm.expect(pm.response.json().boards.some(e => e.name === 'pine and fir')).to.be.true;",
+									"    pm.expect(pm.response.json().boards.some(e => e.name === 'product')).to.be.true;",
+									"    pm.expect(pm.response.json().boards.some(e => e.name === 'marketing')).to.be.true;",
+									"    pm.expect(pm.response.json().boards.some(e => e.name === 'villainy')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'design')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'choose materials')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'brochure')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'murder')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'theft')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'sabotage')).to.be.true;",
+									"    pm.expect(pm.response.json().tasks.some(e => e.name === 'conspiracy')).to.be.true;",
+									"    pm.expect(pm.response.json().assignments.some(e => e.task === 'theft' && e.user === 'chuck')).to.be.true;",
+									"    pm.expect(pm.response.json().assignments.some(e => e.task === 'murder' && e.user === 'bob')).to.be.true;",
+									"    pm.expect(pm.response.json().assignments.some(e => e.task === 'brochure' && e.user === 'alice')).to.be.true;",
+									"    pm.expect(pm.response.json().assignments.some(e => e.task === 'design' && e.user === 'chuck')).to.be.true;",
+									"    pm.expect(pm.response.json().comments.some(e => e.content === 'I stole a car.')).to.be.true;",
+									"    pm.expect(pm.response.json().comments.some(e => e.content === 'I stole a nuke.')).to.be.true;",
+									"    pm.expect(pm.response.json().comments.some(e => e.content === 'I stole a baby\\'s candy.')).to.be.true;",
+									"    pm.expect(pm.response.json().comments.some(e => e.content === 'I stole a train.')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"teamID\": {{chargers_team_id}}\n}"
 						},
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/api/dashboard",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"dashboard"
+							]
 						}
 					},
 					"response": []
@@ -10747,7 +12035,7 @@
 									"});",
 									"",
 									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('alice_id'));",
 									"});",
 									""
 								],
@@ -10850,7 +12138,7 @@
 									"});",
 									"",
 									"pm.test(\"Response includes correct user information\", function () {",
-									"    pm.expect(pm.response.json().user.id).to.equal(21);",
+									"    pm.expect(pm.response.json().user.id).to.equal(pm.environment.get('bob_id'));",
 									"});",
 									""
 								],
