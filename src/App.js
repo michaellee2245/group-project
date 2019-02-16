@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
 import Marketing from './views/marketing/Marketing'
 import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
+import Inbox from './components/Inbox/Inbox';
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
+        <Inbox></Inbox>
       </div>
 
     );

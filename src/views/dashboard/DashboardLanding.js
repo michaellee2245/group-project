@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import './DashboardLanding.scss'
 import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
-import MyWeek from '../../components/MyWeek/myWeek'
+import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
@@ -59,21 +59,11 @@ class DashboardLanding extends Component {
         <div className='topNavBar'>
           <TopNavBar />
         </div>
-<<<<<<< HEAD
-        <DashSideNav changeViews = {this.changeViews} />
-        <div className="dashboard-inner-wrapper">
-
-        {this.state.shownComponent}
-        </div>
-      
-        
-=======
         <DashSideNav changeViews={this.changeViews} />
         <div className='dashboard-wrapper-inner'>
         {this.state.shownComponent}
         </div>
 
->>>>>>> 9a6451caa3abeb701d2e221cd2b9746cfbeeca79
       </div>
     )
   }
