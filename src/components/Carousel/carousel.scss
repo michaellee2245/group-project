@@ -1,6 +1,9 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+.market-land-container{
+    margin-top:150px;
+}
 .test-div {
   // background:yellow;
   display: flex;
@@ -12,11 +15,12 @@
   opacity: 0.25;
   position: relative;
 
-  h1 {
+  h3 {
     position: absolute;
-    top: 3%;
+    top: 30px;
     left: 50%;
     transform: translate(-50%, -50%);
+    width:100%;
   }
 }
 .market-top-container {
@@ -24,6 +28,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom:50px;
 }
 .upper-text-container {
   width: 1000px;
@@ -32,6 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom:50px;
 }
 #div1 {
   border-color: blue;
@@ -86,4 +92,16 @@
 .lower-quote-container{
     border:1px solid black;
     margin:50px 0px;
+}
+.workflow-container{
+    height:500px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.workflow-text{
+    display: flex;
+    justify-content: center;
+    margin-bottom:50px;
 }
