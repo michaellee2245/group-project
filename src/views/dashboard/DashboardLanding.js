@@ -5,13 +5,16 @@ import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/myWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
+import DropMenu from '../../components/DropDown/DropMenu'
+import Boards from '../../components/Boards/Boards';
+import BoardsView from '../dashboard/BoardsView/BoardsView';
 import MyProfile from '../../components/MyProfile/MyProfile'
 
 class DashboardLanding extends Component {
 
   state = {
-    shownComponent: <MyProfile />,
-
+    shownComponent: <BoardsView />,
+    
   }
 
 
@@ -56,11 +59,21 @@ class DashboardLanding extends Component {
         <div className='topNavBar'>
           <TopNavBar />
         </div>
+<<<<<<< HEAD
+        <DashSideNav changeViews = {this.changeViews} />
+        <div className="dashboard-inner-wrapper">
+
+        {this.state.shownComponent}
+        </div>
+      
+        
+=======
         <DashSideNav changeViews={this.changeViews} />
         <div className='dashboard-wrapper-inner'>
         {this.state.shownComponent}
         </div>
 
+>>>>>>> 9a6451caa3abeb701d2e221cd2b9746cfbeeca79
       </div>
     )
   }
