@@ -1,8 +1,11 @@
+@import '../../views/marketing/variables.scss';
+
+
 .get-started{
     width:300px;
     height:45px;
-    
-    background-color:rgba(124, 5, 204, 1);
+    border: none;
+    background-color:$blue-button;
     border-radius:25px;
     color:white;
     font-size: 1em;
@@ -11,7 +14,10 @@
 
 
     &:hover{
-        background-color:rgba(124, 5, 204, 0.5);
+        background-color: #3335c7;
         cursor: pointer;
+    }
+    &:focus {
+        color: white;
     }
 }
