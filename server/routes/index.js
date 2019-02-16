@@ -8,6 +8,7 @@ const teamRouter = require('./team');
 const commentRouter = require('./comment');
 const messageRouter = require('./message');
 const boardRouter = require('./board');
+const dashboardRouter = require('./dashboard');
 
 router.use('/auth', authRouter);
 router.use('/task', taskRouter);
@@ -16,5 +17,6 @@ router.use('/team', teamRouter);
 router.use('/comment', commentRouter);
 router.use('/message', messageRouter);
 router.use('/board', boardRouter);
+router.use('/dashboard', dashboardRouter);
 
 module.exports = router;
