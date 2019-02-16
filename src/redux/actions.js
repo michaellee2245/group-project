@@ -31,7 +31,7 @@ export const logout = () => {
 
 export const getSession = () => {
   return dispatch => {
-    axios.get('/api/auth/session ')
+    return axios.get('/api/auth/session ')
     .then( (user) => {
       console.log('redux session',user.data)
       dispatch ({
@@ -41,7 +41,7 @@ export const getSession = () => {
       if (!user) {
         dispatch (push('homepage'))
       } else {
-        dispatch (push('dashboard page'))
+        dispatch (push('/dashboard'))
       }
     })
   }
@@ -56,6 +56,22 @@ export const register = (user) => {
       dispatch ({
         type: "USER",
         payload: user
+      })
+    })
+  }
+}
+
+export const dashboard = teamID => {
+  return dispatch => {
+    console.log('get api dashboard');
+    axios.get('/api/dashboard/3')
+    .then(r => {
+      console.log('get api dashboard');
+      console.log(r);
+      console.log(r.data);
+      dispatch ({
+        type: "DASHBOARD",
+        payload: r.data
       })
     })
   }

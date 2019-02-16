@@ -5,15 +5,26 @@ import DashboardLanding from './views/dashboard/DashboardLanding';
 import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
 import Marketing from './views/marketing/Marketing'
+import {connect} from 'react-redux';
+import {getSession} from './redux/actions'
+
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.getSession()
+    /*this.props.dashboard({
+      teamID: 3
+    })*/
+  }
+
   render() {
     return (
       <div className="App">
         <ConnectedRouter history={ history }>
           <Switch>
             <Route path = '/marketing' component = {Marketing} />
-            <Route path="/dashboard" component = {DashboardLanding} />        
+            <Route path="/dashboard" component = {DashboardLanding} />
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
@@ -23,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null,{getSession})(App);

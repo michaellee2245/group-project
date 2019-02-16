@@ -23,7 +23,7 @@ class DashSideNav extends Component {
     // const user = 'Starburst'
     // getMessages(user)
     this.props.changeViews(e)
-    
+
   }
   getWeek = (e) => {
     console.log(e.target)
@@ -36,7 +36,7 @@ class DashSideNav extends Component {
   }
 
   publicBoardCount = () => {
-    return this.state.publicCount.length
+    return this.props.dashboard.length
   }
 
   privateBoardCount = () => {
@@ -45,11 +45,11 @@ class DashSideNav extends Component {
 
   showMenu = () => {
     this.setState({ hidden: !this.state.hidden})
-    
+
   }
   showPrivate = () => {
     this.setState({ showPrivate: !this.state.showPrivate})
-    
+
   }
 
 
@@ -79,10 +79,10 @@ class DashSideNav extends Component {
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
-            <div 
-            className="leftpane-boards-public-list-component" 
+            <div
+            className="leftpane-boards-public-list-component"
             // id="leftpane-boards-list-component"
-            
+
             >
               <a href="#" className="link-wrapper router" onClick = {this.showMenu}>
                 <i class="material-icons">menu</i><span className="title">Boards public</span>
@@ -96,13 +96,14 @@ class DashSideNav extends Component {
                 )
                 :(null)
               }
-              
+
               </div>
             </div>
           </div>
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
+            <h1>where are we?</h1>
             <div className="leftpane-boards-private-list-component" id="leftpane-boards-list-component">
               <a href="#" className="link-wrapper router" onClick = {this.showPrivate}>
                 <i class="material-icons">menu</i><span className="title">Boards private</span>

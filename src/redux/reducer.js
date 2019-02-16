@@ -1,5 +1,6 @@
 const initState = {
-  user: null
+  user: null,
+  dashboard: {}
 }
 
 const reducer = (state = initState, action) => {
@@ -9,6 +10,9 @@ const reducer = (state = initState, action) => {
     }
     case "LOGOUT": {
       return {...state, user: action.payload}
+    }
+    case "DASHBOARD": {
+      return {...state, dashboard: action.payload}
     }
     default: return state
   }
