@@ -1,4 +1,6 @@
-/* returns true if the user is an approved member of the team */
+/* returns true if the user is an approved member or manager of the team */
 
-SELECT approved FROM team_member
-WHERE user_id = $1 AND team_id = $2;
+SELECT manager_id = $1 OR (
+  SELECT approved FROM team_member
+  WHERE team_id = $2 AND user_id = $1
+) AS approved FROM team WHERE id = $2;
