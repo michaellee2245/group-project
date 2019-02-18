@@ -10,9 +10,9 @@ import {getSession} from './redux/actions'
 import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
 
 class App extends Component {
-  componentDidMount = () => {
-    this.props.getSession()
-  }
+  // componentDidMount = () => {
+  //   this.props.getSession()
+  // }
   
 
   render() {
@@ -22,7 +22,7 @@ class App extends Component {
           <Switch>
             <Route path = '/marketing' component = {Marketing} />
             <Route path="/dashboard" component = {DashboardLanding} />    
-            <Route path="/why-us" component = {WhyUs} />    
+            {/* <Route path="/why-us" component = {WhyUs} />     */}
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
@@ -33,4 +33,3 @@ class App extends Component {
 }
 
 export default connect(null,{getSession})(App);
- 

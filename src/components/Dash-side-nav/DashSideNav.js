@@ -92,7 +92,7 @@ class DashSideNav extends Component {
               {
                 this.state.hidden
                 ?(
-                  <DropDown nav = {this.state.nav} />
+                  <DropDown nav = {this.props.dashboard} />
                 )
                 :(null)
               }
