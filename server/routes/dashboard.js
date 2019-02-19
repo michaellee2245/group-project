@@ -38,11 +38,10 @@ router.get('/', isAuthenticated, (req,res,next) => {
     .catch(err => serverError(err,res));
 })
 
-// GET /api/dashboard/t/:teamID
-// The t is for team.
+// GET /api/dashboard/team/:teamID
 // Get all of the team members, boards, tasks, assignments, and comments
 //     that pertain to a particular team...
-router.get('/t/:teamID', isAuthenticated, onTeam, (req, res, next) => {
+router.get('/team/:teamID', isAuthenticated, onTeam, (req, res, next) => {
   res.locals.dash = {};
   req.db.dashboard.get_roster([req.params.teamID])
     .then(roster => {

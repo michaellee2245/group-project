@@ -53,11 +53,10 @@ router.get('/id/:name', isAuthenticated, (req, res, next) => {
     .catch(err => serverError(err, res))
 })
 
-// GET /api/board/t/:teamID
+// GET /api/board/team/:teamID
 // get all the boards belonging to a team
-// (the t in the path stands for team)
 // you must be an approved team member to access this information
-router.get('/t/:teamID', isAuthenticated, onTeam, (req, res, next) => {
+router.get('/team/:teamID', isAuthenticated, onTeam, (req, res, next) => {
   req.db.board.on_team([req.params.teamID])
     .then(boards => req.status(200).json(boards))
     .catch(err => serverError(err, res));

@@ -923,13 +923,20 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"userID\": 26\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/follow/26",
+							"raw": "localhost:8080/api/user/follow",
 							"host": [
 								"localhost"
 							],
@@ -937,8 +944,7 @@
 							"path": [
 								"api",
 								"user",
-								"follow",
-								"26"
+								"follow"
 							]
 						}
 					},
@@ -972,13 +978,20 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"userID\": 30\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/follow/30",
+							"raw": "localhost:8080/api/user/follow",
 							"host": [
 								"localhost"
 							],
@@ -986,8 +999,7 @@
 							"path": [
 								"api",
 								"user",
-								"follow",
-								"30"
+								"follow"
 							]
 						}
 					},
@@ -1345,13 +1357,20 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"userID\": 26\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/unfollow/26",
+							"raw": "localhost:8080/api/user/unfollow",
 							"host": [
 								"localhost"
 							],
@@ -1359,8 +1378,7 @@
 							"path": [
 								"api",
 								"user",
-								"unfollow",
-								"26"
+								"unfollow"
 							]
 						}
 					},
@@ -1455,7 +1473,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/details/me",
+							"raw": "localhost:8080/api/user/my-details",
 							"host": [
 								"localhost"
 							],
@@ -1463,8 +1481,7 @@
 							"path": [
 								"api",
 								"user",
-								"details",
-								"me"
+								"my-details"
 							]
 						}
 					},
@@ -2076,25 +2093,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"newContent\": \"I think you are the best ever\"\n}"
+							"raw": "{\n\t\"messageID\": {{msgid}},\n\t\"content\": \"I think you are the best ever\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/message/id/:msgid",
+							"raw": "localhost:8080/api/message",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"message",
-								"id",
-								":msgid"
-							],
-							"variable": [
-								{
-									"key": "msgid",
-									"value": "{{msgid}}"
-								}
+								"message"
 							]
 						}
 					},
@@ -2657,13 +2666,20 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"teamID\": {{new_team_id}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/quit/:id",
+							"raw": "localhost:8080/api/team/quit",
 							"host": [
 								"localhost"
 							],
@@ -2671,14 +2687,7 @@
 							"path": [
 								"api",
 								"team",
-								"quit",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{new_team_id}}"
-								}
+								"quit"
 							]
 						}
 					},
@@ -2916,9 +2925,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -2931,10 +2937,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"theirID\": 20\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/us",
+							"raw": "localhost:8080/api/team/us/:theirID",
 							"host": [
 								"localhost"
 							],
@@ -2942,7 +2948,14 @@
 							"path": [
 								"api",
 								"team",
-								"us"
+								"us",
+								":theirID"
+							],
+							"variable": [
+								{
+									"key": "theirID",
+									"value": "20"
+								}
 							]
 						}
 					},
@@ -2974,9 +2987,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -2989,10 +2999,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"organization\": \"the great candy factory in the sky\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/organization",
+							"raw": "localhost:8080/api/team/organization/:organization",
 							"host": [
 								"localhost"
 							],
@@ -3000,7 +3010,14 @@
 							"path": [
 								"api",
 								"team",
-								"organization"
+								"organization",
+								":organization"
+							],
+							"variable": [
+								{
+									"key": "organization",
+									"value": "the great candy factory in the sky"
+								}
 							]
 						}
 					},
@@ -3042,9 +3059,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -3057,10 +3071,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"{{firstLetter}}\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/by-name",
+							"raw": "localhost:8080/api/team/by-name/:name",
 							"host": [
 								"localhost"
 							],
@@ -3068,7 +3082,14 @@
 							"path": [
 								"api",
 								"team",
-								"by-name"
+								"by-name",
+								":name"
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "{{firstLetter}}"
+								}
 							]
 						}
 					},
@@ -3222,17 +3243,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"teamID\": \"{{new_team_id}}\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team",
+							"raw": "localhost:8080/api/team/:teamID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"team"
+								"team",
+								":teamID"
+							],
+							"variable": [
+								{
+									"key": "teamID",
+									"value": "{{new_team_id}}"
+								}
 							]
 						}
 					},
@@ -4579,7 +4607,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"start_date\": \"{{start_date}}\"\n}"
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"startDate\": \"{{start_date}}\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/task/start-date",
@@ -4647,7 +4675,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"end_date\": \"{{end_date}}\"\n}"
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"endDate\": \"{{end_date}}\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/task/end-date",
@@ -4702,7 +4730,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"time_est\": 3.8\n}"
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"timeEst\": 3.8\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/task/time-est",
@@ -12014,7 +12042,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/dashboard/t/:teamID",
+							"raw": "localhost:8080/api/dashboard/team/:teamID",
 							"host": [
 								"localhost"
 							],
@@ -12022,7 +12050,7 @@
 							"path": [
 								"api",
 								"dashboard",
-								"t",
+								"team",
 								":teamID"
 							],
 							"variable": [
