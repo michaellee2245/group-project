@@ -43,8 +43,8 @@ router.get('/on-task/:taskID', isAuthenticated, onTask, (req, res, next) => {
 
 // GET /api/comment/by-id/:commentID
 // get the comment indicated by the commentID param
-router.get('/by-id', isAuthenticated, onComment, (req, res, next) => {
-  req.db.comment.by_id([req.body.commentID])
+router.get('/by-id/:commentID', isAuthenticated, onComment, (req, res, next) => {
+  req.db.comment.by_id([req.params.commentID])
     .then(comment => res.status(200).json(comment))
     .catch(err => serverError(err, res));
 })
