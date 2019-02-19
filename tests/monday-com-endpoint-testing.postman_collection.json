@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "704303dc-0aed-45b6-b7be-79c4b32ed147",
+		"_postman_id": "37a1f24c-fade-4f47-8f08-3c8687312756",
 		"name": "monday-com-endpoint-testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1878,13 +1878,20 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"messageID\": {{message_to_starburst}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/message/read/:msgid",
+							"raw": "localhost:8080/api/message/read/",
 							"host": [
 								"localhost"
 							],
@@ -1893,13 +1900,7 @@
 								"api",
 								"message",
 								"read",
-								":msgid"
-							],
-							"variable": [
-								{
-									"key": "msgid",
-									"value": "{{msgid}}"
-								}
+								""
 							]
 						}
 					},
@@ -3570,8 +3571,8 @@
 									"    pm.response.to.be.json;",
 									"});",
 									"",
-									"pm.test(\"Response includes board id 28\", function () {",
-									"    pm.expect(pm.response.json().some(e => e.id === 28)).to.be.true;",
+									"pm.test(\"Response includes board id\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.equal(pm.environment.get('boardid0'));",
 									"});",
 									""
 								],
@@ -3601,7 +3602,7 @@
 							"variable": [
 								{
 									"key": "name",
-									"value": "tlla"
+									"value": "{{boardname}}"
 								}
 							]
 						}
@@ -3908,17 +3909,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid0}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid0}}"
+								}
 							]
 						}
 					},
@@ -3962,17 +3970,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid1}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid1}}"
+								}
 							]
 						}
 					},
@@ -4016,17 +4031,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid3}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid3}}"
+								}
 							]
 						}
 					},
@@ -7566,17 +7588,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c4_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment",
+							"raw": "localhost:8080/api/comment/:commentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"comment"
+								"comment",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c4_id}}"
+								}
 							]
 						}
 					},
@@ -7729,17 +7758,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c12_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment",
+							"raw": "localhost:8080/api/comment/:commentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"comment"
+								"comment",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c12_id}}"
+								}
 							]
 						}
 					},
@@ -7987,17 +8023,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c2_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment",
+							"raw": "localhost:8080/api/comment/:commentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"comment"
+								"comment",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c2_id}}"
+								}
 							]
 						}
 					},
@@ -8142,9 +8185,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -8157,10 +8197,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{task_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment/on-task",
+							"raw": "localhost:8080/api/comment/on-task/:taskID",
 							"host": [
 								"localhost"
 							],
@@ -8168,7 +8208,14 @@
 							"path": [
 								"api",
 								"comment",
-								"on-task"
+								"on-task",
+								":taskID"
+							],
+							"variable": [
+								{
+									"key": "taskID",
+									"value": "{{task_id}}"
+								}
 							]
 						}
 					},
@@ -9347,10 +9394,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"assignmentID\": {{assignment_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/assignment/by-id",
+							"raw": "localhost:8080/api/assignment/by-id/:assignmentID",
 							"host": [
 								"localhost"
 							],
@@ -9358,7 +9405,14 @@
 							"path": [
 								"api",
 								"assignment",
-								"by-id"
+								"by-id",
+								":assignmentID"
+							],
+							"variable": [
+								{
+									"key": "assignmentID",
+									"value": "{{assignment_id}}"
+								}
 							]
 						}
 					},
@@ -9625,17 +9679,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"assignmentID\": {{assignment_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/assignment",
+							"raw": "localhost:8080/api/assignment/:assignmentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"assignment"
+								"assignment",
+								":assignmentID"
+							],
+							"variable": [
+								{
+									"key": "assignmentID",
+									"value": "{{assignment_id}}"
+								}
 							]
 						}
 					},

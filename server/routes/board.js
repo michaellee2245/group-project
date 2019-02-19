@@ -45,11 +45,11 @@ router.get('/modifiable', isAuthenticated, (req, res, next) => {
 // GET /api/board/id/:name
 // get board id by name
 // must be an approved team member to access this information
-// NOTE: if their are duplicate board names,
+// NOTE: if there are duplicate board names,
 //       then only the most recently created will be sent
 router.get('/id/:name', isAuthenticated, (req, res, next) => {
   req.db.board.get_id_by_name([req.params.name])
-    .then(id => sendBoardID(id[0], req.params.name, req, res, next))
+    .then(id => sendBoardID(id[0].id, req.params.name, req, res, next))
     .catch(err => serverError(err, res))
 })
 
