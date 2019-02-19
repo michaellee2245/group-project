@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './MyProfile.scss'
 import { NavLink } from 'react-router-dom';
+import {Switch,Route} from 'react-router-dom';
+import Personal from './components/Personal'
+import Password from './components/Password'
 
 export default class MyProfile extends Component {
   state = {
@@ -45,6 +48,10 @@ export default class MyProfile extends Component {
               </ul>
             </section>
             <section className='user_profile_bottom_container'>
+              <Switch>
+                <Route path='/dashboard/personal-info' component={Personal} />
+                <Route path="/dashboard/password" component={Password} />
+              </Switch>
             </section>
           </div>
         </div>

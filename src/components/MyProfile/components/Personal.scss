@@ -1,0 +1,63 @@
+.personal_info_container{
+  width: 500px;
+  height: 500px;
+}
+
+.profile_edit_container{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 45px;
+  width: 500px;
+}
+
+.icon_container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: solid #009aff 2px;
+  border-radius: 20px;
+  height: 30px;
+  width: 30px;
+  background-color: white;
+}
+
+.fas.fa-pencil-alt{
+  opacity: 0;
+}
+
+.data_container_popup_edit_link{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 35px;
+  width: 465px;
+  &:hover{
+    border: 1px dashed black; 
+    cursor: pointer;
+    .fas.fa-pencil-alt{
+      position: absolute;
+      top:15px;
+      right: 10px;
+      opacity: 1;
+    }
+  }
+}
+
+.edit_text_title{
+  padding: 15px;
+}
+
+.profile-field-content{
+  padding: 5px;
+}
+
+.fas.fa-envelope-square,.fas.fa-phone,.far.fa-user{
+  color: #009aff;
+  position: absolute;
+  top:50%;
+  left:25%;
+  transform: translateY(-50%);
+}
+
