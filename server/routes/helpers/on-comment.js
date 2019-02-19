@@ -2,7 +2,8 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  req.db.approval.on_comment([req.user[0].id, req.body.commentID])
+  const commentID = req.params.commentID || req.body.commentID;
+  req.db.approval.on_comment([req.user[0].id, commentID])
     .then(r => {
       if (r[0] && r[0].approved) {
         next();

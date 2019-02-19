@@ -6,6 +6,7 @@ const isAuthenticated = require('./helpers/authorize');
 const onTeam = require('./helpers/on-team');
 const boardLord = require('./helpers/board-lord');
 const sendBoardID = require('./helpers/send-board-id');
+const onBoard = require('./helpers/on-board');
 
 router.use((req, res, next) => {
   req.db = req.app.get('db')
@@ -18,7 +19,10 @@ router.use((req, res, next) => {
 router.post('/', isAuthenticated, onTeam, (req, res, next) => {
   req.db.board.new([req.body.name, req.body.teamID, req.user[0].id])
     .then(() => req.db.board.get_id_by_name([req.body.name]))
-    .then(id => res.status(200).json({ name: req.body.name, id: id[0].id }))
+    .then(id => res.status(200).json({
+      name: req.body.name,
+      id: id[0].id
+    }))
     .catch(err => serverError(err, res))
 })
 
@@ -32,10 +36,10 @@ router.get('/', isAuthenticated, (req, res, next) => {
 
 // GET /api/board/modifiable
 // see the boards you own or manage
-router.get('/modifiable', isAuthenticated, (req,res,next) => {
+router.get('/modifiable', isAuthenticated, (req, res, next) => {
   req.db.board.modifiable([req.user[0].id])
     .then(boards => res.status(200).json(boards))
-    .catch(err => serverError(err,res));
+    .catch(err => serverError(err, res));
 })
 
 // GET /api/board/id/:name
@@ -47,6 +51,32 @@ router.get('/id/:name', isAuthenticated, (req, res, next) => {
   req.db.board.get_id_by_name([req.params.name])
     .then(id => sendBoardID(id[0], req.params.name, req, res, next))
     .catch(err => serverError(err, res))
+})
+
+// GET /api/board/t/:teamID
+// get all the boards belonging to a team
+// (the t in the path stands for team)
+// you must be an approved team member to access this information
+router.get('/t/:teamID', isAuthenticated, onTeam, (req, res, next) => {
+  req.db.board.on_team([req.params.teamID])
+    .then(boards => req.status(200).json(boards))
+    .catch(err => serverError(err, res));
+})
+
+// GET /api/board/name/:searchTerm
+// get all the boards you have access to have names beginning with searchTerm
+router.get('/name/:searchTerm', isAuthenticated, (req, res, next) => {
+  req.db.board.name_search([req.params.searchTerm + '%', req.user[0].id])
+    .then(boards => req.status(200).json(boards))
+    .catch(err => serverError(err, res));
+})
+
+// GET /api/board/by-id/:boardID
+// get board by id
+router.get('/by-id/:boardID', isAuthenticated, onBoard, (req, res, next) => {
+  req.db.board.by_id([req.params.boardID])
+    .then(board => res.status(200).json(board))
+    .catch(err => serverError(err, res));
 })
 
 // DELETE /api/board/:boardID

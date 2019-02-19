@@ -40,13 +40,17 @@ router.get('/by-me', isAuthenticated, (req, res, next) => {
     .catch(err => serverError(err, res));
 })
 
-// GET /api/assignment/by-id
+// GET /api/assignment/by-id/:assignmentID
 // get the assignment indicated in req.body.assignmentID
-router.get('/by-id', isAuthenticated, onAssignment, (req, res, next) => {
-  req.db.assignment.by_id([req.body.assignmentID])
-    .then(a => res.status(200).json(a))
-    .catch(err => serverError(err, res));
-})
+router.get(
+  '/by-id/:assignmentID',
+  isAuthenticated,
+  onAssignment,
+  (req, res, next) => {
+    req.db.assignment.by_id([req.params.assignmentID])
+      .then(a => res.status(200).json(a))
+      .catch(err => serverError(err, res));
+  })
 
 // GET /api/assignment/all
 // get all the assignments I have the right to view
@@ -56,12 +60,16 @@ router.get('/all', isAuthenticated, (req, res, next) => {
     .catch(err => serverError(err, res));
 })
 
-// DELETE /api/assignment
-// don't forget the req.body.assignmentID
-router.delete('/', isAuthenticated, assignmentLord, (req, res, next) => {
-  req.db.assignment.delete([req.body.assignmentID])
-    .then(() => res.status(200).send('deleted assignment'))
-    .catch(err => serverError(err, res));
-})
+// DELETE /api/assignment/:assignmentID
+// must be the assigner, assignee, task owner, board owner, or manager
+router.delete(
+  '/:assignmentID',
+  isAuthenticated,
+  assignmentLord,
+  (req, res, next) => {
+    req.db.assignment.delete([req.params.assignmentID])
+      .then(() => res.status(200).send('deleted assignment'))
+      .catch(err => serverError(err, res));
+  })
 
 module.exports = router;
