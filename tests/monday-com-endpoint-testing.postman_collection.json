@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "df780d99-fbc7-4a5d-905b-14a21cd94da0",
+		"_postman_id": "704303dc-0aed-45b6-b7be-79c4b32ed147",
 		"name": "monday-com-endpoint-testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11938,9 +11938,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -11953,17 +11950,25 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"teamID\": {{chargers_team_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/dashboard",
+							"raw": "localhost:8080/api/dashboard/t/:teamID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"dashboard"
+								"dashboard",
+								"t",
+								":teamID"
+							],
+							"variable": [
+								{
+									"key": "teamID",
+									"value": "{{chargers_team_id}}"
+								}
 							]
 						}
 					},

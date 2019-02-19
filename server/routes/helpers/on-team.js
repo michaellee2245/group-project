@@ -2,7 +2,8 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  req.db.approval.on_team([req.user[0].id, req.body.teamID])
+  const teamID = req.params.teamID || req.body.teamID;
+  req.db.approval.on_team([req.user[0].id, teamID])
     .then(r => {
       if (r[0] && r[0].approved) {
         next();
