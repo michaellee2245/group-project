@@ -3,7 +3,8 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  req.db.approval.comment_lord([req.body.commentID, req.user[0].id])
+  const commentID = req.params.commentID || req.body.commentID;
+  req.db.approval.comment_lord([commentID, req.user[0].id])
     .then(r => {
       if (r[0].approval) {
         next();
