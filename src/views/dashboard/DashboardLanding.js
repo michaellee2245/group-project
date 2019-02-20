@@ -9,6 +9,7 @@ import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
 import BoardsView from '../dashboard/BoardsView/BoardsView';
 import MyProfile from '../../components/MyProfile/MyProfile'
+import CommentSlideIn from '../../components/CommentSlideIn/CommentSlideIn';
 
 class DashboardLanding extends Component {
 
@@ -64,6 +65,7 @@ class DashboardLanding extends Component {
 
           {this.state.shownComponent}
         </div>
+        <CommentSlideIn />
 
 
       </div>
