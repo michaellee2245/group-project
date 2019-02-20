@@ -2,7 +2,8 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  req.db.approval.on_board([req.user[0].id, req.body.boardID])
+  let bid = req.params.bid || req.body.boardID;
+  req.db.approval.on_board([req.user[0].id, bid])
     .then(r => {
       if (r[0] && r[0].approved) {
         next();

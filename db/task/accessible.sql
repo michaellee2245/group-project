@@ -13,7 +13,7 @@ SELECT
   task.end_date AS end_date,
   task.time_est AS time_est,
   task.ts AS ts,
-  board.name AS board,
+  board.name AS board_name,
   owner.name AS owner,
   owner.profile_pic AS owner_pic,
   team.name AS team
