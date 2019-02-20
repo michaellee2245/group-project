@@ -36,7 +36,7 @@ export default class Personal extends Component {
         </div>
         <div className='profile_edit_container'>
           <div className='icon_container'>
-          <i class="fas fa-phone"></i>
+            <i class="fas fa-phone"></i>
           </div>
           {/* the next div will be the div that the link to the model will go */}
           <div className='data_container_popup_edit_link'>

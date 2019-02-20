@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './MyProfile.scss'
 import { NavLink } from 'react-router-dom';
-import {Switch,Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Personal from './components/Personal'
 import Password from './components/Password'
 
@@ -33,9 +33,14 @@ export default class MyProfile extends Component {
                       </div>
                     </div>
                   </div>
-                  <span className='edit_username_component'>
-                    <input value={this.state.username} name='username' onChange={this.handleChange} className='edit_username'></input>
-                  </span>
+                  <div className='tooltipProfileWrapper'>
+                    <div className='tooltip'>
+                      <span className='tooltiptext'>Edit user name</span>
+                      <span className='edit_username_component'>
+                        <input value={this.state.username} name='username' onChange={this.handleChange} className='edit_username'></input>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <ul className='list_tabs'>

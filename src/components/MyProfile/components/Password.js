@@ -31,7 +31,7 @@ export default class Password extends Component {
           <input value={this.state.confirmNewPassword} name='confirmNewPassword' className='confirm_new_password' onChange={this.handleChange}></input>
         </div>
       </div>
-      
+
 
     )
   }
