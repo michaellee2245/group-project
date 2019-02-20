@@ -2,10 +2,10 @@
 
 SELECT
   task.id,
-  task.name AS task,
+  task.name AS name,
   task.group_name,
   owner.name AS owner,
-  board.name AS board,
+  board.name AS board_name,
   task.priority,
   task.status,
   task.start_date,

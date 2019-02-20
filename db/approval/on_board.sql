@@ -1,4 +1,4 @@
-/* return true if the person is any approved member of the task team */
+/* return true if the person is an approved member of the board team */
 
 SELECT manager_id = $1 OR (
   SELECT approved FROM team_member

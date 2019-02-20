@@ -1,4 +1,4 @@
-/* Get all of the tasks that a user has access to as an approved team member*/
+/* Get all tasks I could possibly access */
 
 SELECT
   task.id AS id,

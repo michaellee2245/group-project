@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import {getSession} from './redux/actions'
 import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
 
+
 class App extends Component {
   componentDidMount = () => {
     this.props.getSession()

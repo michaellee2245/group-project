@@ -7,15 +7,15 @@ import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import Admin from '../../components/Admin/Admin'
 import { dashboard } from '../../redux/actions'
-import {Switch,Router,Route} from 'react-router-dom';
-import history from '../../history'
+import { Switch, Route } from 'react-router-dom';
+import DropMenu from '../../components/DropDown/DropMenu'
+import Boards from '../../components/Boards/Boards';
+import BoardsView from '../dashboard/BoardsView/BoardsView';
+import MyProfile from '../../components/MyProfile/MyProfile'
 
 class DashboardLanding extends Component {
 
-  state = {
-    shownComponent: <Admin page={this.props.history.push()} />,
 
-  }
 
   componentDidMount = () => {
     this.props.dashboard()
@@ -35,7 +35,7 @@ class DashboardLanding extends Component {
 
     this.props.history.push(`/dashboard/${name}`)
 
-   
+
   }
 
   test3 = () => {
@@ -53,7 +53,8 @@ class DashboardLanding extends Component {
 
       <div className='dashboard-wrapper'>
         <div className='topNavBar'>
-          <TopNavBar page = {this.props.history.push} />
+
+          <TopNavBar page={this.props.history.push} />
         </div>
         <DashSideNav
           changeViews={this.changeViews}
@@ -61,17 +62,21 @@ class DashboardLanding extends Component {
         />
 
         <div className='dashboard-wrapper-inner'>
-          
+
           <Switch >
-            <Route path = '/dashboard/inbox' render = {(props) => <Inbox {...props} />} />
-            <Route path = '/dashboard/myweek' render = {(props) => <MyWeek {...props} />} />
-            <Route path = '/dashboard/Admin' render= {(props) => <Admin {...props} />} />
-            
+            <Route path='/dashboard/inbox' render={(props) => <Inbox {...props} />} />
+            <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
+            <Route path='/dashboard/Admin' render={(props) => <Admin {...props} />} />
+
           </Switch>
         </div>
 
 
+
+
       </div>
+
+
     )
   }
 }
