@@ -22,7 +22,7 @@ class Boards extends Component {
     // add axios request to create row
 
     componentDidMount() {
-        axios.get(`/api/task/bb/${this.props.board_id}`)
+        axios.get(`/api/task/by-board/${this.props.board_id}`)
 
             .then(({ data }) => {
 
