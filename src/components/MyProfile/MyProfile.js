@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 import Personal from './components/Personal'
 import Password from './components/Password'
+import Popup from "reactjs-popup";
 
 export default class MyProfile extends Component {
   state = {
