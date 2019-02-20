@@ -55,20 +55,20 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.7.1"
   },
-  "nodemonConfig":{
+  "nodemonConfig": {
     "restartable": "rs",
     "ignore": [
-        ".git",
-        "node_modules/**/node_modules",
-        "src"
+      ".git",
+      "node_modules/**/node_modules",
+      "src"
     ],
     "watch": [
-        "server/",
-        "db/"
+      "server/",
+      "db/"
     ],
     "env": {
-        "NODE_ENV": "development"
+      "NODE_ENV": "development"
     },
     "ext": "js,json,sql,env"
-}
+  }
 }
