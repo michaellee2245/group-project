@@ -2,7 +2,8 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  req.db.approval.person_manages_board([req.body.boardID, req.user[0].id])
+  const boardID = req.params.boardID || req.body.boardID;
+  req.db.approval.board_lord([boardID, req.user[0].id])
     .then(r => {
       if (r[0].approval) {
         next();

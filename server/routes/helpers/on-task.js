@@ -2,7 +2,8 @@
 const serverError = require('./server-error');
 
 module.exports = (req,res,next) => {
-  req.db.approval.on_task([req.user[0].id, req.body.taskID])
+  const taskID = req.params.taskID || req.body.taskID;
+  req.db.approval.on_task([req.user[0].id, taskID])
     .then(r => {
       if (r[0] && r[0].approved) {
         next();

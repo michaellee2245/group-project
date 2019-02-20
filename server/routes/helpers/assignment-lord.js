@@ -6,7 +6,8 @@
    const serverError = require('./server-error');
 
    module.exports = (req,res,next) => {
-     req.db.approval.assignment_lord([req.body.assignmentID, req.user[0].id])
+     const assignmentID = req.params.assignmentID || req.body.assignmentID;
+     req.db.approval.assignment_lord([assignmentID, req.user[0].id])
        .then(r => {
          if (r[0].approval) {
            next();
