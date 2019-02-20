@@ -4,6 +4,7 @@ import MarketFooter from '../../../components/MarketFooter/MarketFooter';
 import Carousel from '../../../components/Carousel/Carousel';
 import LowerQuote from '../../../components/Carousel/LowerQuote';
 import UpperText from '../../../components/Carousel/UpperText';
+import GetStartedBtn from '../../../components/GetStartedBtn/GetStartedBtn'
 
 
 class MarketingLanding extends Component {
@@ -30,7 +31,7 @@ class MarketingLanding extends Component {
                         <span><h1>Workflow made simple.</h1></span>
                         <span style={{ color: "blue" }}><h1>Try it for free.</h1></span>
                     </div>
-                    {/* <GetStartedBtn /> */}
+                    <GetStartedBtn changeNav = {this.props.toggle}/>
                 </div>
             </div>
         )

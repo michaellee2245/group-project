@@ -5,18 +5,31 @@ import DashboardLanding from './views/dashboard/DashboardLanding';
 import { ConnectedRouter } from 'connected-react-router';
 import {Switch,Route} from 'react-router-dom';
 import Marketing from './views/marketing/Marketing'
+import {connect} from 'react-redux'
+import {getSession} from './redux/actions'
 import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
 
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.getSession()
+  }
+  
+
   render() {
     return (
       <div className="App">
         <ConnectedRouter history={history}>
           <Switch>
             <Route path = '/marketing' component = {Marketing} />
-            <Route path="/dashboard" component = {DashboardLanding} />    
-            <Route path="/why-us" component = {WhyUs} />    
+            {
+              this.props.userExists && (
+                <Switch> 
+                  <Route path="/dashboard" component = {DashboardLanding} />    
+                </Switch>
+              )
+            }
+            
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
@@ -25,5 +38,9 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    userExists: !!state.user.user
+  }
+}
+export default connect(mapStateToProps,{getSession})(App);
