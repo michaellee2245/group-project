@@ -4,6 +4,7 @@ const router = express.Router()
 const comparePassword = require('./helpers/compare')
 const hashPassword = require('./helpers/hash')
 const serverError = require('./helpers/server-error');
+const isAuthenticated = require('./helpers/authorize');
 
 router.use((req, res, next) => {
   req.db = req.app.get('db')
@@ -61,6 +62,7 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+// POST /api/auth/login
 // requires username and password
 router.post('/login', (req, res, next) => {
   const loginResponse = {};
@@ -103,13 +105,15 @@ router.post('/login', (req, res, next) => {
     .catch(next)
 })
 
+// GET /api/auth/logout
+// doesn't actually get anything....
 router.get('/logout', (req, res, next) => {
   req.logout();
   res.status(200).send('logged out');
 })
 
 // GET /api/auth/session
-
+// get your session details
 router.get('/session', (req, res) => {
   const sessionResponse = {};
   if (req.user) {
@@ -130,14 +134,12 @@ router.get('/session', (req, res) => {
 })
 
 // delete my account...
-router.delete('/me', (req, res) => {
-  if (req.user) {
-    req.db.user.delete_user([req.user[0].id])
-      .then(() => {
-        req.logout();
-        res.status(200).send('deleted');
-      })
-      .catch(err => serverError(err, res))
-  }
+router.delete('/me', isAuthenticated, (req, res, next) => {
+  req.db.user.delete_user([req.user[0].id])
+    .then(() => {
+      req.logout();
+      res.status(200).send('deleted');
+    })
+    .catch(err => serverError(err, res));
 })
 module.exports = router;
