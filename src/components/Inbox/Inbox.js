@@ -23,7 +23,7 @@ class Inbox extends Component {
        
 
         return (
-            <div className="inbox-wrapper">
+            <div className="inbox-wrapper-component">
 
                 <div className="inbox-title-wrapper">
                     <span className="inbox-title">Inbox</span>

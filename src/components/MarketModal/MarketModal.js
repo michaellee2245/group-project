@@ -24,7 +24,8 @@ class MarketModal extends Component {
                 changeToggle,
                 handleLogin,
                 handleRegister,
-                display
+                display,
+                
             },
             state: {
                 register

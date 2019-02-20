@@ -101,7 +101,7 @@ class MarketTopNav extends Component {
                         Why Us
                     </Link>
                     <button
-                        onClick={this.handleModalClick}
+                        onClick={this.props.toggle}
                         className="menu"
                     >
                         Log in
@@ -129,7 +129,7 @@ class MarketTopNav extends Component {
                                     Why Us
                                 </Link>
                                 <button
-                                    onClick={this.handleModalClick}
+                                    onClick={this.props.toggle}
                                     className="mobile-items"
                                     id="nav-login"
                                 >
@@ -142,12 +142,12 @@ class MarketTopNav extends Component {
                 </div>
 
                 <MarketModal
-                    changeToggle={this.handleModalClick}
+                    changeToggle={this.props.toggle}
                     changeState={this.handleChange}
                     handleLogin={this.handleClickLogin}
                     handleRegister={this.handleClickRegister}
-                    display={this.state.displayModal}
-
+                    display={this.props.display}
+                        
                 />
 
             </div>

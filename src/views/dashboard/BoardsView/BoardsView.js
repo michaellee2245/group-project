@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import './boards-view.scss';
+import './BoardsView.scss';
 import Boards from '../../../components/Boards/Boards';
 
 class BoardsView extends Component {

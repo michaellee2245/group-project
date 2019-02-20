@@ -67,11 +67,19 @@
         color: #009aff;
       };
 }
+.post-bottom-wrapper{
+    display: inline-block;
+    vertical-align: top;
+
+}
 
 .post-bottom-division{
     border-top-width: 1px;
     border-top: 1px solid #f3f3f3;
     margin: 0 15px;
+    // display: inline-block;
+    // vertical-align: top;
+    
 }
 
 .post-tools-area{
