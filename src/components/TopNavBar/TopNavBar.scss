@@ -56,6 +56,9 @@
     align-content: center;
     align-items: center;
     text-decoration: none;
+    :hover {
+        color: #009aff;
+      };
 }
 .text {
     text-decoration: none;
@@ -107,7 +110,7 @@
     list-style: none;
     color:black;
     position: relative;
-   
+    
 }
 .user-profile-menu-list {
     position: absolute;
@@ -115,5 +118,8 @@
     margin-right:4%;
     margin-top:2%;
     list-style: none;
-    width: 50px;
+    width: 100px;
+    & li:hover{
+        background-color:grey;
+    }
 }

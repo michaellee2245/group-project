@@ -35,16 +35,7 @@ class DashboardLanding extends Component {
 
     this.props.history.push(`/dashboard/${name}`)
 
-    // switch (name) {
-    //   case 'Inbox': {
-    //     return this.setState({ shownComponent: <Inbox /> })
-    //   }
-    //   case 'MyWeek': {
-    //     return this.setState({ shownComponent: <MyWeek /> })
-    //   }
-    //   default:
-    // }
-
+   
   }
 
   test3 = () => {
@@ -62,7 +53,7 @@ class DashboardLanding extends Component {
 
       <div className='dashboard-wrapper'>
         <div className='topNavBar'>
-          <TopNavBar />
+          <TopNavBar page = {this.props.history.push} />
         </div>
         <DashSideNav
           changeViews={this.changeViews}
@@ -70,7 +61,7 @@ class DashboardLanding extends Component {
         />
 
         <div className='dashboard-wrapper-inner'>
-          {/* {this.state.shownComponent} */}
+          
           <Switch >
             <Route path = '/dashboard/inbox' render = {(props) => <Inbox {...props} />} />
             <Route path = '/dashboard/myweek' render = {(props) => <MyWeek {...props} />} />

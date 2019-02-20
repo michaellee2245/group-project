@@ -25,6 +25,8 @@ export const logout = () => {
         type: "LOGOUT",
         payload: null
       })
+        dispatch(push('/'))
+      
     })
   }
 }
@@ -39,7 +41,7 @@ export const getSession = () => {
         payload: user
       })
       if (!user) {
-        dispatch (push('/homepage'))
+        dispatch (push('/marketing'))
       } else {
         dispatch (push('/dashboard'))
       }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {logout} from '../../redux/actions'
 import './TopNavBar.scss'
 
 class TopNavBar extends Component {
@@ -9,6 +11,9 @@ class TopNavBar extends Component {
 
     handleClick = () => {
         this.setState ({profileHidden: !this.state.profileHidden})
+    }
+    handleAdmin = () => {
+        this.props.page('/dashboard/admin')
     }
 
     render() {
@@ -61,7 +66,7 @@ class TopNavBar extends Component {
                 </div>
 
                 <div className="navbar-tab">
-                    <a href="#" className="text">
+                    {/* <a href="#" className="text"> */}
                         <div onClick = {this.handleClick}  className="add-member-span">
                             <i className="material-icons">face</i>
                             <p className = 'user-profile-menu' > UserProfile</p>
@@ -70,15 +75,15 @@ class TopNavBar extends Component {
                             <div>
                                 <ul className = 'user-profile-menu-list'>
                                     <li>Profile</li>
-                                    <li>Admin </li>
+                                    <li onClick = {this.handleAdmin}>Admin </li>
                                     <li>Recycle Bin </li>
-                                    <li>Logout</li>
+                                    <li onClick = {this.props.logout}>Logout</li>
                                 </ul>
                             </div>    
                             ): (null)
                             }
                         </div>
-                    </a>
+                    {/* </a> */}
                 </div>
                 </div>
             </div>
@@ -88,4 +93,4 @@ class TopNavBar extends Component {
 
 }
 
-export default TopNavBar;
+export default connect(null,{logout})(TopNavBar);

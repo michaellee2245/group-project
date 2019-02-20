@@ -29,7 +29,7 @@ class Marketing extends Component {
                     <Route path = '/' render = {(props) => <MarketingLanding {...props} toggle = {this.handleClick}/>}/>
                 </Switch>
                 
-                {/* <MarketingLanding toggle={this.handleClick}/> */}
+                
                 <MarketFooter />
 
             </div>
