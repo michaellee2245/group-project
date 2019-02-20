@@ -8,32 +8,57 @@ class BoardsView extends Component {
 
     state = {
         board_id: [],
-        boards:[],
+        boards: [],
     }
 
     componentDidMount() {
         axios.get('/api/board')
-        .then(boards => {
-            const board_id = boards.data.map(e => e.id)
-            console.log(board_id)
-            
-            this.setState({board_id: board_id, boards: boards.data})
-        })
+            .then(boards => {
+                const board_id = boards.data.map(e => e.id)
+                console.log(boards)
+
+                this.setState({ board_id: board_id, boards: boards.data })
+            })
     }
 
+    handleNewBoard = ({ key, target, target: { value } }) => {
 
+        if (key === 'Enter') {
+            target.value = ''
+
+            axios.post('/api/board', { name: value, teamID: 4 })
+                .then(boards => {
+                    console.log(boards.data)
+                    this.setState({ boards: [...this.state.boards, boards.data] })
+                })
+        }
+    }
 
     render() {
+
+        const {
+            handleNewBoard
+        } = this
+
         return (
-            <>
-                {this.state.boards.map((board) => {
-                    return (
+            <div>
+                <div>
+                    <input
+                        placeholder="+ Add new board"
+                        onKeyDown={handleNewBoard}
+                    />
+                    <button >Create Board</button>
+                </div>
+                <div className="board-view-container">
+                    {this.state.boards.map((board) => {
+                        return (
 
-                        <Boards board_id={board.id} board_name = {board.name} />
+                            <Boards board_id={board.id} board_name={board.name} />
 
-                    )
-                })}
-            </>
+                        )
+                    })}
+                </div>
+            </div>
         )
 
     }

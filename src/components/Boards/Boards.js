@@ -63,6 +63,7 @@ class Boards extends Component {
 
         console.log(items)
         return (
+            
             <div className="board-wrapper">
                 <table>
                     <thead>
