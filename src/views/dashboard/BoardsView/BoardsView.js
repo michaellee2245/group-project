@@ -5,12 +5,14 @@ import _ from 'lodash';
 import './boards-view.scss';
 import Boards from '../../../components/Boards/Boards';
 
+
 class BoardsView extends Component {
 
     state = {
         board_id: [],
         boards: [],
         groupedByTeams: {},
+
     }
 
     componentDidMount() {
@@ -26,24 +28,24 @@ class BoardsView extends Component {
             })
     }
 
-    handleNewBoard =  ({ key, target, target: { value } }, teamID) => {
-    
-            if (key === 'Enter') {
-                target.value = ''
-    
-                axios.post('/api/board', { name: value, teamID: teamID })
-                    .then(boards => {
-                        console.log(boards.data)
-                        const newBoards = [...this.state.boards, boards.data]
-                        
-                        const groupedByTeams = _.groupBy(newBoards, board => board.team_id)
-                        
-                        this.setState({ boards: newBoards, groupedByTeams })
-                    })
-            }
+    handleNewBoard = ({ key, target, target: { value } }, teamID) => {
+
+        if (key === 'Enter') {
+            target.value = ''
+
+            axios.post('/api/board', { name: value, teamID: teamID })
+                .then(boards => {
+                    console.log(boards.data)
+                    const newBoards = [...this.state.boards, boards.data]
+
+                    const groupedByTeams = _.groupBy(newBoards, board => board.team_id)
+
+                    this.setState({ boards: newBoards, groupedByTeams })
+                })
         }
-    
-    
+    }
+
+
 
     render() {
 
@@ -58,6 +60,7 @@ class BoardsView extends Component {
 
         return (
             <div>
+               
                 <div className="board-view-container">
                     {Object.entries(groupedByTeams).map(([teamID, boards]) =>
                         <div className="grouped-teams">

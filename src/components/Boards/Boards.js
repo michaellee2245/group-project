@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './boards.scss';
+import CommentSlideIn from '../CommentSlideIn/CommentSlideIn';
 
 class Boards extends Component {
 
@@ -10,22 +11,51 @@ class Boards extends Component {
         selectedRow: -1,
         selectedColumn: '',
         items: [],
+        commentList: [],
+        open: false,
+        taskName:'',
     };
 
     currentId = 1;
 
-    selectRow = id => {
+    selectRow = (id, name) => {
         this.setState({
             selectedRow: id,
+            taskName: name,
         });
     }
 
     selectColumn = id => {
         this.setState({
             selectedColumn: id,
+
+        }, () => {
+            if (this.state.selectedColumn === 'name') {
+                axios.get(`/api/comment/on-task/${this.state.selectedRow}`)
+                    .then(response => {
+                        const list = response.data.reverse()
+                        this.setState({
+                            commentList: list
+                        })
+                    })
+                this.setState({
+                    open: !this.state.open
+                })
+            }
+
         })
     }
+    handleSlideInClose = () => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
+    // handleClick = () => {
+    //     this.setState({
+    //         open: !this.state.open, taskID: items.id
+    //     })
 
+    // }
     // add axios request to create row
 
     componentDidMount() {
@@ -55,6 +85,13 @@ class Boards extends Component {
         }
     }
 
+    updateCommentList = (newComment) => {
+        
+            this.setState({
+                commentList: [newComment, ...this.state.commentList]
+            })
+        
+    }
     render = () => {
         const {
             state: {
@@ -81,6 +118,14 @@ class Boards extends Component {
         return (
 
             <div className="board-wrapper">
+                <CommentSlideIn
+                    open={this.state.open}
+                    taskID={this.state.selectedRow}
+                    close={() => this.handleSlideInClose()}
+                    commentList={this.state.commentList}
+                    updateComment={(comment) => this.updateCommentList(comment)}
+                    taskName={this.state.taskName}
+                />
                 <table>
                     <thead>
                         <tr>
@@ -100,7 +145,7 @@ class Boards extends Component {
                                 'selected'
                                 :
                                 ''}
-                            onClick={() => selectRow(obj.id)}
+                            onClick={() => selectRow(obj.id, obj.name)}
                         >
                             {columns.map((col_name) => {
                                 return (
