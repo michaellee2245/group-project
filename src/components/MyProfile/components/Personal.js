@@ -17,6 +17,12 @@ export default class Personal extends Component {
     phone: '',
   }
 
+  handleChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    this.setState({ [key]: value })
+  }
+
   handleClickSave = () => {
     Axios.put('api/user/title', { title: this.state.title })
   }
