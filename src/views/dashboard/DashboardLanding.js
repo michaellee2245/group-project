@@ -67,7 +67,7 @@ class DashboardLanding extends Component {
             <Route path='/dashboard/inbox' render={(props) => <Inbox {...props} />} />
             <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} />} />
-
+            <Route path='/dashboard/Profile' render={(props) => <MyProfile {...props} />} />
           </Switch>
         </div>
 

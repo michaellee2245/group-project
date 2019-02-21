@@ -30,6 +30,7 @@ export default class Password extends Component {
           <span className='lable'>Confirm new Password</span>
           <input value={this.state.confirmNewPassword} name='confirmNewPassword' className='confirm_new_password' onChange={this.handleChange}></input>
         </div>
+        <button onClick={this.save} className='save-btn'>Save</button>
       </div>
 
 

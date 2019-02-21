@@ -1,3 +1,7 @@
+* {
+  padding:0;
+  margin:0;
+}
 .personal_info_container{
   width: 500px;
   height: 500px;
@@ -62,7 +66,58 @@
 }
 
 .edit_form{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 200px;
-  width: 500px;
-}
+  width: 600px;
 
+  .header{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 30px;
+    margin-left: 20px;
+  }
+  
+  .close{
+    position: absolute;
+    top:0;
+    right:0;
+    font-weight: 800;
+    font-size: 40px;
+    &:hover{
+      cursor: pointer;
+
+    }
+  }
+
+  .input{
+    #title_input{
+      height: 35px;
+      width: 400px;
+      border-color: #009aff;
+    }
+  }
+
+  .save-title-btn{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .save{
+    font-size: 18px;
+    height: 40px;
+    width: 70px;
+    outline: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-right: 20px;
+    color: white;
+    background-color: #009aff;
+    &:hover{
+      cursor: pointer;
+      background-color: #0051ff
+    }
+  }
+}

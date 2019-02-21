@@ -45,18 +45,18 @@ export default class MyProfile extends Component {
                 </div>
               </div>
               <ul className='list_tabs'>
-                <NavLink to='/dashboard/personal-info' activeClassName='is-selected'>
+                <NavLink to='/dashboard/profile/personal-info' activeClassName='is-selected'>
                   <li>Personal Info</li>
                 </NavLink>
-                <NavLink to='/dashboard/password' activeClassName='is-selected'>
+                <NavLink to='/dashboard/profile/password' activeClassName='is-selected'>
                   <li>Password</li>
                 </NavLink>
               </ul>
             </section>
             <section className='user_profile_bottom_container'>
               <Switch>
-                <Route path='/dashboard/personal-info' component={Personal} />
-                <Route path="/dashboard/password" component={Password} />
+                <Route path='/dashboard/profile/personal-info' component={Personal} />
+                <Route path="/dashboard/profile/password" component={Password} />
               </Switch>
             </section>
           </div>

@@ -13,12 +13,13 @@ export default class Personal extends Component {
     email: 'testaccount@monday.com',
     phone: '801-333-4444',
     title: '',
+    email: '',
+    phone: '',
   }
 
-  handleClickSave = () =>{
- Axios.put('api/user/title', {title:this.state.title})
+  handleClickSave = () => {
+    Axios.put('api/user/title', { title: this.state.title })
   }
-
 
   render() {
     return (
@@ -28,7 +29,6 @@ export default class Personal extends Component {
           <div className='icon_container'>
             <i class="far fa-user"></i>
           </div>
-
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
               <span className='edit_text_title'>Title:</span>
@@ -37,23 +37,24 @@ export default class Personal extends Component {
             </div>} modal contentStyle={contentStyle}>
             {close => (
               <div className="edit_form">
-                <a className="close" href={'../Dashboard/personal-info'} onClick={close}>&times;</a>
+                <div className="close" onClick={close}>&times;</div>
                 <div className="header"> Title</div>
+                <br />
                 <div className="ui input">
                   <input type='text' id='title_input' name='title' value={this.state.title} onChange={this.handleChange} />
                 </div>
-                <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                <br />
+                <div className='save-title-btn'>
+                  <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                </div>
               </div>
             )}
           </Popup>
         </div>
-
-        
         <div className='profile_edit_container'>
           <div className='icon_container'>
             <i class="fas fa-envelope-square"></i>
           </div>
-
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
               <span className='edit_text_title'>Email:</span>
@@ -62,16 +63,19 @@ export default class Personal extends Component {
             </div>} modal contentStyle={contentStyle}>
             {close => (
               <div className="edit_form">
-                <a className="close" href={'../Dashboard/personal-info'} onClick={close}>&times;</a>
-                {/* <div className="header"> Title</div> */}
+                <div className="close" onClick={close}>&times;</div>
+                <div className="header"> Email</div>
+                <br />
                 <div className="ui input">
-                  <input type='text' placeholder='title "required"' name='title' value={this.state.title} onChange={this.handleChange} />
+                  <input type='text' id='title_input' name='title' value={this.state.email} onChange={this.handleChange} />
                 </div>
-                <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                <br />
+                <div className='save-title-btn'>
+                  <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                </div>
               </div>
             )}
           </Popup>
-          
         </div>
         <div className='profile_edit_container'>
           <div className='icon_container'>
@@ -85,36 +89,20 @@ export default class Personal extends Component {
             </div>} modal contentStyle={contentStyle}>
             {close => (
               <div className="edit_form">
-                <a className="close" href={'../Dashboard/personal-info'} onClick={close}>&times;</a>
-                {/* <div className="header"> Title</div> */}
+                <div className="close" onClick={close}>&times;</div>
+                <div className="header"> Phone</div>
+                <br />
                 <div className="ui input">
-                  <input type='text' placeholder='title "required"' name='title' value={this.state.title} onChange={this.handleChange} />
+                  <input type='text' id='title_input' name='title' value={this.state.phone} onChange={this.handleChange} />
                 </div>
-                <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                <br />
+                <div className='save-title-btn'>
+                  <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                </div>
               </div>
             )}
           </Popup>
-          
-
-
-          
         </div>
-
-
-
-        <Popup
-          trigger={<button className="editTitle">edit</button>} modal contentStyle={contentStyle}>
-          {close => (
-            <div className="edit_form">
-              <a className="close" href={'../Dashboard/personal-info'} onClick={close}>&times;</a>
-              <div className="header"> </div>
-              <div className="ui input">
-                <input type='text' placeholder='title "required"' name='title' value={this.state.title} onChange={this.handleChange} />
-              </div>
-              <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
-            </div>
-          )}
-        </Popup>
       </div>
     )
   }
