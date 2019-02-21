@@ -5,6 +5,7 @@ const isAuthenticated = require('./helpers/authorize');
 const onBoard = require('./helpers/on-board');
 const onTask = require('./helpers/on-task');
 const teamMates = require('./helpers/team-mates');
+const taskLord = require('./helpers/task-lord');
 
 router.use((req, res, next) => {
   req.db = req.app.get('db')
@@ -104,6 +105,12 @@ router.put('/end-date', isAuthenticated, onTask, (req, res, next) => {
 router.put('/time-est', isAuthenticated, onTask, (req, res, next) => {
   req.db.task.set_time_est([req.body.taskID, req.body.timeEst])
     .then(() => res.status(200).send('time estimate set'))
+    .catch(err => serverError(err, res));
+})
+
+router.put('/name', isAuthenticated, taskLord, (req, res, next) => {
+  req.db.task.set_name([req.body.taskID, req.body.name])
+    .then(() => res.status(200).send('name set'))
     .catch(err => serverError(err, res));
 })
 
