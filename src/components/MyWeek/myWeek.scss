@@ -1,6 +1,6 @@
 .personal-assistant-content-header{
   display: flex;
-  justify-content: center;
+  margin-left: 30%;
   align-items: center;
   height: 80px;
   width: 100vw;
@@ -8,10 +8,10 @@
 
 .personal-assistant-weeks-navigator-component{
   display: flex;
-  justify-content: space-evenly;
+  // justify-content: flex-start;
   align-items: center;
   height: 37px;
-  width: 750px;
+  width: 100vw;
 }
 
 .prev-week-button, .next-week-button{

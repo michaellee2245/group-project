@@ -5,6 +5,9 @@ import DashSideNav from '../../components/Dash-side-nav/DashSideNav'
 import Inbox from '../../components/Inbox/Inbox'
 import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
+import Admin from '../../components/Admin/Admin'
+import { dashboard } from '../../redux/actions'
+import { Switch, Route } from 'react-router-dom';
 import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
 import BoardsView from '../dashboard/BoardsView/BoardsView';
@@ -13,11 +16,11 @@ import CommentSlideIn from '../../components/CommentSlideIn/CommentSlideIn';
 
 class DashboardLanding extends Component {
 
-  state = {
-    shownComponent: <BoardsView />,
 
+
+  componentDidMount = () => {
+    this.props.dashboard()
   }
-
 
 
   test = () => {
@@ -31,15 +34,8 @@ class DashboardLanding extends Component {
   changeViews = (e) => {
     const name = e.target.title
 
-    switch (name) {
-      case 'Inbox': {
-        return this.setState({ shownComponent: <Inbox /> })
-      }
-      case 'MyWeek': {
-        return this.setState({ shownComponent: <MyWeek /> })
-      }
-      default:
-    }
+    this.props.history.push(`/dashboard/${name}`)
+
 
   }
 
@@ -58,24 +54,40 @@ class DashboardLanding extends Component {
 
       <div className='dashboard-wrapper'>
         <div className='topNavBar'>
-          <TopNavBar />
-        </div>
-        <DashSideNav changeViews={this.changeViews} />
-        <div className="dashboard-inner-wrapper">
 
-          {this.state.shownComponent}
+          <TopNavBar page={this.props.history.push} />
+        </div>
+        <DashSideNav
+          changeViews={this.changeViews}
+          dashboard={this.props.dashboards}
+        />
+
+        <div className='dashboard-wrapper-inner'>
+
+          <Switch >
+            <Route path='/dashboard/inbox' render={(props) => <Inbox {...props} />} />
+            <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
+            <Route path='/dashboard/Admin' render={(props) => <Admin {...props} />} />
+
+          </Switch>
         </div>
         <CommentSlideIn />
 
 
+
+
+
       </div>
+
+
     )
   }
 }
 const mapStateToProps = state => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    dashboards: state.user.dashboard
   }
 }
 
-export default connect(mapStateToProps, {})(DashboardLanding)
+export default connect(mapStateToProps, { dashboard })(DashboardLanding)
