@@ -1,7 +1,8 @@
 .inbox-wrapper-component {
     display: flex;
-    height: 100vh;
-    max-width: calc(100% - 19.89vw);
+    min-height: 100vh;
+    height: fit-content;
+    width: calc(100% - 19.89vw);
     flex-direction: column;
     float: right;
     background-color: orange;
@@ -75,5 +76,7 @@
     background-color: #6495ED;
    // max-width: 80vw;
     width: calc(100% - 5vw);
+    display: flex;
+    flex-direction: column;
 
 }
