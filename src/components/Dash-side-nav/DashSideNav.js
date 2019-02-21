@@ -36,14 +36,15 @@ class DashSideNav extends Component {
   }
 
   publicBoardCount = () => {
-    return this.state.publicCount.length
+    return this.props.dashboard.length
   }
 
   privateBoardCount = () => {
     return this.state.privateCount.length
   }
 
-  showMenu = () => {
+  showMenu = (e) => {
+    this.props.changeViews(e)
     this.setState({ hidden: !this.state.hidden})
     
   }
@@ -85,14 +86,14 @@ class DashSideNav extends Component {
             
             >
               <a href="#" className="link-wrapper router" onClick = {this.showMenu}>
-                <i class="material-icons">menu</i><span className="title">Boards public</span>
-                <span className="title"> ({this.publicBoardCount()})</span>
+                <i title="boards" class="material-icons">menu</i><span className="title">Boards public</span>
+                <span title="boards" className="title"> ({this.publicBoardCount()})</span>
               </a>
               <div className = 'drop-menu'>
               {
                 this.state.hidden
                 ?(
-                  <DropDown nav = {this.state.nav} />
+                  <DropDown nav = {this.props.dashboard} />
                 )
                 :(null)
               }

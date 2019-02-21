@@ -8,6 +8,7 @@ class Boards extends Component {
     state = {
         boardID: this.props.board_id,
         selectedRow: -1,
+        selectedColumn: '',
         items: [],
     };
 
@@ -17,6 +18,12 @@ class Boards extends Component {
         this.setState({
             selectedRow: id,
         });
+    }
+
+    selectColumn = id => {
+        this.setState({
+            selectedColumn: id,
+        })
     }
 
     // add axios request to create row
@@ -53,17 +60,26 @@ class Boards extends Component {
             state: {
                 selectedRow,
                 items,
-
+                selectedColumn
             },
             selectRow,
+            selectColumn,
             addRowOnEnter,
         } = this;
 
-      const { board_id, board_name } = this.props
+        const { board_id, board_name } = this.props
+        const columns = ['name',
+            'owner',
+            'priority',
+            'status',
+            'start_date',
+            'end_date',
+            'person',
+            'time_est']
 
         console.log(items)
         return (
-            
+
             <div className="board-wrapper">
                 <table>
                     <thead>
@@ -78,26 +94,25 @@ class Boards extends Component {
                             <th>Time Est.</th>
                         </tr>
                     </thead>
-                    {items.map(({ id, name, owner, priority, status, start_date, end_date, person, time_est }) => (
+                    {items.map((obj) => (
                         <tr
-                            className={id === selectedRow ?
+                            className={obj.id === selectedRow ?
                                 'selected'
                                 :
                                 ''}
-                            onClick={() => selectRow(id)}
+                            onClick={() => selectRow(obj.id)}
                         >
-                            <td
-                            // here add events for all task cells
-                            >{name}</td>
-                            <td
-                            // here add events for all owner cells
-                            >{owner}</td>
-                            <td>{priority}</td>
-                            <td>{status}</td>
-                            <td>{start_date}</td>
-                            <td>{end_date}</td>
-                            <td>{person}</td>
-                            <td>{time_est}</td>
+                            {columns.map((col_name) => {
+                                return (
+                                    <td
+                                        className={obj.id === selectedRow &&
+                                            col_name === selectedColumn ?
+                                            'selected' : ''}
+                                        onClick={
+                                            () => selectColumn(col_name)
+                                        } >{obj[col_name]}</td>)
+                            })}
+
                         </tr>
                     ))}
                     {/* <tr>

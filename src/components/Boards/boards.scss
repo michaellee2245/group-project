@@ -67,8 +67,11 @@ table {
     }
     &.selected {
       th,
-      td {
+      tr {
         background-color: white !important;
+      }
+      td{
+          background-color:blue !important;
       }
     }
   }

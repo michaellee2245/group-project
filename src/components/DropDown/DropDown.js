@@ -19,7 +19,7 @@ class DropDown extends Component {
           
         
           return (
-            <li className = 'drop-down-nav' ><a href='#' className = 'board-name'>{i.board}</a></li>
+            <li className = 'drop-down-nav' ><a href='#' className = 'board-name'>{i.name}</a></li>
           )
         })
         return (
