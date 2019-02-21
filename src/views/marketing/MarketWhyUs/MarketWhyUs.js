@@ -35,16 +35,16 @@ class WhyUs extends Component {
     render() {
         return (
             <div className="why-us-container">
-                <MarketTopNav 
+                {/* <MarketTopNav 
                     displayModal={this.state.displayModal}
                     toggle={this.handleClick}
-                />
+                 />  */}
                 <div className="header-wrapper">
                     <h1 className="header-text">
                         <span className="red-text"> 350,000 </span> people, from <span className="blue-text"> 76 </span> countries, in <span className="green-text"> 50,000 </span> teams manage their work with monday.com
                     </h1>
                     <GetStartedBtn 
-                        changeNav={this.handleClick}
+                        changeNav={this.props.toggle}
                     />
                     <img src={arrow} alt='arrow' style={{
                         height: 'auto',
@@ -98,7 +98,7 @@ class WhyUs extends Component {
                         <img src={frost} alt='wework logo' className="logos" />
                     </div>
                     <GetStartedBtn 
-                        changeNav={this.handleClick}
+                        changeNav={this.props.toggle}
                     />
 
 
