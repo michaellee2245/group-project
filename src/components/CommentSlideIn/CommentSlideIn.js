@@ -9,7 +9,8 @@ class CommentSlideIn extends Component {
         taskName: '',
         commentText: '',
         taskID: 127,
-        commentList: []
+        commentList: [],
+        currentTask: 'Current task name'
     }
 
     componentDidMount = () => {
@@ -35,11 +36,11 @@ class CommentSlideIn extends Component {
     }
 
     taskNameChange = () => {
-        axios.put('api/task/name', {taskID: this.state.taskID, name: this.state.taskName})
+        axios.put('api/task/name', { taskID: this.state.taskID, name: this.state.taskName })
     }
 
     addComment = () => {
-        axios.post('api/comment', {taskID: this.state.taskID, content: this.state.commentText})
+        axios.post('api/comment', { taskID: this.state.taskID, content: this.state.commentText })
             .then(response => {
                 this.setState({
                     commentList: [response.data, ...this.state.commentList]
@@ -47,7 +48,7 @@ class CommentSlideIn extends Component {
             })
     }
 
-    
+
 
     render() {
 
@@ -55,12 +56,33 @@ class CommentSlideIn extends Component {
 
         const taskCommentList = this.state.commentList.map((task, i) => {
             return (
-                <div 
+                <div
                     key={i}
                     className="comment-container"
                 >
-                    <div>
-                        {task.content}
+                    <div className="inner-comment">
+                        <div className="comment-info">
+                            <div className="name-pic">
+                                <div
+                                    id="pic" 
+                                    style={{
+                                        backgroundColor: '#fb275d',
+                                        height: '25px',
+                                        width: '25px',
+                                        borderRadius: '50%',
+                                        backgroundImage: `url(${task.author_pic})`,
+                                        backgroundSize: 'contain',
+                                        backgroundRepeat: 'no-repeat'
+                                    }}
+                                
+                                />
+                                {task.author}
+                            </div>
+                            <div>{task.time_posted}</div>
+                        </div>
+                        <div className="content">
+                            {task.content}
+                        </div>
                     </div>
                 </div>
             )
@@ -71,7 +93,7 @@ class CommentSlideIn extends Component {
             <div
                 className="slide-in-container"
                 style={{
-                    transform: this.state.open ? 'translateX(0px)' : 'translateX(350px)'
+                    transform: this.state.open ? 'translateX(0px)' : 'translateX(550px)'
                 }}
             >
                 <div className="content-container">
@@ -82,19 +104,19 @@ class CommentSlideIn extends Component {
                         X
                     </div>
                     <form
-                        onSubmit= {e => { e.preventDefault(); this.taskNameChange()} }
+                        onSubmit={e => { e.preventDefault(); this.taskNameChange() }}
                     >
                         <input
                             className="title-input"
                             type="text"
-                            placeholder="new"
+                            placeholder={this.state.currentTask}
                             name="taskName"
                             onChange={this.handleChange}
                         />
                     </form>
                     <div className="divider" />
                     <form
-                        onSubmit= {e => { e.preventDefault(); this.addComment()} }
+                        onSubmit={e => { e.preventDefault(); this.addComment() }}
                     >
                         <input
                             className="comment"
