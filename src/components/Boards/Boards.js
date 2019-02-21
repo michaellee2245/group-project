@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './boards.scss';
 import CommentSlideIn from '../CommentSlideIn/CommentSlideIn';
+import DashColumnPicker from '../DashColumnPicker/DashColumnPicker';
 
 class Boards extends Component {
 
@@ -13,38 +14,33 @@ class Boards extends Component {
         items: [],
         commentList: [],
         open: false,
-        taskName:'',
+        taskName: '',
     };
 
     currentId = 1;
 
-    selectRow = (id, name) => {
-        this.setState({
-            selectedRow: id,
-            taskName: name,
-        });
-    }
+    // selectRow = (id, name) => {
+    //     this.setState({
+    //         selectedRow: id,
+    //         taskName: name,
+    //     });
+    // }
 
-    selectColumn = id => {
-        this.setState({
-            selectedColumn: id,
-
-        }, () => {
-            if (this.state.selectedColumn === 'name') {
-                axios.get(`/api/comment/on-task/${this.state.selectedRow}`)
-                    .then(response => {
-                        const list = response.data.reverse()
-                        this.setState({
-                            commentList: list
-                        })
-                    })
+    openCommentSlideIn = (id) => {
+        axios.get(`/api/comment/on-task/${id}`)
+            .then(response => {
+                const list = response.data.reverse()
                 this.setState({
-                    open: !this.state.open
+                    commentList: list
                 })
-            }
-
+            })
+        this.setState({
+            open: !this.state.open
         })
     }
+
+
+
     handleSlideInClose = () => {
         this.setState({
             open: !this.state.open
@@ -86,11 +82,41 @@ class Boards extends Component {
     }
 
     updateCommentList = (newComment) => {
-        
-            this.setState({
-                commentList: [newComment, ...this.state.commentList]
-            })
-        
+
+        this.setState({
+            commentList: [newComment, ...this.state.commentList]
+        })
+
+    }
+    updateCell = (cellType, id, name) => {
+        this.setState({
+            selectedRow: id,
+            selectedColumn: cellType,
+            taskName: name,
+        });
+        switch (cellType) {
+            case 'name':
+                this.openCommentSlideIn(id)
+                break;
+            case 'owner':
+
+                break;
+            case 'status':
+
+                break;
+            case 'start_date':
+
+                break;
+            case 'end_date':
+
+                break;
+            case 'person':
+
+                break;
+            case 'time_est':
+
+                break;
+        }
     }
     render = () => {
         const {
@@ -100,7 +126,7 @@ class Boards extends Component {
                 selectedColumn
             },
             selectRow,
-            selectColumn,
+            updateCell,
             addRowOnEnter,
         } = this;
 
@@ -126,6 +152,7 @@ class Boards extends Component {
                     updateComment={(comment) => this.updateCommentList(comment)}
                     taskName={this.state.taskName}
                 />
+
                 <table>
                     <thead>
                         <tr>
@@ -145,17 +172,25 @@ class Boards extends Component {
                                 'selected'
                                 :
                                 ''}
-                            onClick={() => selectRow(obj.id, obj.name)}
+                        // onClick={() => selectRow(obj.id, obj.name)}
                         >
                             {columns.map((col_name) => {
+                                const selected = obj.id === selectedRow &&
+                                col_name === selectedColumn
                                 return (
                                     <td
-                                        className={obj.id === selectedRow &&
-                                            col_name === selectedColumn ?
+                                        className={ selected ?
                                             'selected' : ''}
                                         onClick={
-                                            () => selectColumn(col_name)
-                                        } >{obj[col_name]}</td>)
+                                            () => updateCell(col_name, obj.id, obj.name)
+                                        } >
+                                        {obj[col_name]}
+                                        <DashColumnPicker
+                                            id={`col-${obj.id}-${col_name}`}
+                                            modalType={col_name}
+                                            selected={selected}
+                                        />
+                                    </td>)
                             })}
 
                         </tr>
