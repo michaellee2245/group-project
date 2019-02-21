@@ -42,21 +42,20 @@ router.get('/modifiable', isAuthenticated, (req, res, next) => {
 // GET /api/board/id/:name
 // get board id by name
 // must be an approved team member to access this information
-// NOTE: if their are duplicate board names,
+// NOTE: if there are duplicate board names,
 //       then only the most recently created will be sent
 router.get('/id/:name', isAuthenticated, (req, res, next) => {
   req.db.board.get_id_by_name([req.params.name])
-    .then(id => sendBoardID(id[0], req.params.name, req, res, next))
+    .then(id => sendBoardID(id[0].id, req.params.name, req, res, next))
     .catch(err => serverError(err, res))
 })
 
-// GET /api/board/t/:teamID
+// GET /api/board/team/:teamID
 // get all the boards belonging to a team
-// (the t in the path stands for team)
 // you must be an approved team member to access this information
-router.get('/t/:teamID', isAuthenticated, onTeam, (req, res, next) => {
+router.get('/team/:teamID', isAuthenticated, onTeam, (req, res, next) => {
   req.db.board.on_team([req.params.teamID])
-    .then(boards => req.status(200).json(boards))
+    .then(boards => res.status(200).json(boards))
     .catch(err => serverError(err, res));
 })
 
@@ -64,7 +63,7 @@ router.get('/t/:teamID', isAuthenticated, onTeam, (req, res, next) => {
 // get all the boards you have access to have names beginning with searchTerm
 router.get('/name/:searchTerm', isAuthenticated, (req, res, next) => {
   req.db.board.name_search([req.params.searchTerm + '%', req.user[0].id])
-    .then(boards => req.status(200).json(boards))
+    .then(boards => res.status(200).json(boards))
     .catch(err => serverError(err, res));
 })
 
@@ -89,7 +88,7 @@ router.delete('/:boardID', isAuthenticated, boardLord, (req, res, next) => {
 // must be manager or board owner to rename.
 router.put('/name', isAuthenticated, boardLord, (req, res, next) => {
   req.db.board.rename([req.body.name, req.body.boardID])
-    .then(() => res.status(200).send('deleted'))
+    .then(() => res.status(200).send('renamed'))
     .catch(err => serverError(err, res));
 })
 
@@ -98,7 +97,7 @@ router.put('/name', isAuthenticated, boardLord, (req, res, next) => {
 // must be manager or board owner to update description
 router.put('/description', isAuthenticated, boardLord, (req, res, next) => {
   req.db.board.description([req.body.description, req.body.boardID])
-    .then(() => res.status(200).send('renamed'))
+    .then(() => res.status(200).send('description updated'))
     .catch(err => serverError(err, res));
 })
 

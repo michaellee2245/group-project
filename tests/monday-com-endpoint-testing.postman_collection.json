@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "704303dc-0aed-45b6-b7be-79c4b32ed147",
+		"_postman_id": "37a1f24c-fade-4f47-8f08-3c8687312756",
 		"name": "monday-com-endpoint-testing",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -923,13 +923,20 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"userID\": 26\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/follow/26",
+							"raw": "localhost:8080/api/user/follow",
 							"host": [
 								"localhost"
 							],
@@ -937,8 +944,7 @@
 							"path": [
 								"api",
 								"user",
-								"follow",
-								"26"
+								"follow"
 							]
 						}
 					},
@@ -972,13 +978,20 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"userID\": 30\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/follow/30",
+							"raw": "localhost:8080/api/user/follow",
 							"host": [
 								"localhost"
 							],
@@ -986,8 +999,7 @@
 							"path": [
 								"api",
 								"user",
-								"follow",
-								"30"
+								"follow"
 							]
 						}
 					},
@@ -1345,13 +1357,20 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"userID\": 26\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/unfollow/26",
+							"raw": "localhost:8080/api/user/unfollow",
 							"host": [
 								"localhost"
 							],
@@ -1359,8 +1378,7 @@
 							"path": [
 								"api",
 								"user",
-								"unfollow",
-								"26"
+								"unfollow"
 							]
 						}
 					},
@@ -1455,7 +1473,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/user/details/me",
+							"raw": "localhost:8080/api/user/my-details",
 							"host": [
 								"localhost"
 							],
@@ -1463,8 +1481,7 @@
 							"path": [
 								"api",
 								"user",
-								"details",
-								"me"
+								"my-details"
 							]
 						}
 					},
@@ -1878,13 +1895,20 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"messageID\": {{message_to_starburst}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/message/read/:msgid",
+							"raw": "localhost:8080/api/message/read/",
 							"host": [
 								"localhost"
 							],
@@ -1893,13 +1917,7 @@
 								"api",
 								"message",
 								"read",
-								":msgid"
-							],
-							"variable": [
-								{
-									"key": "msgid",
-									"value": "{{msgid}}"
-								}
+								""
 							]
 						}
 					},
@@ -2075,25 +2093,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"newContent\": \"I think you are the best ever\"\n}"
+							"raw": "{\n\t\"messageID\": {{msgid}},\n\t\"content\": \"I think you are the best ever\"\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/message/id/:msgid",
+							"raw": "localhost:8080/api/message",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"message",
-								"id",
-								":msgid"
-							],
-							"variable": [
-								{
-									"key": "msgid",
-									"value": "{{msgid}}"
-								}
+								"message"
 							]
 						}
 					},
@@ -2656,13 +2666,20 @@
 					],
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"teamID\": {{new_team_id}}\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/quit/:id",
+							"raw": "localhost:8080/api/team/quit",
 							"host": [
 								"localhost"
 							],
@@ -2670,14 +2687,7 @@
 							"path": [
 								"api",
 								"team",
-								"quit",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{new_team_id}}"
-								}
+								"quit"
 							]
 						}
 					},
@@ -2915,9 +2925,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -2930,10 +2937,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"theirID\": 20\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/us",
+							"raw": "localhost:8080/api/team/us/:theirID",
 							"host": [
 								"localhost"
 							],
@@ -2941,7 +2948,14 @@
 							"path": [
 								"api",
 								"team",
-								"us"
+								"us",
+								":theirID"
+							],
+							"variable": [
+								{
+									"key": "theirID",
+									"value": "20"
+								}
 							]
 						}
 					},
@@ -2973,9 +2987,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -2988,10 +2999,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"organization\": \"the great candy factory in the sky\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/organization",
+							"raw": "localhost:8080/api/team/organization/:organization",
 							"host": [
 								"localhost"
 							],
@@ -2999,7 +3010,14 @@
 							"path": [
 								"api",
 								"team",
-								"organization"
+								"organization",
+								":organization"
+							],
+							"variable": [
+								{
+									"key": "organization",
+									"value": "the great candy factory in the sky"
+								}
 							]
 						}
 					},
@@ -3041,9 +3059,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -3056,10 +3071,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"{{firstLetter}}\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team/by-name",
+							"raw": "localhost:8080/api/team/by-name/:name",
 							"host": [
 								"localhost"
 							],
@@ -3067,7 +3082,14 @@
 							"path": [
 								"api",
 								"team",
-								"by-name"
+								"by-name",
+								":name"
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "{{firstLetter}}"
+								}
 							]
 						}
 					},
@@ -3221,17 +3243,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"teamID\": \"{{new_team_id}}\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/team",
+							"raw": "localhost:8080/api/team/:teamID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"team"
+								"team",
+								":teamID"
+							],
+							"variable": [
+								{
+									"key": "teamID",
+									"value": "{{new_team_id}}"
+								}
 							]
 						}
 					},
@@ -3570,8 +3599,8 @@
 									"    pm.response.to.be.json;",
 									"});",
 									"",
-									"pm.test(\"Response includes board id 28\", function () {",
-									"    pm.expect(pm.response.json().some(e => e.id === 28)).to.be.true;",
+									"pm.test(\"Response includes board id\", function () {",
+									"    pm.expect(pm.response.json().id).to.be.equal(pm.environment.get('boardid0'));",
 									"});",
 									""
 								],
@@ -3601,7 +3630,7 @@
 							"variable": [
 								{
 									"key": "name",
-									"value": "tlla"
+									"value": "{{boardname}}"
 								}
 							]
 						}
@@ -3871,6 +3900,277 @@
 					"response": []
 				},
 				{
+					"name": "rename random board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e8b28c6b-fdcf-4b77-9d3e-a766cf7d2d37",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states renamed\", function () {",
+									"    pm.expect(pm.response.text()).equals('renamed');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"awesome\",\n\t\"boardID\": {{boardid0}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add description to random board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d6ab0e7-966f-4ff7-a0f0-291131f457df",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states description updated\", function () {",
+									"    pm.expect(pm.response.text()).equals('description updated');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"smelly\",\n\t\"boardID\": {{boardid0}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/description",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								"description"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer ownership of the random board to skittles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1bcdabca-9e13-4fe5-b8c9-b6da2d5f1d1c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states ownership transferred\", function () {",
+									"    pm.expect(pm.response.text()).equals('ownership transferred');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ownerID\": 17,\n\t\"boardID\": {{boardid0}}\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/owner",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								"owner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get board by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9a0a1a7-750d-458a-aa74-87b0dd5597de",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct board\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === 'awesome')).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/by-id/:boardID",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								"by-id",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid0}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "see all boards on team 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "39806280-7858-40bf-8d4c-ef20ac61fe42",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body is json\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response includes correct board\", function () {",
+									"    pm.expect(pm.response.json().some(e => e.name === 'awesome')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.name === 'Milk Chocolate Deliciousness')).to.be.true;",
+									"    pm.expect(pm.response.json().some(e => e.name === 'skittles board')).to.not.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/board/team/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"board",
+								"team",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "delete the random board",
 					"event": [
 						{
@@ -3908,17 +4208,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid0}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid0}}"
+								}
 							]
 						}
 					},
@@ -3962,17 +4269,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid1}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid1}}"
+								}
 							]
 						}
 					},
@@ -4016,17 +4330,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid3}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid3}}"
+								}
 							]
 						}
 					},
@@ -4557,7 +4878,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"start_date\": \"{{start_date}}\"\n}"
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"startDate\": \"{{start_date}}\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/task/start-date",
@@ -4625,7 +4946,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"end_date\": \"{{end_date}}\"\n}"
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"endDate\": \"{{end_date}}\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/task/end-date",
@@ -4680,7 +5001,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"time_est\": 3.8\n}"
+							"raw": "{\n\t\"taskID\": {{brochure_task_id}},\n\t\"timeEst\": 3.8\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/api/task/time-est",
@@ -5109,7 +5430,7 @@
 					"response": []
 				},
 				{
-					"name": "get all my tasks",
+					"name": "get all accessible tasks",
 					"event": [
 						{
 							"listen": "test",
@@ -7566,17 +7887,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c4_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment",
+							"raw": "localhost:8080/api/comment/:commentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"comment"
+								"comment",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c4_id}}"
+								}
 							]
 						}
 					},
@@ -7729,17 +8057,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c12_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment",
+							"raw": "localhost:8080/api/comment/:commentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"comment"
+								"comment",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c12_id}}"
+								}
 							]
 						}
 					},
@@ -7987,17 +8322,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c2_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment",
+							"raw": "localhost:8080/api/comment/:commentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"comment"
+								"comment",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c2_id}}"
+								}
 							]
 						}
 					},
@@ -8142,9 +8484,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -8157,10 +8496,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"taskID\": {{task_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment/on-task",
+							"raw": "localhost:8080/api/comment/on-task/:taskID",
 							"host": [
 								"localhost"
 							],
@@ -8168,7 +8507,14 @@
 							"path": [
 								"api",
 								"comment",
-								"on-task"
+								"on-task",
+								":taskID"
+							],
+							"variable": [
+								{
+									"key": "taskID",
+									"value": "{{task_id}}"
+								}
 							]
 						}
 					},
@@ -8201,9 +8547,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -8216,10 +8559,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"commentID\": {{c1_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/comment/by-id",
+							"raw": "localhost:8080/api/comment/by-id/:commentID",
 							"host": [
 								"localhost"
 							],
@@ -8227,7 +8570,14 @@
 							"path": [
 								"api",
 								"comment",
-								"by-id"
+								"by-id",
+								":commentID"
+							],
+							"variable": [
+								{
+									"key": "commentID",
+									"value": "{{c1_id}}"
+								}
 							]
 						}
 					},
@@ -9347,10 +9697,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"assignmentID\": {{assignment_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/assignment/by-id",
+							"raw": "localhost:8080/api/assignment/by-id/:assignmentID",
 							"host": [
 								"localhost"
 							],
@@ -9358,7 +9708,14 @@
 							"path": [
 								"api",
 								"assignment",
-								"by-id"
+								"by-id",
+								":assignmentID"
+							],
+							"variable": [
+								{
+									"key": "assignmentID",
+									"value": "{{assignment_id}}"
+								}
 							]
 						}
 					},
@@ -9625,17 +9982,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"assignmentID\": {{assignment_id}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/assignment",
+							"raw": "localhost:8080/api/assignment/:assignmentID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"assignment"
+								"assignment",
+								":assignmentID"
+							],
+							"variable": [
+								{
+									"key": "assignmentID",
+									"value": "{{assignment_id}}"
+								}
 							]
 						}
 					},
@@ -11953,7 +12317,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/dashboard/t/:teamID",
+							"raw": "localhost:8080/api/dashboard/team/:teamID",
 							"host": [
 								"localhost"
 							],
@@ -11961,7 +12325,7 @@
 							"path": [
 								"api",
 								"dashboard",
-								"t",
+								"team",
 								":teamID"
 							],
 							"variable": [

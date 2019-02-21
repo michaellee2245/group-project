@@ -1,0 +1,91 @@
+
+@import '../../views/marketing/variables.scss';
+
+
+@keyframes in {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+@keyframes out {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.slide-in-container {
+    background: white;
+    height: 100vh;
+    width: 550px;
+    right: 0;
+    top: 0;
+    position: fixed;
+    box-shadow: 0 0 10px 0 #999;
+    transition: all ease .5s;
+    overflow: scroll;
+
+}
+
+
+.content-container {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+#close-button {
+    align-self: flex-start;
+    cursor: pointer;
+    animation: in .3s;
+    font-weight: 600;
+    &:hover {
+        animation: out .3s;
+    }
+}
+
+form {
+    border: none;
+    padding: 20px;
+}
+
+.title-input {
+    padding: 15px;
+    width: 100%;
+    margin: 0px 0;
+    border: .5px dotted transparent;
+    font-size: 25px;
+    font-weight: 600;
+    color: black;
+    &:hover {
+        border: .5px dotted black;
+    }
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background: rgba(136, 134, 134, 0.555);
+    margin: auto;
+}
+
+.comment {
+    width: 90%;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 1px solid $blue-main;
+    font-size: 15px;
+}
+
+.comment-container {
+    width: 90%;
+    height: 150px;
+    background: blue;
+    margin: 5px auto;
+}

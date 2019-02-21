@@ -67,7 +67,7 @@ router.put('/read', isAuthenticated, messageRecipient, (req, res, next) => {
 // PUT /api/message
 // edit a direct message you've sent
 // requires req.body.messageID and req.body.content
-router.put('/id/:id', isAuthenticated, (req, res, next) => {
+router.put('/', isAuthenticated, messageSender, (req, res, next) => {
   req.db.message.edit_content([req.body.messageID, req.body.content])
     .then(r => res.status(200).send('edited'))
     .catch(err => serverError(err, res));

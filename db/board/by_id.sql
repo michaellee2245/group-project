@@ -1,7 +1,6 @@
-/* get all the boards that belong to a particular team */
+/* get board by id */
 
 SELECT
-  board.id AS id,
   board.name AS name,
   board.description AS description,
   board.team AS team_id,
@@ -11,4 +10,4 @@ SELECT
   team.name AS team FROM board
 JOIN person AS owner ON owner.id = board.owner
 JOIN team ON board.team = team.id
-WHERE board.team = $1;
+WHERE board.id = $1;
