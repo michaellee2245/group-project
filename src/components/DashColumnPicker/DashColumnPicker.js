@@ -12,77 +12,99 @@ class DashColumnPicker extends Component {
         });
     }
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
 
-    componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClick, false)
-    }
+    modalTypes = modalType => {
+        switch (modalType) {
+            case 'priority':
+                return (
+                    <div
+                        className="priority-container"
+                        onClick={this.stopPropagation}
+                    >
+                        <div
+                            name='High'
+                            className="column-modal-button high-priority"
+                            onClick={(e) => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'high-priority', 'High', e)}
+                        >
+                            High
+                        </div>
+                        <div className="column-modal-button medium-priority"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'medium-priority', 'Medium')}
 
-    handleClick = (e) => {
-        if (this.node.contains(e.target)) {
-            return;
+                        >
+                            Medium
+                        </div>
+                        <div className="column-modal-button low-priority"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'low-priority', 'Low')}
+
+                        >
+                            Low
+                        </div>
+                    </div>
+                )
+            case 'status':
+                return (
+
+                    <div
+                        className="status-container"
+                        onClick={this.stopPropagation}
+                    >
+                        <div className="column-modal-button done-status"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'done-status', 'Done')}
+
+                            >
+                            Done
+                        </div>
+                        <div className="column-modal-button in-progress-status"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'in-progress-status', 'In Progress')}
+
+                            >
+                            In Progress
+                        </div>
+                        <div className="column-modal-button on-hold-status"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'on-hold-status', 'On Hold')}
+
+                        >
+                            On Hold
+                        </div>
+                    </div>
+                )
+            case 'start_date':
+            case 'end_date':
+                return (
+                    <div
+                        className="date-container"
+
+                    >
+                        <DayPicker
+                            selectedDays={this.props.selectedDay}
+                            onDayClick={ (a, b) => this.props.handleDayClick(a,b, this.props.modalType, this.props.cellID)}
+                        />
+                    </div>
+                )
+            case 'owner':
+            case 'person':
+                return (
+                    ''
+                )
+            default:
+                return '';
         }
-
-        this.handleClickOutside();
     }
 
-    handleClickOutside = () => {
-        this.setState({
-            priority: false,
-            status: false,
-            date: false,
-            person: false,
+                    ) : null}
 
-        })
-    }
-
-    render() {
-
-        const { priority, status, date, person } = this.props;
+        const { modalType, openPicker } = this.props;
 
         return (
-                <div
-                    className="column-modal-container"
-                    ref={node => this.node = node}
-                >
 
-                    {priority ? (
+            <div
+                id={this.props.id}
+                className={`column-modal-container ${this.props.selected ? "" : "hidden"}`}
 
-                        <div className="priority-container">
-                            <div
-                                name='High'
-                                className="column-modal-button high-priority"
-                            > High
-                        </div>
-                            <div className="column-modal-button medium-priority"> Medium </div>
-                            <div className="column-modal-button low-priority"> Low </div>
-                        </div>
-
-                    ) : null}
-
-                    {status ? (
-
-                        <div className="status-container">
-                            <div className="column-modal-button done-status"> Done </div>
-                            <div className="column-modal-button in-progress-status" > In Progress </div>
-                            <div className="column-modal-button on-hold-status"> On Hold </div>
-                        </div>
-
-                    ) : null}
-
-                    {date ? (
-                        <div className="date-container">
-                            <DayPicker
-                                selectedDays={this.props.selectedDay}
-                                onDayClick={this.handleDayClick}
-                            />
-                        </div>
-                    ) : null}
-
-                </div>
-
+            >
+                {this.modalTypes(modalType)}
+            </div>
         )
     }
 }
