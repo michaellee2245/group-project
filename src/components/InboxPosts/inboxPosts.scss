@@ -1,10 +1,13 @@
 .post-container {
     border: 1px solid grey;
     border-radius: 10px;
-    height: 30vh;
+    min-height: 10vh;
     margin: 20px;
     float: right;
     max-width: 80vw;
+    position: relative;
+    
+    
     //display: inline-block;
 }
 .post-header {
@@ -52,8 +55,9 @@
      width: fit-content;
      margin: 0.5vw;
 }
-.material-icons {
-    font-size: 18px;
+
+.material-icons{
+    font-size: 18px
 }
 .user-name{
     display: flex;
@@ -93,21 +97,39 @@
     margin-bottom: 5px;
     margin-top: 5px;
     float: right;
+   // display: flex;
+    
+}
+.body-text-container{
+    display: flex;
+    justify-content: left;
+    //background-color: red;
+    //text-align: left;
 }
 
 .body-text{
-    max-height: 18vh;
-    overflow: hidden;
+     max-height: 35vh;
+    overflow: auto;
+    padding: 2px;
+    margin: 2px;
+    //background-color: chartreuse;
+    //scroll-behavior: auto;
 }
 
 .tool-span{
     border-right: 1px solid #c4c4c4;
     padding: 2px 10px 0 10px;
-   // display: flex;
-    align-content: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: baseline;
     :hover {
         color: #009aff;
       };
+}
+.tool-readcount{
+    padding: 1px;
+    margin: 1px;
+    
 }
 .tool-end{
     padding: 2px 10px 0 10px;
@@ -117,13 +139,25 @@
 
 }
 .button-read-container{
-    background-color: white;
+    // background-color: white;
     float: right;
+    position: absolute;
+    right: -60px;
+    top: 0;
 }
 .button-read-wrapper{
-    background-color: purple;
+    // background-color: purple;
 }
 
 .button-read{
     float: right;
+}
+#read-button {
+    font-size: 40px;
+    color: #009aff;
+    
+}
+.tool-readcount{
+    color: grey;
+    font-size: 13px;
 }

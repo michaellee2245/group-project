@@ -57,8 +57,8 @@ class InboxPosts extends Component {
                 </div>
                 <div className="post-body-wrapper">
                       <div className="post-body">
-                        <div className="body-text">
-                            <p>{content}</p>
+                        <div className="body-text-container">
+                            <p className="body-text">{content}</p>
                         </div>
                       </div>  
                 </div>
@@ -66,6 +66,7 @@ class InboxPosts extends Component {
                     <div className="post-bottom-division">
                         <div className="post-tools-area">
                             <span className="tool-span">
+                                <span className="tool-readcount">{this.props.readCount}</span>
                                 <i className="material-icons">remove_red_eye </i>
                             </span>
                             <span className="tool-span">
@@ -82,12 +83,12 @@ class InboxPosts extends Component {
                 </div>
             </div>
             <div className="button-read-container">
-            button read container
+            
                     <div className="button-read-wrapper">
-                    button read wrapper
+                    
                         <div className="button-read">
                             <span>
-                                <i className ="material-icons" onClick={this.toggleReadClick}>{this.props.commentRead ? 'check_box_outline_blank' : 'check_box'}</i>
+                                <i className ="material-icons" id="read-button" onClick={this.toggleReadClick}>{this.props.commentRead ? 'check_box_outline_blank' : 'check_box'}</i>
                             </span>
                         </div>
                     </div>

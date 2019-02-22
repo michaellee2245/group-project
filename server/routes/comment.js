@@ -86,5 +86,19 @@ router.post('/unread', isAuthenticated, (req,res,next) => {
     .then(() => res.status(200).send('marked unread'))
     .catch(err => serverError(err,res));
 })
+// POST /api/comment/like
+// like comment
+router.post('/like', isAuthenticated, (req,res,next) => {
+  req.db.comment.like([req.body.commentID, req.user[0].id])
+    .then(() => res.status(200).send('liked'))
+    .catch(err => serverError(err,res));
+})
+// POST /api/comment/unlike
+// unlike comment
+router.post('/unlike', isAuthenticated, (req,res,next) => {
+  req.db.comment.unlike([req.body.commentID, req.user[0].id])
+    .then(() => res.status(200).send('unliked'))
+    .catch(err => serverError(err,res));
+})
 
 module.exports = router;

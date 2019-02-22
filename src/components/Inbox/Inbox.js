@@ -19,7 +19,7 @@ class Inbox extends Component {
     }
 
     getDirectMessages= () => {
-        axios.get(`api/message`)
+        axios.get(`/api/message`)
         .then((response) => {
             console.log("these are the messages", response)
             this.setState({directMessages: response.data})
@@ -27,7 +27,7 @@ class Inbox extends Component {
     }
     
     getComments = () => {
-        axios.get(`api/comment`)
+        axios.get(`/api/comment`)
         .then((comments) => {
             console.log("these are the comments", comments)
             this.setState({comments: comments.data})
@@ -72,6 +72,7 @@ class Inbox extends Component {
                 key={index}
                 readFunction={this.markCommentRead}
                 commentRead={comment.read}
+                readCount={comment.read_count}
             />
          ) }
 
