@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
-import './inboxPosts.scss';
-import axios from 'axios';
+import './allUpdates.scss';
 
-class InboxPosts extends Component {
-
-
-    markAsRead=() => {
-        axios.post('/api/comment/read', {commentID: this.props.commentID })
-        .then(() => this.props.readFunction(this.props.commentID))
-    }
-
-    markAsUnread=()=>{
-        axios.post('/api/comment/unread', {commentID: this.props.commentID})
-        .then(() => this.props.readFunction(this.props.commentID) )
-    }
-
-    toggleReadClick=()=>{
-        console.log("toggleReadClick=>", this.props.commentRead)
-        if(this.props.commentRead){ this.markAsUnread()}
-        else {this.markAsRead()}
-        
-
-    }
+class AllUpdates extends Component {
 
     render() {
-        const {author, authorPic, boardName, content, taskName} = this.props
+        const {author, authorPic, boardName, content, taskName, toggleFunction} = this.props
         return (
             <div className="post-container">
             <div>
@@ -87,7 +67,7 @@ class InboxPosts extends Component {
                     button read wrapper
                         <div className="button-read">
                             <span>
-                                <i className ="material-icons" onClick={this.toggleReadClick}>{this.props.commentRead ? 'check_box_outline_blank' : 'check_box'}</i>
+                                <i className="material-icons" onClick={toggleFunction}>check_box</i>
                             </span>
                         </div>
                     </div>
@@ -100,4 +80,4 @@ class InboxPosts extends Component {
     }
 }
 
-export default InboxPosts;
+export default AllUpdates;

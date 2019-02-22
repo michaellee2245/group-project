@@ -1,0 +1,129 @@
+.post-container {
+    border: 1px solid grey;
+    border-radius: 10px;
+    height: 30vh;
+    margin: 20px;
+    float: right;
+    max-width: 80vw;
+    //display: inline-block;
+}
+.post-header {
+    padding: 5px;
+    
+}
+.post-title {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    height: fit-content;
+    width: calc(80% - 5vw);
+    left: 10px;
+    :hover {
+        color: #009aff;
+      };
+}
+
+#divider:hover{
+        color:grey; 
+}
+
+
+.profile-pic {
+    border-radius: 50%;
+    background: #c4c4c4;
+    height: 46px;
+    width: 46px;
+    
+}
+.router-link {
+    //position: absolute;
+    top: auto;
+    z-index: 2;
+    margin-bottom: 0;
+    :hover {
+        color: #009aff;
+      };
+     overflow: hidden;
+     white-space: nowrap; 
+     width: fit-content;
+     margin: 0.5vw;
+}
+.material-icons {
+    font-size: 18px;
+}
+.user-name{
+    display: flex;
+    padding: 5px;
+    margin: 2px;
+}
+.post-board-link {
+    display: flex;
+    padding: 5px;
+    margin: 2px;
+    align-items: baseline;
+    width: fit-content;
+    max-width: 70vw;
+   // background-color: black;
+    justify-content: space-evenly;
+    :hover {
+        color: #009aff;
+      };
+}
+.post-bottom-wrapper{
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.post-bottom-division{
+    border-top-width: 1px;
+    border-top: 1px solid #f3f3f3;
+    margin: 0 15px;
+    // display: inline-block;
+    // vertical-align: top;
+    
+}
+
+.post-tools-area{
+    color: #e5e5e5;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    float: right;
+}
+
+.body-text{
+    max-height: 18vh;
+    overflow: hidden;
+}
+
+.tool-span{
+    border-right: 1px solid #c4c4c4;
+    padding: 2px 10px 0 10px;
+   // display: flex;
+    align-content: center;
+    :hover {
+        color: #009aff;
+      };
+}
+.tool-end{
+    padding: 2px 10px 0 10px;
+    :hover {
+        color: #009aff;
+      };
+
+}
+.button-read-container{
+    background-color: white;
+    float: right;
+}
+.button-read-wrapper{
+    background-color: purple;
+}
+
+.button-read{
+    float: right;
+}

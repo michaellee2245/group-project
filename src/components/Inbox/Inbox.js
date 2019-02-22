@@ -8,11 +8,8 @@ import axios from 'axios';
 class Inbox extends Component {
 
     state = {
-        toggleDefaultInbox: true,
-        allUpdates: false,
         directMessages: [],
         comments:[],
-
 
     }
 
@@ -20,8 +17,6 @@ class Inbox extends Component {
         this.getDirectMessages()
         this.getComments()
     }
-
-    allUpdateShow = () => {}
 
     getDirectMessages= () => {
         axios.get(`api/message`)
@@ -40,8 +35,54 @@ class Inbox extends Component {
     }
 
     countComments =() => {
-      return  this.state.comments.length
+      return  this.state.comments.filter(comment => {
+          return !comment.read
+      }).length
     }
+
+    markCommentRead= (commentID) => {
+        
+        const comments = this.state.comments
+        console.log("comments and index", comments, commentID)
+       const comment = comments.find(comment=>comment.id === commentID)
+       comment.read = !comment.read
+        this.setState({comments: [...comments]})
+    }
+
+    showAllUpdates = () => {
+        return  this.state.comments.map(this.renderInboxPosts)
+    }
+
+    showOpenUpdates= () => {
+        return this.state.comments.filter( comment => {
+            return !comment.read
+            
+        }).map(this.renderInboxPosts)
+    }
+
+    renderInboxPosts = (comment, index)=>{
+        return(
+            <InboxPosts
+                author={comment.author}
+                authorPic={comment.author_pic}
+                boardName={comment.board}
+                content={comment.content}
+                taskName={comment.task}
+                commentID={comment.id}
+                key={index}
+                readFunction={this.markCommentRead}
+                commentRead={comment.read}
+            />
+         ) }
+
+         handleAllUpdates=(event)=> {
+             event.preventDefault()
+             this.setState({allUpdates: true})
+         }
+        handleOpenUpdates=(event)=>{
+            event.preventDefault()
+            this.setState({allUpdates:false})
+        }
 
     render() {
 
@@ -55,9 +96,9 @@ class Inbox extends Component {
 
                     <div className="inbox-title-actions">
                         <span className="inbox-toggle-mode">
-                            <a href="" className="active"> Open ({this.countComments()}) </a>
+                            <a href="" className="active" onClick={this.handleOpenUpdates}> Open ({this.countComments()}) </a>
                             /
-                <a href="" className="inbox-all-updates"> All Updates</a>
+                <a href="" className="inbox-all-updates" onClick={this.handleAllUpdates}> All Updates</a>
 
                         </span>
                     </div>
@@ -68,27 +109,13 @@ class Inbox extends Component {
                 <div className="middle-space-wrapper">
                     <div className="middle-space-wall">
                         <div className="posts-list">
-                            {/* <DefaultInbox></DefaultInbox> */}
-                            {/* <InboxPosts /> */}
-                            {this.state.comments.map( comment => {
-                                return(
-                                    // <div className="extra-div" style={{backgroundColor: 'chartruse'}}> div
-                                    <InboxPosts
-                                        author={comment.author}
-                                        authorPic={comment.author_pic}
-                                        boardName={comment.board}
-                                        content={comment.content}
-                                        taskName={comment.task}
 
-
-                                    />
-                                    
-                                )
-                            }
-                            )}
-                            
-                        
-
+                        {this.countComments() > 0 && !this.state.allUpdates || this.state.comments.length > 0 && this.state.allUpdates ?
+                        '' :
+                        (<DefaultInbox></DefaultInbox>)
+                        }
+                        {this.state.allUpdates ?  this.showAllUpdates() : this.showOpenUpdates()}
+            
                         </div>
 
                     </div>
