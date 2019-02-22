@@ -4,7 +4,7 @@ $purple-background: #a25ddc;
 $green-background: #00c875;
 
 .column-modal-container {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -32,9 +32,9 @@ $green-background: #00c875;
     top: -20px;
   }
 }
-.hidden{
-  display:none;
-}
+// .hidden{
+//   display:none;
+// }
 .priority-container,
 .status-container {
   width: 100%;

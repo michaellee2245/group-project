@@ -26,6 +26,7 @@ class Boards extends Component {
     //     });
     // }
 
+
     openCommentSlideIn = (id) => {
         axios.get(`/api/comment/on-task/${id}`)
             .then(response => {
@@ -35,7 +36,7 @@ class Boards extends Component {
                 })
             })
         this.setState({
-            open: !this.state.open
+            open: true
         })
     }
 
@@ -43,7 +44,8 @@ class Boards extends Component {
 
     handleSlideInClose = () => {
         this.setState({
-            open: !this.state.open
+            open: false,
+            commentList: []
         })
     }
     // handleClick = () => {
@@ -61,6 +63,8 @@ class Boards extends Component {
 
                 this.setState({ items: data })
             })
+        // document.addEventListener('mousedown', this.updateCell);
+        document.addEventListener('click', e => console.log(e.target) || e.target.focus())
     }
 
     addRowOnEnter = ({ key, target, target: { value } }) => {
@@ -71,7 +75,7 @@ class Boards extends Component {
 
             this.setState({
                 items: this.state.items.concat({
-                    task: value,
+                    name: value,
                     // name: value.replace(/(.*) +.* +.*/, '$1'),
                     // lastName: value.replace(/.* +(.*) +.*/, '$1'),
                     // age: +value.replace(/.* +.* +(.*)/, '$1'),
@@ -166,7 +170,7 @@ class Boards extends Component {
                             <th>Time Est.</th>
                         </tr>
                     </thead>
-                    {items.map((obj) => (
+                    {items.map((obj, i) => (
                         <tr
                             className={obj.id === selectedRow ?
                                 'selected'
@@ -174,16 +178,18 @@ class Boards extends Component {
                                 ''}
                         // onClick={() => selectRow(obj.id, obj.name)}
                         >
-                            {columns.map((col_name) => {
+                            {columns.map((col_name, j) => {
                                 const selected = obj.id === selectedRow &&
-                                col_name === selectedColumn
+                                    col_name === selectedColumn
                                 return (
                                     <td
-                                        className={ selected ?
+                                        className={selected ?
                                             'selected' : ''}
                                         onClick={
                                             () => updateCell(col_name, obj.id, obj.name)
-                                        } >
+                                        }
+                                        tabIndex={i * 8 + j + 1}
+                                    >
                                         {obj[col_name]}
                                         <DashColumnPicker
                                             id={`col-${obj.id}-${col_name}`}

@@ -12,37 +12,15 @@ class DashColumnPicker extends Component {
         });
     }
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('mousedown', this.handleClick, false)
-    }
-
-    handleClick = (e) => {
-        if (this.node.contains(e.target)) {
-            return;
-        }
-
-        this.handleClickOutside();
-    }
-
-    handleClickOutside = () => {
-        this.setState({
-            priority: false,
-            status: false,
-            date: false,
-            person: false,
-
-        })
-    }
 
     modalTypes = modalType => {
         switch (modalType) {
             case 'priority':
                 return (
-                    <div className="priority-container">
+                    <div
+                        className="priority-container"
+                        onClick={this.stopPropagation}
+                    >
                         <div
                             name='High'
                             className="column-modal-button high-priority"
@@ -59,7 +37,11 @@ class DashColumnPicker extends Component {
                 )
             case 'status':
                 return (
-                    <div className="status-container">
+
+                    <div
+                        className="status-container"
+                        onClick={this.stopPropagation}
+                    >
                         <div className="column-modal-button done-status">
                             Done
                         </div>
@@ -74,7 +56,10 @@ class DashColumnPicker extends Component {
             case 'start_date':
             case 'end_date':
                 return (
-                    <div className="date-container">
+                    <div
+                        className="date-container"
+                        onClick={this.stopPropagation}
+                    >
                         <DayPicker
                             selectedDays={this.props.selectedDay}
                             onDayClick={this.handleDayClick}
@@ -93,13 +78,14 @@ class DashColumnPicker extends Component {
 
     render() {
 
-        const { modalType } = this.props;
+        const { modalType, openPicker } = this.props;
 
         return (
+
             <div
                 id={this.props.id}
                 className={`column-modal-container ${this.props.selected ? "" : "hidden"}`}
-                ref={node => this.node = node}
+
             >
                 {this.modalTypes(modalType)}
             </div>
