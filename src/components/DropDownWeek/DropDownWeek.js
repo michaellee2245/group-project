@@ -3,13 +3,13 @@ import './DropDownWeek.scss'
 
 export default class DropDownWeek extends Component {
 
- 
 
-  
+
+
   render() {
     const subMenu = this.props.nav.map(i => {
       return (
-        <li><a href='#'>{i.task}</a></li>
+        <li><span>{i.task}</span></li>
       )
     })
     return (

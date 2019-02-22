@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './carousel.scss';
-import { Motion, spring } from 'react-motion';
 import Slider from 'react-slick';
 import CarouselSlides from './CarouselSlides';
 import slides from './slides'
@@ -52,11 +51,12 @@ class Carousel extends Component {
                 {...settings}
                 afterChange={this.props.handleChange}
             >
-                {slides.map(({ title, image, color }) => (
+                {slides.map(({ title, image, color },i) => (
                     <CarouselSlides
                         color={color}
                         title={title}
                         image={image}
+                        key={i}
                     />
                 ))}
 

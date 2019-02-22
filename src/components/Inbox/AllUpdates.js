@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
-import './inboxPosts.scss';
-import axios from 'axios';
+import './allUpdates.scss';
 
-class InboxPosts extends Component {
-
-    markAsRead=() => {
-        axios.post('/api/comment/read', {commentID: this.props.commentID })
-        .then(() => this.props.readFunction(this.props.commentID))
-    }
-
-    markAsUnread=()=>{
-        axios.post('/api/comment/unread', {commentID: this.props.commentID})
-        .then(() => this.props.readFunction(this.props.commentID) )
-    }
-
-    toggleReadClick=()=>{
-        if(this.props.commentRead){ this.markAsUnread()}
-        else {this.markAsRead()}
-
-
-    }
+class AllUpdates extends Component {
 
     render() {
-        const {author, authorPic, boardName, content, taskName} = this.props
+        const {author, authorPic, boardName, content, taskName, toggleFunction} = this.props
         return (
             <div className="post-container">
             <div>
@@ -55,48 +37,47 @@ class InboxPosts extends Component {
                 </div>
                 <div className="post-body-wrapper">
                       <div className="post-body">
-                        <div className="body-text-container">
-                            <p className="body-text">{content}</p>
+                        <div className="body-text">
+                            <p>{content}</p>
                         </div>
-                      </div>
+                      </div>  
                 </div>
                 <div className="post-bottom wrapper">
                     <div className="post-bottom-division">
                         <div className="post-tools-area">
                             <span className="tool-span">
-                                <span className="tool-readcount">{this.props.readCount}</span>
                                 <i className="material-icons">remove_red_eye </i>
                             </span>
                             <span className="tool-span">
                                 <i className="material-icons">bookmark_border</i>
                             </span>
                             <span className="tool-span">
-                                <i className="material-icons">thumb_up</i>
+                                <i className="material-icons">thumb_up</i>    
                             </span>
                             <span className="tool-end">
                                 <i className="material-icons">reply</i>
                             </span>
-                        </div>
+                        </div>    
                     </div>
                 </div>
             </div>
             <div className="button-read-container">
-
+            button read container
                     <div className="button-read-wrapper">
-
+                    button read wrapper
                         <div className="button-read">
                             <span>
-                                <i className ="material-icons" id="read-button" onClick={this.toggleReadClick}>{this.props.commentRead ? 'check_box_outline_blank' : 'check_box'}</i>
+                                <i className="material-icons" onClick={toggleFunction}>check_box</i>
                             </span>
                         </div>
                     </div>
-
-                </div>
+                        
+                </div>    
             </div>
-
-
+       
+        
         )
     }
 }
 
-export default InboxPosts;
+export default AllUpdates;

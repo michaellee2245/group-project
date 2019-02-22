@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import MarketTopNav from '../../../components/MarketTopNav/MarketTopNav';
-import MarketFooter from '../../../components/MarketFooter/MarketFooter';
 import Carousel from '../../../components/Carousel/Carousel';
 import LowerQuote from '../../../components/Carousel/LowerQuote';
 import UpperText from '../../../components/Carousel/UpperText';

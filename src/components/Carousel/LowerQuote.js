@@ -8,7 +8,7 @@ function LowerQuote({ currentIndex }) {
     return (
         <div>
             {slides.map(({ quote, quoteName }, i) => i === currentIndex ? (
-                <div className="lower-quote-container">
+                <div className="lower-quote-container" key={i}>
                     <div>{quote}</div>
                     <div>{quoteName}</div>
                 </div>

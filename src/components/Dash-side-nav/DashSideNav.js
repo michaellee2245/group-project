@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './DashSideNav.scss';
 import DropDown from '../DropDown/DropDown';
-import {connect} from 'react-redux'
-
-
+import {connect} from 'react-redux';
+import mondayLogo from '../../assets/monday-logo-final.png';
 
 class DashSideNav extends Component {
   state = {
@@ -15,100 +14,112 @@ class DashSideNav extends Component {
     showPrivate:false,
     nav: [{board:"one",number:1},{board:"two",number:2},{board:"three",number:3}]
   }
-  changeView = (n) => {
-    const name = n
-  }
 
-  getInbox = (e) => {
-    // const user = 'Starburst'
-    // getMessages(user)
-    this.props.changeViews(e)
-    
-  }
-  getWeek = (e) => {
-    console.log(e.target)
-
-    this.props.changeViews(e)
+  getComponent = e => {
+    this.props.changeViews(e);
   }
 
   inboxCount = () => {
-    return this.state.count.length
+    return this.state.count.length;
   }
 
   publicBoardCount = () => {
-    return this.props.user.boards.length
+    return this.props.dashboard.length;
   }
 
   privateBoardCount = () => {
-    return this.state.privateCount.length
+    return this.state.privateCount.length;
   }
 
-  showMenu = (e) => {
-    
-    this.setState({ hidden: !this.state.hidden})
-    
+  showMenu = e => {
+    this.props.changeViews(e);
+    this.setState({ hidden: !this.state.hidden});
   }
+
   showPrivate = () => {
     this.setState({ showPrivate: !this.state.showPrivate})
-    
   }
-
-
 
   render() {
     return (
       <div className="leftpane-container" id="leftpane-container">
         <div className="leftpane-component">
-          <a href='www.monday.com'>
-            <i class='../../assets/monday-logo-final.png' id='leftpane-logo' />
+          <a href='/dashboard'>
+            <img
+              src={mondayLogo}
+              id='leftpane-logo'
+              alt="monday"
+            />
           </a>
         </div>
         <div className="leftpane-inbox-component">
-          <div  className="inbox-wrapper" title = 'Inbox' onClick = {this.getInbox}>
-            {/* <a href="#" name = 'Inbox' className="link-wrapper router"> */}
-              <span title='Inbox' className="title">Inbox</span>
-              <span className="inboxCounter"> {this.inboxCount()}</span>
-            {/* </a> */}
+          <div
+            className="inbox-wrapper"
+            title="Inbox"
+            onClick={this.getComponent}
+          >
+            <span title='Inbox' className="title">Inbox</span>
+            <span className="inboxCounter"> {this.inboxCount()}</span>
           </div>
         </div>
         <div>
-          <div className="leftpane-week-component" title = 'MyWeek'  onClick = {this.getWeek}>
-            {/* <a href="#" name = 'MyWeek' className="link-wrapper router"> */}
-              <span title = 'MyWeek' className="title">My Week</span>
-            {/* </a> */}
+          <div
+            className="leftpane-week-component"
+            title="MyWeek"
+            onClick={this.getComponent}
+          >
+            <span title = 'MyWeek' className="title">My Week</span>
           </div>
         </div>
-        <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
+        <div
+          className="leftpane-boards-list-wrapper"
+          id="leftpane-boards-list-wrapper"
+        >
           <div>
-            <div 
-            className="leftpane-boards-public-list-component" 
-            // id="leftpane-boards-list-component"
-            
+            <div
+              className="leftpane-boards-public-list-component"
             >
-              <a href="#" className="link-wrapper router" onClick = {this.showMenu}>
-                <i class="material-icons">menu</i><span className="title">Boards public</span>
-                <span className="title"> ({this.publicBoardCount()})</span>
-              </a>
+              <span className="link-wrapper router" onClick = {this.showMenu}>
+                <i
+                  title="boards"
+                  className="material-icons"
+                >menu</i>
+                <span className="title">Boards public</span>
+                <span
+                  title="boards"
+                  className="title"
+                  onClick={this.getComponent}
+                > ({this.publicBoardCount()})</span>
+              </span>
               <div className = 'drop-menu'>
               {
                 this.state.hidden
-                ?(
-                  <DropDown nav = {this.props.user.boards ? this.props.user.boards:[]} />
+                ? (
+                  <DropDown nav = {this.props.user.boards || []} />
                 )
-                :(null)
+                : (null)
               }
-              
               </div>
             </div>
           </div>
         </div>
-        <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
+        <div
+          className="leftpane-boards-list-wrapper"
+          id="leftpane-boards-list-wrapper"
+        >
           <div>
-            <div className="leftpane-boards-private-list-component" id="leftpane-boards-list-component">
-              <a href="#" className="link-wrapper router" onClick = {this.showPrivate}>
-                <i class="material-icons">menu</i><span className="title">Boards private</span>
+            <div
+              className="leftpane-boards-private-list-component"
+              id="leftpane-boards-list-component"
+            >
+              <span
+                className="link-wrapper router"
+                onClick={this.showPrivate}
+              >
+                <i className="material-icons">menu</i>
+                <span className="title">Boards private</span>
                 <span className="title"> ({this.privateBoardCount()})</span>
-              </a>
+              </span>
               {
                 this.state.showPrivate
                 ?(
@@ -121,7 +132,6 @@ class DashSideNav extends Component {
             </div>
           </div>
         </div>
-
       </div>
     )
   }
@@ -132,4 +142,5 @@ const mapStatToProps = state => {
     user: state.user.user
   }
 }
+
 export default connect(mapStatToProps)(DashSideNav);

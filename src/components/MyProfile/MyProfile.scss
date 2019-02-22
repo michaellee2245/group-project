@@ -8,6 +8,44 @@
   background-color: #009aff;
 }
 
+.user_inner_container.user_profile_top.st_current{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.popup_wrapper{
+  width: 200px !important;
+  height: 200px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.header2,.fas.fa-trash-alt{
+  &:hover{
+    cursor: pointer;
+    color: #0051ff;
+  }
+}
+
+.save_url_btn{
+  font-size: 18px;
+  height: 40px;
+  width: 70px;
+  outline: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 65px;
+  color: white;
+  background-color: #009aff;
+  &:hover{
+    cursor: pointer;
+    background-color: #0051ff
+  }
+}
+
 .user_middle_container{
   display: flex;
   justify-content: center;
@@ -26,6 +64,7 @@
   align-items: center;
   .hover{
   border-radius: 80px;
+  background-color: #67f;
 }
 }
 
@@ -56,14 +95,14 @@
   position: absolute;
   bottom: 0;
   display: flex;
-  
+
   a{
     text-decoration: none;
     font-weight: 700;
   }
   .is-selected{
     color: white;
-    
+
     li{
       color:white;
     }
@@ -74,10 +113,34 @@
   }
 }
 
+#username_input{
+  font-size: 20px;
+}
+
+.picture_edit_form{
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  #title_input{
+    font-size: 20px;
+  }
+}
+
+.userName{
+  font-size: 30px;
+  color: white;
+  &:hover{
+    cursor: pointer;
+    color: black;
+  }
+}
+
 .edit_username{
   height: 24px;
   width: 400px;
-  margin-top: 25px;
+  margin-top: 5px;
   text-align: center;
   color:white;
   font-weight: 600;
@@ -99,4 +162,45 @@
 .data_container_poopup_edit_link{
   display: flex;
   flex-direction: row;
+}
+
+.user_profile_bottom_container{
+  display: flex;
+  justify-content: center;
+  background-color: rgb(214, 211, 211);
+}
+
+.tooltipProfileWrapper{
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 75px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 75%;
+  left: 75%;
+  margin-left: -60px;
+}
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 25%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 }

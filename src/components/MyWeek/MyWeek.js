@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DropDownWeek from '../DropDownWeek/DropDownWeek'
-import './MyWeek.scss'
+import './myWeek.scss'
 
 export default class MyWeek extends Component {
 
@@ -84,14 +84,14 @@ export default class MyWeek extends Component {
               <div className='prev-week-button'>
                 <span className='prev-week'>Previous week / </span>
                 <span className='prevWeekCounter'> {this.prevWeekCount()}
-                  <i class="material-icons" id='chevronLeft'>chevron_left</i>
+                  <i className="material-icons" id='chevronLeft'>chevron_left</i>
                 </span>
               </div>
               <div className='week-indicator-wrapper'>
                 <span className='week-indicator'> {this.weekIndicator()}</span>
               </div>
               <div className='next-week-button'>
-                <i class="material-icons" id='chevronRight'>chevron_right</i>
+                <i className="material-icons" id='chevronRight'>chevron_right</i>
                 <span className='next-week'>Next week / </span>
                 <span className='nextWeekCounter'> {this.nextWeekCount()}</span>
               </div>
@@ -102,7 +102,11 @@ export default class MyWeek extends Component {
           <div className='personal-assistant-content-component'>
             <div className='header-container'>
               <div className='personal-assistant-header-component'>
-                <img src="https://cdn.monday.com/assets/deadline/coffee_team.png" className='image-title' />
+                <img
+                  src="https://cdn.monday.com/assets/deadline/coffee_team.png"
+                  className='image-title'
+                  alt="coffee team"
+                />
                 <div className='pesonal-assistant-titles'>
                   <div className='first-title'>
                     <span className='greeting'>{this.greeting()}</span>
@@ -118,7 +122,7 @@ export default class MyWeek extends Component {
                     <div className='pure-input'>
                       <input value={this.state.personFilter} name='personFilter' onChange={this.handleChange} className='input person-filter-input' placeholder='Filter by person'></input>
                       <div className='tooltip'>
-                        <i class="material-icons" id='person'>person_outline</i>
+                        <i className="material-icons" id='person'>person_outline</i>
                         <span className='tooltiptext'>Search by person</span>
                       </div>
                     </div>
@@ -129,7 +133,7 @@ export default class MyWeek extends Component {
             <div className='deadlines-task-container'>
               <div className='deadline-tasks-section-component'>
                 <div className='section-type-container'>
-                  <a href='#' onClick={this.prevWeekDrop}>Previous Weeks /</a>
+                  <span onClick={this.prevWeekDrop}>Previous Weeks /</span>
                   <span className='assignmentCounter'>{this.assignmentCounter()}</span>
                   {
                     this.state.prevWeekHide
@@ -140,7 +144,7 @@ export default class MyWeek extends Component {
                   }
                 </div>
                 <div className='section-type-container'>
-                  <a href='#' onClick={this.earlierDrop}>Earlier This Week /</a>
+                  <span onClick={this.earlierDrop}>Earlier This Week /</span>
                   <span className='assignmentCounter'>{this.assignmentCounter()}</span>
                   {
                     this.state.earlierHide
@@ -151,7 +155,7 @@ export default class MyWeek extends Component {
                   }
                 </div>
                 <div className='section-type-container'>
-                  <a href='#' onClick={this.todayDrop}>Today /</a>
+                  <span onClick={this.todayDrop}>Today /</span>
                   <span className='assignmentCounter'>{this.assignmentCounter()}</span>
                   {
                     this.state.todayHide
@@ -162,7 +166,7 @@ export default class MyWeek extends Component {
                   }
                 </div>
                 <div className='section-type-container'>
-                  <a href='#' onClick={this.upcomingDrop}>Upcoming /</a>
+                  <span onClick={this.upcomingDrop}>Upcoming /</span>
                   <span className='assignmentCounter'>{this.assignmentCounter()}</span>
                   {
                     this.state.upcomingHide
@@ -173,7 +177,7 @@ export default class MyWeek extends Component {
                   }
                 </div>
                 <div className='section-type-container'>
-                  <a href='#' onClick={this.doneDrop}>Done /</a>
+                  <span onClick={this.doneDrop}>Done /</span>
                   <span className='assignmentCounter'>{this.assignmentCounter()}</span>
                   {
                     this.state.doneHide

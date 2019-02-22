@@ -14,7 +14,7 @@ class CommentSlideIn extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`api/comment/on-task/${this.state.taskID}`)
+        axios.get(`/api/comment/on-task/${this.state.taskID}`)
             .then(response => {
                 const list = response.data.reverse()
                 this.setState({
@@ -51,9 +51,6 @@ class CommentSlideIn extends Component {
 
 
     render() {
-
-        console.log(this.state.commentList)
-
         const taskCommentList = this.state.commentList.map((task, i) => {
             return (
                 <div

@@ -1,40 +1,28 @@
 import React, {Component} from 'react';
 import './DropMenu.scss'
 
-
-
-
 class DropDown extends Component {
-    
-   
-    
-      handleClick = () => {
-        this.setState({ hidden: !this.state.hidden})
-      
-      }
-    
-    
-    
-      render() {
-        const subMenu = this.props.nav.map(i => {
-          
-        
-          return (
-            <li className = 'drop-down-nav' ><a href='#' className = 'board-name'>{i.name}</a></li>
-          )
-        })
-        return (
-          <div className = 'drop-nav-wrapper'>
-            
-                <ul  className = 'submenu'>
-                  {subMenu}
-                </ul>
-    
-            
-          </div>
-        )
-      }
+
+  subMenuMapper = (e,i) => {
+    return (
+      <li className="drop-down-nav" key={i}>
+        <span className="board-name">
+          {e.name}
+        </span>
+      </li>
+    )
+  }
+
+  render() {
+    const {props: {nav},subMenuMapper} = this;
+    return (
+      <div className="drop-nav-wrapper">
+        <ul className="submenu">
+          {nav.map(subMenuMapper)}
+        </ul>
+      </div>
+    )
+  }
 }
 
-
-export default DropDown
+export default DropDown;

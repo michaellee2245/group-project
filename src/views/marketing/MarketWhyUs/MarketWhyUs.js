@@ -17,7 +17,6 @@ import frost from '../../../assets/frost.png';
 import philips from '../../../assets/philips.png';
 import dhl from '../../../assets/dhl.png';
 import wix from '../../../assets/wix.png';
-import MarketTopNav from '../../../components/MarketTopNav/MarketTopNav';
 import MarketFooter from '../../../components/MarketFooter/MarketFooter';
 
 class WhyUs extends Component {
@@ -35,7 +34,7 @@ class WhyUs extends Component {
     render() {
         return (
             <div className="why-us-container">
-                {/* <MarketTopNav 
+                {/* <MarketTopNav
                     displayModal={this.state.displayModal}
                     toggle={this.handleClick}
                  />  */}
@@ -43,7 +42,7 @@ class WhyUs extends Component {
                     <h1 className="header-text">
                         <span className="red-text"> 350,000 </span> people, from <span className="blue-text"> 76 </span> countries, in <span className="green-text"> 50,000 </span> teams manage their work with monday.com
                     </h1>
-                    <GetStartedBtn 
+                    <GetStartedBtn
                         changeNav={this.props.toggle}
                     />
                     <img src={arrow} alt='arrow' style={{
@@ -97,7 +96,7 @@ class WhyUs extends Component {
                         <img src={fiverr} alt='wework logo' className="logos" />
                         <img src={frost} alt='wework logo' className="logos" />
                     </div>
-                    <GetStartedBtn 
+                    <GetStartedBtn
                         changeNav={this.props.toggle}
                     />
 

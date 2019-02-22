@@ -26,7 +26,7 @@ export const logout = () => {
         payload: null
       })
         dispatch(push('/'))
-      
+
     })
   }
 }
@@ -35,7 +35,6 @@ export const getSession = () => {
   return dispatch => {
     axios.get('/api/auth/session ')
     .then( (user) => {
-      console.log('redux session',user.data)
       dispatch ({
         type: "USER",
         payload: user,
@@ -67,7 +66,6 @@ export const dashboard = (boardID) => {
   return dispatch => {
     axios.get('/api/dashboard')
     .then (board => {
-      console.log('reduxboard',board.data)
       dispatch ({
         type: "BOARDS",
         payload: board.data

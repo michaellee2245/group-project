@@ -1,45 +1,44 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import axios from 'axios'
 
 class Team extends Component {
 
-  
-  roster = this.props.dashboard.roster ? this.props.dashboard.roster: []
-
+  rosterMapper = (e,i) => {
+    return (
+      <tr key={i}>
+        <td>{e.name}</td>
+        <td>{e.email}</td>
+        <td>{e.phone}</td>
+      </tr>
+    )
+  }
 
   render() {
-    const teams = this.roster.map((i) => {
-      return (
-        <tr>
-          <td>{i.name}</td>
-          <td>{i.email}</td>
-          <td>{i.phone}</td>
-          <hr />
-        </tr>
-         
-       
-      )
-    })
+    const {props: {dashboard}, rosterMapper} = this;
+    const roster = dashboard.roster || [];
     return (
       <div>
-        
         <table>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-          </tr>
-          {teams}
-          
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roster.map(rosterMapper)}
+          </tbody>
         </table>
       </div>
     )
   }
 }
+
 const mapStateToProps = state => {
   return {
     dashboard: state.user.dashboard
   }
 }
+
 export default connect(mapStateToProps)(Team);
