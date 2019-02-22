@@ -14,6 +14,19 @@ export default class Password extends Component {
     this.setState({ [key]: value })
   }
 
+  // save = () => {
+  //   const newPass = this.state.newPassword
+  //   const comparePass = this.state.confirmNewPassword
+  //   const passwords = {
+  //     currentPassword: this.state.currentPassword,
+  //     newPassword: this.state.newPassword
+  //   }
+  //   if (newPass === comparePass) {
+  //     axios.put('/api/auth/password',passwords)
+  //   }
+  //   else alert ("Passwords don't match")
+  // }
+
   render() {
     return (
       <div className='personal_info_container'>
@@ -32,8 +45,6 @@ export default class Password extends Component {
         </div>
         <button onClick={this.save} className='save-btn'>Save</button>
       </div>
-
-
     )
   }
 }

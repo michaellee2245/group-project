@@ -8,6 +8,44 @@
   background-color: #009aff;
 }
 
+.user_inner_container.user_profile_top.st_current{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.popup_wrapper{
+  width: 200px !important;
+  height: 200px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.header2,.fas.fa-trash-alt{
+  &:hover{
+    cursor: pointer;
+    color: #0051ff;
+  }
+}
+
+.save_url_btn{
+  font-size: 18px;
+  height: 40px;
+  width: 70px;
+  outline: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 65px;
+  color: white;
+  background-color: #009aff;
+  &:hover{
+    cursor: pointer;
+    background-color: #0051ff
+  }
+}
+
 .user_middle_container{
   display: flex;
   justify-content: center;
@@ -74,10 +112,34 @@
   }
 }
 
+#username_input{
+  font-size: 20px;
+}
+
+.picture_edit_form{
+  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  #title_input{
+    font-size: 20px;
+  }
+}
+
+.userName{
+  font-size: 30px;
+  color: white;
+  &:hover{
+    cursor: pointer;
+    color: black;
+  }
+}
+
 .edit_username{
   height: 24px;
   width: 400px;
-  margin-top: 25px;
+  margin-top: 5px;
   text-align: center;
   color:white;
   font-weight: 600;

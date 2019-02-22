@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './Personal.scss'
 import Popup from "reactjs-popup";
-import Axios from '../../../../node_modules/axios';
 
 const contentStyle = {
   maxWidth: "600px",
@@ -10,11 +9,9 @@ const contentStyle = {
 
 export default class Personal extends Component {
   state = {
-    email: 'testaccount@monday.com',
-    phone: '801-333-4444',
-    title: '',
     email: '',
     phone: '',
+    title: '',
   }
 
   handleChange = (e) => {
@@ -23,9 +20,9 @@ export default class Personal extends Component {
     this.setState({ [key]: value })
   }
 
-  handleClickSave = () => {
-    Axios.put('api/user/title', { title: this.state.title })
-  }
+  // handleClickSave = () => {
+  //   axios.put('api/user/title', { title: this.state.title })
+  // }
 
   render() {
     return (
@@ -37,8 +34,8 @@ export default class Personal extends Component {
           </div>
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
-              <span className='edit_text_title'>Title:</span>
-              <span className='profile-field-content'>Add a title</span>
+              <span className='edit_text_title'>Title: {this.state.title}</span>
+
               <i class="fas fa-pencil-alt"></i>
             </div>} modal contentStyle={contentStyle}>
             {close => (
@@ -63,7 +60,7 @@ export default class Personal extends Component {
           </div>
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
-              <span className='edit_text_title'>Email:</span>
+              <span className='edit_text_title'>Email: {this.state.email}</span>
               <span className='profile-field-content'></span>
               <i class="fas fa-pencil-alt"></i>
             </div>} modal contentStyle={contentStyle}>
@@ -73,7 +70,7 @@ export default class Personal extends Component {
                 <div className="header"> Email</div>
                 <br />
                 <div className="ui input">
-                  <input type='text' id='title_input' name='title' value={this.state.email} onChange={this.handleChange} />
+                  <input type='text' id='title_input' name='email' value={this.state.email} onChange={this.handleChange} />
                 </div>
                 <br />
                 <div className='save-title-btn'>
@@ -89,8 +86,7 @@ export default class Personal extends Component {
           </div>
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
-              <span className='edit_text_title'>Phone:</span>
-              <span className='profile-field-content'>{this.state.phone}</span>
+              <span className='edit_text_title'>Phone: {this.state.phone}</span>
               <i class="fas fa-pencil-alt"></i>
             </div>} modal contentStyle={contentStyle}>
             {close => (
@@ -99,7 +95,7 @@ export default class Personal extends Component {
                 <div className="header"> Phone</div>
                 <br />
                 <div className="ui input">
-                  <input type='text' id='title_input' name='title' value={this.state.phone} onChange={this.handleChange} />
+                  <input type='text' id='title_input' name='phone' value={this.state.phone} onChange={this.handleChange} />
                 </div>
                 <br />
                 <div className='save-title-btn'>
