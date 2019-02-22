@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {push} from 'connected-react-router';
-import { UV_UDP_REUSEADDR } from 'constants';
 
 export const login = (user) => {
   return dispatch => {
@@ -40,7 +39,6 @@ export const getSession = () => {
       dispatch ({
         type: "USER",
         payload: user,
-        payload2: user.data.dashboard
       })
       if (!user) {
         dispatch (push('/marketing'))
