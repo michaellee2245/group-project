@@ -15,9 +15,9 @@ router.use((req, res, next) => {
 // show all users that are approved members of the team.
 // don't forget the id parameter.
 // you must be an approved team member to get this information.
-router.get('/from-team/:teamID', onTeam, (req, res, next) => {
+router.get('/from-team:teamID', onTeam, (req, res, next) => {
   req.db.user.get_users_by_team([req.params.teamID])
-    .then(users => res.status(200).json(users))
+    .then(users => res.status(200).send(users))
     .catch(err => serverError(err, res));
 })
 

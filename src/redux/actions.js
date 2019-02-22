@@ -38,7 +38,7 @@ export const getSession = () => {
       console.log('redux session',user.data)
       dispatch ({
         type: "USER",
-        payload: user
+        payload: user,
       })
       if (!user) {
         dispatch (push('/marketing'))
@@ -65,7 +65,7 @@ export const register = (user) => {
 
 export const dashboard = (boardID) => {
   return dispatch => {
-    axios.get('/api/board')
+    axios.get('/api/dashboard')
     .then (board => {
       console.log('reduxboard',board.data)
       dispatch ({

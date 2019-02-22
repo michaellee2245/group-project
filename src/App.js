@@ -12,6 +12,7 @@ import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
 
 class App extends Component {
   componentDidMount = () => {
+  
     this.props.getSession()
   }
   
