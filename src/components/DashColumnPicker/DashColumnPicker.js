@@ -24,13 +24,20 @@ class DashColumnPicker extends Component {
                         <div
                             name='High'
                             className="column-modal-button high-priority"
+                            onClick={(e) => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'high-priority', 'High', e)}
                         >
                             High
                         </div>
-                        <div className="column-modal-button medium-priority">
+                        <div className="column-modal-button medium-priority"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'medium-priority', 'Medium')}
+
+                        >
                             Medium
                         </div>
-                        <div className="column-modal-button low-priority">
+                        <div className="column-modal-button low-priority"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'low-priority', 'Low')}
+
+                        >
                             Low
                         </div>
                     </div>
@@ -42,13 +49,22 @@ class DashColumnPicker extends Component {
                         className="status-container"
                         onClick={this.stopPropagation}
                     >
-                        <div className="column-modal-button done-status">
+                        <div className="column-modal-button done-status"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'done-status', 'Done')}
+                            
+                            >
                             Done
                         </div>
-                        <div className="column-modal-button in-progress-status" >
+                        <div className="column-modal-button in-progress-status"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'in-progress-status', 'In Progress')}
+                            
+                            >
                             In Progress
                         </div>
-                        <div className="column-modal-button on-hold-status">
+                        <div className="column-modal-button on-hold-status"
+                            onClick={() => this.props.dropdownChange(this.props.modalType, this.props.cellID, 'on-hold-status', 'On Hold')}
+
+                        >
                             On Hold
                         </div>
                     </div>
@@ -58,11 +74,11 @@ class DashColumnPicker extends Component {
                 return (
                     <div
                         className="date-container"
-                        onClick={this.stopPropagation}
+                        
                     >
                         <DayPicker
                             selectedDays={this.props.selectedDay}
-                            onDayClick={this.handleDayClick}
+                            onDayClick={ (a, b) => this.props.handleDayClick(a,b, this.props.modalType, this.props.cellID)}
                         />
                     </div>
                 )

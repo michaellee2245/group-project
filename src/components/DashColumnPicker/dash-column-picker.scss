@@ -63,15 +63,23 @@ $green-background: #00c875;
 .high-priority,
 .in-progress-status {
   background: $red-background;
+  color: white;
+  text-align: center;
 }
 .medium-priority,
 .on-hold-status {
   background: $purple-background;
+  color: white;
+  text-align: center;
 }
 .low-priority {
   background: $blue-background;
+  color: white;
+  text-align: center;
 }
 
 .done-status {
   background: $green-background;
+  color: white;
+  text-align: center;
 }

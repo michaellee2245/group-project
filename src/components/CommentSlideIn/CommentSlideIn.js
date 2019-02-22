@@ -81,7 +81,7 @@ class CommentSlideIn extends Component {
             <div
                 className="slide-in-container"
                 style={{
-                    transform: this.props.open ? 'translateX(0px)' : 'translateX(550px)'
+                    transform: this.props.open ? 'translateX(0px)' : 'translateX(555px)'
                 }}
             >
                 <div className="content-container">
@@ -106,7 +106,7 @@ class CommentSlideIn extends Component {
                     <form
                         onSubmit={e => { e.preventDefault(); this.addComment() }}
                     >
-                        <input
+                        <textarea
                             className="comment"
                             placeholder="Write an update..."
                             name="commentText"

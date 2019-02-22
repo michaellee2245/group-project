@@ -15,6 +15,8 @@ class Boards extends Component {
         commentList: [],
         open: false,
         taskName: '',
+        cellSetups:[],
+        selectedDay: null
     };
 
     currentId = 1;
@@ -64,7 +66,7 @@ class Boards extends Component {
                 this.setState({ items: data })
             })
         // document.addEventListener('mousedown', this.updateCell);
-        document.addEventListener('click', e => console.log(e.target) || e.target.focus())
+        document.addEventListener('click', e => e.target.focus())
     }
 
     addRowOnEnter = ({ key, target, target: { value } }) => {
@@ -85,6 +87,42 @@ class Boards extends Component {
         }
     }
 
+    onDropdownChange = (col_name, id, class_name, values ) => {
+        
+    
+
+        const cellSetup = {
+            name: col_name,
+            id: id,
+            class_name: class_name,
+            values: values,
+            
+        }
+        this.setState({
+            cellSetups: [...this.state.cellSetups, cellSetup],
+            
+        }, () => { 
+            console.log(this.state.cellSetups.date)
+            document.activeElement.blur()
+        })
+    }
+    handleDayClick = (day, { selected }) => {
+        
+
+        this.setState({
+            selectedDay: selected ? undefined : day,
+        },() => {
+            const dateSetup = {
+                date: this.state.selectedDay
+                
+            }
+            this.setState({
+                cellSetups:[...this.state.cellSetups, dateSetup]
+            })
+            console.log(this.state.selectedDay)
+            document.activeElement.blur()
+        })
+    }
     updateCommentList = (newComment) => {
 
         this.setState({
@@ -139,7 +177,6 @@ class Boards extends Component {
             'owner',
             'priority',
             'status',
-            'start_date',
             'end_date',
             'person',
             'time_est']
@@ -164,8 +201,7 @@ class Boards extends Component {
                             <th>Owner</th>
                             <th>Priority</th>
                             <th>Status</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Date</th>
                             <th>Person</th>
                             <th>Time Est.</th>
                         </tr>
@@ -181,20 +217,35 @@ class Boards extends Component {
                             {columns.map((col_name, j) => {
                                 const selected = obj.id === selectedRow &&
                                     col_name === selectedColumn
+                                let class_name;
+                                let values;
+                                let date;
+                                this.state.cellSetups.forEach(cellSetup => {
+                                    if(cellSetup.name === col_name && obj.id === cellSetup.id) {
+                                        class_name = cellSetup.class_name
+                                        values = cellSetup.values
+                                        date = cellSetup.date
+                                    }
+                                    console.log(date)
+                                })
                                 return (
                                     <td
-                                        className={selected ?
-                                            'selected' : ''}
+                                        className={`${class_name}`}
                                         onClick={
                                             () => updateCell(col_name, obj.id, obj.name)
                                         }
                                         tabIndex={i * 8 + j + 1}
                                     >
-                                        {obj[col_name]}
+                                        {values ? values : obj[col_name]}
+                                        
                                         <DashColumnPicker
-                                            id={`col-${obj.id}-${col_name}`}
+                                            id={`col-${obj.id}-${col_name} `}
                                             modalType={col_name}
                                             selected={selected}
+                                            dropdownChange={this.onDropdownChange}
+                                            cellID={obj.id}
+                                            handleDayClick={this.handleDayClick}
+                                            selectedDay={this.state.selectedDay}
                                         />
                                     </td>)
                             })}
