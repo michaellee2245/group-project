@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {push} from 'connected-react-router';
+import { UV_UDP_REUSEADDR } from 'constants';
 
 export const login = (user) => {
   return dispatch => {
@@ -38,7 +39,8 @@ export const getSession = () => {
       console.log('redux session',user.data)
       dispatch ({
         type: "USER",
-        payload: user
+        payload: user,
+        payload2: user.data.dashboard
       })
       if (!user) {
         dispatch (push('/marketing'))
@@ -65,7 +67,7 @@ export const register = (user) => {
 
 export const dashboard = (boardID) => {
   return dispatch => {
-    axios.get('/api/board')
+    axios.get('/api/dashboard')
     .then (board => {
       console.log('reduxboard',board.data)
       dispatch ({
