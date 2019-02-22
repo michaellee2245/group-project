@@ -8,11 +8,26 @@ class CommentSlideIn extends Component {
         open: false,
         taskName: '',
         commentText: '',
-        commentList: this.props.commentList,
+        taskID: 127,
+        commentList: [],
         currentTask: 'Current task name'
     }
 
-   
+    componentDidMount = () => {
+        axios.get(`api/comment/on-task/${this.state.taskID}`)
+            .then(response => {
+                const list = response.data.reverse()
+                this.setState({
+                    commentList: list
+                })
+            })
+    }
+
+    handleClick = () => {
+        this.setState({
+            open: !this.state.open
+        })
+    }
 
     handleChange = ({ target: { value, name } }) => {
         this.setState({
@@ -21,28 +36,25 @@ class CommentSlideIn extends Component {
     }
 
     taskNameChange = () => {
-        console.log(this.props.taskID, this.state.taskName)
-        axios.put('/api/task/name', { taskID: this.props.taskID, name: this.state.taskName })
+        axios.put('api/task/name', { taskID: this.state.taskID, name: this.state.taskName })
     }
 
     addComment = () => {
-        console.log(this.props.taskID)
-        console.log(this.state.commentText)
-        axios.post('/api/comment', { taskID: this.props.taskID, content: this.state.commentText })
+        axios.post('api/comment', { taskID: this.state.taskID, content: this.state.commentText })
             .then(response => {
-               this.props.updateComment(response.data)
-               
+                this.setState({
+                    commentList: [response.data, ...this.state.commentList]
+                })
             })
-            this.setState=({commentText:''})
     }
 
 
 
     render() {
 
-        console.log(this.props.commentList)
+        console.log(this.state.commentList)
 
-        const taskCommentList = this.props.commentList.map((task, i) => {
+        const taskCommentList = this.state.commentList.map((task, i) => {
             return (
                 <div
                     key={i}
@@ -81,13 +93,13 @@ class CommentSlideIn extends Component {
             <div
                 className="slide-in-container"
                 style={{
-                    transform: this.props.open ? 'translateX(0px)' : 'translateX(550px)'
+                    transform: this.state.open ? 'translateX(0px)' : 'translateX(550px)'
                 }}
             >
                 <div className="content-container">
                     <div
                         id="close-button"
-                        onClick={this.props.close}
+                        onClick={this.handleClick}
                     >
                         X
                     </div>
@@ -97,7 +109,7 @@ class CommentSlideIn extends Component {
                         <input
                             className="title-input"
                             type="text"
-                            placeholder={this.props.taskName}
+                            placeholder={this.state.currentTask}
                             name="taskName"
                             onChange={this.handleChange}
                         />
@@ -110,7 +122,6 @@ class CommentSlideIn extends Component {
                             className="comment"
                             placeholder="Write an update..."
                             name="commentText"
-                            value={this.state.commentText}
                             onChange={this.handleChange}
                         />
                     </form>

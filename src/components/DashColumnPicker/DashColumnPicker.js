@@ -38,74 +38,53 @@ class DashColumnPicker extends Component {
         })
     }
 
-    modalTypes = modalType => {
-        switch (modalType) {
-            case 'priority':
-                return (
-                    <div className="priority-container">
-                        <div
-                            name='High'
-                            className="column-modal-button high-priority"
-                        >
-                            High
-                        </div>
-                        <div className="column-modal-button medium-priority">
-                            Medium
-                        </div>
-                        <div className="column-modal-button low-priority">
-                            Low
-                        </div>
-                    </div>
-                )
-            case 'status':
-                return (
-                    <div className="status-container">
-                        <div className="column-modal-button done-status">
-                            Done
-                        </div>
-                        <div className="column-modal-button in-progress-status" >
-                            In Progress
-                        </div>
-                        <div className="column-modal-button on-hold-status">
-                            On Hold
-                        </div>
-                    </div>
-                )
-            case 'start_date':
-            case 'end_date':
-                return (
-                    <div className="date-container">
-                        <DayPicker
-                            selectedDays={this.props.selectedDay}
-                            onDayClick={this.handleDayClick}
-                        />
-                    </div>
-                )
-            case 'owner':
-            case 'person':
-                return (
-                    ''
-                )
-            default:
-                return '';
-        }
-    }
-
     render() {
 
-        const { modalType } = this.props;
+        const { priority, status, date, person } = this.props;
 
         return (
-            <div
-                id={this.props.id}
-                className={`column-modal-container ${this.props.selected ? "" : "hidden"}`}
-                ref={node => this.node = node}
-            >
-                {this.modalTypes(modalType)}
-            </div>
+                <div
+                    className="column-modal-container"
+                    ref={node => this.node = node}
+                >
+
+                    {priority ? (
+
+                        <div className="priority-container">
+                            <div
+                                name='High'
+                                className="column-modal-button high-priority"
+                            > High
+                        </div>
+                            <div className="column-modal-button medium-priority"> Medium </div>
+                            <div className="column-modal-button low-priority"> Low </div>
+                        </div>
+
+                    ) : null}
+
+                    {status ? (
+
+                        <div className="status-container">
+                            <div className="column-modal-button done-status"> Done </div>
+                            <div className="column-modal-button in-progress-status" > In Progress </div>
+                            <div className="column-modal-button on-hold-status"> On Hold </div>
+                        </div>
+
+                    ) : null}
+
+                    {date ? (
+                        <div className="date-container">
+                            <DayPicker
+                                selectedDays={this.props.selectedDay}
+                                onDayClick={this.handleDayClick}
+                            />
+                        </div>
+                    ) : null}
+
+                </div>
+
         )
     }
 }
-
 
 export default DashColumnPicker;

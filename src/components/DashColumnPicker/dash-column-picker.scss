@@ -11,11 +11,6 @@ $green-background: #00c875;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.32);
   border-radius: 4px;
   border: 1px solid #c4c4c4;
-  position: absolute;
-  background-color:white;
-  z-index:100;
-  top:50%;
-  left:-50%;
   &:before {
     content: " ";
     position: absolute;
@@ -29,12 +24,10 @@ $green-background: #00c875;
     transform: translateX(50%);
     border-bottom-color: white;
     border-width: 10px;
-    top: -20px;
+    top: 35px;
   }
 }
-.hidden{
-  display:none;
-}
+
 .priority-container,
 .status-container {
   width: 100%;

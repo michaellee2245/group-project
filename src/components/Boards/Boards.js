@@ -2,60 +2,27 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import './boards.scss';
-import CommentSlideIn from '../CommentSlideIn/CommentSlideIn';
-import DashColumnPicker from '../DashColumnPicker/DashColumnPicker';
 
 class Boards extends Component {
 
     state = {
         boardID: this.props.board_id,
         selectedRow: -1,
-        selectedColumn: '',
         items: [],
-        commentList: [],
-        open: false,
-        taskName: '',
     };
 
     currentId = 1;
 
-    // selectRow = (id, name) => {
-    //     this.setState({
-    //         selectedRow: id,
-    //         taskName: name,
-    //     });
-    // }
-
-    openCommentSlideIn = (id) => {
-        axios.get(`/api/comment/on-task/${id}`)
-            .then(response => {
-                const list = response.data.reverse()
-                this.setState({
-                    commentList: list
-                })
-            })
+    selectRow = id => {
         this.setState({
-            open: !this.state.open
-        })
+            selectedRow: id,
+        });
     }
 
-
-
-    handleSlideInClose = () => {
-        this.setState({
-            open: !this.state.open
-        })
-    }
-    // handleClick = () => {
-    //     this.setState({
-    //         open: !this.state.open, taskID: items.id
-    //     })
-
-    // }
     // add axios request to create row
 
     componentDidMount() {
-        axios.get(`/api/task/by-board/${this.props.board_id}`)
+        axios.get(`/api/task/bb/${this.props.board_id}`)
 
             .then(({ data }) => {
 
@@ -81,78 +48,22 @@ class Boards extends Component {
         }
     }
 
-    updateCommentList = (newComment) => {
-
-        this.setState({
-            commentList: [newComment, ...this.state.commentList]
-        })
-
-    }
-    updateCell = (cellType, id, name) => {
-        this.setState({
-            selectedRow: id,
-            selectedColumn: cellType,
-            taskName: name,
-        });
-        switch (cellType) {
-            case 'name':
-                this.openCommentSlideIn(id)
-                break;
-            case 'owner':
-
-                break;
-            case 'status':
-
-                break;
-            case 'start_date':
-
-                break;
-            case 'end_date':
-
-                break;
-            case 'person':
-
-                break;
-            case 'time_est':
-
-                break;
-        }
-    }
     render = () => {
         const {
             state: {
                 selectedRow,
                 items,
-                selectedColumn
+
             },
             selectRow,
-            updateCell,
             addRowOnEnter,
         } = this;
 
-        const { board_id, board_name } = this.props
-        const columns = ['name',
-            'owner',
-            'priority',
-            'status',
-            'start_date',
-            'end_date',
-            'person',
-            'time_est']
+      const { board_id, board_name } = this.props
 
         console.log(items)
         return (
-
             <div className="board-wrapper">
-                <CommentSlideIn
-                    open={this.state.open}
-                    taskID={this.state.selectedRow}
-                    close={() => this.handleSlideInClose()}
-                    commentList={this.state.commentList}
-                    updateComment={(comment) => this.updateCommentList(comment)}
-                    taskName={this.state.taskName}
-                />
-
                 <table>
                     <thead>
                         <tr>
@@ -166,33 +77,26 @@ class Boards extends Component {
                             <th>Time Est.</th>
                         </tr>
                     </thead>
-                    {items.map((obj) => (
+                    {items.map(({ id, name, owner, priority, status, start_date, end_date, person, time_est }) => (
                         <tr
-                            className={obj.id === selectedRow ?
+                            className={id === selectedRow ?
                                 'selected'
                                 :
                                 ''}
-                        // onClick={() => selectRow(obj.id, obj.name)}
+                            onClick={() => selectRow(id)}
                         >
-                            {columns.map((col_name) => {
-                                const selected = obj.id === selectedRow &&
-                                col_name === selectedColumn
-                                return (
-                                    <td
-                                        className={ selected ?
-                                            'selected' : ''}
-                                        onClick={
-                                            () => updateCell(col_name, obj.id, obj.name)
-                                        } >
-                                        {obj[col_name]}
-                                        <DashColumnPicker
-                                            id={`col-${obj.id}-${col_name}`}
-                                            modalType={col_name}
-                                            selected={selected}
-                                        />
-                                    </td>)
-                            })}
-
+                            <td
+                            // here add events for all task cells
+                            >{name}</td>
+                            <td
+                            // here add events for all owner cells
+                            >{owner}</td>
+                            <td>{priority}</td>
+                            <td>{status}</td>
+                            <td>{start_date}</td>
+                            <td>{end_date}</td>
+                            <td>{person}</td>
+                            <td>{time_est}</td>
                         </tr>
                     ))}
                     {/* <tr>
