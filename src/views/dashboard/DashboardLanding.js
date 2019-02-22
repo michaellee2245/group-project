@@ -55,7 +55,7 @@ class DashboardLanding extends Component {
       <div className='dashboard-wrapper'>
         <div className='topNavBar'>
 
-          <TopNavBar page={this.props.history.push} />
+          <TopNavBar page={this.props.history.push}  />
         </div>
         <DashSideNav
           changeViews={this.changeViews}
