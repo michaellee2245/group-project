@@ -14,7 +14,7 @@ class CommentSlideIn extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`api/comment/on-task/${this.state.taskID}`)
+        axios.get(`/api/comment/on-task/${this.state.taskID}`)
             .then(response => {
                 const list = response.data.reverse()
                 this.setState({
@@ -24,9 +24,7 @@ class CommentSlideIn extends Component {
     }
 
     handleClick = () => {
-        this.setState({
-            open: !this.state.open
-        })
+        this.props.closePanel();
     }
 
     handleChange = ({ target: { value, name } }) => {
@@ -51,9 +49,6 @@ class CommentSlideIn extends Component {
 
 
     render() {
-
-        console.log(this.state.commentList)
-
         const taskCommentList = this.state.commentList.map((task, i) => {
             return (
                 <div
@@ -64,7 +59,7 @@ class CommentSlideIn extends Component {
                         <div className="comment-info">
                             <div className="name-pic">
                                 <div
-                                    id="pic" 
+                                    id="pic"
                                     style={{
                                         backgroundColor: '#fb275d',
                                         height: '25px',
@@ -74,7 +69,7 @@ class CommentSlideIn extends Component {
                                         backgroundSize: 'contain',
                                         backgroundRepeat: 'no-repeat'
                                     }}
-                                
+
                                 />
                                 {task.author}
                             </div>
@@ -93,7 +88,7 @@ class CommentSlideIn extends Component {
             <div
                 className="slide-in-container"
                 style={{
-                    transform: this.state.open ? 'translateX(0px)' : 'translateX(550px)'
+                    transform: this.props.open ? 'translateX(0px)' : 'translateX(555px)'
                 }}
             >
                 <div className="content-container">
@@ -109,7 +104,7 @@ class CommentSlideIn extends Component {
                         <input
                             className="title-input"
                             type="text"
-                            placeholder={this.state.currentTask}
+                            placeholder={this.props.taskName}
                             name="taskName"
                             onChange={this.handleChange}
                         />
@@ -118,7 +113,7 @@ class CommentSlideIn extends Component {
                     <form
                         onSubmit={e => { e.preventDefault(); this.addComment() }}
                     >
-                        <input
+                        <textarea
                             className="comment"
                             placeholder="Write an update..."
                             name="commentText"
