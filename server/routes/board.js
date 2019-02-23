@@ -19,10 +19,7 @@ router.use((req, res, next) => {
 router.post('/', isAuthenticated, onTeam, (req, res, next) => {
   req.db.board.new([req.body.name, req.body.teamID, req.user[0].id])
     .then(() => req.db.board.get_id_by_name([req.body.name]))
-    .then(id => res.status(200).json({
-      name: req.body.name,
-      id: id[0].id
-    }))
+    .then(boards => res.status(200).json(boards[0]))
     .catch(err => serverError(err, res))
 })
 

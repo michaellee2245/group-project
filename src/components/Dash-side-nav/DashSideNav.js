@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './DashSideNav.scss';
 import DropDown from '../DropDown/DropDown';
-
+import {connect} from 'react-redux'
 
 
 
@@ -36,14 +36,15 @@ class DashSideNav extends Component {
   }
 
   publicBoardCount = () => {
-    return this.props.dashboard.length
+    return this.props.user.boards.length
   }
 
   privateBoardCount = () => {
     return this.state.privateCount.length
   }
 
-  showMenu = () => {
+  showMenu = (e) => {
+    
     this.setState({ hidden: !this.state.hidden})
     
   }
@@ -92,7 +93,7 @@ class DashSideNav extends Component {
               {
                 this.state.hidden
                 ?(
-                  <DropDown nav = {this.props.dashboard} />
+                  <DropDown nav = {this.props.user.boards ? this.props.user.boards:[]} />
                 )
                 :(null)
               }
@@ -125,4 +126,10 @@ class DashSideNav extends Component {
     )
   }
 }
-export default DashSideNav;
+
+const mapStatToProps = state => {
+  return {
+    user: state.user.user
+  }
+}
+export default connect(mapStatToProps)(DashSideNav);
