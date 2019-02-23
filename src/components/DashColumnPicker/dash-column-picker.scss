@@ -4,13 +4,16 @@ $purple-background: #a25ddc;
 $green-background: #00c875;
 
 .column-modal-container {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.32);
   border-radius: 4px;
   border: 1px solid #c4c4c4;
+  position:absolute;
+  background-color:white;
+  z-index:500;
   &:before {
     content: " ";
     position: absolute;
@@ -24,9 +27,12 @@ $green-background: #00c875;
     transform: translateX(50%);
     border-bottom-color: white;
     border-width: 10px;
-    top: 35px;
+    top: -20px;
   }
 }
+// .hidden{
+//   display:none;
+// }
 
 .priority-container,
 .status-container {
@@ -56,15 +62,23 @@ $green-background: #00c875;
 .high-priority,
 .in-progress-status {
   background: $red-background;
+  color: white;
+  text-align: center;
 }
 .medium-priority,
 .on-hold-status {
   background: $purple-background;
+  color: white;
+  text-align: center;
 }
 .low-priority {
   background: $blue-background;
+  color: white;
+  text-align: center;
 }
 
 .done-status {
   background: $green-background;
+  color: white;
+  text-align: center;
 }
