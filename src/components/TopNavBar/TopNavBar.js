@@ -16,12 +16,10 @@ class TopNavBar extends Component {
         this.props.page('/dashboard/admin')
     }
     handleProfile = () => {
-        this.props.page('/dashboard/myprofile')
-    }
-
-    handleProfile = () => {
         this.props.page('/dashboard/profile')
     }
+
+
 
     render() {
         return (
