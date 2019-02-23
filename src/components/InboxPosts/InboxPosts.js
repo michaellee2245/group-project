@@ -3,6 +3,9 @@ import './inboxPosts.scss';
 import axios from 'axios';
 
 class InboxPosts extends Component {
+    state={
+        clickedLike: false,
+    }
 
 
     markAsRead = () => {
@@ -16,15 +19,19 @@ class InboxPosts extends Component {
     }
 
     toggleReadClick = () => {
-        console.log("toggleReadClick=>", this.props.commentRead)
+        // console.log("toggleReadClick=>", this.props.commentRead)
         if (this.props.commentRead) { this.markAsUnread() }
         else { this.markAsRead() }
-
-
     }
 
     handleClickLikes = () => {
-        axios.post('/api/comment/like')
+        if( this.state.clickedLike === false)
+       { axios.post('/api/comment/like')
+         this.setState({clickedLike: true})
+        } else {
+            
+        }
+        
     }
 
     render() {
@@ -78,7 +85,9 @@ class InboxPosts extends Component {
                                     <i className="material-icons">bookmark_border</i>
                                 </span>
                                 <span className="tool-span">
-                                    <i className="material-icons" onClick={this.handleClickLikes}>thumb_up</i>
+                                    <i className="material-icons"
+                                    //  onClick={this.handleClickLikes}
+                                     >thumb_up</i>
                                     <span className="tool-counter">{this.props.readCount}</span>
 
                                 </span>

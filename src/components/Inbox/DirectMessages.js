@@ -16,7 +16,6 @@ class DirectMessages extends Component {
     }
 
     toggleReadClick = () => {
-        console.log("toggleReadClick=>", this.props.commentRead)
         if (this.props.commentRead) { this.markAsUnread() }
         else { this.markAsRead() }
 
