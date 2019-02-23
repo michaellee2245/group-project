@@ -13,12 +13,14 @@ class BoardCell extends Component {
       className: class_name,
       values: values
     })
+    document.activeElement.blur();
   }
 
   handleDayClick = (day, { selected }) => {
     this.setState({
       values: selected ? undefined : day.toLocaleDateString()
     });
+    document.activeElement.blur();
   }
 
   render() {
