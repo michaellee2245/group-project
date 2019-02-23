@@ -14,7 +14,19 @@ const reducer = (state = initState, action) => {
     case "BOARDS": {
       return {...state, dashboard: action.payload}
     }
-    
+    case "PHONE": {
+      return {...state, user: {...state.user, user: {...state.user.user, phone: action.payload}}}
+    }
+    case "EMAIL": {
+      return {...state, user: {...state.user, user: {...state.user.user, email: action.payload}}}
+    }
+    case "TITLE": {
+      return {...state, user: {...state.user, user: {...state.user.user, title: action.payload}}}
+    }
+    case "PIC": {
+      return {...state, user: {...state.user, user: {...state.user.user, pic: action.payload}}}
+    }
+
     default: return state
   }
 }
