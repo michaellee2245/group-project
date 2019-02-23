@@ -8,6 +8,7 @@ import Marketing from './views/marketing/Marketing'
 import {connect} from 'react-redux'
 import {getSession} from './redux/actions'
 import WhyUs from './views/marketing/MarketWhyUs/MarketWhyUs';
+import Inbox from './components/Inbox/Inbox';
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
+        <Inbox></Inbox>
       </div>
 
     );

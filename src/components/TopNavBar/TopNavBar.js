@@ -16,6 +16,10 @@ class TopNavBar extends Component {
         this.props.page('/dashboard/admin')
     }
 
+    handleProfile = () => {
+        this.props.page('/dashboard/profile')
+    }
+
     render() {
         return (
             <div className="navbar-wrapper">
@@ -76,18 +80,18 @@ class TopNavBar extends Component {
                         {/* <a href="#" className="text"> */}
                         <div onClick={this.handleClick} className="add-member-span">
                             <i className="material-icons">face</i>
-                            <p className='user-profile-menu' > UserProfile</p>
-                            {this.state.profileHidden ?
-                                (
-                                    <div>
-                                        <ul className='user-profile-menu-list'>
-                                            <li>Profile</li>
-                                            <li onClick={this.handleAdmin}>Admin </li>
-                                            <li>Recycle Bin </li>
-                                            <li onClick={this.props.logout}>Logout</li>
-                                        </ul>
-                                    </div>
-                                ) : (null)
+                            <p className = 'user-profile-menu' > UserProfile</p>
+                            {this.state.profileHidden? 
+                            (
+                            <div>
+                                <ul className = 'user-profile-menu-list'>
+                                    <li onClick = {this.handleProfile}>Profile</li>
+                                    <li onClick = {this.handleAdmin}>Admin </li>
+                                    <li>Recycle Bin </li>
+                                    <li onClick = {this.props.logout}>Logout</li>
+                                </ul>
+                            </div>    
+                            ): (null)
                             }
                         </div>
                         {/* </a> */}

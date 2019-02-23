@@ -59,7 +59,7 @@ class DashSideNav extends Component {
       <div className="leftpane-container" id="leftpane-container">
         <div className="leftpane-component">
           <a href='www.monday.com'>
-            <i class='../../assets/monday-logo-final.png' id='leftpane-logo' />
+            <i className='../../assets/monday-logo-final.png' id='leftpane-logo' />
           </a>
         </div>
         <div className="leftpane-inbox-component">
