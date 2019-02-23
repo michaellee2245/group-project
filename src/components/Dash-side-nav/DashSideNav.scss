@@ -1,3 +1,7 @@
+* {
+  margin:0;
+  padding: 0;
+}
 .leftpane-container {
   width: 19.8%;
   height: 100%;
@@ -14,6 +18,7 @@
 
 .title{
   color:#333333;
+  
 }
 
 .leftpane-component {
@@ -22,6 +27,7 @@
 }
 
 .leftpane-inbox-component {
+  
   display: flex;
   align-items: center;
   padding-left: 25px;
@@ -50,16 +56,17 @@
 .inbox-wrapper{
 display: flex;
 justify-content: center;
-align-items: center;
+
 
 }
 .inboxCounter {
-  display:flex;
+  position: absolute;
   color:white;
   padding: 3px 15px;
   border-radius: 15px;
-  margin-left: 125px;
+  margin-left: 70%;
   background-color: #009aff;
+  margin-bottom: 25px;
 }
 
 .leftpane-week-component {

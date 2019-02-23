@@ -18,7 +18,9 @@ class Stats extends Component {
         col3number = '9'
         col3title = 'Updates in boards'
        />
-       <div className = 'empty-box'></div>
+       <div className = 'empty-box'>
+        <h1>DATA</h1>
+       </div>
         <StatBox 
         class = 'green'
         title = 'People Activity'
