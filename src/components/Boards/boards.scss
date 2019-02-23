@@ -40,17 +40,18 @@
 //     position: relative;
 // }
 .board-wrapper {
-  width: 95%;
-//   margin-top: 300px;
-//   //   display: flex;
-//   padding-left: 30px;
-//   padding-right: 30px;
+  width: 75vw;
+  //   margin-top: 300px;
+  //   //   display: flex;
+  //   padding-left: 30px;
+  //   padding-right: 30px;
   margin-bottom: 50px;
   //   flex-direction: column;
 }
 table {
-  width: fill;
+  width: stretch;
   border-spacing: 1px;
+  font-size: .75em;
   thead {
     tr {
       th {
@@ -59,30 +60,49 @@ table {
     }
   }
   tr {
+    background-color:#f0f0f0;
     th,
     td {
       text-align: left;
       // border: 1px solid black;
-      padding: 16px;
-      background-color: lightgray;
+      padding: 5px;
+      position: relative;
+      
+
+      &:focus,
+      &:focus-within {
+        outline:none;
+        .column-modal-container {
+          display: flex;
+        }
+      }
     }
     &.selected {
       th,
       td {
-        background-color: white !important;
+        // background-color: white;
       }
     }
   }
 }
-.input-row{
-    width:100%;
-    text-align: left;
-      // border: 1px solid black;
-      padding: 16px;
-      background-color: gray;
+.input-row {
+  width: 100%;
+  text-align: left;
+  // border: 1px solid black;
+  padding: 5px;
+  //   background-color: gray;
+}
+.add-row-input {
+  width: stretch;
+  padding: 16px;
+  &:focus{
+      outline:none;
+  }
+  // background-color:lightgray;
+  // border:1px solid black;
 }
 .add-row-input{
-    width:fill;
+    width:stretch;
     padding:16px;
     background-color:lightgray;
     // border:1px solid black;
