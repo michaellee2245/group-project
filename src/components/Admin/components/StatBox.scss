@@ -1,34 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .purple {
   display: flex;
   flex-flow: column;
   background-color:purple;
-  width: 500px;
-  height: 150px;
+  width: 425px;
+  height: 130px;
   border-radius: 15px;
+  margin-bottom: 2%;
+  margin-right: 10px;
+  
 }
 .green {
   display: flex;
   flex-flow: column;
   background-color:green;
-  width: 500px;
-  height: 150px;
+  width: 425px;
+  height: 130px;
   border-radius: 15px;
+  margin-bottom: 2%;
+  margin-right: 10px;
 }
 .orange {
   display: flex;
   flex-flow: column;
   background-color:orange;
-  width: 500px;
-  height: 150px;
+  width: 425px;
+  height: 130px;
   border-radius: 15px;
+  margin-bottom: 2%;
 }
 .box-title{
   display: flex;
   justify-content: space-between;
   flex-flow: row;
-  margin-top:3%;
+  margin-top:2%;
   margin-left:3%;
-  margin-right:3%;
+  margin-right:4%;
   color: white;
 
 }
@@ -37,35 +47,61 @@
   justify-content: space-evenly;
   
 }
-.box-col1{
+.box-col{
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
   color: white;
-  margin-top:5%;
-  font-size: 18px;
+  margin-top:3%;
+  h1{
+    font-size: 28px
+  }
+  h3 {
+    font-size: 14px;
+  }
 }
-.box-col2{
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  color: white;
-  margin-top:5%;
-  font-size: 18px;
-}
-.box-col3{
-  display: flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  color: white;
-  margin-top:5%;
-  font-size: 18px;
-}
+
 .stat-wrapper{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width:900px;
+  margin-left:10%;
 }
 .empty-box{
-  width: 500px;
+  display: flex;
+  justify-content: center;
+  width: 425px;
+  height: 130px;
+  background-color: teal;
+  border-radius: 15px;
+  h1 {
+    display: flex;
+    align-self: center;
+    color:white
+  }
+}
+
+
+.team-table-wrapper {
+  position: absolute;
+  margin-left:5%;
+  width: 750px;
+  th{
+  background-color:white;
+  color:black;
+  width: 250px;
+  border-bottom: solid black 1px
+  }
+  td {
+    background-color:white;
+    border-bottom: solid black 1px;
+  }
+}
+
+.admin-general-wrapper {
+  width: 900px;
+  h1 {
+    font-size: 22px;
+  }
 }

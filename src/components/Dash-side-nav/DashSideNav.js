@@ -44,9 +44,8 @@ class DashSideNav extends Component {
   }
 
   showMenu = (e) => {
-    
     this.setState({ hidden: !this.state.hidden})
-    
+    this.props.changeViews(e)
   }
   showPrivate = () => {
     this.setState({ showPrivate: !this.state.showPrivate})
@@ -85,15 +84,15 @@ class DashSideNav extends Component {
             // id="leftpane-boards-list-component"
             
             >
-              <a href="#" className="link-wrapper router" onClick = {this.showMenu}>
-                <i class="material-icons">menu</i><span className="title">Boards public</span>
-                <span className="title"> ({this.publicBoardCount()})</span>
+              <a href="#" className="link-wrapper router" title = 'boards' onClick = {this.showMenu}>
+                <i class="material-icons" title = 'boards'>menu</i><span  title = 'boards' className="title">Boards public</span>
+                <span title = 'boards' className="title"> ({this.publicBoardCount()})</span>
               </a>
               <div className = 'drop-menu'>
               {
                 this.state.hidden
                 ?(
-                  <DropDown nav = {this.props.user.boards ? this.props.user.boards:[]} />
+                  <DropDown nav = {this.props.dashboard.boards ? this.props.dashboard.boards:[]} />
                 )
                 :(null)
               }
