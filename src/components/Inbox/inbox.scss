@@ -1,6 +1,7 @@
 .inbox-wrapper-component {
+    margin-top:5%;
     display: flex;
-    min-height: 100vh;
+    min-height:100%;
     height: fit-content;
     width: calc(100% - 19.89vw);
     flex-direction: column;
@@ -21,7 +22,7 @@
     
 }
 
-.inbox-title {
+.inbox-title-comp {
     display: flex;
     justify-content: right;
    vertical-align: top;

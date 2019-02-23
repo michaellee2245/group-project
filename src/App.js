@@ -35,7 +35,7 @@ class App extends Component {
             <Route component={Marketing} />
           </Switch>
         </ConnectedRouter>
-        <Inbox></Inbox>
+        
       </div>
 
     );

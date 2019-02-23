@@ -11,6 +11,7 @@ class Inbox extends Component {
     state = {
         directMessages: [],
         comments: [],
+        allUpdates: false,
 
     }
 
@@ -117,7 +118,7 @@ class Inbox extends Component {
             <div className="inbox-wrapper-component">
 
                 <div className="inbox-title-wrapper">
-                    <span className="inbox-title">Inbox</span>
+                    <span className="inbox-title-comp">Inbox</span>
 
                     <div className="inbox-title-actions">
                         <span className="inbox-toggle-mode">
