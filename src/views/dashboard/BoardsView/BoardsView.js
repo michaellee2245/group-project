@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 
-import './boards-view.scss';
+import './BoardsView.scss';
 import Boards from '../../../components/Boards/Boards';
 
 
