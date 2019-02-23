@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import './StatBox.scss'
 
 class General extends Component {
   render() {
     return (
-      <div>
+      <div  className = 'admin-general-wrapper'>
         <h1>Account Name</h1>
         <input />
 

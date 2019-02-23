@@ -14,6 +14,7 @@ const reducer = (state = initState, action) => {
     case "BOARDS": {
       return {...state, dashboard: action.payload}
     }
+    
     default: return state
   }
 }
