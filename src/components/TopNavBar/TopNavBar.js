@@ -15,10 +15,11 @@ class TopNavBar extends Component {
     handleAdmin = () => {
         this.props.page('/dashboard/admin')
     }
-
     handleProfile = () => {
         this.props.page('/dashboard/profile')
     }
+
+
 
     render() {
         return (
