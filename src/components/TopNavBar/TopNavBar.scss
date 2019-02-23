@@ -3,8 +3,10 @@
     flex-direction: row;
     justify-content: space-between;
     background-color: #eeeeee;
-    height: 6vh;
-    width: 80%;
+    height: 7vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 10000;
     align-content: center; 
     text-decoration: none;
     align-items: center;
@@ -15,6 +17,21 @@
     height: 3vh;
     text-decoration: none;
     
+}
+
+.dash-nav-logo {
+    background-image: url(../../assets/monday-logo-final.png);
+    height: 100%;
+    width: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+.logo-tab-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .material-icons {
@@ -85,12 +102,16 @@
 }
 .first-three{
     display:flex;
-    justify-content: flex-start
+    justify-content: flex-start;
+    height: 100%;
+    align-items: center;
 }
 .last-two {
     display: flex;
     justify-content: flex-end;
     margin-right: 2%;
+    height: 100%;
+    align-items: center;
 }
 
 
