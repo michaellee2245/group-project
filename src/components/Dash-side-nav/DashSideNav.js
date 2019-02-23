@@ -63,17 +63,17 @@ class DashSideNav extends Component {
           </a>
         </div>
         <div className="leftpane-inbox-component">
-          <div  className="inbox-wrapper" title = 'Inbox' onClick = {this.getInbox}>
-            {/* <a href="#" name = 'Inbox' className="link-wrapper router"> */}
-              <span title='Inbox' className="title">Inbox</span>
-              <span className="inboxCounter"> {this.inboxCount()}</span>
+          <div  className="inbox-wrap" title = 'Inbox' onClick = {this.getInbox}>
+            {/* <a href="#" name = 'Inbox' className="link-wrapper router" > */}
+              <div title='Inbox' className="title-side">Inbox</div>
+              <div className="inboxCounter"> {this.inboxCount()}</div>
             {/* </a> */}
           </div>
         </div>
         <div>
           <div className="leftpane-week-component" title = 'MyWeek'  onClick = {this.getWeek}>
             {/* <a href="#" name = 'MyWeek' className="link-wrapper router"> */}
-              <span title = 'MyWeek' className="title">My Week</span>
+              <span title = 'MyWeek' className="title-side">My Week</span>
             {/* </a> */}
           </div>
         </div>
@@ -84,9 +84,9 @@ class DashSideNav extends Component {
             // id="leftpane-boards-list-component"
             
             >
-              <a href="#" className="link-wrapper router" title = 'boards' onClick = {this.showMenu}>
-                <i class="material-icons" title = 'boards'>menu</i><span  title = 'boards' className="title">Boards public</span>
-                <span title = 'boards' className="title"> ({this.publicBoardCount()})</span>
+              <a href="#" className="link-wrapper router" id="link-container" onClick = {this.showMenu} >
+                <i class="material-icons title-side">menu</i><span className="title-side">Boards public</span>
+                <span className="title-side"> ({this.publicBoardCount()})</span>
               </a>
               <div className = 'drop-menu'>
               {
@@ -104,9 +104,9 @@ class DashSideNav extends Component {
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
             <div className="leftpane-boards-private-list-component" id="leftpane-boards-list-component">
-              <a href="#" className="link-wrapper router" onClick = {this.showPrivate}>
-                <i class="material-icons">menu</i><span className="title">Boards private</span>
-                <span className="title"> ({this.privateBoardCount()})</span>
+              <a href="#" className="link-wrapper router" id="link-container" onClick = {this.showPrivate} >
+                <i class="material-icons title-side">menu</i><span className="title-side">Boards private</span>
+                <span className="title-side"> ({this.privateBoardCount()})</span>
               </a>
               {
                 this.state.showPrivate
