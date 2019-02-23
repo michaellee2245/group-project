@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './inboxPosts.scss';
+import './directMessages.scss';
 import axios from 'axios';
 
-class InboxPosts extends Component {
+class DirectMessages extends Component {
 
 
     markAsRead = () => {
@@ -38,16 +38,16 @@ class InboxPosts extends Component {
                                 <img className="profile-pic" src={authorPic} alt="None"></img>
                             </a>
                             <div className="title">
-                                <a className="user-name" href="Profile-Name">{author}</a>
-                                <div className="post-board-link">
+                                <a className="user-name" href="Profile-Name">Direct message from {author}</a>
+                                {/* <div className="post-board-link">
                                     <a href="actual-post-board-link" className="router-link">
                                         <i className="material-icons">sort</i>
-                                        {boardName}
+                                        Direct message
                                     </a>
-                                    <span id="divider"> > </span>
+                                    <span id="divider"> from </span>
                                     <a href="task-name" className="router-link">{taskName}</a>
-                                </div>
-                            </div>
+                                </div> */}
+                            </div> 
                         </div>
                         <div className="post-top-right-wrapper">
                             {/* <div className="post-time-wrapper">
@@ -108,4 +108,4 @@ class InboxPosts extends Component {
     }
 }
 
-export default InboxPosts;
+export default DirectMessages;
