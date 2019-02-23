@@ -7,7 +7,7 @@ import MyWeek from '../../components/MyWeek/MyWeek'
 import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import Admin from '../../components/Admin/Admin'
 import { dashboard } from '../../redux/actions'
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
 import BoardsView from '../dashboard/BoardsView/BoardsView';
@@ -68,7 +68,8 @@ class DashboardLanding extends Component {
             <Route path='/dashboard/inbox' render={(props) => <Inbox {...props} />} />
             <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} dashboard = {this.props.dashboard}/>} />
-
+            <Route path='/dashboard/boards' render={(props) => <BoardsView {...props} />} />
+            <Route render={() => <Redirect to='/dashboard/boards'/>} />
           </Switch>
         </div>
 
