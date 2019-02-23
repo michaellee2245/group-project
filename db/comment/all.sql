@@ -15,7 +15,7 @@ SELECT
  comment.ts AS time_posted,
  comment.id IN (
    SELECT comment_id FROM read_comment
-   WHERE user_id = 20
+   WHERE user_id = $1
  ) AS read,
  rc.read_count AS read_count,
  lc.like_count AS like_count
@@ -35,9 +35,9 @@ JOIN (
 ) AS lc ON lc.id = comment.id
 WHERE board.team IN (
  SELECT id FROM team
- WHERE manager_id = 20
+ WHERE manager_id = $1
  UNION ALL
  SELECT team_id FROM team_member
- WHERE user_id = 20
+ WHERE user_id = $1
  AND approved
 );

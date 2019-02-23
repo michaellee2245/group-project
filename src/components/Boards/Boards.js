@@ -15,16 +15,17 @@ class Boards extends Component {
     commentList: [],
     open: false,
     taskName: '',
-    cellSetups:[],
     selectedDay: null
   };
 
-  updateCell = (row,col) => {
-    return col => {
+  updateCell = row => {
+    return (col, taskName) => {
+      if (col === 'name') this.openCommentSlideIn(row);
       this.setState({
         selectedRow: row,
-        selectedCol: col
-      })
+        selectedCol: col,
+        taskName: taskName
+      });
     }
   }
 
@@ -99,6 +100,7 @@ class Boards extends Component {
           commentList={this.state.commentList}
           updateComment={(comment) => this.updateCommentList(comment)}
           taskName={this.state.taskName}
+          closePanel={this.handleSlideInClose}
         />
         <table>
           <thead>

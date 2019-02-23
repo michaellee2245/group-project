@@ -24,9 +24,7 @@ class CommentSlideIn extends Component {
     }
 
     handleClick = () => {
-        this.setState({
-            open: !this.state.open
-        })
+        this.props.closePanel();
     }
 
     handleChange = ({ target: { value, name } }) => {
@@ -106,7 +104,7 @@ class CommentSlideIn extends Component {
                         <input
                             className="title-input"
                             type="text"
-                            placeholder={this.state.currentTask}
+                            placeholder={this.props.taskName}
                             name="taskName"
                             onChange={this.handleChange}
                         />

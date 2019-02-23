@@ -27,7 +27,7 @@ class BoardCell extends Component {
       <td
         className={`board-cell ${this.state.className}`}
         tabIndex={ti}
-        onClick={() => uc(col_name)}
+        onClick={() => uc(col_name,item.name)}
       >
         {values ? values : item[col_name]}
         <DashColumnPicker
