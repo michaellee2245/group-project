@@ -19,6 +19,10 @@ class TopNavBar extends Component {
         this.props.page('/dashboard/myprofile')
     }
 
+    handleProfile = () => {
+        this.props.page('/dashboard/profile')
+    }
+
     render() {
         return (
             <div className="navbar-wrapper">

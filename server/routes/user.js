@@ -97,6 +97,7 @@ router.put('/skype', isAuthenticated, (req, res, next) => {
 // PUT api/user/title
 // set your title
 router.put('/title', isAuthenticated, (req, res, next) => {
+  console.log("title" , req.body)
   req.db.user.set_title([req.body.title, req.user[0].id])
     .then(() => res.status(200).send('title set'))
     .catch(err => serverError(err, res));
@@ -108,6 +109,14 @@ router.put('/pic', isAuthenticated, (req, res, next) => {
   req.db.user.set_pic([req.body.pic, req.user[0].id])
     .then(() => res.status(200).send('pic set'))
     .catch(err => serverError(err, res));
+})
+
+// PUT api/user/email
+// set your email
+router.put('/email', isAuthenticated, (req,res,next) => {
+  req.db.user.set_email([req.body.email, req.user[0].id])
+    .then(() => res.status(200).send('email set'))
+    .catch(err => serverError(err,res));
 })
 
 module.exports = router;
