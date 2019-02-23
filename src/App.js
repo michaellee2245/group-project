@@ -13,6 +13,7 @@ import Inbox from './components/Inbox/Inbox';
 
 class App extends Component {
   componentDidMount = () => {
+  
     this.props.getSession()
   }
   

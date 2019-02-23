@@ -19,6 +19,7 @@
 
 .material-icons {
     color: grey;
+    cursor:pointer;
     
 }
 .search-img {
@@ -110,6 +111,7 @@
     list-style: none;
     color:black;
     position: relative;
+    cursor:pointer;
     
 }
 .user-profile-menu-list {
@@ -119,6 +121,7 @@
     margin-top:2%;
     list-style: none;
     width: 100px;
+    cursor:pointer;
     & li:hover{
         background-color:grey;
     }
