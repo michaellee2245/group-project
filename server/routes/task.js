@@ -86,24 +86,24 @@ router.put('/group', isAuthenticated, onTask, (req, res, next) => {
 
 // PUT /api/task/start-date
 // set start date
-router.put('/start-date', isAuthenticated, onTask, (req, res, next) => {
-  req.db.task.set_start_date([req.body.taskID, req.body.startDate])
+router.put('/start_date', isAuthenticated, onTask, (req, res, next) => {
+  req.db.task.set_start_date([req.body.taskID, req.body.start_date])
     .then(() => res.status(200).send('start date set'))
     .catch(err => serverError(err, res));
 })
 
 // PUT /api/task/end-date
 // set end date
-router.put('/end-date', isAuthenticated, onTask, (req, res, next) => {
-  req.db.task.set_end_date([req.body.taskID, req.body.endDate])
+router.put('/end_date', isAuthenticated, onTask, (req, res, next) => {
+  req.db.task.set_end_date([req.body.taskID, req.body.end_date])
     .then(() => res.status(200).send('end date set'))
     .catch(err => serverError(err, res));
 })
 
 // PUT /api/task/time-est
 // set time estimate
-router.put('/time-est', isAuthenticated, onTask, (req, res, next) => {
-  req.db.task.set_time_est([req.body.taskID, req.body.timeEst])
+router.put('/time_est', isAuthenticated, onTask, (req, res, next) => {
+  req.db.task.set_time_est([req.body.taskID, req.body.time_est])
     .then(() => res.status(200).send('time estimate set'))
     .catch(err => serverError(err, res));
 })
