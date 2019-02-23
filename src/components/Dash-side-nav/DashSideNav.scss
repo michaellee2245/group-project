@@ -1,7 +1,13 @@
+@import '../../views/marketing/variables.scss';
+
+div, span, a {
+  font-family: $font-family!important;
+}
+
 .leftpane-container {
-  width: 275px;
+  width: 250px;
   height: 100%;
-  background-color: #eeeeee;
+  background-color: $dash-side-nav;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,13 +18,13 @@
   width: 50px;
 }
 
-.title{
+.title-side{
   color:#333333;
+  margin: 10px;
 }
 
 .leftpane-component {
   height: 65px;
-  border-bottom:solid 1px #999999;
 }
 
 .leftpane-inbox-component {
@@ -27,7 +33,7 @@
   align-items: center;
   text-align: left;
   padding-left: 25px;
-  height: 55px;
+  height: 60px;
   // border-bottom:solid 1px #999999;
   a{
     text-decoration: none;
@@ -39,7 +45,7 @@
     background-color: #009aff;
     color:white;
     cursor: pointer;
-    .title{
+    .title-side{
       color:white !important; 
     }
     .inboxCounter{
@@ -50,9 +56,11 @@
 }
 
 .inbox-wrap{
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
 
 
 }
@@ -71,12 +79,12 @@ align-items: center;
   text-align: left;
   padding-left: 25px;
   height: 55px;
-  border-bottom:solid 1px #999999;
+  // border-bottom:solid 1px #999999;
   &:hover{
     background-color: #009aff;
     color:white;
     cursor: pointer;
-    .title{
+    .title-side{
       color:white !important; 
     }
   }
@@ -85,18 +93,19 @@ align-items: center;
   }
 }
 
-.leftpane-boards-public-list-component {
+.leftpane-boards-public-list-component, 
+.leftpane-boards-private-list-component {
   display: flex;
   justify-content: flex-start;
-  padding-top:5%;
-  padding-left:8%;
+  width: 100%;
   flex-direction: column;
   min-height: 40px;
-  border-bottom:solid 1px #999999;
+  margin: 5px auto;
+  // border-bottom:solid 1px #999999;
   &:hover{
     color:#009aff;
     cursor: pointer;
-    .title{
+    .title-side{
     color:#009aff !important; 
     }
   }
@@ -113,26 +122,7 @@ align-items: center;
   padding-bottom: 10px;
 }
 
-.leftpane-boards-private-list-component {
+.link-wrapper:hover {
+  background-color: #e1e1e1;
 
-  display: flex;
-  justify-content: flex-start;
-  padding-top:5%;
-  padding-left:8%;
-  flex-direction: column;
-  min-height: 40px;
-  border-bottom:solid 1px #999999;
-  &:hover{
-    color:#009aff;
-    cursor: pointer;
-    .title{
-    color:#009aff !important; 
-    }
-  }
-  a{
-    display:flex;
-    justify-content: flex-start;
-    align-content: center;
-    text-decoration: none;
-  }
 }

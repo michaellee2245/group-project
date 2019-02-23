@@ -1,8 +1,10 @@
+@import '../../views/marketing/variables.scss';
+
 .navbar-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #eeeeee;
+    background-color: $dash-top-nav;
     height: 7vh;
     width: 100vw;
     position: fixed;
@@ -25,8 +27,16 @@
     width: 200px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin: 0 37.5px;
+    margin: auto;
+    margin-top: 15px;
 
+
+}
+
+.logo-background {
+    height: 100%;
+    width: 250px;
+    background-color: $dash-side-nav;
 }
 
 .logo-tab-wrapper {
@@ -63,8 +73,9 @@
     border-radius: 15px;
     padding: 8px; 
     margin: 1vh;
-    width: 200px;
-   outline:none;
+    width: 250px;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.322);
    
 }
 

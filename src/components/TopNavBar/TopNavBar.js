@@ -20,9 +20,11 @@ class TopNavBar extends Component {
         return (
             <div className="navbar-wrapper">
                 <div className="logo-tab-wrapper">
-                    <div
-                        className="dash-nav-logo"
-                    />
+                    <div className="logo-background">
+                        <div
+                            className="dash-nav-logo"
+                        />
+                    </div>
                     <div className='first-three'>
                         <div className="navbar-tab">
                             <a href="#" className="text">
