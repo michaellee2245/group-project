@@ -98,7 +98,7 @@ router.get('/by-id/:teamID', isAuthorized, (req, res, next) => {
 // GET /api/team/us/:theirID
 // get all teams you have in common with the other user
 router.get('/us/:theirID', isAuthorized, (req, res, next) => {
-  req.db.team.us([req.user[0].id, req.params.theirID])
+  req.db.team.us([req.params.theirID])
     .then(teams => res.status(200).json(teams))
     .catch(err => serverError(err, res));
 })

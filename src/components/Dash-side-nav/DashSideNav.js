@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './DashSideNav.scss';
 import DropDown from '../DropDown/DropDown';
-
+import {connect} from 'react-redux'
 
 
 
@@ -36,7 +36,7 @@ class DashSideNav extends Component {
   }
 
   publicBoardCount = () => {
-    return this.props.dashboard.length
+    return this.props.user.boards.length
   }
 
   privateBoardCount = () => {
@@ -44,7 +44,7 @@ class DashSideNav extends Component {
   }
 
   showMenu = (e) => {
-    this.props.changeViews(e)
+    
     this.setState({ hidden: !this.state.hidden})
     
   }
@@ -86,14 +86,14 @@ class DashSideNav extends Component {
             
             >
               <a href="#" className="link-wrapper router" onClick = {this.showMenu}>
-                <i title="boards" class="material-icons">menu</i><span className="title">Boards public</span>
-                <span title="boards" className="title"> ({this.publicBoardCount()})</span>
+                <i class="material-icons">menu</i><span className="title">Boards public</span>
+                <span className="title"> ({this.publicBoardCount()})</span>
               </a>
               <div className = 'drop-menu'>
               {
                 this.state.hidden
                 ?(
-                  <DropDown nav = {this.props.dashboard} />
+                  <DropDown nav = {this.props.user.boards ? this.props.user.boards:[]} />
                 )
                 :(null)
               }
@@ -126,4 +126,10 @@ class DashSideNav extends Component {
     )
   }
 }
-export default DashSideNav;
+
+const mapStatToProps = state => {
+  return {
+    user: state.user.user
+  }
+}
+export default connect(mapStatToProps)(DashSideNav);

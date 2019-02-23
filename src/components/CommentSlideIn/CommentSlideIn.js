@@ -49,6 +49,9 @@ class CommentSlideIn extends Component {
 
 
     render() {
+
+        console.log(this.state.commentList)
+
         const taskCommentList = this.state.commentList.map((task, i) => {
             return (
                 <div
@@ -104,7 +107,7 @@ class CommentSlideIn extends Component {
                         <input
                             className="title-input"
                             type="text"
-                            placeholder={this.props.taskName}
+                            placeholder={this.state.currentTask}
                             name="taskName"
                             onChange={this.handleChange}
                         />

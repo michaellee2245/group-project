@@ -66,7 +66,6 @@ router.post('/register', (req, res, next) => {
 // requires username and password
 router.post('/login', (req, res, next) => {
   const loginResponse = {};
-  console.log(req.body.username);
   req.db.user.get_user_password([req.body.username])
     .then(([pw]) => {
       if (!pw) {
@@ -142,4 +141,34 @@ router.delete('/me', isAuthenticated, (req, res, next) => {
     })
     .catch(err => serverError(err, res));
 })
+
+// PUT /api/auth/password
+// change your password
+router.put('/password', isAuthenticated, (req, res, next) => {
+  req.db.user.pw_by_id([req.user[0].id])
+    .then(([pw]) => {
+      if (!pw) {
+        res.status(401).send("User doesn't exist")
+      } else {
+        comparePassword(req.body.currentPassword, pw.password)
+          .then(correct => {
+            if (!correct) {
+              const responseText = 'Password Incorrect';
+              console.log(responseText);
+              res.status(401).send(responseText);
+            } else {
+              return hashPassword(req.body.newPass)
+            }
+          })
+          .then(hash => {
+            if (!hash) return;
+            return req.db.user.update_password([hash, req.user[0].id])
+          })
+          .then(() => res.status(200).send('password updated'))
+          .catch(err => serverError(err, res));
+      }
+    })
+    .catch(err => serverError(err, res));
+})
+
 module.exports = router;
