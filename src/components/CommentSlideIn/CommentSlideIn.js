@@ -93,7 +93,7 @@ class CommentSlideIn extends Component {
             <div
                 className="slide-in-container"
                 style={{
-                    transform: this.state.open ? 'translateX(0px)' : 'translateX(550px)'
+                    transform: this.state.open ? 'translateX(0px)' : 'translateX(350px)'
                 }}
             >
                 <div className="content-container">
