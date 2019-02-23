@@ -70,7 +70,7 @@ class DashboardLanding extends Component {
             <Route path= '/dashboard/boards' render = {(props) => <BoardsView {...props} board = {this.props.dashboards.boards ? this.props.dashboards.boards: []}/>} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} dashboard = {this.props.dashboard}/>} />
             <Route path='/dashboard/boards' render={(props) => <BoardsView {...props} />} />
-            
+            <Route path='/dashboard/profile' render={(props) => <MyProfile {...props} user = {this.props.user.user} />} />
             <Route render={() => <Redirect to='/dashboard/boards'/>} />
           </Switch>
         </div>
