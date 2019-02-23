@@ -60,6 +60,7 @@ class Boards extends Component {
         open: true,
         commentList: [],
     })
+    
   }
 
   handleSlideInClose = () => {

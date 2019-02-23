@@ -1,5 +1,4 @@
 /* Get all of the tasks that a user has access to as an approved team member*/
-
 SELECT
   task.id AS id,
   task.board_id AS board_id,
@@ -7,10 +6,10 @@ SELECT
   task.name AS name,
   task.priority AS priority,
   task.status AS status,
-  task.start_date AS start_date,
+  to_char(start_date, 'MM/DD/YYYY') AS start_date,
   task.position AS position,
   task.group_name AS group,
-  task.end_date AS end_date,
+  to_char(end_date, 'MM/DD/YYYY') AS end_date,
   task.time_est AS time_est,
   task.ts AS ts,
   board.name AS board_name,
@@ -23,9 +22,7 @@ JOIN team ON board.team = team.id
 WHERE team.id IN (
   SELECT team_id FROM team_member
   WHERE user_id = $1 AND approved
-
   UNION ALL
-
   SELECT id FROM team
   WHERE manager_id = $1
 );

@@ -1,5 +1,4 @@
 /* Get all tasks on a specific board */
-
 SELECT
   task.id,
   task.name AS name,
@@ -8,8 +7,8 @@ SELECT
   board.name AS board_name,
   task.priority,
   task.status,
-  task.start_date,
-  task.end_date,
+  to_char(task.start_date, 'MM/DD/YYYY') AS start_date,
+  to_char(task.end_date, 'MM/DD/YYYY') AS end_date,
   task.position,
   (SELECT COUNT(*) FROM assignment WHERE task_id = task.id) AS assigned_users,
   (SELECT COUNT(*) FROM comment WHERE task_id = task.id) AS comments
