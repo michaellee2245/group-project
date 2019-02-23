@@ -33,13 +33,33 @@ class Boards extends Component {
     return row === this.state.selectedRow && col === this.state.selectedCol;
   }
 
+  taskNameChange = () => {
+    console.log(this.state.selectedRow, this.state.taskName)
+    axios.put('/api/task/name', { taskID: this.state.selectedRow, name: this.state.taskName })
+    this.setState({
+        items: this.state.items.map(item => {
+            if (item.id === this.state.selectedRow){
+                item.name = this.state.taskName
+            }
+            return item
+        })
+    })
+}
+    handleChange = ({ target: { value } }) => {
+        this.setState({
+            taskName: value
+        })
+    }
   openCommentSlideIn = id => {
     axios.get(`/api/comment/on-task/${id}`)
       .then(response => {
         const list = response.data.reverse()
         this.setState({commentList: list})
       })
-    this.setState({open: true})
+    this.setState({
+        open: true,
+        commentList: [],
+    })
   }
 
   handleSlideInClose = () => {
@@ -101,6 +121,8 @@ class Boards extends Component {
           updateComment={(comment) => this.updateCommentList(comment)}
           taskName={this.state.taskName}
           closePanel={this.handleSlideInClose}
+          updateTaskName={this.taskNameChange}
+          handleChange={this.handleChange}
         />
         <table>
           <thead>
