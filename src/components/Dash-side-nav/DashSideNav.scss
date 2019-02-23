@@ -35,7 +35,6 @@ div, span, a {
   text-align: left;
   padding-left: 25px;
   height: 60px;
-  // border-bottom:solid 1px #999999;
   a{
     text-decoration: none;
     display: flex;
@@ -62,7 +61,9 @@ div, span, a {
   justify-content: space-between;
   align-items: center;
   padding-right: 10px;
-
+  div {
+    font-size: 20px;
+  }
 
 }
 .inboxCounter {
@@ -73,6 +74,7 @@ div, span, a {
   padding: 3px 15px;
   border-radius: 15px;
   background-color: #009aff;
+  font-size: 14px!important;
 }
 
 .leftpane-week-component {
@@ -93,6 +95,9 @@ div, span, a {
   a{
     text-decoration: none;
   }
+  span {
+    font-size: 20px!important;
+  }
 }
 
 .leftpane-boards-public-list-component, 
@@ -105,10 +110,8 @@ div, span, a {
   margin: 5px auto;
   // border-bottom:solid 1px #999999;
   &:hover{
-    color:#009aff;
     cursor: pointer;
     .title-side{
-    color:#009aff !important; 
     }
   }
   a{
