@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import './inboxPosts.scss';
+import './directMessages.scss';
 import axios from 'axios';
 
-class InboxPosts extends Component {
-    state={
-        clickedLike: false,
-    }
+class DirectMessages extends Component {
 
 
     markAsRead = () => {
@@ -19,19 +16,14 @@ class InboxPosts extends Component {
     }
 
     toggleReadClick = () => {
-        // console.log("toggleReadClick=>", this.props.commentRead)
         if (this.props.commentRead) { this.markAsUnread() }
         else { this.markAsRead() }
+
+
     }
 
     handleClickLikes = () => {
-        if( this.state.clickedLike === false)
-       { axios.post('/api/comment/like')
-         this.setState({clickedLike: true})
-        } else {
-            
-        }
-        
+        axios.post('/api/comment/like')
     }
 
     render() {
@@ -45,16 +37,16 @@ class InboxPosts extends Component {
                                 <img className="profile-pic" src={authorPic} alt="None"></img>
                             </a>
                             <div className="title">
-                                <a className="user-name" href="Profile-Name">{author}</a>
-                                <div className="post-board-link">
+                                <a className="user-name" href="Profile-Name">Direct message from {author}</a>
+                                {/* <div className="post-board-link">
                                     <a href="actual-post-board-link" className="router-link">
                                         <i className="material-icons">sort</i>
-                                        {boardName}
+                                        Direct message
                                     </a>
-                                    <span id="divider"> > </span>
+                                    <span id="divider"> from </span>
                                     <a href="task-name" className="router-link">{taskName}</a>
-                                </div>
-                            </div>
+                                </div> */}
+                            </div> 
                         </div>
                         <div className="post-top-right-wrapper">
                             {/* <div className="post-time-wrapper">
@@ -85,9 +77,7 @@ class InboxPosts extends Component {
                                     <i className="material-icons">bookmark_border</i>
                                 </span>
                                 <span className="tool-span">
-                                    <i className="material-icons"
-                                    //  onClick={this.handleClickLikes}
-                                     >thumb_up</i>
+                                    <i className="material-icons" onClick={this.handleClickLikes}>thumb_up</i>
                                     <span className="tool-counter">{this.props.readCount}</span>
 
                                 </span>
@@ -117,4 +107,4 @@ class InboxPosts extends Component {
     }
 }
 
-export default InboxPosts;
+export default DirectMessages;
