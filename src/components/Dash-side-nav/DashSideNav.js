@@ -64,7 +64,7 @@ class DashSideNav extends Component {
           </a>
         </div>
         <div className="leftpane-inbox-component">
-          <div  className="inbox-wrapper" title = 'Inbox' onClick = {this.getInbox}>
+          <div  className="inbox-wrap" title = 'Inbox' onClick = {this.getInbox}>
             {/* <a href="#" name = 'Inbox' className="link-wrapper router"> */}
               <span title='Inbox' className="title">Inbox</span>
               <span className="inboxCounter"> {this.inboxCount()}</span>

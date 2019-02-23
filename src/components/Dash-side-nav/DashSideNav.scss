@@ -23,10 +23,12 @@
 
 .leftpane-inbox-component {
   display: flex;
+  justify-content: center;
   align-items: center;
+  text-align: left;
   padding-left: 25px;
   height: 55px;
-  border-bottom:solid 1px #999999;
+  // border-bottom:solid 1px #999999;
   a{
     text-decoration: none;
     display: flex;
@@ -47,10 +49,11 @@
   }
 }
 
-.inbox-wrapper{
+.inbox-wrap{
 display: flex;
 justify-content: center;
 align-items: center;
+
 
 }
 .inboxCounter {
@@ -58,13 +61,14 @@ align-items: center;
   color:white;
   padding: 3px 15px;
   border-radius: 15px;
-  margin-left: 125px;
+  // margin-left: 125px;
   background-color: #009aff;
 }
 
 .leftpane-week-component {
   display: flex;
   align-items: center;
+  text-align: left;
   padding-left: 25px;
   height: 55px;
   border-bottom:solid 1px #999999;

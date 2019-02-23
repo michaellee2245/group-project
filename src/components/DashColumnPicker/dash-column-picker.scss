@@ -4,7 +4,7 @@ $purple-background: #a25ddc;
 $green-background: #00c875;
 
 .column-modal-container {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -27,6 +27,9 @@ $green-background: #00c875;
     top: 35px;
   }
 }
+// .hidden{
+//   display:none;
+// }
 
 .priority-container,
 .status-container {
@@ -56,15 +59,23 @@ $green-background: #00c875;
 .high-priority,
 .in-progress-status {
   background: $red-background;
+  color: white;
+  text-align: center;
 }
 .medium-priority,
 .on-hold-status {
   background: $purple-background;
+  color: white;
+  text-align: center;
 }
 .low-priority {
   background: $blue-background;
+  color: white;
+  text-align: center;
 }
 
 .done-status {
   background: $green-background;
+  color: white;
+  text-align: center;
 }
