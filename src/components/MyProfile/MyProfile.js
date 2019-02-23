@@ -28,7 +28,7 @@ class MyProfile extends Component {
   }
   handleClickUrl = (close) => {
     this.props.setPic({ pic: this.state.url })
-    close()
+    close() 
   }
 
 
