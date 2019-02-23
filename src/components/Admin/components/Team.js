@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import axios from 'axios'
+import { connect } from 'react-redux'
+import './StatBox.scss'
 
 class Team extends Component {
 
-  
-  roster = this.props.dashboard.roster ? this.props.dashboard.roster: []
+
+  roster = this.props.dashboard.roster ? this.props.dashboard.roster : []
 
 
   render() {
@@ -17,21 +17,21 @@ class Team extends Component {
           <td>{i.phone}</td>
           <hr />
         </tr>
-         
-       
+
+
       )
     })
     return (
       <div>
-        
-        <table>
+
+        <table className='team-table-wrapper'>
           <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
           </tr>
           {teams}
-          
+
         </table>
       </div>
     )
