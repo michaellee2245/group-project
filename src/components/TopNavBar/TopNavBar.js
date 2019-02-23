@@ -16,6 +16,10 @@ class TopNavBar extends Component {
         this.props.page('/dashboard/admin')
     }
 
+    handleProfile = () => {
+        this.props.page('/dashboard/profile')
+    }
+
     render() {
         return (
             <div className="navbar-wrapper">
@@ -74,7 +78,7 @@ class TopNavBar extends Component {
                             (
                             <div>
                                 <ul className = 'user-profile-menu-list'>
-                                    <li>Profile</li>
+                                    <li onClick = {this.handleProfile}>Profile</li>
                                     <li onClick = {this.handleAdmin}>Admin </li>
                                     <li>Recycle Bin </li>
                                     <li onClick = {this.props.logout}>Logout</li>

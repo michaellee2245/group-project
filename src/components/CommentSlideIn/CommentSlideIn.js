@@ -8,51 +8,36 @@ class CommentSlideIn extends Component {
         open: false,
         taskName: '',
         commentText: '',
-        taskID: 127,
-        commentList: [],
+        commentList: this.props.commentList,
         currentTask: 'Current task name'
     }
 
-    componentDidMount = () => {
-        axios.get(`/api/comment/on-task/${this.state.taskID}`)
-            .then(response => {
-                const list = response.data.reverse()
-                this.setState({
-                    commentList: list
-                })
-            })
-    }
-
-    handleClick = () => {
+    handleCloseComments = () => {
         this.props.closePanel();
     }
 
-    handleChange = ({ target: { value, name } }) => {
-        this.setState({
-            [name]: value
-        })
-    }
 
-    taskNameChange = () => {
-        axios.put('api/task/name', { taskID: this.state.taskID, name: this.state.taskName })
-    }
+
+
 
     addComment = () => {
-        axios.post('/api/comment', { taskID: this.state.taskID, content: this.state.commentText })
+        console.log(this.props.taskID)
+        console.log(this.state.commentText)
+        axios.post('/api/comment', { taskID: this.props.taskID, content: this.state.commentText })
             .then(response => {
-                this.setState({
-                    commentList: [response.data, ...this.state.commentList]
-                })
+               this.props.updateComment(response.data)
+               
             })
+            this.setState=({commentText:''})
     }
 
 
 
     render() {
 
-        console.log(this.state.commentList)
+        console.log(this.props.commentList)
 
-        const taskCommentList = this.state.commentList.map((task, i) => {
+        const taskCommentList = this.props.commentList.map((task, i) => {
             return (
                 <div
                     key={i}
@@ -62,7 +47,7 @@ class CommentSlideIn extends Component {
                         <div className="comment-info">
                             <div className="name-pic">
                                 <div
-                                    id="pic"
+                                    id="pic" 
                                     style={{
                                         backgroundColor: '#fb275d',
                                         height: '25px',
@@ -72,7 +57,7 @@ class CommentSlideIn extends Component {
                                         backgroundSize: 'contain',
                                         backgroundRepeat: 'no-repeat'
                                     }}
-
+                                
                                 />
                                 {task.author}
                             </div>
@@ -97,19 +82,19 @@ class CommentSlideIn extends Component {
                 <div className="content-container">
                     <div
                         id="close-button"
-                        onClick={this.handleClick}
+                        onClick={this.handleCloseComments}
                     >
                         X
                     </div>
                     <form
-                        onSubmit={e => { e.preventDefault(); this.taskNameChange() }}
+                        onSubmit={e => { e.preventDefault(); this.props.updateTaskName() }}
                     >
                         <input
                             className="title-input"
                             type="text"
-                            placeholder={this.state.currentTask}
+                            placeholder={this.props.taskName}
                             name="taskName"
-                            onChange={this.handleChange}
+                            onChange={this.props.handleChange}
                         />
                     </form>
                     <div className="divider" />
@@ -120,6 +105,7 @@ class CommentSlideIn extends Component {
                             className="comment"
                             placeholder="Write an update..."
                             name="commentText"
+                            value={this.state.commentText}
                             onChange={this.handleChange}
                         />
                     </form>

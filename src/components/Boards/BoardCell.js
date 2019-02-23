@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DashColumnPicker from '../DashColumnPicker/DashColumnPicker';
+import axios from 'axios';
 
 class BoardCell extends Component {
   state = {
@@ -14,6 +15,7 @@ class BoardCell extends Component {
       values: values
     })
     document.activeElement.blur();
+    axios.put(`/api/task/${col_name}`, {taskID:id, [col_name]:values})
   }
 
   handleDayClick = (day, { selected }) => {
@@ -21,6 +23,7 @@ class BoardCell extends Component {
       values: selected ? undefined : day.toLocaleDateString()
     });
     document.activeElement.blur();
+    axios.put(`/api/task/end_date`, {taskID:this.props.item.id, end_date:day.toLocaleDateString()})
   }
 
   render() {

@@ -5,7 +5,6 @@ export const login = (user) => {
   return dispatch => {
     axios.post('/api/auth/login' ,user)
     .then( (user) => {
-      console.log('redux', user)
       dispatch ({
         type: "USER",
         payload: user
@@ -35,7 +34,6 @@ export const getSession = () => {
   return dispatch => {
     axios.get('/api/auth/session ')
     .then( (user) => {
-      console.log('redux session',user.data)
       dispatch ({
         type: "USER",
         payload: user,
@@ -54,11 +52,11 @@ export const register = (user) => {
   return dispatch => {
     axios.post('/api/auth/register',user)
     .then ((user) => {
-      console.log('register', user)
       dispatch ({
         type: "USER",
         payload: user
       })
+      dispatch(push('/dashboard'))
     })
   }
 }
@@ -67,11 +65,58 @@ export const dashboard = (boardID) => {
   return dispatch => {
     axios.get('/api/dashboard')
     .then (board => {
-      console.log('reduxboard',board.data)
       dispatch ({
         type: "BOARDS",
         payload: board.data
       })
     })
+  }
+}
+
+export const setPhone = (number) => {
+  return dispatch => {
+    axios.put("/api/user/phone", number)
+    .then (() => {
+      dispatch({
+        type: "PHONE",
+        payload: number.phone
+      })
+    }) 
+  }
+}
+
+export const setEmail = (email) => {
+  return dispatch => {
+    axios.put("/api/user/email", email)
+    .then (() => {
+      dispatch({
+        type: "EMAIL",
+        payload: email.email
+      })
+    }) 
+  }
+}
+
+export const setTitle = (title) => {
+  return dispatch => {
+    axios.put("/api/user/title", title)
+    .then (() => {
+      dispatch({
+        type: "TITLE",
+        payload: title.title
+      })
+    }) 
+  }
+}
+
+export const setPic = (pic) => {
+  return dispatch => {
+    axios.put("/api/user/pic", pic)
+    .then (() => {
+      dispatch({
+        type: "PIC",
+        payload: pic.pic
+      })
+    }) 
   }
 }
