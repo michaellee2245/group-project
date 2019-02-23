@@ -59,6 +59,7 @@ export const register = (user) => {
         type: "USER",
         payload: user
       })
+      dispatch(push('/dashboard'))
     })
   }
 }
@@ -73,5 +74,53 @@ export const dashboard = (boardID) => {
         payload: board.data
       })
     })
+  }
+}
+
+export const setPhone = (number) => {
+  return dispatch => {
+    axios.put("/api/user/phone", number)
+    .then (() => {
+      dispatch({
+        type: "PHONE",
+        payload: number.phone
+      })
+    }) 
+  }
+}
+
+export const setEmail = (email) => {
+  return dispatch => {
+    axios.put("/api/user/email", email)
+    .then (() => {
+      dispatch({
+        type: "EMAIL",
+        payload: email.email
+      })
+    }) 
+  }
+}
+
+export const setTitle = (title) => {
+  return dispatch => {
+    axios.put("/api/user/title", title)
+    .then (() => {
+      dispatch({
+        type: "TITLE",
+        payload: title.title
+      })
+    }) 
+  }
+}
+
+export const setPic = (pic) => {
+  return dispatch => {
+    axios.put("/api/user/pic", pic)
+    .then (() => {
+      dispatch({
+        type: "PIC",
+        payload: pic.pic
+      })
+    }) 
   }
 }

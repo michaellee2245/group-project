@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import './Personal.scss'
 import Popup from "reactjs-popup";
+import axios from "axios";
+import { connect } from "react-redux"
+import { setPhone, setTitle, setEmail } from "../../../redux/actions"
+
 
 const contentStyle = {
   maxWidth: "600px",
   width: "90%"
 };
 
-export default class Personal extends Component {
+class Personal extends Component {
   state = {
     email: '',
     phone: '',
@@ -20,9 +24,21 @@ export default class Personal extends Component {
     this.setState({ [key]: value })
   }
 
-  // handleClickSave = () => {
-  //   axios.put('api/user/title', { title: this.state.title })
-  // }
+  handleClickSaveTitle = (close) => {
+    this.props.setTitle({ title: this.state.title })
+    close()
+
+  }
+
+  handleClickSaveEmail = (close) => {
+    this.props.setEmail({ email: this.state.email })
+    close()
+  }
+
+  handleClickSavePhone = (close) => {
+    this.props.setPhone({ phone: this.state.phone })
+    close()
+  }
 
   render() {
     return (
@@ -34,7 +50,7 @@ export default class Personal extends Component {
           </div>
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
-              <span className='edit_text_title'>Title: {this.state.title}</span>
+              <span className='edit_text_title'>Title: {this.props.user.title}</span>
 
               <i class="fas fa-pencil-alt"></i>
             </div>} modal contentStyle={contentStyle}>
@@ -48,7 +64,7 @@ export default class Personal extends Component {
                 </div>
                 <br />
                 <div className='save-title-btn'>
-                  <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                  <button className="save" onClick={() => this.handleClickSaveTitle(close)}>Save</button>
                 </div>
               </div>
             )}
@@ -60,7 +76,7 @@ export default class Personal extends Component {
           </div>
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
-              <span className='edit_text_title'>Email: {this.state.email}</span>
+              <span className='edit_text_title'>Email: {this.props.user.email}</span>
               <span className='profile-field-content'></span>
               <i class="fas fa-pencil-alt"></i>
             </div>} modal contentStyle={contentStyle}>
@@ -74,7 +90,7 @@ export default class Personal extends Component {
                 </div>
                 <br />
                 <div className='save-title-btn'>
-                  <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                  <button className="save" onClick={() => this.handleClickSaveEmail(close)}>Save</button>
                 </div>
               </div>
             )}
@@ -86,7 +102,7 @@ export default class Personal extends Component {
           </div>
           <Popup
             trigger={<div className='data_container_popup_edit_link'>
-              <span className='edit_text_title'>Phone: {this.state.phone}</span>
+              <span className='edit_text_title'>Phone: {this.props.user.phone}</span>
               <i class="fas fa-pencil-alt"></i>
             </div>} modal contentStyle={contentStyle}>
             {close => (
@@ -99,7 +115,7 @@ export default class Personal extends Component {
                 </div>
                 <br />
                 <div className='save-title-btn'>
-                  <button className="save" onClick={() => this.handleClickSave(close)}>Save</button>
+                  <button className="save" onClick={() => this.handleClickSavePhone(close)}>Save</button>
                 </div>
               </div>
             )}
@@ -110,3 +126,4 @@ export default class Personal extends Component {
   }
 
 }
+export default connect(null, { setPhone, setEmail, setTitle })(Personal)

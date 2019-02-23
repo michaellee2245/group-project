@@ -5,6 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import Personal from './components/Personal'
 import Password from './components/Password'
 import Popup from "reactjs-popup";
+import { connect } from 'react-redux';
+import { setPic } from '../../redux/actions'
 
 const contentStyle = {
   maxWidth: "600px",
@@ -12,9 +14,9 @@ const contentStyle = {
 };
 
 
-export default class MyProfile extends Component {
+class MyProfile extends Component {
   state = {
-    username: 'Testaccount',
+    username: '',
     changeUsername: '',
     url: '',
   }
@@ -24,18 +26,11 @@ export default class MyProfile extends Component {
     const value = e.target.value;
     this.setState({ [key]: value })
   }
+  handleClickUrl = (close) => {
+    this.props.setPic({ pic: this.state.url })
+    close()
+  }
 
-  // handleClickChangeUsername = () => {
-  //   axios.put('api/user/username', { username: this.state.username })
-  // }
-
-  // handleClickUrl = () => {
-  //   axios.put('api/user/url', { url: this.state.url })
-  // }
-
-  // handleClickRemovePic = () => {
-  //   axios.delete('api/user/url', { url: this.state.url })
-  // }
 
   render() {
     return (
@@ -48,7 +43,7 @@ export default class MyProfile extends Component {
                   <Popup className='popup_wrapper'
                     trigger={<div className='hover_wrapper'>
                       <div className='profile-image-component'>
-                        <img class="profile-image hover" src="https://files.monday.com/photos/6645438/small/6645438-dapulse_light_blue.png?1548520278"></img>
+                        <img className="profile-image-hover" src={this.props.user.pic}></img>
                         <div className='change_picture_hover'>
                           <i class="fas fa-user-plus"></i>
                           <div className='change-picture-text'>Change profile picture</div>
@@ -83,7 +78,7 @@ export default class MyProfile extends Component {
                     <div className='tooltip'>
                       <span className='tooltiptext'>Edit user name</span>
                       <span className='edit_username_component'>
-                        <div className='userName'>{this.state.username}</div>
+                        <div className='userName'>{this.props.user.name}</div>
                       </span>
                     </div>
                   </div>}
@@ -98,7 +93,7 @@ export default class MyProfile extends Component {
                     </div>
                     <br />
                     <div className='save-title-btn'>
-                      <button className="save" onClick={() => this.handleClickUsername(close)}>Save</button>
+                      <button className="save" onClick={() => this.handleClickChangeUsername(close)}>Save</button>
                     </div>
                   </div>
                 )}
@@ -114,7 +109,7 @@ export default class MyProfile extends Component {
             </section>
             <section className='user_profile_bottom_container'>
               <Switch>
-                <Route path='/dashboard/profile/personal-info' component={Personal} />
+                <Route path='/dashboard/profile/personal-info' render={(props) => <Personal {...props} user={this.props.user} />} />
                 <Route path="/dashboard/profile/password" component={Password} />
               </Switch>
             </section>
@@ -125,4 +120,4 @@ export default class MyProfile extends Component {
   }
 
 }
-
+export default connect(null, { setPic })(MyProfile)

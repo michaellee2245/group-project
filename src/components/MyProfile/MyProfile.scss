@@ -67,11 +67,17 @@ align-items: center;
 }
 }
 
+.profile-image-hover{
+  height: 150px;
+}
+
 .hover_wrapper{
   height: 150px;
   width: 150px;
   position: relative;
   &:hover{
+    color: white;
+    font-size: 24px;
     .profile-image{
       opacity: .2;
     }
