@@ -49,7 +49,7 @@ class CommentSlideIn extends Component {
 
 
     render() {
-        const taskCommentList = this.state.commentList.map((task, i) => {
+        const taskCommentList = this.props.commentList.map((task, i) => {
             return (
                 <div
                     key={i}

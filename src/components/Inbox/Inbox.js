@@ -50,6 +50,10 @@ class Inbox extends Component {
         return  this.state.comments.map(this.renderInboxPosts)
     }
 
+    showDirectMessages = () => {
+      return this.state.directMessages.map(this.renderInboxPosts);
+    }
+
     showOpenUpdates= () => {
         return this.state.comments.filter( comment => {
             return !comment.read
@@ -75,11 +79,15 @@ class Inbox extends Component {
 
          handleAllUpdates=(event)=> {
              event.preventDefault()
-             this.setState({allUpdates: true})
+             this.setState({allUpdates: true,showDirectMessages:false})
          }
         handleOpenUpdates=(event)=>{
             event.preventDefault()
-            this.setState({allUpdates:false})
+            this.setState({allUpdates:false,showDirectMessages:false})
+        }
+        handleDirectMessages = event => {
+          event.preventDefault();
+          this.setState({allUpdates: false, showDirectMessages: true})
         }
 
     render() {
@@ -96,7 +104,8 @@ class Inbox extends Component {
                         <span className="inbox-toggle-mode">
                             <span className="active" onClick={this.handleOpenUpdates}> Open ({this.countComments()}) </span>
                             /
-                <span className="inbox-all-updates" onClick={this.handleAllUpdates}> All Updates</span>
+                <span className="inbox-all-updates" onClick={this.handleAllUpdates}> All Updates</span> /
+                <span className="inbox-direct-messages" onClick={this.handleDirectMessages}> DMs </span>
 
                         </span>
                     </div>
@@ -116,7 +125,10 @@ class Inbox extends Component {
                         (<DefaultInbox></DefaultInbox>)
                         }
                         {this.state.allUpdates ?
-                          this.showAllUpdates() : this.showOpenUpdates()}
+                          this.showAllUpdates() :
+                          this.state.showDirectMessages ?
+                          this.showDirectMessages() :
+                          this.showOpenUpdates()}
 
                         </div>
 
