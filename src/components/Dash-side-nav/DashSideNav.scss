@@ -28,6 +28,7 @@ div, span, a {
 }
 
 .leftpane-inbox-component {
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,12 +66,13 @@ div, span, a {
 
 }
 .inboxCounter {
-  display:flex;
+  position: absolute;
   color:white;
   padding: 3px 15px;
   border-radius: 15px;
   // margin-left: 125px;
   background-color: #009aff;
+  // margin-bottom: 25px;
 }
 
 .leftpane-week-component {

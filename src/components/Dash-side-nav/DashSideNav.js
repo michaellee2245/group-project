@@ -44,9 +44,8 @@ class DashSideNav extends Component {
   }
 
   showMenu = (e) => {
-    
     this.setState({ hidden: !this.state.hidden})
-    
+    this.props.changeViews(e)
   }
   showPrivate = () => {
     this.setState({ showPrivate: !this.state.showPrivate})
@@ -93,7 +92,7 @@ class DashSideNav extends Component {
               {
                 this.state.hidden
                 ?(
-                  <DropDown nav = {this.props.user.boards ? this.props.user.boards:[]} />
+                  <DropDown nav = {this.props.dashboard.boards ? this.props.dashboard.boards:[]} />
                 )
                 :(null)
               }

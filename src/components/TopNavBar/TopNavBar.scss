@@ -153,9 +153,19 @@
     margin-right:4%;
     margin-top:2%;
     list-style: none;
-    width: 100px;
+    width: 120px;
+    height: 120px;
+    border: solid 1px grey;
+    background-color: white;
+    border-radius:5px;
     cursor:pointer;
     & li:hover{
-        background-color:grey;
+        background-color:blue;
+        color: white;
+    }
+    li {
+        font-size:18px;
+        margin-top:2%;
+        margin-bottom:3%;
     }
 }
