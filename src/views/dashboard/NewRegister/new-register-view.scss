@@ -1,26 +1,81 @@
+
+@import '../../marketing/variables.scss';
+
+
+@keyframes out {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+@keyframes in {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+
 .new-register-container {
     margin-top: 7vh;
     margin-right: 5px;
     width: 95%;
+    height: 100vh;
+    overflow-y: scroll;
     h1 {
-        margin-top: 130px;
         font-size: 70px;
+        color: $red-main;
     }
     input {
-        width: 300px;
-        height: 40px;
+        width: 500px;
+        height: 30px;
         margin-top: 50px;
         font-size: 25px;
         padding: 15px;
-        border: 1px solid gray;
+        border: none;
+        text-align: center;
+        border-bottom: 1px solid $red-main;
+        color: gray;
+        &:focus {
+            outline: none!important;
+        }
+        &::placeholder {
+            color: $red-main;
+        }
     }
 }
 
 .team-name-container {
-    width: 100vw;
-    background-color: rgba(128, 128, 128, 0.199);
-    margin-top: 3px;
-    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    border: 1px solid $blue-main;
+    color: $blue-main;
+    margin: 10px auto;
+    padding: 10px 0;
+    border-radius: 15px;
+    div {
+        padding: 5px 16px;
+        font-size: 20px;
+    }
+    &:hover {
+        background-color: $blue-main;
+        color: white;
+    }
+    i {
+        color: white;
+        margin-right: 40px;
+        font-size: 40px;
+        animation: in .5s;
+        &:hover {
+            animation: out .5s;
+        }
+    }
 }
 
 .list-container {
@@ -28,3 +83,4 @@
     margin-top: 50px;
     text-align: left;
 }
+

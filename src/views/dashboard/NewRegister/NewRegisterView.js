@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './new-register-view.scss';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
 class NewRegisterView extends Component {
 
@@ -16,7 +17,7 @@ class NewRegisterView extends Component {
     }
 
     searchOnEnter = ({ key, target, target: { value } }) => {
-        if(key === 'Enter') {
+        if (key === 'Enter') {
             target.value = ""
             axios.get(`/api/team/by-name/${this.state.searchText}`)
                 .then(response => {
@@ -28,17 +29,31 @@ class NewRegisterView extends Component {
         }
     }
 
-    render(){
-        console.log(this.state.searchText)
+    handleJoin = () => {
+        axios.post(`/api/team/join-name`, {user: this.props.user})
+    }
+
+    render() {
+
+        console.log(this.props.user.user.user)
+        
+
         const teamsList = this.state.teamsList.map((team, i) => {
+            console.log(team)
             return (
                 <div className="team-name-container">
                     <div>{team.name}</div>
+                    <i
+                        className="material-icons"
+                        onClick={this.handleJoin}
+                    >
+                        add_circle_outline
+                    </i>
                 </div>
             )
         })
 
-        return(
+        return (
             <div className="new-register-container">
                 <h1>Join a Team.</h1>
                 <input
@@ -54,4 +69,10 @@ class NewRegisterView extends Component {
     }
 }
 
-export default NewRegisterView;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(NewRegisterView);
