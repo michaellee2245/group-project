@@ -3,7 +3,7 @@
   margin-top:8%;
 }
 .dashboard-inner-wrapper{
-  margin-left:20%;
+  margin-left:250px;
   min-width:calc(100% - 20%);
   height:auto;
   // background-color:blue;
@@ -28,7 +28,7 @@
 
 @media only screen and (max-width: 1280px) {
 
-  .dashboard-wrapper-inner {
+  .dashboard-inner-wrapper {
     margin-left: 210px;
   }
   
