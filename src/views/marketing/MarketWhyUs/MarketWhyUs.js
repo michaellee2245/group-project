@@ -17,6 +17,7 @@ import frost from '../../../assets/frost.png';
 import philips from '../../../assets/philips.png';
 import dhl from '../../../assets/dhl.png';
 import wix from '../../../assets/wix.png';
+import MarketFooter from '../../../components/MarketFooter/MarketFooter';
 
 
 class WhyUs extends Component {
