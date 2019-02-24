@@ -12,6 +12,7 @@ import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
 import BoardsView from '../dashboard/BoardsView/BoardsView';
 import MyProfile from '../../components/MyProfile/MyProfile'
+import NewRegisterView from '../dashboard/NewRegister/NewRegisterView';
 
 
 class DashboardLanding extends Component {
@@ -70,8 +71,9 @@ class DashboardLanding extends Component {
             <Route path= '/dashboard/boards' render = {(props) => <BoardsView {...props} board = {this.props.dashboards.boards ? this.props.dashboards.boards: []}/>} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} dashboard = {this.props.dashboard}/>} />
             <Route path='/dashboard/profile' render={(props) => <MyProfile {...props} user = {this.props.user.user} />} />
+            <Route path='/dashboard' component={NewRegisterView} />
            
-            <Route path='/dashboard/' render={(props) => <BoardsView {...props} />} />
+            {/* <Route path='/dashboard/' render={(props) => <BoardsView {...props} />} /> */}
             {/* <Route render={() => <Redirect to='/dashboard/boards'/>} /> */}
           </Switch>
         </div>
