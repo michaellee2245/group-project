@@ -20,22 +20,25 @@ class CommentSlideIn extends Component {
 
 
 
-    addComment = () => {
+    addComment = ({key, target, target: { value }}) => {
+        if (key === 'Enter') {
+            target.value = ''
+
         console.log(this.props.taskID)
         console.log(this.state.commentText)
-        axios.post('/api/comment', { taskID: this.props.taskID, content: this.state.commentText })
+        axios.post('/api/comment', { taskID: this.props.taskID, content: value })
             .then(response => {
                this.props.updateComment(response.data)
                
             })
             this.setState=({commentText:''})
+        }
     }
 
 
 
     render() {
 
-        console.log(this.props.commentList)
 
         const taskCommentList = this.props.commentList.map((task, i) => {
             return (
@@ -95,18 +98,20 @@ class CommentSlideIn extends Component {
                             placeholder={this.props.taskName}
                             name="taskName"
                             onChange={this.props.handleChange}
+                            
                         />
                     </form>
                     <div className="divider" />
                     <form
-                        onSubmit={e => { e.preventDefault(); this.addComment() }}
+                        // onSubmit={e => { e.preventDefault(); this.addComment() }}
                     >
                         <textarea
                             className="comment"
                             placeholder="Write an update..."
                             name="commentText"
-                            value={this.state.commentText}
-                            onChange={this.handleChange}
+                            value={this.props.commentText}
+                            onChange={this.props.handleChange}
+                            onKeyDown={this.addComment}
                         />
                     </form>
                     {taskCommentList}

@@ -15,7 +15,8 @@ class Boards extends Component {
     commentList: [],
     open: false,
     taskName: '',
-    selectedDay: null
+    selectedDay: null,
+    commentText:'',
   };
 
   updateCell = row => {
@@ -45,9 +46,9 @@ class Boards extends Component {
         })
     })
 }
-    handleChange = ({ target: { value } }) => {
+    handleChange = ({ target: { value, name } }) => {
         this.setState({
-            taskName: value
+            [name]: value
         })
     }
   openCommentSlideIn = id => {
@@ -83,11 +84,12 @@ class Boards extends Component {
       axios.post("/api/task", {
         boardID: this.state.boardID,
         name: value
-      });
-      this.setState({
-        items: this.state.items.concat({
-        name: value,
-      })});
+      }).then(task => {
+
+          this.setState({
+            items: this.state.items.concat(task.data)});
+          
+      })
     }
   }
 
@@ -134,7 +136,7 @@ class Boards extends Component {
               <th>Owner</th>
               <th>Priority</th>
               <th>Status</th>
-              <th>Date</th>
+              <th>Due Date</th>
               <th>Person</th>
               <th>Time Est.</th>
             </tr>

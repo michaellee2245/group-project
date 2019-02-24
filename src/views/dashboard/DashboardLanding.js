@@ -68,7 +68,7 @@ class DashboardLanding extends Component {
           count = {this.state.count}
         />
 
-        <div className='dashboard-wrapper-inner'>
+        <div className='dashboard-inner-wrapper'>
 
           <Switch >
             <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} getCount = {this.getCount}/>} />
