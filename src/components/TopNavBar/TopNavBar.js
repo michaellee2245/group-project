@@ -22,6 +22,7 @@ class TopNavBar extends Component {
 
 
 
+
     render() {
         return (
             <div className="navbar-wrapper">
@@ -81,7 +82,7 @@ class TopNavBar extends Component {
                     <div className="navbar-tab">
                         {/* <a href="#" className="text"> */}
                         <div onClick={this.handleClick} className="add-member-span">
-                            <i className="material-icons">face</i>
+                            <img src={this.props.user.pic} className="topNav-user-pic"></img>
                             <p className = 'user-profile-menu' > UserProfile</p>
                             {this.state.profileHidden?
                             (

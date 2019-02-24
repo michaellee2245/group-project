@@ -47,6 +47,7 @@
 .material-icons {
   color: grey;
   cursor: pointer;
+  
 }
 .search-img {
   position: absolute;
@@ -185,4 +186,10 @@
   .logo-background {
     width: 210px;
   }
+}
+
+.topNav-user-pic{
+  height:35px;
+  width:35px;
+  border-radius: 50%;
 }

@@ -1,25 +1,13 @@
 .inbox-wrapper-component {
-    margin-top:5%;
-    display: flex;
-    min-height:100%;
-    height: fit-content;
-    width: calc(100% - 19.89vw);
-    flex-direction: column;
-    // float: right;
-    // background-color: orange;
-    justify-content: flex-start;
-
+    width: 100%;
 }
 
 .inbox-title-wrapper {
     height: 10vh;
-    //width: 80.11vw;
     width: 100%;
     display:flex;
     justify-content: center;
-    align-items: center;
-    // background-color:chartreuse;
-    
+    align-items: center;    
 }
 
 .inbox-title-comp {
@@ -28,11 +16,8 @@
    vertical-align: top;
     font-size: 30px;
     font-weight: 600;
-  //  width: 70vw;
     overflow: hidden;
-    padding: 0 1vw;
-    //z-index: 1;
-  
+    padding: 0 1vw;  
 }
 
 .inbox-title-actions {
@@ -67,15 +52,12 @@
 .middle-space-wrapper{
     display: flex;
     height: auto;
-   // width: 80vw;
+    width: 100%;
    // background-color: orange;
     flex-direction: column; 
-    float:right;
+
 }
 
-.middle-space-wall{
-    // margin-right: 70px;
-}
 
 .posts-list{
     float:right;
