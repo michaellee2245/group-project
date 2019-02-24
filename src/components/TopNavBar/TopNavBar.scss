@@ -47,6 +47,7 @@
 .material-icons {
   color: grey;
   cursor: pointer;
+  
 }
 .search-img {
   position: absolute;
@@ -107,6 +108,24 @@
   text-decoration: none;
   position: absolute;
 }
+
+.dropdown-button {
+  position: absolute;
+  z-index: 10;
+  opacity: 20%;
+  display: none;
+  background-color: black;
+  color: white;
+}
+
+.dropdown-people:hover .dropdown-button, .dropdown-people:focus-within .dropdown-button, .navbar-tab .text:focus .dropdown-people .dropdown-button {
+  display: block;
+}
+
+.dropdown-people:focus-within .dropdown-button {
+  display: block;
+}
+
 .first-three {
   display: flex;
   justify-content: flex-start;
@@ -167,4 +186,10 @@
   .logo-background {
     width: 210px;
   }
+}
+
+.topNav-user-pic{
+  height:35px;
+  width:35px;
+  border-radius: 50%;
 }

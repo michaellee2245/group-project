@@ -12,12 +12,13 @@ class Inbox extends Component {
         directMessages: [],
         comments: [],
         allUpdates: false,
-
+        count: null
     }
 
     componentDidMount() {
         this.getDirectMessages()
         this.getComments()
+       
     }
 
     getDirectMessages = () => {
@@ -135,7 +136,7 @@ class Inbox extends Component {
 
 
                 <div className="middle-space-wrapper">
-                    <div className="middle-space-wall">
+                
                         <div className="posts-list">
 
                             {this.countComments() > 0 && !this.state.allUpdates || this.state.comments.length > 0 && this.state.allUpdates ?
@@ -149,8 +150,6 @@ class Inbox extends Component {
                                     this.showOpenUpdates()}
 
                         </div>
-
-                    </div>
 
                 </div>
             </div>

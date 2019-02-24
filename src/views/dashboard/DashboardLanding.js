@@ -16,11 +16,17 @@ import NewRegisterView from '../dashboard/NewRegister/NewRegisterView';
 
 
 class DashboardLanding extends Component {
-
+  state = {
+    count: ''
+  }
 
 
   componentDidMount = () => {
     this.props.dashboard()
+    .then( ( ) => {
+
+      this.getCount()
+    })
   }
 
 
@@ -40,14 +46,13 @@ class DashboardLanding extends Component {
 
   }
 
-  test3 = () => {
-    console.log(this.props.user)
-
-  }
-  test4 = () => {
-    this.props.logout()
-  }
-
+  getCount = () => {
+    const numbers = this.props.dashboards.comments.filter(comment => {
+      return !comment.read
+  }).length
+  this.setState({count:numbers})
+}
+  
 
 
   render() {
@@ -56,17 +61,18 @@ class DashboardLanding extends Component {
       <div className='dashboard-wrapper'>
         <div className='topNavBar'>
 
-          <TopNavBar page={this.props.history.push}  />
+          <TopNavBar page={this.props.history.push} user = {this.props.user.user} />
         </div>
         <DashSideNav
           changeViews={this.changeViews}
           dashboard={this.props.dashboards}
+          count = {this.state.count}
         />
 
-        <div className='dashboard-wrapper-inner'>
+        <div className='dashboard-inner-wrapper'>
 
           <Switch >
-            <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} />} />
+            <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} getCount = {this.getCount}/>} />
             <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
             <Route path= '/dashboard/boards' render = {(props) => <BoardsView {...props} board = {this.props.dashboards.boards ? this.props.dashboards.boards: []}/>} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} dashboard = {this.props.dashboard}/>} />
