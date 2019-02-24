@@ -55,18 +55,29 @@ table {
   thead {
     tr {
       th {
-        color: white;
+        color: black;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size:1.1em;
       }
     }
   }
   tr {
-    background-color:#f0f0f0;
+    background-color:rgba(240, 240, 240, 1);
+    &:hover{
+        background-color:rgba(240, 240, 240, .75);
+        transition:.5s ease;
+      }
     th,
     td {
-      text-align: left;
+      text-align: center;
       // border: 1px solid black;
       padding: 5px;
       position: relative;
+      &:hover{
+        cursor: pointer;
+      }
       
 
       &:focus,
@@ -104,6 +115,7 @@ table {
 .add-row-input{
     width:stretch;
     padding:16px;
-    background-color:lightgray;
-    // border:1px solid black;
+    background-color:white;
+    border:1px solid #f0f0f0;
+    margin-top:1px;
 }

@@ -39,16 +39,6 @@ class DashboardLanding extends Component {
 
   }
 
-  test3 = () => {
-    console.log(this.props.user)
-
-  }
-  test4 = () => {
-    this.props.logout()
-  }
-
-
-
   render() {
     return (
 
