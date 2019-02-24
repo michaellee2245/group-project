@@ -15,11 +15,17 @@ import MyProfile from '../../components/MyProfile/MyProfile'
 
 
 class DashboardLanding extends Component {
-
+  state = {
+    count: ''
+  }
 
 
   componentDidMount = () => {
     this.props.dashboard()
+    .then( ( ) => {
+
+      this.getCount()
+    })
   }
 
 
@@ -39,6 +45,15 @@ class DashboardLanding extends Component {
 
   }
 
+  getCount = () => {
+    const numbers = this.props.dashboards.comments.filter(comment => {
+      return !comment.read
+  }).length
+  this.setState({count:numbers})
+}
+  
+
+
   render() {
     return (
 
@@ -50,12 +65,13 @@ class DashboardLanding extends Component {
         <DashSideNav
           changeViews={this.changeViews}
           dashboard={this.props.dashboards}
+          count = {this.state.count}
         />
 
         <div className='dashboard-wrapper-inner'>
 
           <Switch >
-            <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} />} />
+            <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} getCount = {this.getCount}/>} />
             <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
             <Route path= '/dashboard/boards' render = {(props) => <BoardsView {...props} board = {this.props.dashboards.boards ? this.props.dashboards.boards: []}/>} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} dashboard = {this.props.dashboard}/>} />
