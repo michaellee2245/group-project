@@ -22,5 +22,14 @@
   justify-content: flex-end;
 }
 .dashboard-wrapper-inner {
- margin-left:20%
+ margin-left: 250px;
+
+}
+
+@media only screen and (max-width: 1280px) {
+
+  .dashboard-wrapper-inner {
+    margin-left: 210px;
+  }
+  
 }

@@ -55,7 +55,7 @@ class DashboardLanding extends Component {
       <div className='dashboard-wrapper'>
         <div className='topNavBar'>
 
-          <TopNavBar page={this.props.history.push}  />
+          <TopNavBar page={this.props.history.push} user = {this.props.user.user} />
         </div>
         <DashSideNav
           changeViews={this.changeViews}
@@ -65,7 +65,7 @@ class DashboardLanding extends Component {
         <div className='dashboard-wrapper-inner'>
 
           <Switch >
-            <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} />} />
+            <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} comments={this.props.dashboards.comments} />} />
             <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
             <Route path= '/dashboard/boards' render = {(props) => <BoardsView {...props} board = {this.props.dashboards.boards ? this.props.dashboards.boards: []}/>} />
             <Route path='/dashboard/Admin' render={(props) => <Admin {...props} dashboard = {this.props.dashboard}/>} />
