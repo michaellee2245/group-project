@@ -12,12 +12,13 @@ class Inbox extends Component {
         directMessages: [],
         comments: [],
         allUpdates: false,
-
+        count: null
     }
 
     componentDidMount() {
         this.getDirectMessages()
         this.getComments()
+       
     }
 
     getDirectMessages = () => {

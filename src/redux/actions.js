@@ -63,7 +63,7 @@ export const register = (user) => {
 
 export const dashboard = (boardID) => {
   return dispatch => {
-    axios.get('/api/dashboard')
+    return axios.get('/api/dashboard')
     .then (board => {
       dispatch ({
         type: "BOARDS",

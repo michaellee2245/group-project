@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { logout } from '../../redux/actions'
 import './TopNavBar.scss'
+import NewTeamButton from '../NewTeam/NewTeamButton';
 
 class TopNavBar extends Component {
 
@@ -48,8 +49,8 @@ class TopNavBar extends Component {
                             <a href="#" className="text">
                                 <div className="dropdown-people">
                                     <i className="material-icons">people_outline</i>
-                                    <div className="dropdown-content">
-                                        Team Members
+                                    <div className="dropdown-button">
+                                        <NewTeamButton />
                                 </div>
                                 </div>
                             </a>
@@ -83,7 +84,7 @@ class TopNavBar extends Component {
                         <div onClick={this.handleClick} className="add-member-span">
                             <img src={this.props.user.pic} className="topNav-user-pic"></img>
                             <p className = 'user-profile-menu' > UserProfile</p>
-                            {this.state.profileHidden? 
+                            {this.state.profileHidden?
                             (
                             <div>
                                 <ul className = 'user-profile-menu-list'>
@@ -92,7 +93,7 @@ class TopNavBar extends Component {
                                     <li>Recycle Bin </li>
                                     <li onClick = {this.props.logout}>Logout</li>
                                 </ul>
-                            </div>    
+                            </div>
                             ): (null)
                             }
                         </div>

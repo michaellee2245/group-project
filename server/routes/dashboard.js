@@ -29,10 +29,14 @@ router.get('/', isAuthenticated, (req,res,next) => {
     })
     .then(assignments => {
       res.locals.dash.assignments = assignments;
-      return req.db.dashboard.get_all_comments([req.user[0].id]);
+      return req.db.comment.all([req.user[0].id]);
     })
     .then(comments => {
       res.locals.dash.comments = comments;
+      return req.db.message.get_messages_by_recipient([req.user[0].id]);
+    })
+    .then(messages => {
+      res.locals.dash.messages = messages;
       res.status(200).json(res.locals.dash);
     })
     .catch(err => serverError(err,res));
