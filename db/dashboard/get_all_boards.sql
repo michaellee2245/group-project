@@ -8,7 +8,11 @@ SELECT
   board.owner AS owner_id,
   owner.name AS owner,
   owner.profile_pic AS owner_pic,
-  team.name AS team FROM board
+  team.name AS team,
+  board.team NOT IN (
+    SELECT team.id FROM team
+    JOIN team_member ON team.id = team_member.team_id
+  ) AS private FROM board
 JOIN person AS owner ON owner.id = board.owner
 JOIN team ON board.team = team.id
 WHERE team.id IN (
