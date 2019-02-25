@@ -474,6 +474,71 @@
 					"response": []
 				},
 				{
+					"name": "Try to login with old password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "65761c40-7d54-4129-8c79-49d21d81a8e2",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response body is a string\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.string;",
+									"});",
+									"",
+									"pm.test(\"Response states Password Incorrect\", function () {",
+									"    pm.expect(pm.response.text()).to.equal('Password Incorrect');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7b7addd8-adb4-4c84-b23a-38e2bc2f300f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Log random user back in",
 					"event": [
 						{
@@ -3748,8 +3813,8 @@
 									"    pm.response.to.be.json;",
 									"});",
 									"",
-									"pm.test(\"Response includes board id 28\", function () {",
-									"    pm.expect(pm.response.json().some(e => e.id === 28)).to.be.true;",
+									"pm.test(\"Response includes board id\", function () {",
+									"    pm.expect(pm.response.json().id === pm.environment.get('boardid0')).to.be.true;",
 									"});",
 									""
 								],
@@ -3779,7 +3844,7 @@
 							"variable": [
 								{
 									"key": "name",
-									"value": "tlla"
+									"value": "{{boardname}}"
 								}
 							]
 						}
@@ -4086,17 +4151,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid0}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid0}}"
+								}
 							]
 						}
 					},
@@ -4140,17 +4212,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid1}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid1}}"
+								}
 							]
 						}
 					},
@@ -4194,17 +4273,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"boardID\": {{boardid3}}\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/board",
+							"raw": "localhost:8080/api/board/:boardID",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"board"
+								"board",
+								":boardID"
+							],
+							"variable": [
+								{
+									"key": "boardID",
+									"value": "{{boardid3}}"
+								}
 							]
 						}
 					},
@@ -12116,9 +12202,6 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [
@@ -12131,7 +12214,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"teamID\": {{chargers_team_id}}\n}"
+							"raw": ""
 						},
 						"url": {
 							"raw": "localhost:8080/api/dashboard",
