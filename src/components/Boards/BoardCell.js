@@ -7,13 +7,13 @@ class BoardCell extends Component {
     values: null
   }
 
-  onDropdownChange = (col_name, id, class_name, values ) => {
-    console.log(col_name,id);
+  onDropdownChange = (col_name, id, class_name, values) => {
+    console.log(col_name, id);
     this.setState({
       values: values
     })
     document.activeElement.blur();
-    axios.put(`/api/task/${col_name}`, {taskID:id, [col_name]:values})
+    axios.put(`/api/task/${col_name}`, { taskID: id, [col_name]: values })
   }
 
   handleDayClick = (day, { selected }) => {
@@ -21,12 +21,12 @@ class BoardCell extends Component {
       values: selected ? undefined : day.toLocaleDateString()
     });
     document.activeElement.blur();
-    axios.put(`/api/task/end_date`, {taskID:this.props.item.id, end_date:day.toLocaleDateString()})
+    axios.put(`/api/task/end_date`, { taskID: this.props.item.id, end_date: day.toLocaleDateString() })
   }
-  returnClassName (values, col_name) {
-    switch (col_name){
+  returnClassName(values, col_name) {
+    switch (col_name) {
       case 'status':
-        switch (values){
+        switch (values) {
           case 'Done':
             return 'done-status';
           case 'In Progress':
@@ -35,7 +35,7 @@ class BoardCell extends Component {
             return 'on-hold-status';
           default:
             return '';
-      }
+        }
       case 'priority':
         switch (values) {
           case 'High':
@@ -49,18 +49,19 @@ class BoardCell extends Component {
         }
       case 'time_est':
         return 'time-est-input'
-        
+
       default:
         return '';
     }
   }
   render() {
-    const { props: { item, col_name, ti, uc, s }, state: { values }} = this;
+    const { props: { item, col_name, ti, uc, s }, state: { values } } = this;
+
     return (
       <td
-        className={`board-cell ${this.returnClassName(values|| item[col_name], col_name)}`}
+        className={`board-cell ${this.returnClassName(values || item[col_name], col_name)} ${col_name === 'name' ? 'left-align' : ''}`}
         tabIndex={ti}
-        onClick={() => uc(col_name,item.name)}
+        onClick={() => uc(col_name, item.name)}
       >
         {values ? values : item[col_name]}
         <DashColumnPicker

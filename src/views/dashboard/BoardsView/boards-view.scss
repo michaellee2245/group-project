@@ -21,6 +21,7 @@
 }
 .title-container{
   display:flex;
+  align-items: center;
   justify-content: left;
   position: relative;
   margin-bottom:1%;
@@ -47,10 +48,12 @@
     border:none;
     font-size:1em;
     transition: .25s ease;
+
     &:hover{
       opacity: .75;
       cursor: pointer;
     }
+
     &:focus{
       outline:none;
     }

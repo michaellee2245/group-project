@@ -7,6 +7,8 @@ import team from './images/team-tasks.jpg';
 import orders from './images/orders.jpg';
 import sales from './images/sales-pipeline.jpg';
 import sprints from './images/agile-sprints.jpg';
+import becky from './images/becky.jpg';
+import samantha from './images/samantha.jpg';
 
 const slides = [
     {
@@ -15,15 +17,17 @@ const slides = [
         title: "Creative Processes",
         image: creative,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "roadmap",
         color: "blue",
         title: "Roadmap Management",
         image: roadmap,
-        quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quote: "This is another quote that will make people think and they'll want to buy and use our product",
+        quoteName: "Samantha from Sales Coordination",
+        quoteImage: samantha,
     },
     {
         upperText: "content",
@@ -31,7 +35,8 @@ const slides = [
         title: "Content Calendar",
         image: content,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "HR",
@@ -39,7 +44,8 @@ const slides = [
         title: "HR Management",
         image: hr,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "work",
@@ -47,7 +53,8 @@ const slides = [
         title: "Project Management",
         image: work,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "team",
@@ -55,7 +62,8 @@ const slides = [
         title: "Team Tasks",
         image: team,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "orders",
@@ -63,7 +71,8 @@ const slides = [
         title: "Orders",
         image: orders,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "sales",
@@ -71,7 +80,8 @@ const slides = [
         title: "Sales Pipeline",
         image: sales,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
     {
         upperText: "sprints",
@@ -79,7 +89,8 @@ const slides = [
         title: "Agile Sprints",
         image: sprints,
         quote: "This is a special quote and is very meaningful indeed that it will influence people.",
-        quoteName: "Becky from Technical Services"
+        quoteName: "Becky from Technical Services",
+        quoteImage: becky,
     },
 ];
 export default slides;
