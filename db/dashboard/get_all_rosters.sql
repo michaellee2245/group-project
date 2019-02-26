@@ -8,7 +8,7 @@ SELECT
   person.skype AS skype,
   person.phone AS phone,
   person.location AS location,
-  '' AS manager,
+  FALSE AS manager,
   team_member.team_id AS team_id,
   team.name AS team_name,
   TRUE AS approved
@@ -27,7 +27,7 @@ SELECT
   person.skype AS skype,
   person.phone AS phone,
   person.location AS location,
-  'manager' AS manager,
+  TRUE AS manager,
   team.id AS team_id,
   team.name AS team_name,
   TRUE AS approved
@@ -45,7 +45,7 @@ SELECT
   person.skype AS skype,
   person.phone AS phone,
   person.location AS location,
-  '' AS manager,
+  FALSE AS manager,
   team_member.team_id AS team_id,
   team.name AS team_name,
   team_member.approved AS approved
