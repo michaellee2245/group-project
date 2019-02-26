@@ -24,8 +24,6 @@ class CommentSlideIn extends Component {
         if (key === 'Enter') {
             target.value = ''
 
-        console.log(this.props.taskID)
-        console.log(this.state.commentText)
         axios.post('/api/comment', { taskID: this.props.taskID, content: value })
             .then(response => {
                this.props.updateComment(response.data)

@@ -29,13 +29,17 @@ class NewRegisterView extends Component {
         }
     }
 
-    handleJoin = () => {
-        axios.post(`/api/team/join-name`, {user: this.props.user})
+    handleJoin = (teamID) => {
+        axios.post(`/api/team/join-name`, {user: [this.props.user.user.user], teamID: teamID })
+            .then(response => {
+                console.log(response)
+            })
     }
 
     render() {
 
-        console.log(this.props.user.user.user)
+        const user1 = [this.props.user.user.user]
+        console.log(user1)
         
 
         const teamsList = this.state.teamsList.map((team, i) => {
@@ -45,7 +49,7 @@ class NewRegisterView extends Component {
                     <div>{team.name}</div>
                     <i
                         className="material-icons"
-                        onClick={this.handleJoin}
+                        onClick={() => this.handleJoin(team.id)}
                     >
                         add_circle_outline
                     </i>
