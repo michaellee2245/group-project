@@ -13,7 +13,6 @@ const contentStyle = {
   width: "90%"
 };
 
-
 class MyProfile extends Component {
   state = {
     username: '',
