@@ -68,10 +68,10 @@ class BoardsView extends Component {
                                 <div className="team-title" >{boards[0].team}</div>
                                 <div className="add-board">
                                     <input
-                                        placeholder="+ Add new board"
+                                        placeholder="+ Add new group"
                                         onKeyDown={(e) => handleNewBoard(e, teamID)}
                                     />
-                                    <button >Create Board</button>
+                                    <button onClick={(e) => this.handleNewBoard(e, teamID)} >+</button>
                                 </div>
 
 

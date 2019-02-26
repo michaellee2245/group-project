@@ -59,7 +59,7 @@ class Admin extends Component {
                 return (
                   <div id={i.name} className="admin-nav" onClick={() => this.handleClick(i.name)}>
                     <i class={i.logo} />
-                    <h2 >{i.name}</h2>
+                    <h2>{i.name}</h2>
                   </div>
                 )
 

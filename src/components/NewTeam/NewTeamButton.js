@@ -34,11 +34,12 @@ class NewTeamButton extends Component {
       <form
         className="new-team-button"
         onSubmit={this.handleSubmit}>
-        <label>Enter name to create a new team here:</label>
+        <label>Create a new team.</label>
         <input
           name="teamName"
           value={this.state.teamName}
           onChange={this.handleChange}
+          placeholder='Enter team name here'
         />
       </form>
     )

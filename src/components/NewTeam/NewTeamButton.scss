@@ -1,7 +1,30 @@
+@import "../../views/marketing/variables.scss";
+
 .new-team-button {
-  display: inline-block;
-  padding: 5px 5px 30px 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  position: relative;
+
+
+  input {
+    border: none;
+    border-bottom: 1px solid $red-main;
+    background: transparent;
+    padding: 10px;
+    color: $red-main;
+    font-size: 1em;
+    text-align:center;
+
+    &::placeholder {
+      color: $red-main;
+      text-align:center;
+    }
+  }
 }
 .new-team-button label {
-  display: block;
+  margin-bottom: 7%;
+  font-size: 2em;
+  font-weight:700;
+  color:$red-main;
 }
