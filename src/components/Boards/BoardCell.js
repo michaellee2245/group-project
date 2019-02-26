@@ -47,6 +47,9 @@ class BoardCell extends Component {
           default:
             return '';
         }
+      case 'time_est':
+        return 'time-est-input'
+        
       default:
         return '';
     }
@@ -68,6 +71,7 @@ class BoardCell extends Component {
           cellID={item.id}
           handleDayClick={this.handleDayClick}
           selectedDay={this.props.selectedDay}
+          item={this.props.item}
         />
       </td>
     )
