@@ -1,12 +1,50 @@
 .board-view-container {
-//   margin-top: 50% !important;
+  //   margin-top: 50% !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-//   background-color:blue;
+  //   background-color:blue;
 }
-.grouped-teams{
-    // border:1px solid black;
-    margin-bottom:10px;
+.grouped-teams {
+  // border:1px solid black;
+  margin-bottom: 10px;
+}
+
+.team-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  letter-spacing: 5px;
+}
+.title-container{
+  display:flex;
+  justify-content: center;
+  position: relative;
+}
+.add-board{
+  position: absolute;
+  bottom:5%;
+  right:0;
+  display: flex;
+  
+  input{
+    padding:10px;
+    width:200px;
+
+    &::placeholder{
+      font-size:1.25em;
+    }
+  }
+  button{
+    padding:9px;
+    background-color: red;
+    color:white;
+    border:none;
+    font-size:1em;
+    transition: .25s ease;
+    &:focus{
+      outline:none;
+    }
+  }
 }

@@ -1,13 +1,18 @@
+@import "../../../views/marketing/variables.scss";
+
 * {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
+  &:focus{
+    outline:none;
+  }
 }
-.personal_info_container{
+.personal_info_container {
   width: 500px;
-  height: 500px;
+  height: 100%;
 }
 
-.profile_edit_container{
+.profile_edit_container {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -16,7 +21,7 @@
   width: 500px;
 }
 
-.icon_container{
+.icon_container {
   position: relative;
   display: flex;
   align-items: center;
@@ -27,100 +32,42 @@
   background-color: white;
 }
 
-.fas.fa-pencil-alt{
+.fas.fa-pencil-alt {
   opacity: 0;
 }
 
-.data_container_popup_edit_link{
+.data_container_popup_edit_link {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   height: 35px;
   width: 465px;
-  &:hover{
-    border: 1px dashed black; 
+  &:hover {
+    border: 1px dashed black;
     cursor: pointer;
-    .fas.fa-pencil-alt{
+    .fas.fa-pencil-alt {
       position: absolute;
-      top:15px;
+      top: 15px;
       right: 10px;
       opacity: 1;
     }
   }
 }
 
-.edit_text_title{
+.edit_text_title {
   padding: 15px;
 }
 
-.profile-field-content{
+.profile-field-content {
   padding: 5px;
 }
 
-.fas.fa-envelope-square,.fas.fa-phone,.far.fa-user{
+.fas.fa-envelope-square,
+.fas.fa-phone,
+.far.fa-user {
   color: #009aff;
   position: absolute;
-  top:50%;
-  left:25%;
+  top: 50%;
+  left: 25%;
   transform: translateY(-50%);
-}
-
-.edit_form{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 200px;
-  width: 600px;
-
-  .header{
-    display: flex;
-    justify-content: flex-start;
-    font-size: 30px;
-    margin-left: 20px;
-  }
-
-  input{
-    font-size: 20px;
-    }
-
-  .close{
-    position: absolute;
-    top:0;
-    right:0;
-    font-weight: 800;
-    font-size: 40px;
-    &:hover{
-      cursor: pointer;
-    }
-  }
-
-  .input{
-    #title_input{
-      height: 35px;
-      width: 400px;
-      border-color: #009aff;
-    }
-  }
-
-  .save-title-btn{
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .save{
-    font-size: 18px;
-    height: 40px;
-    width: 70px;
-    outline: none;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-right: 20px;
-    color: white;
-    background-color: #009aff;
-    &:hover{
-      cursor: pointer;
-      background-color: #0051ff
-    }
-  }
 }
