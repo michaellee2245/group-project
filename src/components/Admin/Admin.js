@@ -5,6 +5,8 @@ import General from './components/General'
 import Team from './components/Team'
 import Stats from './components/Stats'
 import history from '../../history'
+import { AnimatedSwitch } from 'react-router-transition';
+
 import './Admin.scss'
 
 class Admin extends Component {
@@ -67,15 +69,24 @@ class Admin extends Component {
           </div>
 
         </div>
-        <div className='admin-content'>
+        {/* <div className='admin-content'> */}
 
+          
 
-          <Switch >
-            <Route path='/dashboard/Admin/My-Team' render={(props) => <Team {...props} />} />
-            <Route path='/dashboard/Admin/Stats' render={(props) => <Stats {...props} />} />
-            <Route path='/dashboard/Admin/' render={(props) => <General {...props} />} />
-          </Switch >
-        </div>
+            <AnimatedSwitch
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+              className="switch-wrapper"
+            >
+              <Route path='/dashboard/Admin/My-Team' render={(props) => <Team {...props} />} />
+              <Route path='/dashboard/Admin/Stats' render={(props) => <Stats {...props} />} />
+              <Route path='/dashboard/Admin/' render={(props) => <General {...props} />} />
+            </AnimatedSwitch >
+
+          
+
+        {/* </div> */}
       </div>
     )
   }

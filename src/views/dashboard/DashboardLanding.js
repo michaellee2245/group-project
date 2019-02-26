@@ -8,6 +8,7 @@ import TopNavBar from '../../components/TopNavBar/TopNavBar'
 import Admin from '../../components/Admin/Admin'
 import { dashboard } from '../../redux/actions'
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import DropMenu from '../../components/DropDown/DropMenu'
 import Boards from '../../components/Boards/Boards';
 import BoardsView from '../dashboard/BoardsView/BoardsView';
@@ -69,9 +70,14 @@ class DashboardLanding extends Component {
           count = {this.state.count}
         />
 
-        <div className='dashboard-inner-wrapper'>
+        {/* <div className='dashboard-inner-wrapper'> */}
 
-          <Switch >
+          <AnimatedSwitch 
+               atEnter={{ opacity: 0 }}
+               atLeave={{ opacity: 0 }}
+               atActive={{ opacity: 1 }}
+               className="dashboard-inner-wrapper"
+          >
             <Route path='/dashboard/Inbox' render={(props) => <Inbox {...props} getCount = {this.getCount}/>} />
             <Route path='/dashboard/myweek' render={(props) => <MyWeek {...props} />} />
             <Route path= '/dashboard/boards' render = {(props) => <BoardsView {...props} board = {this.props.dashboards.boards ? this.props.dashboards.boards: []}/>} />
@@ -81,8 +87,10 @@ class DashboardLanding extends Component {
            
             <Route path='/dashboard/' render={(props) => <BoardsView {...props} />} />
             {/* <Route render={() => <Redirect to='/dashboard/boards'/>} /> */}
-          </Switch>
-        </div>
+          </AnimatedSwitch>
+
+
+        {/* </div> */}
 
       </div>
 
