@@ -23,7 +23,7 @@ class DashSideNav extends Component {
     // const user = 'Starburst'
     // getMessages(user)
     this.props.changeViews(e)
-    
+
   }
   getWeek = (e) => {
     console.log(e.target)
@@ -40,7 +40,21 @@ class DashSideNav extends Component {
   }
 
   privateBoardCount = () => {
-    return this.state.privateCount.length
+    if (this.props.dashboard && this.props.dashboard.boards){
+      return this.props.dashboard.boards.filter(e => e.private).length;
+    }
+    return 0;
+  }
+  privateBoardDisplay = () => {
+    if (this.props.dashboard && this.props.dashboard.boards){
+      return this.props.dashboard.boards.filter(e => e.private).map(e=> {
+        return {
+          name: e.name,
+          board: e.name,
+          number: e.id
+        }
+      })
+    }
   }
 
   showMenu = (e) => {
@@ -49,7 +63,7 @@ class DashSideNav extends Component {
   }
   showPrivate = () => {
     this.setState({ showPrivate: !this.state.showPrivate})
-    
+
   }
 
 
@@ -79,10 +93,10 @@ class DashSideNav extends Component {
         </div>
         <div className="leftpane-boards-list-wrapper" id="leftpane-boards-list-wrapper">
           <div>
-            <div 
-            className="leftpane-boards-public-list-component" 
+            <div
+            className="leftpane-boards-public-list-component"
             // id="leftpane-boards-list-component"
-            
+
             >
               <a href="#" className="link-wrapper router" id="link-container" onClick = {this.showMenu} >
                 <i class="material-icons title-side">menu</i><span className="title-side">Boards public</span>
@@ -96,7 +110,7 @@ class DashSideNav extends Component {
                 )
                 :(null)
               }
-              
+
               </div>
             </div>
           </div>
@@ -112,7 +126,7 @@ class DashSideNav extends Component {
                 this.state.showPrivate
                 ?(
                   <div className = 'drop-menu'  >
-                    <DropDown nav = {this.state.nav} />
+                    <DropDown nav = {this.privateBoardDisplay()} />
                   </div>
                 )
                 :(null)
