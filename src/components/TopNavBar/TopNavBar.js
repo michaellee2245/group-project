@@ -12,6 +12,8 @@ class TopNavBar extends Component {
 
     handleClick = () => {
         this.setState({ profileHidden: !this.state.profileHidden })
+        // document.activeElement.blur();
+
     }
     handleAdmin = () => {
         this.props.page('/dashboard/admin')
@@ -81,7 +83,7 @@ class TopNavBar extends Component {
 
                     <div className="navbar-tab">
                         {/* <a href="#" className="text"> */}
-                        <div onClick={this.handleClick} className="add-member-span">
+                        <div onClick={this.handleClick} className={`add-member-span ${this.state.profileHidden ? 'active' : ''}` }>
                             <img src={this.props.user.pic} className="topNav-user-pic"></img>
                             <p className = 'user-profile-menu' > UserProfile</p>
                             {this.state.profileHidden?

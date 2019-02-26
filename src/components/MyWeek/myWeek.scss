@@ -1,9 +1,15 @@
+.my-week-main-container{
+  width:100%;
+  
+}
+
 .personal-assistant-content-header{
   display: flex;
-  margin-left: 30%;
+  // margin-left: 30%;
   align-items: center;
   height: 80px;
-  width: 100vw;
+  width: 100%;
+  justify-content: center;
 }
 
 .personal-assistant-weeks-navigator-component{
@@ -11,7 +17,7 @@
   // justify-content: flex-start;
   align-items: center;
   height: 37px;
-  width: 100vw;
+  width: 100%;
 }
 
 .prev-week-button, .next-week-button{
@@ -24,7 +30,7 @@
 
 .personal-assistant-content-component{
   height: 900px;
-  width: 100vw;
+  width: 100%;
 }
 
 .personal-assistant-header-component{

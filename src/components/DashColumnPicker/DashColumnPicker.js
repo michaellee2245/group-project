@@ -3,8 +3,16 @@ import './dash-column-picker.scss';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import axios from 'axios';
+import $ from 'jquery';
+
 
 class DashColumnPicker extends Component {
+
+  // componentDidMount = () => {
+  //   $(window).click(function(){
+  //     $('.time-est-input').blur()
+  //   })
+  // }
 
   handleDayClick = (day, { selected }) => {
     this.setState({

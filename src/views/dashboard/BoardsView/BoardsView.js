@@ -65,7 +65,7 @@ class BoardsView extends Component {
                     {Object.entries(groupedByTeams).map(([teamID, boards]) =>
                         <div className="grouped-teams">
                             <div className="title-container">
-                                <div className="team-title" style={{fontSize: "50px"}}>{boards[0].team}</div>
+                                <div className="team-title" >{boards[0].team}</div>
                                 <div className="add-board">
                                     <input
                                         placeholder="+ Add new board"
