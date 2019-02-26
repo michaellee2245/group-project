@@ -84,11 +84,13 @@
   }
 }
 
+.team h1 {
+  font-size: 20px;
+}
 
 .team-table-wrapper {
-  position: absolute;
-  // margin-left:5%;
   width: 750px;
+  margin-bottom: 10%;
   th{
   background-color:white;
   color:black;
