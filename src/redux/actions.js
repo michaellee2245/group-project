@@ -56,7 +56,7 @@ export const register = (user) => {
         type: "USER",
         payload: user
       })
-      dispatch(push('/dashboard'))
+      dispatch(push('/dashboard/join-team'))
     })
   }
 }

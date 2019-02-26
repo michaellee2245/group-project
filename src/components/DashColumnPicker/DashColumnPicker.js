@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './dash-column-picker.scss';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import axios from 'axios';
 
 class DashColumnPicker extends Component {
 
@@ -11,8 +12,18 @@ class DashColumnPicker extends Component {
     });
   }
 
+  onEnterTime = ({ key, target, target: {value}}, ) => {
+    console.log(this.props.item)
+    if(key === 'Enter') {
+      axios.put('/api/task/time_est', {taskID: this.props.cellID, time_est: value })
+        .then(response => {
+          console.log(response.data)
+        })
+    }
+  }
+
   modalTypes = mt => {
-    const {props: { modalType, dropdownChange, cellID, handleDayClick }} = this;
+    const { props: { modalType, dropdownChange, cellID, handleDayClick } } = this;
     switch (mt) {
       case 'priority':
         return (
@@ -75,8 +86,21 @@ class DashColumnPicker extends Component {
           >
             <DayPicker
               selectedDays={this.props.selectedDay}
-              onDayClick={ (a, b) => handleDayClick(a,b, modalType, cellID)}
+              onDayClick={(a, b) => handleDayClick(a, b, modalType, cellID)}
             />
+          </div>
+        )
+      case 'time_est':
+        return (
+          <div className="time-est-wrapper">
+            <input 
+              className={`time-est-input`} 
+              onKeyDown={this.onEnterTime}
+              type="number"
+              min="0"
+              placeholder={this.props.item.time_est}
+            />
+            <div>h</div>
           </div>
         )
       case 'owner':
@@ -90,11 +114,25 @@ class DashColumnPicker extends Component {
   render() {
     const { modalType, selected } = this.props;
     return (
-      <div
-        id={this.props.id}
-        className={`column-modal-container ${selected ? "" : "hidden"}`}
-      >
-        {this.modalTypes(modalType)}
+      <div>
+        {modalType === 'status' || modalType === 'priority' || modalType === 'end_date' ? (
+
+          <div
+            id={this.props.id}
+            className={`column-modal-container ${selected ? "" : "hidden"}`}
+          >
+            {this.modalTypes(modalType)}
+          </div>
+
+        ) : null}
+        {modalType === 'time_est' ? (
+          <div
+            id={this.props.id}
+            className={`${selected ? "" : "hidden"}`}
+          >
+            {this.modalTypes(modalType)}
+          </div>
+        ) : null}
       </div>
     )
   }
