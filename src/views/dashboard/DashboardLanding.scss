@@ -1,11 +1,12 @@
 .dashboard-wrapper{
   position: relative;
-  margin-top:8%;
+  margin-top:7vh;
+  
 }
 .dashboard-inner-wrapper{
   margin-left:250px;
   min-width:calc(100% - 20%);
-  height:auto;
+  height: calc(100vh - 7vh);
   // background-color:blue;
   position: relative;
   display:flex;

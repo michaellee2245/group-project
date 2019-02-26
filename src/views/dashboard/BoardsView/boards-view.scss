@@ -1,12 +1,27 @@
 .board-view-container {
-//   margin-top: 50% !important;
+  //   margin-top: 50% !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-//   background-color:blue;
+  //   background-color:blue;
 }
-.grouped-teams{
-    // border:1px solid black;
-    margin-bottom:10px;
+.grouped-teams {
+  // border:1px solid black;
+  margin-bottom: 10px;
+}
+
+.team-title {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 2em;
+}
+.title-container{
+  display:flex;
+  flex-direction: row;
+}
+.add-board{
+  position: absolute;
+  top:0;
+  right:0;
 }

@@ -22,7 +22,7 @@ class Team extends Component {
       )
     })
     return (
-      <div>
+      <>
 
         <table className='team-table-wrapper'>
           <tr>
@@ -33,7 +33,7 @@ class Team extends Component {
           {teams}
 
         </table>
-      </div>
+      </>
     )
   }
 }
