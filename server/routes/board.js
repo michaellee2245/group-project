@@ -46,7 +46,13 @@ router.get('/modifiable', isAuthenticated, (req, res, next) => {
 //       then only the most recently created will be sent
 router.get('/id/:name', isAuthenticated, (req, res, next) => {
   req.db.board.get_id_by_name([req.params.name])
-    .then(id => sendBoardID(id[0].id, req.params.name, req, res, next))
+    .then(id => {
+      if (!id || id.length < 1 || !id[0].id) {
+        res.status(404).send('no board located');
+        return;
+      }
+      sendBoardID(id[0].id, req.params.name, req, res, next)
+    })
     .catch(err => serverError(err, res))
 })
 
