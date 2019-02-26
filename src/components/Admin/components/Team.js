@@ -1,45 +1,55 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import './StatBox.scss'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './StatBox.scss';
+import _ from 'lodash';
 
 class Team extends Component {
 
-
-  roster = this.props.dashboard.roster ? this.props.dashboard.roster : []
-
-
-  render() {
-    const teams = this.roster.map((i) => {
+  rosterMapper = teamName => (e, i) => {
+    if (e.team_name === teamName) {
       return (
-        <tr>
-          <td>{i.name}</td>
-          <td>{i.email}</td>
-          <td>{i.phone}</td>
-          <hr />
+        <tr key={i}>
+          <td>{e.name}</td>
+          <td>{e.email}</td>
+          <td>{e.phone}</td>
         </tr>
-
-
       )
-    })
-    return (
-      <>
+    } else {
+      return '';
+    }
+  }
 
-        <table className='team-table-wrapper'>
+  teamMapper = (e, i) => {
+    const { props: { dashboard: { roster } }, rosterMapper } = this;
+    return (
+      <div className="team" key={i}>
+        <h1>{e}</h1>
+        <table className="team-table-wrapper">
           <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
           </tr>
-          {teams}
-
+          {roster ? roster.map(rosterMapper(e)) : ''}
         </table>
-      </>
+      </div>
+    )
+  }
+
+  render() {
+    const { props: { dashboard: { roster } }, teamMapper } = this;
+    return (
+      <div>
+        {roster ? _.uniq(roster.map(e => e.team_name)).map(teamMapper) : ''}
+      </div>
     )
   }
 }
+
 const mapStateToProps = state => {
   return {
     dashboard: state.user.dashboard
   }
 }
+
 export default connect(mapStateToProps)(Team);
