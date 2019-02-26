@@ -51,7 +51,7 @@ class MyProfile extends Component {
                     </div>}
                     modal contentStyle={contentStyle}>
                     {close => (
-                      <div className='popup_wrapper'>
+                      // <div className='popup_wrapper'>
                         <div className="picture_edit_form">
                           <div className="close" onClick={close}>&times;</div>
                           <div className="header"> Change picture</div>
@@ -66,7 +66,7 @@ class MyProfile extends Component {
                             <i class="fas fa-trash-alt" ></i>
                           </div>
                         </div>
-                      </div>
+                      // </div>
                     )}
                   </Popup>
                 </div>

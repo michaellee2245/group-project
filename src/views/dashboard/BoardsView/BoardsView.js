@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 
-import './BoardsView.scss';
+import './boards-view.scss';
 import Boards from '../../../components/Boards/Boards';
 
 
@@ -60,17 +60,21 @@ class BoardsView extends Component {
 
         return (
             <div>
-               
+
                 <div className="board-view-container">
                     {Object.entries(groupedByTeams).map(([teamID, boards]) =>
                         <div className="grouped-teams">
-                            <h1>{boards[0].team}</h1>
-                            <div>
-                                <input
-                                    placeholder="+ Add new board"
-                                    onKeyDown={(e) => handleNewBoard(e, teamID)}
-                                />
-                                <button >Create Board</button>
+                            <div className="title-container">
+                                <div className="team-title" style={{fontSize: "50px"}}>{boards[0].team}</div>
+                                <div className="add-board">
+                                    <input
+                                        placeholder="+ Add new board"
+                                        onKeyDown={(e) => handleNewBoard(e, teamID)}
+                                    />
+                                    <button >Create Board</button>
+                                </div>
+
+
                             </div>
                             <div>
                                 {boards.map((board) => {

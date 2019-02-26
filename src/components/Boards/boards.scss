@@ -1,44 +1,3 @@
-// .board-view-container{
-//     width:1000px;
-//     margin-top:300px;
-//     display:flex;
-//     border:1px solid black;
-//     height:700px;
-//     margin-bottom:50px;
-//     flex-direction: column;
-// }
-// .board-header-container{
-//     display:flex;
-//     height:30px;
-//     width:100%;
-//     align-items: center;
-//     justify-content: space-between;
-// }
-// .task-wrapper{
-//     display: block;
-//     width:100%;
-// }
-// .task-inner-wrapper{
-//     display: flex;
-//     // min-width:calc(100% - 130px);
-//     justify-content: space-between;
-//     // margin-left:130px;
-//     background-color:red;
-//     height:20px;
-
-// }
-// .cell-component {
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     white-space: nowrap;
-//     text-align: center;
-//     font-size: 13px;
-//     font-weight: 400;
-//     height: 100%;
-//     border-right: 1px solid #fff;
-//     color: white;
-//     position: relative;
-// }
 .board-wrapper {
   width: 75vw;
   //   margin-top: 300px;
@@ -51,7 +10,7 @@
 table {
   width: stretch;
   border-spacing: 1px;
-  font-size: .75em;
+  font-size: 0.75em;
   thead {
     tr {
       th {
@@ -59,30 +18,30 @@ table {
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 1px;
-        font-size:1.1em;
+        font-size: 1.1em;
       }
     }
   }
   tr {
-    background-color:rgba(240, 240, 240, 1);
-    &:hover{
-        background-color:rgba(240, 240, 240, .75);
-        transition:.5s ease;
-      }
+    background-color: rgba(240, 240, 240, 1);
+    &:hover {
+      background-color: rgba(240, 240, 240, 0.75);
+      transition: 0.5s ease;
+    }
     th,
     td {
       text-align: center;
       // border: 1px solid black;
       padding: 5px;
       position: relative;
-      &:hover{
+
+      &:hover {
         cursor: pointer;
       }
-      
 
       &:focus,
       &:focus-within {
-        outline:none;
+        outline: none;
         .column-modal-container {
           display: flex;
         }
@@ -106,16 +65,16 @@ table {
 .add-row-input {
   width: stretch;
   padding: 16px;
-  &:focus{
-      outline:none;
+  &:focus {
+    outline: none;
   }
   // background-color:lightgray;
   // border:1px solid black;
 }
-.add-row-input{
-    width:stretch;
-    padding:16px;
-    background-color:white;
-    border:1px solid #f0f0f0;
-    margin-top:1px;
+.add-row-input {
+  width: stretch;
+  padding: 16px;
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  margin-top: 1px;
 }
