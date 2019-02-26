@@ -12,16 +12,39 @@
 }
 
 .team-title {
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
-  font-size: 2em;
+  font-size: 1.5em;
+  letter-spacing: 5px;
 }
 .title-container{
   display:flex;
-  flex-direction: row;
+  justify-content: center;
+  position: relative;
 }
 .add-board{
   position: absolute;
-  top:0;
+  bottom:5%;
   right:0;
+  display: flex;
+  
+  input{
+    padding:10px;
+    width:200px;
+
+    &::placeholder{
+      font-size:1.25em;
+    }
+  }
+  button{
+    padding:9px;
+    background-color: red;
+    color:white;
+    border:none;
+    font-size:1em;
+    transition: .25s ease;
+    &:focus{
+      outline:none;
+    }
+  }
 }
