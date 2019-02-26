@@ -7,6 +7,8 @@ SELECT
   assignment.assigner_id AS assigner_id,
   assigner.name AS assigner,
   assigner.profile_pic AS assigner_pic,
+  "user".name AS "user",
+  "user".profile_pic AS user_pic,
   task.name AS task,
   task.board_id AS board_id,
   board.team AS team_id,
@@ -14,6 +16,7 @@ SELECT
   board.name AS board
 FROM assignment JOIN task ON assignment.task_id = task.id
 JOIN person AS assigner ON assignment.assigner_id = assigner.id
+JOIN person AS "user" ON assignment.user_id = "user".id
 JOIN board ON task.board_id = board.id
 JOIN team ON board.team = team.id
 WHERE team.id IN (
