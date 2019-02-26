@@ -1,5 +1,6 @@
 /* Get all tasks on a specific board */
 SELECT
+  task.time_est AS time_est,
   task.id,
   task.name AS name,
   task.group_name,

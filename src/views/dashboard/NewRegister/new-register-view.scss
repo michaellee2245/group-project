@@ -1,0 +1,87 @@
+
+@import '../../marketing/variables.scss';
+
+
+@keyframes out {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+@keyframes in {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+
+.new-register-container {
+    margin-top: 7vh;
+    margin-right: 5px;
+    width: 95%;
+    height: 100vh;
+    overflow-y: scroll;
+    h1 {
+        font-size: 70px;
+        color: $red-main;
+    }
+    input {
+        width: 500px;
+        height: 30px;
+        margin-top: 50px;
+        font-size: 25px;
+        padding: 15px;
+        border: none;
+        text-align: center;
+        border-bottom: 1px solid $red-main;
+        color: gray;
+        &:focus {
+            outline: none!important;
+        }
+        &::placeholder {
+            color: $red-main;
+        }
+    }
+}
+
+.team-name-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    border: 1px solid $blue-main;
+    color: $blue-main;
+    margin: 10px auto;
+    padding: 10px 0;
+    border-radius: 15px;
+    transition: all ease .19s;
+    div {
+        padding: 5px 16px;
+        font-size: 20px;
+    }
+    &:hover {
+        background-color: $blue-main;
+        color: white;
+    }
+    i {
+        color: white;
+        margin-right: 40px;
+        font-size: 40px;
+        animation: in .5s;
+        &:hover {
+            animation: out .5s;
+        }
+    }
+}
+
+.list-container {
+    width: 100%;
+    margin-top: 50px;
+    text-align: left;
+}
+
