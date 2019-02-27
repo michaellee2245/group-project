@@ -18,6 +18,7 @@ import philips from '../../../assets/philips.png';
 import dhl from '../../../assets/dhl.png';
 import wix from '../../../assets/wix.png';
 import MarketFooter from '../../../components/MarketFooter/MarketFooter';
+import curtis from '../../../assets/curtis.png';
 
 
 class WhyUs extends Component {
@@ -134,6 +135,7 @@ class WhyUs extends Component {
                         />
                         <SupportCard
                             title={'Curtis'}
+                            picture={curtis}
                             className={'blue-card'}
 
                         />
