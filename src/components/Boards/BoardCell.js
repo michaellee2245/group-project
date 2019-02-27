@@ -63,7 +63,7 @@ class BoardCell extends Component {
         tabIndex={ti}
         onClick={() => uc(col_name, item.name)}
       >
-        {values ? values : item[col_name]}
+        {col_name === 'time_est' ? '' : values ? values : item[col_name]}
         <DashColumnPicker
           id={`col-${item.id}-${col_name}`}
           modalType={col_name}
