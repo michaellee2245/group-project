@@ -1,5 +1,7 @@
+@import '../../marketing/variables.scss';
+
 .board-view-container {
-  //   margin-top: 50% !important;
+  margin-top: 5% !important;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,13 +16,17 @@
 .team-title {
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 1.5em;
+  font-size: 2em;
   letter-spacing: 5px;
+  color: $purple-main;
 }
 .title-container{
   display:flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: left;
   position: relative;
+  margin-bottom:1%;
+  padding:0 5px
 }
 .add-board{
   position: absolute;
@@ -31,18 +37,35 @@
   input{
     padding:10px;
     width:200px;
+    border:none;
+    border-bottom:1px solid $purple-main;
+    margin-right:3px;
+    color: $purple-main;
+    font-size: .75em;
 
     &::placeholder{
       font-size:1.25em;
+      color:$purple-main;
     }
   }
   button{
-    padding:9px;
-    background-color: red;
-    color:white;
-    border:none;
-    font-size:1em;
+    text-align: center;
+    height:40px;
+    width:40px;
+    padding:0 2px 3px 0;
+    background-color: white;
+    color:$purple-main;
+    border-radius:50px;
+    border:1px solid $purple-main;
+    font-size:1.55em;
+    font-weight: 500;
     transition: .25s ease;
+
+    &:hover{
+      opacity: .75;
+      cursor: pointer;
+    }
+
     &:focus{
       outline:none;
     }

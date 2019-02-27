@@ -14,6 +14,11 @@
   align-items:center;
   overflow: visible;
 }
+.dashboard-inner-wrapper > div {
+  position: absolute;
+  width:100%;
+  height:100%;
+}
 .topNavBar {
   width:100vw;
   position:fixed;

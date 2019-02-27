@@ -77,7 +77,7 @@ export default class MyWeek extends Component {
 
   render() {
     return (
-      <div>
+      <div className="my-week-main-container">
         <div className='personal-assistant-content-header'>
           <div className='weeks-navigator-container'>
             <div className='personal-assistant-weeks-navigator-component'>

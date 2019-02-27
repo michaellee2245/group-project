@@ -33,33 +33,7 @@ $green-background: rgba(0, 200, 117, 1);
     top: -20px;
   }
 }
-.column-modal-container {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.32);
-  border-radius: 4px;
-  border: 1px solid #c4c4c4;
-  position: absolute;
-  background-color: white;
-  z-index: 500;
-  &:before {
-    content: '';
-    position: absolute;
-    border: solid transparent;
-    border-color: rgba(212, 45, 45, 0);
-    pointer-events: none;
-    height: 0;
-    width: 0;
-    box-sizing: border-box;
-    right: 50%;
-    transform: translateX(50%);
-    border-bottom-color: white;
-    border-width: 10px;
-    top: -20px;
-  }
-}
+
 // .hidden{
 //   display:none;
 // }
@@ -131,7 +105,7 @@ $green-background: rgba(0, 200, 117, 1);
 }
 
 .time-est-input {
-  width: 30px;
+  width: 80px;
   text-align: center;
   border: none;
   background: transparent;
