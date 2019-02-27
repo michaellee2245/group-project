@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DropDownWeek from '../DropDownWeek/DropDownWeek'
-import './MyWeek.scss'
+import './myWeek.scss'
 
 export default class MyWeek extends Component {
 
